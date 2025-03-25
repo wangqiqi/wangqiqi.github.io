@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+Disallow: /js/
+Disallow: /css/
+Disallow: /lib/
+Disallow: /images/
+Allow: /images/avatar.gif
+Allow: /images/favicon*.png
+Allow: /images/logo.svg
+
+# 允许特定年份的文章
+Allow: /2024/
+Allow: /2023/
+Allow: /2022/
+Allow: /2021/
+Allow: /2020/
+Allow: /2019/
+
+# 允许存档页面
+Allow: /archives/
+Allow: /categories/
+Allow: /tags/
+
+# 搜索引擎爬取延迟（秒）
+Crawl-delay: 10
+
+# 站点地图
+Sitemap: https://znza.top/sitemap.xml 
