@@ -3,7 +3,7 @@
   <entry>
     <title>AR Pi Tattoo - 有趣的增强现实π纹身应用</title>
     <url>/2024/03/24/AR-Pi-Tattoo-%E6%9C%89%E8%B6%A3%E7%9A%84%E5%A2%9E%E5%BC%BA%E7%8E%B0%E5%AE%9E%CF%80%E7%BA%B9%E8%BA%AB%E5%BA%94%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h2><p><img src="/ar_pi_tattoo_1.png" alt="AR Pi Tattoo 演示"></p>
+    <content><![CDATA[<h2 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h2><p><img src="/./AR-Pi-Tattoo-%E6%9C%89%E8%B6%A3%E7%9A%84%E5%A2%9E%E5%BC%BA%E7%8E%B0%E5%AE%9E%CF%80%E7%BA%B9%E8%BA%AB%E5%BA%94%E7%94%A8/ar_pi_tattoo_1.png" alt="AR Pi Tattoo 演示"></p>
 <p>AR Pi Tattoo 是我最近开发的一个有趣的增强现实应用，它可以在用户的额头上投影虚拟π符号纹身。不仅如此，用户还可以通过特定的手势来更改纹身样式，比如切换发光效果、旋转动画或粒子效果等。这个项目最初是为了庆祝π日（3月14日）而创建的，但它展示了增强现实技术在创意领域的潜力。</p>
 <h2 id="功能特点"><a href="#功能特点" class="headerlink" title="功能特点"></a>功能特点</h2><ul>
 <li><strong>实时人脸检测和额头跟踪</strong>：使用MediaPipe库精确定位用户面部特征</li>
@@ -36,7 +36,7 @@
 <li>按’q’键退出应用</li>
 </ul>
 <h2 id="项目演示"><a href="#项目演示" class="headerlink" title="项目演示"></a>项目演示</h2><p>除了静态图片，这里有一个实际运行效果的动态演示：</p>
-<p><img src="/ar_pi_tattoo_2.png" alt="AR Pi Tattoo 演示"></p>
+<p><img src="/./AR-Pi-Tattoo-%E6%9C%89%E8%B6%A3%E7%9A%84%E5%A2%9E%E5%BC%BA%E7%8E%B0%E5%AE%9E%CF%80%E7%BA%B9%E8%BA%AB%E5%BA%94%E7%94%A8/ar_pi_tattoo_2.png" alt="AR Pi Tattoo 演示"></p>
 <h2 id="技术难点与解决方案"><a href="#技术难点与解决方案" class="headerlink" title="技术难点与解决方案"></a>技术难点与解决方案</h2><p>在开发过程中，我遇到了以下几个技术挑战：</p>
 <h3 id="1-面部跟踪的稳定性"><a href="#1-面部跟踪的稳定性" class="headerlink" title="1. 面部跟踪的稳定性"></a>1. 面部跟踪的稳定性</h3><p><strong>问题</strong>：面部检测结果在不同帧之间可能会抖动，导致纹身位置不稳定。</p>
 <p><strong>解决方案</strong>：实现了一个简单的平滑滤波器，对检测到的关键点位置进行时间平均，减少抖动效果。</p>
@@ -95,7 +95,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 如果你是在全新环境中设置</span></span><br><span class="line"><span class="built_in">mkdir</span> blog-folder</span><br><span class="line"><span class="built_in">cd</span> blog-folder</span><br><span class="line">hexo init .</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>如果使用当前仓库</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 克隆仓库</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/nxu-game/wangqiqi.github.io.git</span><br><span class="line"><span class="built_in">cd</span> wangqiqi.github.io</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖 (确保你已经有 package.json 文件)</span></span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果没有 package.json 文件，需要初始化一个新的 Hexo 项目并迁移内容</span></span><br><span class="line"><span class="comment"># 1. 在别处创建一个新的 Hexo 项目</span></span><br><span class="line"><span class="built_in">mkdir</span> temp_hexo</span><br><span class="line"><span class="built_in">cd</span> temp_hexo</span><br><span class="line">hexo init .</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 复制必要的配置文件到原项目</span></span><br><span class="line"><span class="comment"># 将 package.json, package-lock.json, _config.yml, scaffolds/ 和 themes/ 等复制到原项目</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 克隆仓库</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/wangqiqi/wangqiqi.github.io</span><br><span class="line"><span class="built_in">cd</span> wangqiqi.github.io</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖 (确保你已经有 package.json 文件)</span></span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果没有 package.json 文件，需要初始化一个新的 Hexo 项目并迁移内容</span></span><br><span class="line"><span class="comment"># 1. 在别处创建一个新的 Hexo 项目</span></span><br><span class="line"><span class="built_in">mkdir</span> temp_hexo</span><br><span class="line"><span class="built_in">cd</span> temp_hexo</span><br><span class="line">hexo init .</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 复制必要的配置文件到原项目</span></span><br><span class="line"><span class="comment"># 将 package.json, package-lock.json, _config.yml, scaffolds/ 和 themes/ 等复制到原项目</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="主题安装"><a href="#主题安装" class="headerlink" title="主题安装"></a>主题安装</h2><ol>
 <li><p>安装 NexT 主题</p>
