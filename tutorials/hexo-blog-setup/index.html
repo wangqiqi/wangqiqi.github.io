@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"wangqiqi.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.22.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="一份全面的 Hexo 博客搭建指南，包含环境配置、主题安装、写作发布以及常见问题解决方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo博客搭建完整指南">
+<meta property="og:url" content="https://wangqiqi.github.io/tutorials/hexo-blog-setup/index.html">
+<meta property="og:site_name" content="老周有AI">
+<meta property="og:description" content="一份全面的 Hexo 博客搭建指南，包含环境配置、主题安装、写作发布以及常见问题解决方法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-02T09:00:22.712Z">
+<meta property="article:author" content="老周">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="博客搭建">
+<meta property="article:tag" content="Next主题">
+<meta property="article:tag" content="GitHub Pages">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://wangqiqi.github.io/tutorials/hexo-blog-setup/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://wangqiqi.github.io/tutorials/hexo-blog-setup/","path":"/tutorials/hexo-blog-setup/","title":"Hexo博客搭建完整指南"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Hexo博客搭建完整指南 | 老周有AI</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="老周有AI" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">老周有AI</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">计算机视觉与人工智能技术分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">10</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">3</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Hexo"><span class="nav-number">1.</span> <span class="nav-text">为什么选择Hexo?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%A6%81%E6%B1%82"><span class="nav-number">2.1.</span> <span class="nav-text">系统要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.2.</span> <span class="nav-text">安装步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E9%A2%98%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">主题安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E5%BC%80%E5%8F%91"><span class="nav-number">4.</span> <span class="nav-text">本地开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">4.1.</span> <span class="nav-text">启动本地服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E6%9F%A5%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88%E9%97%AE%E9%A2%98"><span class="nav-number">4.2.</span> <span class="nav-text">排查本地预览问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E6%96%87%E7%AB%A0"><span class="nav-number">4.3.</span> <span class="nav-text">创建新文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.4.</span> <span class="nav-text">文章格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2"><span class="nav-number">5.</span> <span class="nav-text">构建与部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2"><span class="nav-number">5.1.</span> <span class="nav-text">配置部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6"><span class="nav-number">5.2.</span> <span class="nav-text">生成静态文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E5%88%B0-GitHub-Pages"><span class="nav-number">5.3.</span> <span class="nav-text">部署到 GitHub Pages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5"><span class="nav-number">5.4.</span> <span class="nav-text">部署问题排查</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E9%A2%98%E5%AE%9A%E5%88%B6"><span class="nav-number">6.</span> <span class="nav-text">主题定制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98%E9%A3%8E%E6%A0%BC"><span class="nav-number">6.1.</span> <span class="nav-text">更换主题风格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E8%87%AA%E5%AE%9A%E4%B9%89%E9%83%A8%E5%88%86"><span class="nav-number">6.2.</span> <span class="nav-text">推荐自定义部分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E4%BD%9C%E9%A3%8E%E6%A0%BC%E5%BB%BA%E8%AE%AE"><span class="nav-number">7.</span> <span class="nav-text">写作风格建议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-number">8.</span> <span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%97%A0%E6%95%88"><span class="nav-number">8.1.</span> <span class="nav-text">主题配置无效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E4%B8%8D%E6%98%BE%E7%A4%BA"><span class="nav-number">8.2.</span> <span class="nav-text">文章不显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E4%B8%BB%E9%A2%98"><span class="nav-number">8.3.</span> <span class="nav-text">更新主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98"><span class="nav-number">8.4.</span> <span class="nav-text">清除缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows-%E7%89%B9%E6%9C%89%E9%97%AE%E9%A2%98"><span class="nav-number">8.5.</span> <span class="nav-text">Windows 特有问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86"><span class="nav-number">8.6.</span> <span class="nav-text">图片资源管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%BA%90"><span class="nav-number">9.</span> <span class="nav-text">参考资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%B8%B8%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">10.</span> <span class="nav-text">日常工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E"><span class="nav-number">10.1.</span> <span class="nav-text">目录结构说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E4%BD%9C%E5%92%8C%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B"><span class="nav-number">10.2.</span> <span class="nav-text">写作和更新流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%B4%E6%8A%A4%E5%BB%BA%E8%AE%AE"><span class="nav-number">10.3.</span> <span class="nav-text">维护建议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="nav-number">10.4.</span> <span class="nav-text">常见问题解决</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE%E6%8A%80%E5%B7%A7"><span class="nav-number">11.</span> <span class="nav-text">高级配置技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#config-yml%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE"><span class="nav-number">11.1.</span> <span class="nav-text">_config.yml核心配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96"><span class="nav-number">11.2.</span> <span class="nav-text">Next主题个性化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E5%88%9B%E4%BD%9C%E6%8C%87%E5%8D%97"><span class="nav-number">12.</span> <span class="nav-text">内容创作指南</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Markdown%E9%AB%98%E7%BA%A7%E8%AF%AD%E6%B3%95"><span class="nav-number">12.1.</span> <span class="nav-text">Markdown高级语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E4%B8%8E%E7%BB%B4%E6%8A%A4"><span class="nav-number">13.</span> <span class="nav-text">部署与维护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88"><span class="nav-number">13.1.</span> <span class="nav-text">多环境部署方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2%E7%BB%B4%E6%8A%A4-checklist"><span class="nav-number">13.2.</span> <span class="nav-text">博客维护 checklist</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3-1"><span class="nav-number">14.</span> <span class="nav-text">常见问题解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E5%90%8E%E6%A0%B7%E5%BC%8F%E4%B8%A2%E5%A4%B1"><span class="nav-number">14.1.</span> <span class="nav-text">部署后样式丢失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88%E4%B8%8E%E7%BA%BF%E4%B8%8A%E5%B7%AE%E5%BC%82"><span class="nav-number">14.2.</span> <span class="nav-text">本地预览与线上差异</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3"><span class="nav-number">14.3.</span> <span class="nav-text">插件冲突解决</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E8%B5%84%E6%BA%90"><span class="nav-number">15.</span> <span class="nav-text">推荐资源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E8%B4%A8%E6%8F%92%E4%BB%B6"><span class="nav-number">15.1.</span> <span class="nav-text">优质插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90"><span class="nav-number">15.2.</span> <span class="nav-text">学习资源</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="老周"
+      src="/images/person.jpg">
+  <p class="site-author-name" itemprop="name">老周</p>
+  <div class="site-description" itemprop="description">老周的个人技术博客，专注于计算机视觉、人工智能和创意编程</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://wangqiqi.github.io/tutorials/hexo-blog-setup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Hexo博客搭建完整指南 | 老周有AI">
+      <meta itemprop="description" content="一份全面的 Hexo 博客搭建指南，包含环境配置、主题安装、写作发布以及常见问题解决方法。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hexo博客搭建完整指南
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-03-24 00:00:00" itemprop="dateCreated datePublished" datetime="2025-03-24T00:00:00+08:00">2025-03-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-02 17:00:22" itemprop="dateModified" datetime="2025-08-02T17:00:22+08:00">2025-08-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">一份全面的 Hexo 博客搭建指南，包含环境配置、主题安装、写作发布以及常见问题解决方法。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="为什么选择Hexo"><a href="#为什么选择Hexo" class="headerlink" title="为什么选择Hexo?"></a>为什么选择Hexo?</h2><p>Hexo 是一个快速、简洁且高效的博客框架，具有以下优势：</p>
+<ul>
+<li><strong>极速生成</strong>：Node.js驱动，每秒可生成数十个页面</li>
+<li><strong>丰富插件</strong>：支持SEO、评论、统计等数百种插件</li>
+<li><strong>多平台部署</strong>：一键部署到GitHub Pages、Netlify等平台</li>
+<li><strong>主题生态</strong>：数百款精美主题，高度可定制</li>
+</ul>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><h3 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h3><table>
+<thead>
+<tr>
+<th align="left">环境</th>
+<th align="left">最低要求</th>
+<th align="left">推荐配置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Node.js</td>
+<td align="left">v10.13.0</td>
+<td align="left">v16.0.0+</td>
+</tr>
+<tr>
+<td align="left">Git</td>
+<td align="left">v2.0.0</td>
+<td align="left">v2.30.0+</td>
+</tr>
+<tr>
+<td align="left">操作系统</td>
+<td align="left">Windows&#x2F;macOS&#x2F;Linux</td>
+<td align="left">任意现代系统</td>
+</tr>
+</tbody></table>
+<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><div class="note warning"><p>使用标签页功能需要先安装插件：<code>npm install hexo-tag-tabs --save</code></p>
+</div>
+
+<div class="tabs" id="install-guide"><ul class="nav-tabs"></ul><div class="tab-content"></div></div>
+
+<p>验证安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node -v  <span class="comment"># 应显示v16+版本</span></span><br><span class="line">git --version  <span class="comment"># 应显示v2.30+版本</span></span><br><span class="line">npm -v  <span class="comment"># 应显示v7+版本</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>安装 Hexo 命令行工具</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>初始化项目（在空目录中）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果你是在全新环境中设置</span></span><br><span class="line"><span class="built_in">mkdir</span> blog-folder</span><br><span class="line"><span class="built_in">cd</span> blog-folder</span><br><span class="line">hexo init .</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>如果使用当前仓库</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 克隆仓库</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/wangqiqi/wangqiqi.github.io</span><br><span class="line"><span class="built_in">cd</span> wangqiqi.github.io</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖 (确保你已经有 package.json 文件)</span></span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果没有 package.json 文件，需要初始化一个新的 Hexo 项目并迁移内容</span></span><br><span class="line"><span class="comment"># 1. 在别处创建一个新的 Hexo 项目</span></span><br><span class="line"><span class="built_in">mkdir</span> temp_hexo</span><br><span class="line"><span class="built_in">cd</span> temp_hexo</span><br><span class="line">hexo init .</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 复制必要的配置文件到原项目</span></span><br><span class="line"><span class="comment"># 将 package.json, package-lock.json, _config.yml, scaffolds/ 和 themes/ 等复制到原项目</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="主题安装"><a href="#主题安装" class="headerlink" title="主题安装"></a>主题安装</h2><ol>
+<li>安装 NexT 主题</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法一：使用 git clone (可能会遇到网络问题)</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二：使用 npm 安装 (推荐)</span></span><br><span class="line">npm install hexo-theme-next --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法三：如果使用 npm 安装但主题不生效，需要复制到 themes 目录</span></span><br><span class="line">xcopy /E /I /Y node_modules\hexo-theme-next themes\next</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>启用主题（在 _config.yml 中修改）</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>安装必要的插件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save  <span class="comment"># 搜索功能</span></span><br><span class="line">npm install hexo-generator-feed --save      <span class="comment"># RSS 订阅</span></span><br><span class="line">npm install hexo-deployer-git --save        <span class="comment"># Git 部署</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="本地开发"><a href="#本地开发" class="headerlink" title="本地开发"></a>本地开发</h2><h3 id="启动本地服务器"><a href="#启动本地服务器" class="headerlink" title="启动本地服务器"></a>启动本地服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br><span class="line"><span class="comment"># 或简写为</span></span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>启动后可通过 <code>http://localhost:4000</code> 访问本地预览。</p>
+<h3 id="排查本地预览问题"><a href="#排查本地预览问题" class="headerlink" title="排查本地预览问题"></a>排查本地预览问题</h3><p>如果出现 “No layout” 警告或者页面样式不正确：</p>
+<ol>
+<li>确认主题是否正确安装到 themes&#x2F;next 目录</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dir</span> themes\next</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>清除缓存并重新生成</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>检查 _config.yml 中主题设置是否正确</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">next</span>  <span class="comment"># 必须与 themes 目录下的主题文件夹名称一致</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建新文章"><a href="#创建新文章" class="headerlink" title="创建新文章"></a>创建新文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建名为 &quot;article-title&quot; 的新文章</span></span><br><span class="line">hexo new post <span class="string">&quot;article-title&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>这将在 <code>source/_posts</code> 目录下创建一个名为 <code>article-title.md</code> 的新文件。</p>
+<h3 id="文章格式"><a href="#文章格式" class="headerlink" title="文章格式"></a>文章格式</h3><p>文章头部使用 YAML front-matter 配置文章属性：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章标题</span><br><span class="line">date: 2023-01-01 12:00:00</span><br><span class="line">categories:</span><br><span class="line"><span class="bullet">  -</span> 分类名称</span><br><span class="line">tags:</span><br><span class="line"><span class="bullet">  -</span> 标签1</span><br><span class="line"><span class="bullet">  -</span> 标签2</span><br><span class="line"><span class="section">description: 文章描述</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"></span><br><span class="line">这里是文章内容...</span><br></pre></td></tr></table></figure>
+
+<h2 id="构建与部署"><a href="#构建与部署" class="headerlink" title="构建与部署"></a>构建与部署</h2><h3 id="配置部署"><a href="#配置部署" class="headerlink" title="配置部署"></a>配置部署</h3><p>编辑 <code>_config.yml</code>，配置部署信息：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/nxu-game/wangqiqi.github.io</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line"><span class="comment"># 或简写为</span></span><br><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
+<h3 id="部署到-GitHub-Pages"><a href="#部署到-GitHub-Pages" class="headerlink" title="部署到 GitHub Pages"></a>部署到 GitHub Pages</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br><span class="line"><span class="comment"># 或简写为</span></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>也可以生成并部署一步完成：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo generate --deploy</span><br><span class="line"><span class="comment"># 或简写为</span></span><br><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
+
+<h3 id="部署问题排查"><a href="#部署问题排查" class="headerlink" title="部署问题排查"></a>部署问题排查</h3><p>如果遇到部署问题：</p>
+<ol>
+<li>确认 hexo-deployer-git 插件已安装</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>检查 GitHub 仓库配置是否正确</li>
+<li>检查 Git 用户凭证是否正确设置</li>
+</ol>
+<h2 id="主题定制"><a href="#主题定制" class="headerlink" title="主题定制"></a>主题定制</h2><p>当前使用的是 NexT 主题的 Gemini 风格，主题配置文件位于根目录的 <code>_config.yml</code> 和主题目录的 <code>_config.yml</code>（或使用根目录的 <code>_config.next.yml</code>）。</p>
+<h3 id="更换主题风格"><a href="#更换主题风格" class="headerlink" title="更换主题风格"></a>更换主题风格</h3><p>NexT 主题提供了几种不同的风格：</p>
+<ul>
+<li>Muse - 默认方案，黑白主调</li>
+<li>Mist - Muse 的紧凑版本</li>
+<li>Pisces - 双栏布局</li>
+<li>Gemini - Pisces 的增强版，现在使用的风格</li>
+</ul>
+<p>可在主题配置文件中修改：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Schemes</span></span><br><span class="line"><span class="attr">scheme:</span> <span class="string">Gemini</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="推荐自定义部分"><a href="#推荐自定义部分" class="headerlink" title="推荐自定义部分"></a>推荐自定义部分</h3><ol>
+<li><strong>网站图标</strong>：替换 <code>source/images/</code> 目录下的图标文件</li>
+<li><strong>代码高亮风格</strong>：调整 <code>_config.yml</code> 中的 highlight 部分</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">highlight:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">auto_detect:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">tab_replace:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="attr">wrap:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">hljs:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">prismjs:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">preprocess:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">tab_replace:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><strong>添加自定义页面</strong>：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo new page <span class="string">&quot;about&quot;</span></span><br><span class="line">hexo new page <span class="string">&quot;categories&quot;</span></span><br><span class="line">hexo new page <span class="string">&quot;tags&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><strong>集成第三方服务</strong>：如 Valine 评论系统、百度&#x2F;谷歌统计等</li>
+</ol>
+<h2 id="写作风格建议"><a href="#写作风格建议" class="headerlink" title="写作风格建议"></a>写作风格建议</h2><ol>
+<li><strong>使用 Markdown</strong>：熟悉 <span class="exturl" data-url="aHR0cHM6Ly93d3cubWFya2Rvd25ndWlkZS5vcmcv">Markdown 语法<i class="fa fa-external-link-alt"></i></span>，高效编写文章</li>
+<li><strong>图文结合</strong>：适当添加图片、代码示例增加可读性</li>
+</ol>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">图片描述</span>](<span class="link">/images/example.jpg</span>)</span><br><span class="line"></span><br><span class="line">代码示例：</span><br><span class="line"><span class="code">```python</span></span><br><span class="line"><span class="code">def hello_world():</span></span><br><span class="line"><span class="code">    print(&quot;Hello, World!&quot;)</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><strong>段落结构</strong>：注意段落划分，使用标题层级组织内容</li>
+<li><strong>代码展示</strong>：使用代码块标注语言类型以获得语法高亮</li>
+</ol>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="主题配置无效"><a href="#主题配置无效" class="headerlink" title="主题配置无效"></a>主题配置无效</h3><p>确保你的主题配置文件正确：</p>
+<ul>
+<li>使用独立主题配置文件：将主题目录下的 <code>_config.yml</code> 复制到站点根目录，并重命名为 <code>_config.next.yml</code></li>
+<li>使用根目录和主题目录的配置文件配合</li>
+</ul>
+<h3 id="文章不显示"><a href="#文章不显示" class="headerlink" title="文章不显示"></a>文章不显示</h3><p>检查文章 front-matter 是否正确，特别是日期格式。</p>
+<h3 id="更新主题"><a href="#更新主题" class="headerlink" title="更新主题"></a>更新主题</h3><p>更新 NexT 主题：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> themes/next</span><br><span class="line">git pull</span><br></pre></td></tr></table></figure>
+
+<h3 id="清除缓存"><a href="#清除缓存" class="headerlink" title="清除缓存"></a>清除缓存</h3><p>遇到异常情况，可尝试清除缓存：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<h3 id="Windows-特有问题"><a href="#Windows-特有问题" class="headerlink" title="Windows 特有问题"></a>Windows 特有问题</h3><ol>
+<li>路径问题：Windows 使用反斜杠 <code>\</code>，但配置中应使用正斜杠 <code>/</code></li>
+<li>编码问题：确保所有文件使用 UTF-8 编码，避免中文显示乱码</li>
+<li>权限问题：某些操作可能需要管理员权限</li>
+</ol>
+<h3 id="图片资源管理"><a href="#图片资源管理" class="headerlink" title="图片资源管理"></a>图片资源管理</h3><p>开启文章资源文件夹功能后，可以为每篇文章创建同名资源文件夹：</p>
+<ol>
+<li>确保 <code>_config.yml</code> 中设置了 <code>post_asset_folder: true</code></li>
+<li>创建文章时会自动生成同名文件夹：<code>hexo new post &quot;my-post&quot;</code></li>
+<li>在文章中引用图片：<code>![描述](image.jpg)</code> 或使用 <code>&#123;% asset_img image.jpg 描述 %&#125;</code></li>
+</ol>
+<h2 id="参考资源"><a href="#参考资源" class="headerlink" title="参考资源"></a>参考资源</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2RvY3Mv">Hexo 文档<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZy9kb2NzLw==">NexT 主题文档<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cubWFya2Rvd25ndWlkZS5vcmcvYmFzaWMtc3ludGF4Lw==">Markdown 基本语法<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2RvY3MvZ2l0aHViLXBhZ2Vz">Hexo 部署到 GitHub Pages<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZy9kb2NzL3RoZW1lLXNldHRpbmdzLw==">NexT 主题配置<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="日常工作流程"><a href="#日常工作流程" class="headerlink" title="日常工作流程"></a>日常工作流程</h2><h3 id="目录结构说明"><a href="#目录结构说明" class="headerlink" title="目录结构说明"></a>目录结构说明</h3><p>博客项目的核心是 <code>source</code> 目录，它包含了所有需要维护的内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">source/</span><br><span class="line">├── _posts/           # 博客文章</span><br><span class="line">│   ├── 文章1.md</span><br><span class="line">│   └── 文章2/        # 文章资源文件夹（如果有图片等资源）</span><br><span class="line">├── images/           # 全局图片资源</span><br><span class="line">│   ├── person.jpg    # 个人头像</span><br><span class="line">│   └── wechat.jpg    # 微信二维码等</span><br><span class="line">├── about/            # &quot;关于&quot;页面</span><br><span class="line">├── tags/            # 标签页面</span><br><span class="line">├── categories/      # 分类页面</span><br><span class="line">└── CNAME            # 域名配置</span><br></pre></td></tr></table></figure>
+
+<h3 id="写作和更新流程"><a href="#写作和更新流程" class="headerlink" title="写作和更新流程"></a>写作和更新流程</h3><ol>
+<li><p><strong>写新文章</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 创建新文章</span></span><br><span class="line">hexo new post <span class="string">&quot;文章标题&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 编辑文章（在 source/_posts/文章标题.md）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 如果文章包含图片等资源：</span></span><br><span class="line"><span class="comment"># - 创建同名文件夹：source/_posts/文章标题/</span></span><br><span class="line"><span class="comment"># - 将图片等资源放入该文件夹</span></span><br><span class="line"><span class="comment"># - 在文章中使用相对路径引用：![图片说明](文章标题/图片.jpg)</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>添加全局图片</strong>：</p>
+<ul>
+<li>将图片放入 <code>source/images/</code> 目录</li>
+<li>在文章中使用绝对路径引用：<code>![图片说明](/images/图片.jpg)</code></li>
+</ul>
+</li>
+<li><p><strong>修改页面</strong>：</p>
+<ul>
+<li>关于页面：编辑 <code>source/about/index.md</code></li>
+<li>标签页面：编辑 <code>source/tags/index.md</code></li>
+<li>分类页面：编辑 <code>source/categories/index.md</code></li>
+</ul>
+</li>
+<li><p><strong>本地预览</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清理缓存并重新生成</span></span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成静态文件</span></span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动本地服务器</span></span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>访问 <span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo0MDAwLw==">http://localhost:4000<i class="fa fa-external-link-alt"></i></span> 预览效果</p>
+</li>
+<li><p><strong>部署网站</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 部署到 GitHub Pages</span></span><br><span class="line">hexo d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者一键生成并部署</span></span><br><span class="line">hexo g -d</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="维护建议"><a href="#维护建议" class="headerlink" title="维护建议"></a>维护建议</h3><ol>
+<li><p><strong>定期备份</strong>：</p>
+<ul>
+<li>定期提交到 Git 仓库</li>
+<li>备份 <code>source</code> 目录最重要，它包含所有原始内容</li>
+</ul>
+</li>
+<li><p><strong>图片管理</strong>：</p>
+<ul>
+<li>文章配图放在文章同名文件夹中</li>
+<li>全局图片（如头像）放在 <code>source/images/</code> 中</li>
+<li>压缩图片以优化加载速度</li>
+</ul>
+</li>
+<li><p><strong>定期清理</strong>：</p>
+<ul>
+<li>可以安全删除的临时文件：<ul>
+<li><code>.deploy_git/</code>（部署缓存）</li>
+<li><code>public/</code>（生成的静态文件）</li>
+<li><code>db.json</code>（数据库缓存）</li>
+</ul>
+</li>
+<li>这些文件会在需要时自动重新生成</li>
+</ul>
+</li>
+<li><p><strong>版本控制</strong>：</p>
+<ul>
+<li>主要关注 <code>source</code> 目录的变更</li>
+<li>可以忽略的文件已在 <code>.gitignore</code> 中配置</li>
+</ul>
+</li>
+</ol>
+<h3 id="常见问题解决"><a href="#常见问题解决" class="headerlink" title="常见问题解决"></a>常见问题解决</h3><ol>
+<li><p><strong>部署失败</strong>：</p>
+<ul>
+<li>检查网络连接</li>
+<li>确认 GitHub 仓库设置正确</li>
+<li>验证 Git 凭证是否有效</li>
+</ul>
+</li>
+<li><p><strong>图片显示问题</strong>：</p>
+<ul>
+<li>检查图片路径是否正确</li>
+<li>区分相对路径和绝对路径的使用场景</li>
+<li>确保图片已经提交到正确的目录</li>
+</ul>
+</li>
+<li><p><strong>预览异常</strong>：</p>
+<ul>
+<li>使用 <code>hexo clean</code> 清理缓存</li>
+<li>重新生成静态文件</li>
+<li>检查主题配置是否正确</li>
+</ul>
+</li>
+</ol>
+<h2 id="高级配置技巧"><a href="#高级配置技巧" class="headerlink" title="高级配置技巧"></a>高级配置技巧</h2><h3 id="config-yml核心配置"><a href="#config-yml核心配置" class="headerlink" title="_config.yml核心配置"></a>_config.yml核心配置</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">site:</span></span><br><span class="line">  <span class="attr">title:</span> <span class="string">我的技术博客</span></span><br><span class="line">  <span class="attr">subtitle:</span> <span class="string">&#x27;分享AI与计算机视觉技术&#x27;</span></span><br><span class="line">  <span class="attr">description:</span> <span class="string">&#x27;专注于AI、机器学习和计算机视觉领域的技术博客&#x27;</span></span><br><span class="line">  <span class="attr">keywords:</span> <span class="string">AI,</span> <span class="string">机器学习,</span> <span class="string">计算机视觉,</span> <span class="string">技术分享</span></span><br><span class="line">  <span class="attr">author:</span> <span class="string">王七七</span></span><br><span class="line">  <span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line">  <span class="attr">timezone:</span> <span class="string">&#x27;Asia/Shanghai&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># URL配置</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://znza.top</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-CN</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 分页设置</span></span><br><span class="line"><span class="attr">per_page:</span> <span class="number">10</span></span><br><span class="line"><span class="attr">pagination_dir:</span> <span class="string">page</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 主题配置</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Next主题个性化"><a href="#Next主题个性化" class="headerlink" title="Next主题个性化"></a>Next主题个性化</h3><div class="tabs" id="主题个性化"><ul class="nav-tabs"></ul><div class="tab-content"></div></div>
+
+<h2 id="内容创作指南"><a href="#内容创作指南" class="headerlink" title="内容创作指南"></a>内容创作指南</h2><h3 id="Markdown高级语法"><a href="#Markdown高级语法" class="headerlink" title="Markdown高级语法"></a>Markdown高级语法</h3><h4 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h4><p>使用Hexo渲染数学公式需安装插件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-filter-mathjax --save</span><br></pre></td></tr></table></figure>
+
+<p>在文章中使用LaTeX语法：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$E=mc^2$$</span><br><span class="line"></span><br><span class="line">\(a^2 + b^2 = c^2\)</span><br></pre></td></tr></table></figure>
+
+<h4 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">```mermaid</span></span><br><span class="line"><span class="code">graph TD</span></span><br><span class="line"><span class="code">    A[开始] --&gt; B&#123;条件A&#125;</span></span><br><span class="line"><span class="code">    B --&gt;|是| C[结果A]</span></span><br><span class="line"><span class="code">    B --&gt;|否| D[结果B]</span></span><br><span class="line"><span class="code">    C --&gt; E[结束]</span></span><br><span class="line"><span class="code">    D --&gt; E</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### SEO优化策略</span><br><span class="line"></span><br><span class="line">1. **标题优化**</span><br><span class="line">   - 包含核心关键词</span><br><span class="line">   - 控制在50-60个字符</span><br><span class="line">   - 使用吸引人的表述</span><br><span class="line"></span><br><span class="line">2. **内容优化**</span><br><span class="line">   - 首段包含关键词</span><br><span class="line">   - 合理使用小标题（h2-h4）</span><br><span class="line">   - 关键词密度控制在2%-5%</span><br><span class="line"></span><br><span class="line">3. **Meta标签**</span><br><span class="line">   ```yaml</span><br><span class="line">   # 在文章Front-matter中添加</span><br><span class="line">   keywords: Hexo, SEO, 博客优化</span><br><span class="line">   description: 详细介绍Hexo博客的SEO优化方法</span><br></pre></td></tr></table></figure>
+
+<h2 id="部署与维护"><a href="#部署与维护" class="headerlink" title="部署与维护"></a>部署与维护</h2><h3 id="多环境部署方案"><a href="#多环境部署方案" class="headerlink" title="多环境部署方案"></a>多环境部署方案</h3><div class="tabs" id="多环境部署"><ul class="nav-tabs"></ul><div class="tab-content"></div></div>
+
+<h3 id="博客维护-checklist"><a href="#博客维护-checklist" class="headerlink" title="博客维护 checklist"></a>博客维护 checklist</h3><ul>
+<li><input disabled="" type="checkbox"> 定期备份 <code>_config.yml</code>和文章内容</li>
+<li><input disabled="" type="checkbox"> 使用 <code>hexo clean</code>清理缓存</li>
+<li><input disabled="" type="checkbox"> 更新Hexo和插件到最新版本</li>
+<li><input disabled="" type="checkbox"> 检查死链接和图片引用</li>
+<li><input disabled="" type="checkbox"> 优化大型图片和资源</li>
+</ul>
+<h2 id="常见问题解决-1"><a href="#常见问题解决-1" class="headerlink" title="常见问题解决"></a>常见问题解决</h2><h3 id="部署后样式丢失"><a href="#部署后样式丢失" class="headerlink" title="部署后样式丢失"></a>部署后样式丢失</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查站点URL配置</span></span><br><span class="line">hexo config url</span><br><span class="line"></span><br><span class="line"><span class="comment"># 确保配置正确后重新部署</span></span><br><span class="line">hexo clean &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
+
+<h3 id="本地预览与线上差异"><a href="#本地预览与线上差异" class="headerlink" title="本地预览与线上差异"></a>本地预览与线上差异</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成静态文件并本地预览</span></span><br><span class="line">hexo generate &amp;&amp; hexo server -s</span><br></pre></td></tr></table></figure>
+
+<h3 id="插件冲突解决"><a href="#插件冲突解决" class="headerlink" title="插件冲突解决"></a>插件冲突解决</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看已安装插件</span></span><br><span class="line">npm list --depth=0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载冲突插件</span></span><br><span class="line">npm uninstall hexo-plugin-name</span><br></pre></td></tr></table></figure>
+
+<h2 id="推荐资源"><a href="#推荐资源" class="headerlink" title="推荐资源"></a>推荐资源</h2><h3 id="优质插件"><a href="#优质插件" class="headerlink" title="优质插件"></a>优质插件</h3><ul>
+<li><strong>hexo-generator-searchdb</strong>: 站内搜索功能</li>
+<li><strong>hexo-filter-nofollow</strong>: 添加nofollow属性</li>
+<li><strong>hexo-autoprefixer</strong>: CSS自动前缀</li>
+<li><strong>hexo-related-popular-posts</strong>: 相关文章推荐</li>
+</ul>
+<h3 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a>学习资源</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2RvY3Mv">Hexo官方文档<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9kb2NzLw==">Next主题文档<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3BsdWdpbnMv">Hexo插件大全<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" rel="tag"># 博客搭建</a>
+              <a href="/tags/Next%E4%B8%BB%E9%A2%98/" rel="tag"># Next主题</a>
+              <a href="/tags/GitHub-Pages/" rel="tag"># GitHub Pages</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/projects/ar-pi-tattoo/" rel="next" title="AR Pi Tattoo - 有趣的增强现实π纹身应用">
+                  AR Pi Tattoo - 有趣的增强现实π纹身应用 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">老周</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9tdXNlLw==">NexT.Muse</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
