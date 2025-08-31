@@ -1,145 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Git 15分钟快速掌握</title>
-    <url>/2025/01/01/Git/Git%2015%E5%88%86%E9%92%9F%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1/</url>
-    <content><![CDATA[<h1>GIT常用命令</h1>
-<h2 id="配置">配置</h2>
-<ol>
-<li>
-<p>配置操作人员名称</p>
-<p><code>git config --global user.name &quot;xxx&quot;</code></p>
-</li>
-<li>
-<p>配置操作人员邮箱</p>
-<p><code>git config --global user.email &quot;xxx@example.com&quot;</code></p>
-</li>
-<li>
-<p>配置信息显示方式</p>
-<p><code>git config --global color.ui true</code></p>
-</li>
-</ol>
-<h2 id="本地操作">本地操作</h2>
-<ol>
-<li>
-<p>初始化git仓库</p>
-<p><code>git init .  # 在当前目录下创建一个.git文件夹，以后所有的操作都会被记录在里面</code></p>
-</li>
-<li>
-<p>添加更改到索引库</p>
-<p><code>git add .</code></p>
-</li>
-<li>
-<p>将索引信息提交到仓库</p>
-<p><code>git commit -m &quot;the first time commit here&quot;</code></p>
-</li>
-<li>
-<p>查看最近一次的更改日志</p>
-<p><code>git log -l  # 如果想着最近3次，可以改成3</code></p>
-</li>
-<li>
-<p>将分支branch1合并到当前分支上，如果冲突，就会提示，按照提示修改即可</p>
-<p><code>git merge branch1</code></p>
-</li>
-<li>
-<p>建立新的分支 newbranch</p>
-<p><code>git branch newbranch</code></p>
-</li>
-<li>
-<p>列出所有分支</p>
-<p><code>git branch</code></p>
-</li>
-<li>
-<p>签出分支newbranch</p>
-<p><code>git checkout newbranch</code></p>
-</li>
-<li>
-<p>创建并签出分支branch0</p>
-<p><code>git checkout -b branch0</code></p>
-</li>
-<li>
-<p>临时保存当前工作</p>
-<p><code>git stash</code></p>
-</li>
-<li>
-<p>列出所有临时保存的工作</p>
-<p><code>git stash list</code></p>
-</li>
-<li>
-<p>恢复某一个临时工作</p>
-<p><code>git stash pop stash@&#123;2&#125;</code></p>
-</li>
-<li>
-<p>创建里程碑1.0.0</p>
-<p><code>git tag 1.0.0</code></p>
-</li>
-<li>
-<p>将里程碑1.0.0相关的文件打包起来发布</p>
-<p><code>git archive --format=zip 1.0.0 &gt; code1.0.0.zip</code></p>
-</li>
-<li>
-<p>返回历史的操作reset</p>
-<p><code>git reset HEAD^  # 返回到前一次没有add的状态</code><br>
-<code>git reset --soft HEAD^ # 返回前一次没有commit的状态</code><br>
-<code>git reset --hard HEAD^ # 返回前一个状态，工作区的修改也会被同时撤销</code><br>
-<code>HEAD^ # 前一次提交</code><br>
-<code>HEAD^^ # 前两次提交</code><br>
-<code>HEAD^^^ # 前三次提交</code><br>
-<code>SHA1_HASH #每次提交都对应着一个唯一的 SHA1_HASH 值。一般情况下只需输入前 5 项即 可 注：如果你担心 reset 后会后悔，那么在 reset 前记录一下最新一次提交的 SHA1_HASH 值。</code></p>
-</li>
-<li>
-<p>回到历史中某个时候并新增一条分支newbranch</p>
-<p><code>git checkout SHA1_HASH &amp;&amp; git branch newbranch</code></p>
-</li>
-</ol>
-<h2 id="远程操作">远程操作</h2>
-<ol>
-<li>
-<p>建立空远程仓库</p>
-<p><code>git init --bare</code></p>
-</li>
-<li>
-<p>将远程仓库地址用origin来命名</p>
-<p><code>git remote add origin coder@192.168.0.222:xxxx</code></p>
-</li>
-<li>
-<p>拷贝一份远程仓库</p>
-<p><code>git clone origin</code></p>
-</li>
-<li>
-<p>在本地创建一个分支branch1，并将远程库中的master分支拷贝到本地的branch1分支上</p>
-<p><code>git fetch origin master:branch1</code></p>
-</li>
-<li>
-<p>将远程库中的master分支拷贝到本地的branch2分支上并进行合并，如果冲突则解决</p>
-<p><code>git pull origin master:branch2</code></p>
-</li>
-<li>
-<p>将本地的branch3分支推送到远程库中的branch4分支中</p>
-<p><code>git push origin branch3:branch4</code></p>
-</li>
-<li>
-<p>删除远程库的branch4分支</p>
-<p><code>git push origin :branch4</code></p>
-</li>
-<li>
-<p>将本地的branch5分支推送到远程库中</p>
-<p><code>git push origin branch5</code></p>
-</li>
-<li>
-<p>将本地所有分支推送到远程库中</p>
-<p><code>git push origin --all</code></p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git常用命令</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo博客搭建完整指南</title>
     <url>/2024/12/30/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97/</url>
     <content><![CDATA[<h2 id="为什么选择Hexo">为什么选择Hexo?</h2>
@@ -676,87 +537,135 @@ npm uninstall hexo-plugin-name
       </tags>
   </entry>
   <entry>
-    <title>Git之大瘦身</title>
-    <url>/2025/01/01/Git/Git%E4%B9%8B%E5%A4%A7%E7%98%A6%E8%BA%AB/</url>
-    <content><![CDATA[<h2 id="【问题】">【问题】</h2>
-<blockquote>
-<p>很多小明同学啊，在写代码的时候，一不小心将测试的cnn模型或者测试视频放到仓库目录下，同时忘记了编写 .gitignore 文件忽略对应文件，然后将所有文件推到了公司代码服务器上，该代码仓库就瞬间爆炸了，本来最多就几MB的代码库，一下子甚至飙升到了几个GB的大小。其他同学再拉取代码的时候要好几分钟，严重影响各位同学写代码了，同时占据了大量的硬盘空间和代码服务器空间。</p>
-</blockquote>
-<h2 id="【解决】">【解决】</h2>
-<p>一共分三步：</p>
-<ol>
-<li>找到对应的大文件和提交历史；</li>
-<li>删除大文件和修改提交历史；</li>
-<li>重新推送代码仓库。</li>
-</ol>
-<h3 id="第一步：找到大文件">第一步：找到大文件</h3>
-<p><strong>命令</strong></p>
-<pre><code class="language-bash">git rev-list --objects --all | grep &quot;$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -5 | awk '&#123;print$1&#125;')&quot;
-</code></pre>
-<p><strong>输出</strong></p>
-<pre><code class="language-bash">c9853e631785727a7679b2179be356c9f268a97c
-b9d121ead2c499b77fdaa10fc59f95cf2a41ca46 8.mp4
-</code></pre>
-<h3 id="第二步：删除大文件">第二步：删除大文件</h3>
-<p><strong>命令</strong></p>
-<pre><code class="language-bash">git filter-branch -f --prune-empty --index-filter &quot;git rm -rf --cached --ignore-unmatch 8.mp4&quot; --tag-name-filter cat -- --all
-</code></pre>
-<p><strong>输出</strong></p>
-<pre><code class="language-bash">WARNING: git-filter-branch has a glut of gotchas generating mangled history
-         rewrites.  Hit Ctrl-C before proceeding to abort, then use an
-         alternative filtering tool such as 'git filter-repo'
-         (https://github.com/newren/git-filter-repo/) instead.  See the
-         filter-branch manual page for more details; to squelch this warning,
-         set FILTER_BRANCH_SQUELCH_WARNING=1.
-Proceeding with filter-branch...
-
-Rewrite 463a9cb31ef1b6f0e67256b65c30a4ff9fb7d642 (3/7) (1 seconds passed, remaining 1 predicted)    rm '8.mp4'
-Rewrite c9853e631785727a7679b2179be356c9f268a97c (3/7) (1 seconds passed, remaining 1 predicted)    rm '8.mp4'
-Rewrite 2c1755a720639f55ebf93df5484b94b4b4380ef3 (3/7) (1 seconds passed, remaining 1 predicted)    rm '8.mp4'
-Rewrite c30b0cb6bb4a6202d139a01a033255767ddd38ea (7/7) (2 seconds passed, remaining 0 predicted)
-WARNING: Ref 'refs/heads/master' is unchanged
-WARNING: Ref 'refs/heads/new' is unchanged
-Ref 'refs/remotes/origin/master' was rewritten
-WARNING: Ref 'refs/remotes/origin/new' is unchanged
-</code></pre>
-<h3 id="第三步：推送仓库">第三步：推送仓库</h3>
-<p><strong>命令</strong></p>
-<pre><code class="language-bash">git push origin --force --all
-</code></pre>
-<p><strong>输出</strong></p>
-<pre><code class="language-bash">Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
-remote: Powered by GITEE.COM [GNK-6.4]
-To gitee.com:enxun/testgit.git
- + c30b0cb...cdf4f61 master -&gt; master (forced update)
-</code></pre>
-<h3 id="另外">另外</h3>
-<p><strong>提交完成后，请其他各位同学删除本地仓库，重新从服务器拉取代码，不要再推送了，要不然又要重新搞一遍。</strong></p>
-<h2 id="【扩展】">【扩展】</h2>
-<ol>
-<li><code>Windows PowerShell</code> 下执行有关命令会出现问题<br>
-<code>git verify-pack -v .git/objects/pack/pack-c1a9c4b28655a4a0353d0fa4149a8579fd53de34.idx | sort -k 3 -n | tail -3</code></li>
-</ol>
-
-<p>还是用回 <code>git bash</code> 不要用 <code>Windows PowerShell</code>。</p>
-<p>切换到 <code>git bash</code> 下</p>
-
+    <title>Git 15分钟快速掌握</title>
+    <url>/2025/01/01/Git/Git%2015%E5%88%86%E9%92%9F%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1/</url>
+    <content><![CDATA[<h1>GIT常用命令</h1>
+<h2 id="配置">配置</h2>
 <ol>
 <li>
-<p>双引号不是单引号<br>
-<code>git filter-branch -f --prune-empty --index-filter &quot;git rm -rf --cached --ignore-unmatch 8.mp4&quot; --tag-name-filter cat -- --all</code> 命令里是<code>&quot;git rm -rf --cached --ignore-unmatch 8.mp4&quot;</code> 而不是 <code>'git rm -rf --cached --ignore-unmatch 8.mp4'</code>，否则会出现<code>fatal: bad revision 'git rm --ignore-unmatch --cached 8.mp4'</code>提示。</p>
+<p>配置操作人员名称</p>
+<p><code>git config --global user.name &quot;xxx&quot;</code></p>
 </li>
 <li>
-<p><code>git-count-objects</code>  - 计算解包的对象数量及其磁盘消耗量</p>
+<p>配置操作人员邮箱</p>
+<p><code>git config --global user.email &quot;xxx@example.com&quot;</code></p>
 </li>
 <li>
-<p><code>git-gc</code>  - 清理不必要的文件并优化本地存储库</p>
+<p>配置信息显示方式</p>
+<p><code>git config --global color.ui true</code></p>
 </li>
 </ol>
-<h2 id="【参考】">【参考】</h2>
+<h2 id="本地操作">本地操作</h2>
 <ol>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS9ib29rL2VuL3Yy">progit https://git-scm.com/book/en/v2<i class="fa fa-external-link-alt"></i></span> P460~P464</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9oYXJ0dGxlLmxhbmQvMjAxNi8wMy8yMi9wdXJnZS1sYXJnZS1maWxlcy1pbi1naXRyZXBvLmh0bWw=">https://harttle.land/2016/03/22/purge-large-files-in-gitrepo.html<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9jbG91ZC50ZW5jZW50LmNvbS9kZXZlbG9wZXIvc2VjdGlvbi8xMTM4Nzcz">https://cloud.tencent.com/developer/section/1138773<i class="fa fa-external-link-alt"></i></span></li>
+<li>
+<p>初始化git仓库</p>
+<p><code>git init .  # 在当前目录下创建一个.git文件夹，以后所有的操作都会被记录在里面</code></p>
+</li>
+<li>
+<p>添加更改到索引库</p>
+<p><code>git add .</code></p>
+</li>
+<li>
+<p>将索引信息提交到仓库</p>
+<p><code>git commit -m &quot;the first time commit here&quot;</code></p>
+</li>
+<li>
+<p>查看最近一次的更改日志</p>
+<p><code>git log -l  # 如果想着最近3次，可以改成3</code></p>
+</li>
+<li>
+<p>将分支branch1合并到当前分支上，如果冲突，就会提示，按照提示修改即可</p>
+<p><code>git merge branch1</code></p>
+</li>
+<li>
+<p>建立新的分支 newbranch</p>
+<p><code>git branch newbranch</code></p>
+</li>
+<li>
+<p>列出所有分支</p>
+<p><code>git branch</code></p>
+</li>
+<li>
+<p>签出分支newbranch</p>
+<p><code>git checkout newbranch</code></p>
+</li>
+<li>
+<p>创建并签出分支branch0</p>
+<p><code>git checkout -b branch0</code></p>
+</li>
+<li>
+<p>临时保存当前工作</p>
+<p><code>git stash</code></p>
+</li>
+<li>
+<p>列出所有临时保存的工作</p>
+<p><code>git stash list</code></p>
+</li>
+<li>
+<p>恢复某一个临时工作</p>
+<p><code>git stash pop stash@&#123;2&#125;</code></p>
+</li>
+<li>
+<p>创建里程碑1.0.0</p>
+<p><code>git tag 1.0.0</code></p>
+</li>
+<li>
+<p>将里程碑1.0.0相关的文件打包起来发布</p>
+<p><code>git archive --format=zip 1.0.0 &gt; code1.0.0.zip</code></p>
+</li>
+<li>
+<p>返回历史的操作reset</p>
+<p><code>git reset HEAD^  # 返回到前一次没有add的状态</code><br>
+<code>git reset --soft HEAD^ # 返回前一次没有commit的状态</code><br>
+<code>git reset --hard HEAD^ # 返回前一个状态，工作区的修改也会被同时撤销</code><br>
+<code>HEAD^ # 前一次提交</code><br>
+<code>HEAD^^ # 前两次提交</code><br>
+<code>HEAD^^^ # 前三次提交</code><br>
+<code>SHA1_HASH #每次提交都对应着一个唯一的 SHA1_HASH 值。一般情况下只需输入前 5 项即 可 注：如果你担心 reset 后会后悔，那么在 reset 前记录一下最新一次提交的 SHA1_HASH 值。</code></p>
+</li>
+<li>
+<p>回到历史中某个时候并新增一条分支newbranch</p>
+<p><code>git checkout SHA1_HASH &amp;&amp; git branch newbranch</code></p>
+</li>
+</ol>
+<h2 id="远程操作">远程操作</h2>
+<ol>
+<li>
+<p>建立空远程仓库</p>
+<p><code>git init --bare</code></p>
+</li>
+<li>
+<p>将远程仓库地址用origin来命名</p>
+<p><code>git remote add origin coder@192.168.0.222:xxxx</code></p>
+</li>
+<li>
+<p>拷贝一份远程仓库</p>
+<p><code>git clone origin</code></p>
+</li>
+<li>
+<p>在本地创建一个分支branch1，并将远程库中的master分支拷贝到本地的branch1分支上</p>
+<p><code>git fetch origin master:branch1</code></p>
+</li>
+<li>
+<p>将远程库中的master分支拷贝到本地的branch2分支上并进行合并，如果冲突则解决</p>
+<p><code>git pull origin master:branch2</code></p>
+</li>
+<li>
+<p>将本地的branch3分支推送到远程库中的branch4分支中</p>
+<p><code>git push origin branch3:branch4</code></p>
+</li>
+<li>
+<p>删除远程库的branch4分支</p>
+<p><code>git push origin :branch4</code></p>
+</li>
+<li>
+<p>将本地的branch5分支推送到远程库中</p>
+<p><code>git push origin branch5</code></p>
+</li>
+<li>
+<p>将本地所有分支推送到远程库中</p>
+<p><code>git push origin --all</code></p>
+</li>
 </ol>
 ]]></content>
       <categories>
@@ -764,7 +673,6 @@ To gitee.com:enxun/testgit.git
       </categories>
       <tags>
         <tag>Git常用命令</tag>
-        <tag>仓库瘦身</tag>
       </tags>
   </entry>
   <entry>
@@ -1097,6 +1005,98 @@ cython_debug/
       </tags>
   </entry>
   <entry>
+    <title>Git之大瘦身</title>
+    <url>/2025/01/01/Git/Git%E4%B9%8B%E5%A4%A7%E7%98%A6%E8%BA%AB/</url>
+    <content><![CDATA[<h2 id="【问题】">【问题】</h2>
+<blockquote>
+<p>很多小明同学啊，在写代码的时候，一不小心将测试的cnn模型或者测试视频放到仓库目录下，同时忘记了编写 .gitignore 文件忽略对应文件，然后将所有文件推到了公司代码服务器上，该代码仓库就瞬间爆炸了，本来最多就几MB的代码库，一下子甚至飙升到了几个GB的大小。其他同学再拉取代码的时候要好几分钟，严重影响各位同学写代码了，同时占据了大量的硬盘空间和代码服务器空间。</p>
+</blockquote>
+<h2 id="【解决】">【解决】</h2>
+<p>一共分三步：</p>
+<ol>
+<li>找到对应的大文件和提交历史；</li>
+<li>删除大文件和修改提交历史；</li>
+<li>重新推送代码仓库。</li>
+</ol>
+<h3 id="第一步：找到大文件">第一步：找到大文件</h3>
+<p><strong>命令</strong></p>
+<pre><code class="language-bash">git rev-list --objects --all | grep &quot;$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -5 | awk '&#123;print$1&#125;')&quot;
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code class="language-bash">c9853e631785727a7679b2179be356c9f268a97c
+b9d121ead2c499b77fdaa10fc59f95cf2a41ca46 8.mp4
+</code></pre>
+<h3 id="第二步：删除大文件">第二步：删除大文件</h3>
+<p><strong>命令</strong></p>
+<pre><code class="language-bash">git filter-branch -f --prune-empty --index-filter &quot;git rm -rf --cached --ignore-unmatch 8.mp4&quot; --tag-name-filter cat -- --all
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code class="language-bash">WARNING: git-filter-branch has a glut of gotchas generating mangled history
+         rewrites.  Hit Ctrl-C before proceeding to abort, then use an
+         alternative filtering tool such as 'git filter-repo'
+         (https://github.com/newren/git-filter-repo/) instead.  See the
+         filter-branch manual page for more details; to squelch this warning,
+         set FILTER_BRANCH_SQUELCH_WARNING=1.
+Proceeding with filter-branch...
+
+Rewrite 463a9cb31ef1b6f0e67256b65c30a4ff9fb7d642 (3/7) (1 seconds passed, remaining 1 predicted)    rm '8.mp4'
+Rewrite c9853e631785727a7679b2179be356c9f268a97c (3/7) (1 seconds passed, remaining 1 predicted)    rm '8.mp4'
+Rewrite 2c1755a720639f55ebf93df5484b94b4b4380ef3 (3/7) (1 seconds passed, remaining 1 predicted)    rm '8.mp4'
+Rewrite c30b0cb6bb4a6202d139a01a033255767ddd38ea (7/7) (2 seconds passed, remaining 0 predicted)
+WARNING: Ref 'refs/heads/master' is unchanged
+WARNING: Ref 'refs/heads/new' is unchanged
+Ref 'refs/remotes/origin/master' was rewritten
+WARNING: Ref 'refs/remotes/origin/new' is unchanged
+</code></pre>
+<h3 id="第三步：推送仓库">第三步：推送仓库</h3>
+<p><strong>命令</strong></p>
+<pre><code class="language-bash">git push origin --force --all
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code class="language-bash">Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote: Powered by GITEE.COM [GNK-6.4]
+To gitee.com:enxun/testgit.git
+ + c30b0cb...cdf4f61 master -&gt; master (forced update)
+</code></pre>
+<h3 id="另外">另外</h3>
+<p><strong>提交完成后，请其他各位同学删除本地仓库，重新从服务器拉取代码，不要再推送了，要不然又要重新搞一遍。</strong></p>
+<h2 id="【扩展】">【扩展】</h2>
+<ol>
+<li><code>Windows PowerShell</code> 下执行有关命令会出现问题<br>
+<code>git verify-pack -v .git/objects/pack/pack-c1a9c4b28655a4a0353d0fa4149a8579fd53de34.idx | sort -k 3 -n | tail -3</code></li>
+</ol>
+
+<p>还是用回 <code>git bash</code> 不要用 <code>Windows PowerShell</code>。</p>
+<p>切换到 <code>git bash</code> 下</p>
+
+<ol>
+<li>
+<p>双引号不是单引号<br>
+<code>git filter-branch -f --prune-empty --index-filter &quot;git rm -rf --cached --ignore-unmatch 8.mp4&quot; --tag-name-filter cat -- --all</code> 命令里是<code>&quot;git rm -rf --cached --ignore-unmatch 8.mp4&quot;</code> 而不是 <code>'git rm -rf --cached --ignore-unmatch 8.mp4'</code>，否则会出现<code>fatal: bad revision 'git rm --ignore-unmatch --cached 8.mp4'</code>提示。</p>
+</li>
+<li>
+<p><code>git-count-objects</code>  - 计算解包的对象数量及其磁盘消耗量</p>
+</li>
+<li>
+<p><code>git-gc</code>  - 清理不必要的文件并优化本地存储库</p>
+</li>
+</ol>
+<h2 id="【参考】">【参考】</h2>
+<ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS9ib29rL2VuL3Yy">progit https://git-scm.com/book/en/v2<i class="fa fa-external-link-alt"></i></span> P460~P464</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9oYXJ0dGxlLmxhbmQvMjAxNi8wMy8yMi9wdXJnZS1sYXJnZS1maWxlcy1pbi1naXRyZXBvLmh0bWw=">https://harttle.land/2016/03/22/purge-large-files-in-gitrepo.html<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jbG91ZC50ZW5jZW50LmNvbS9kZXZlbG9wZXIvc2VjdGlvbi8xMTM4Nzcz">https://cloud.tencent.com/developer/section/1138773<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git常用命令</tag>
+        <tag>仓库瘦身</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git删除仓库中的大文件压缩仓库大小</title>
     <url>/2025/01/01/Git/Git%E5%88%A0%E9%99%A4%E4%BB%93%E5%BA%93%E4%B8%AD%E7%9A%84%E5%A4%A7%E6%96%87%E4%BB%B6%E5%8E%8B%E7%BC%A9%E4%BB%93%E5%BA%93%E5%A4%A7%E5%B0%8F/</url>
     <content><![CDATA[<blockquote>
@@ -1344,63 +1344,6 @@ SHELL=/bin/sh
       </categories>
       <tags>
         <tag>Git自动下载更新</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Opencv Xcb报错</title>
-    <url>/2025/01/01/OpenCV/opencv%20xcb%E6%8A%A5%E9%94%99/</url>
-    <content><![CDATA[<h2 id="问题">问题</h2>
-<pre><code class="language-bash">Could not load the Qt platform plugin &quot;xcb&quot; in &quot;/home/&lt;username&gt;/miniconda3/envs/test/lib/python3.8/site-packages/cv2/qt/plugins&quot; even though it was found.
-This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
-
-Available platform plugins are: xcb, eglfs, linuxfb, minimal, minimalegl, offscreen, vnc, wayland-egl, wayland, wayland-xcomposite-egl, wayland-xcomposite-glx, webgl.
-</code></pre>
-<h2 id="解决方案">解决方案</h2>
-<pre><code class="language-bash">pip3 install opencv-python-headless
-</code></pre>
-<h2 id="参考引用">参考引用</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly8wc3NhbWFhazAuZ2l0aHViLmlvL0RMVEEtQUkvaW5zdGFsbGF0aW9uL3Byb2JsZW1zLw==">Solutions to possible problems<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>OpenCV</category>
-        <category>运维</category>
-      </categories>
-      <tags>
-        <tag>xcb报错</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Opencv不能Show</title>
-    <url>/2025/01/01/OpenCV/opencv%E4%B8%8D%E8%83%BDshow/</url>
-    <content><![CDATA[<h2 id="问题">问题</h2>
-<blockquote>
-<p><code>cv2.imshow</code> 显示图像时报错，无法显示图像</p>
-</blockquote>
-<pre><code class="language-bash">  0%|                                                                                                                                                                          | 0/1 [00:00&lt;?, ?it/s]
-Traceback (most recent call last):
-  File &quot;/home/xxx/workspace/inference.py&quot;, line 380, in &lt;module&gt;
-    cv2.imshow('result', img)
-cv2.error: OpenCV(4.8.0) /io/opencv/modules/highgui/src/window.cpp:1272: error: (-2:Unspecified error) The function is not implemented. Rebuild the library with Windows, GTK+ 2.x or Cocoa support. If you are on Ubuntu or Debian, install libgtk2.0-dev and pkg-config, then re-run cmake or configure script in function 'cvShowImage'
-</code></pre>
-<blockquote>
-<p>貌似因为之前 <code>pip3 install opencv-python-headless</code> 安装后导致版本不一致了。</p>
-</blockquote>
-<h2 id="解决方案">解决方案</h2>
-<pre><code class="language-bash">pip3 uninstall opencv-python
-pip3 install opencv-python-contrib
-pip3 install opencv-python
-</code></pre>
-<h2 id="参考引用">参考引用</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2JlYXV0aWZ1bGJhY2svYXJ0aWNsZS9kZXRhaWxzLzEyNTUwNDk0MA==">解决问题：If you are on Ubuntu or Debian, install libgtk2.0-dev and pkg-config, then…‘cvShowImage‘<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>OpenCV</category>
-        <category>运维</category>
-      </categories>
-      <tags>
-        <tag>show</tag>
-        <tag>报错</tag>
-        <tag>OpenCV</tag>
       </tags>
   </entry>
   <entry>
@@ -1687,9 +1630,66 @@ env-&gt;NewstringUTF ( &quot;Hello from JNI ! &quot;);
         <category>Android</category>
       </categories>
       <tags>
-        <tag>OpenCV</tag>
         <tag>JNI</tag>
+        <tag>OpenCV</tag>
         <tag>环境配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Opencv Xcb报错</title>
+    <url>/2025/01/01/OpenCV/opencv%20xcb%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<h2 id="问题">问题</h2>
+<pre><code class="language-bash">Could not load the Qt platform plugin &quot;xcb&quot; in &quot;/home/&lt;username&gt;/miniconda3/envs/test/lib/python3.8/site-packages/cv2/qt/plugins&quot; even though it was found.
+This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
+
+Available platform plugins are: xcb, eglfs, linuxfb, minimal, minimalegl, offscreen, vnc, wayland-egl, wayland, wayland-xcomposite-egl, wayland-xcomposite-glx, webgl.
+</code></pre>
+<h2 id="解决方案">解决方案</h2>
+<pre><code class="language-bash">pip3 install opencv-python-headless
+</code></pre>
+<h2 id="参考引用">参考引用</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly8wc3NhbWFhazAuZ2l0aHViLmlvL0RMVEEtQUkvaW5zdGFsbGF0aW9uL3Byb2JsZW1zLw==">Solutions to possible problems<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>OpenCV</category>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>xcb报错</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Opencv不能Show</title>
+    <url>/2025/01/01/OpenCV/opencv%E4%B8%8D%E8%83%BDshow/</url>
+    <content><![CDATA[<h2 id="问题">问题</h2>
+<blockquote>
+<p><code>cv2.imshow</code> 显示图像时报错，无法显示图像</p>
+</blockquote>
+<pre><code class="language-bash">  0%|                                                                                                                                                                          | 0/1 [00:00&lt;?, ?it/s]
+Traceback (most recent call last):
+  File &quot;/home/xxx/workspace/inference.py&quot;, line 380, in &lt;module&gt;
+    cv2.imshow('result', img)
+cv2.error: OpenCV(4.8.0) /io/opencv/modules/highgui/src/window.cpp:1272: error: (-2:Unspecified error) The function is not implemented. Rebuild the library with Windows, GTK+ 2.x or Cocoa support. If you are on Ubuntu or Debian, install libgtk2.0-dev and pkg-config, then re-run cmake or configure script in function 'cvShowImage'
+</code></pre>
+<blockquote>
+<p>貌似因为之前 <code>pip3 install opencv-python-headless</code> 安装后导致版本不一致了。</p>
+</blockquote>
+<h2 id="解决方案">解决方案</h2>
+<pre><code class="language-bash">pip3 uninstall opencv-python
+pip3 install opencv-python-contrib
+pip3 install opencv-python
+</code></pre>
+<h2 id="参考引用">参考引用</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2JlYXV0aWZ1bGJhY2svYXJ0aWNsZS9kZXRhaWxzLzEyNTUwNDk0MA==">解决问题：If you are on Ubuntu or Debian, install libgtk2.0-dev and pkg-config, then…‘cvShowImage‘<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>OpenCV</category>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>OpenCV</tag>
+        <tag>show</tag>
+        <tag>报错</tag>
       </tags>
   </entry>
   <entry>
@@ -2663,80 +2663,6 @@ cd -
       </tags>
   </entry>
   <entry>
-    <title>Get_More_Security_Updates_Through_Ubuntu_Pro_With_&#39;Esm Apps&#39;_Enabled</title>
-    <url>/2025/01/01/Ubuntu/Get_more_security_updates_through_Ubuntu_Pro_with_&#39;esm-apps&#39;_enabled/</url>
-    <content><![CDATA[<blockquote>
-<p>问题：</p>
-</blockquote>
-<pre><code class="language-bash">Get more security updates through Ubuntu Pro with 'esm-apps' enabled:
-  vlc-plugin-qt libvlc5 vlc-data libvlccore9 vlc vlc-bin vlc-l10n
-  libopenexr-dev libopenexr25 libpostproc55 vlc-plugin-samba libswscale-dev
-  libavcodec58 vlc-plugin-notify libavutil56 libswscale5
-  vlc-plugin-access-extra libavutil-dev vlc-plugin-skins2
-  vlc-plugin-video-splitter libswresample3 vlc-plugin-video-output
-  libavformat58 libavformat-dev libavcodec-dev libvlc-bin libswresample-dev
-  vlc-plugin-base vlc-plugin-visualization
-Learn more about Ubuntu Pro at https://ubuntu.com/pro
-The following packages have been kept back:
-  gjs initramfs-tools initramfs-tools-bin initramfs-tools-core libgjs0g
-</code></pre>
-<h2 id="解决方法-去掉这些提示">解决方法-去掉这些提示</h2>
-<pre><code class="language-bash">cd /etc/apt/apt.conf.d/
-sudo mkdir -p /etc/apt/backup
-sudo mv 20apt-esm-hook.conf /etc/apt/backup/
-sudo apt update
-sudo apt upgrade
-</code></pre>
-<h2 id="【参考】">【参考】</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly91YnVudHVoYW5kYm9vay5vcmcvaW5kZXgucGhwLzIwMjMvMDUvZXNtLWFwcHMtdXBkYXRlcy11YnVudHUvIzp+OnRleHQ9VWJ1bnR1JTIwbm93JTIwcHJvdmlkZXMlMjBleHBhbmRlZCUyMHNlY3VyaXR5JTIwbWFpbnRlbmFuY2UlMjAlMjhlc20lMjklMjB1cGRhdGVzLDEwJTIweWVhcnMlMjklMjBzZWN1cml0eSUyMHVwZGF0ZXMlMjBzdXBwb3J0JTIwZm9yJTIwVWJ1bnR1JTIwTFRT">Enable Ubuntu Pro to get 5 Years More Security Updates in Ubuntu 22.04,20.04,18.04<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Ubuntu</category>
-      </categories>
-      <tags>
-        <tag>Esm Apps</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu2204下Vscode无法输入中文</title>
-    <url>/2025/01/01/Ubuntu/Ubuntu2204%E4%B8%8BVSCode%E6%97%A0%E6%B3%95%E8%BE%93%E5%85%A5%E4%B8%AD%E6%96%87/</url>
-    <content><![CDATA[<h1>VS Code 无法输入中文</h1>
-<blockquote>
-<p>系统环境： <code>Ubuntu 22.04 LTS</code></p>
-</blockquote>
-<p><code>VS Code</code> 早期安装的时候用的是 <code>Ubuntu Software</code> 方式进行安装的。编辑器里无法输入中文（搜狗输入法无法使用）；一开始还以为是输入法没安装好。后来才知道主要原因是软件市场里的 <code>Code</code> 是阉割版，无法添加中文。</p>
-<p>参考 <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1llWWFMaW5nMTIzL2FydGljbGUvZGV0YWlscy8xMjkxMjc4OTY=">解决Visual Studio Code无法输入中文问题<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="【解决办法】">【解决办法】</h2>
-<ol>
-<li>卸载 <code>Code</code></li>
-</ol>
-<pre><code class="language-bash">sudo snap remove code
-</code></pre>
-<ol start="2">
-<li>重新安装</li>
-</ol>
-<pre><code class="language-bash">wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-
-sudo add-apt-repository &quot;deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main&quot;
-
-sudo apt install code
-
-sudo apt update
-
-sudo apt upgrade
-</code></pre>
-<h2 id="【参考】">【参考】</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1llWWFMaW5nMTIzL2FydGljbGUvZGV0YWlscy8xMjkxMjc4OTY=">解决Visual Studio Code无法输入中文问题<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Ubuntu</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>vscode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效）</title>
     <url>/2025/01/01/RK3588/yolov5%E8%AE%AD%E7%BB%83%E4%B8%8Erknn%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%87%BA%E5%B9%B6%E5%9C%A8RK3588%E9%83%A8%E7%BD%B2%EF%BC%88%E4%BA%B2%E6%B5%8B%E6%9C%89%E6%95%88%EF%BC%89/</url>
     <content><![CDATA[<blockquote>
@@ -3261,6 +3187,80 @@ box coordinate topleft: (108.76676034927368, 133.68206477165222), bottomright: (
         <tag>RK3588</tag>
         <tag>YOLOv5</tag>
         <tag>部署</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Get_More_Security_Updates_Through_Ubuntu_Pro_With_&#39;Esm Apps&#39;_Enabled</title>
+    <url>/2025/01/01/Ubuntu/Get_more_security_updates_through_Ubuntu_Pro_with_&#39;esm-apps&#39;_enabled/</url>
+    <content><![CDATA[<blockquote>
+<p>问题：</p>
+</blockquote>
+<pre><code class="language-bash">Get more security updates through Ubuntu Pro with 'esm-apps' enabled:
+  vlc-plugin-qt libvlc5 vlc-data libvlccore9 vlc vlc-bin vlc-l10n
+  libopenexr-dev libopenexr25 libpostproc55 vlc-plugin-samba libswscale-dev
+  libavcodec58 vlc-plugin-notify libavutil56 libswscale5
+  vlc-plugin-access-extra libavutil-dev vlc-plugin-skins2
+  vlc-plugin-video-splitter libswresample3 vlc-plugin-video-output
+  libavformat58 libavformat-dev libavcodec-dev libvlc-bin libswresample-dev
+  vlc-plugin-base vlc-plugin-visualization
+Learn more about Ubuntu Pro at https://ubuntu.com/pro
+The following packages have been kept back:
+  gjs initramfs-tools initramfs-tools-bin initramfs-tools-core libgjs0g
+</code></pre>
+<h2 id="解决方法-去掉这些提示">解决方法-去掉这些提示</h2>
+<pre><code class="language-bash">cd /etc/apt/apt.conf.d/
+sudo mkdir -p /etc/apt/backup
+sudo mv 20apt-esm-hook.conf /etc/apt/backup/
+sudo apt update
+sudo apt upgrade
+</code></pre>
+<h2 id="【参考】">【参考】</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly91YnVudHVoYW5kYm9vay5vcmcvaW5kZXgucGhwLzIwMjMvMDUvZXNtLWFwcHMtdXBkYXRlcy11YnVudHUvIzp+OnRleHQ9VWJ1bnR1JTIwbm93JTIwcHJvdmlkZXMlMjBleHBhbmRlZCUyMHNlY3VyaXR5JTIwbWFpbnRlbmFuY2UlMjAlMjhlc20lMjklMjB1cGRhdGVzLDEwJTIweWVhcnMlMjklMjBzZWN1cml0eSUyMHVwZGF0ZXMlMjBzdXBwb3J0JTIwZm9yJTIwVWJ1bnR1JTIwTFRT">Enable Ubuntu Pro to get 5 Years More Security Updates in Ubuntu 22.04,20.04,18.04<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Ubuntu</category>
+      </categories>
+      <tags>
+        <tag>Esm Apps</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu2204下Vscode无法输入中文</title>
+    <url>/2025/01/01/Ubuntu/Ubuntu2204%E4%B8%8BVSCode%E6%97%A0%E6%B3%95%E8%BE%93%E5%85%A5%E4%B8%AD%E6%96%87/</url>
+    <content><![CDATA[<h1>VS Code 无法输入中文</h1>
+<blockquote>
+<p>系统环境： <code>Ubuntu 22.04 LTS</code></p>
+</blockquote>
+<p><code>VS Code</code> 早期安装的时候用的是 <code>Ubuntu Software</code> 方式进行安装的。编辑器里无法输入中文（搜狗输入法无法使用）；一开始还以为是输入法没安装好。后来才知道主要原因是软件市场里的 <code>Code</code> 是阉割版，无法添加中文。</p>
+<p>参考 <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1llWWFMaW5nMTIzL2FydGljbGUvZGV0YWlscy8xMjkxMjc4OTY=">解决Visual Studio Code无法输入中文问题<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="【解决办法】">【解决办法】</h2>
+<ol>
+<li>卸载 <code>Code</code></li>
+</ol>
+<pre><code class="language-bash">sudo snap remove code
+</code></pre>
+<ol start="2">
+<li>重新安装</li>
+</ol>
+<pre><code class="language-bash">wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+
+sudo add-apt-repository &quot;deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main&quot;
+
+sudo apt install code
+
+sudo apt update
+
+sudo apt upgrade
+</code></pre>
+<h2 id="【参考】">【参考】</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1llWWFMaW5nMTIzL2FydGljbGUvZGV0YWlscy8xMjkxMjc4OTY=">解决Visual Studio Code无法输入中文问题<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Ubuntu</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>vscode</tag>
       </tags>
   </entry>
   <entry>
@@ -4016,137 +4016,6 @@ RuntimeError:
       </tags>
   </entry>
   <entry>
-    <title>Conda ERROR：Failed building wheel for lap解决方法</title>
-    <url>/2025/01/01/%E8%BF%90%E7%BB%B4/Conda%20ERROR/</url>
-    <content><![CDATA[<h2 id="问题">问题</h2>
-<pre><code class="language-bash">  note: This error originates from a subprocess, and is likely not a problem with pip.
-  ERROR: Failed building wheel for lap
-  Running setup.py clean for lap
-Failed to build lap
-ERROR: Could not build wheels for lap, which is required to install pyproject.toml-based projects
-</code></pre>
-<img data-src="/2025/01/01/%E8%BF%90%E7%BB%B4/Conda%20ERROR/1688619634377.png" class="" title="Conda构建错误截图">
-<h2 id="解决方法">解决方法</h2>
-<pre><code class="language-bash">conda install -c conda-forge lap
-</code></pre>
-<h2 id="参考引用">参考引用</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ2MzkwMTIwL2FydGljbGUvZGV0YWlscy8xMzAxNjQ1Njk/YXBwX3ZlcnNpb249NS44LjAmY3Nkbl9zaGFyZV90YWlsPSU3QiUyMnR5cGUlMjIlM0ElMjJibG9nJTIyJTJDJTIyclR5cGUlMjIlM0ElMjJhcnRpY2xlJTIyJTJDJTIycklkJTIyJTNBJTIyMTMwMTY0NTY5JTIyJTJDJTIyc291cmNlJTIyJTNBJTIyd2VpeGluXzQ2MDA3OTE3JTIyJTdEJnV0bV9zb3VyY2U9YXBw">YOLOv8—运行mode=track报错 ERROR: subprocess-exited-with-error与 ERROR: Failed building wheel for lap解决<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="问题：">问题：</h2>
-<blockquote>
-<p><code>conda</code> 创建新的虚拟环境时报错</p>
-</blockquote>
- <img data-src="/2025/01/01/%E8%BF%90%E7%BB%B4/Conda%20ERROR/1688618320036.png" class="" title="1688618320036.png">
-<pre><code class="language-bash">Collecting package metadata (current_repodata.json): done
-Solving environment: done
-
-# &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ERROR REPORT &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
-
-    Traceback (most recent call last):
-      File &quot;/home/xxx/anaconda3/lib/python3.10/site-packages/conda/gateways/repodata/__init__.py&quot;, line 132, in conda_http_errors
-        yield
-      File &quot;/home/xxx/anaconda3/lib/python3.10/site-packages/conda/gateways/repodata/__init__.py&quot;, line 101, in repodata
-        response.raise_for_status()
-      File &quot;/home/xxx/anaconda3/lib/python3.10/site-packages/requests/models.py&quot;, line 1022, in raise_for_status
-        raise HTTPError(http_error_msg, response=self)
-    requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/linux-64/current_repodata.json
-    
-    During handling of the above exception, another exception occurred:
-    
-    Traceback (most recent call last):
-      File &quot;/home/xxx/anaconda3/lib/python3.10/site-packages/requests/models.py&quot;, line 972, in json
-        return complexjson.loads(self.text, **kwargs)
-      File &quot;/home/xxx/anaconda3/lib/python3.10/site-packages/simplejson/__init__.py&quot;, line 514, in loads
-        return _default_decoder.decode(s)
-      File &quot;/home/xxx/anaconda3/lib/python3.10/site-packages/simplejson/decoder.py&quot;, line 386, in decode
-        obj, end = self.raw_decode(s)
-      File &quot;/home/xxx/anaconda3/lib/python3.10/site-packages/simplejson/decoder.py&quot;, line 416, in raw_decode
-        return self.scan_once(s, idx=_w(s, idx).end())
-    simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-    
-    During handling of the above exception, another exception occurred:
-
-</code></pre>
-<h2 id="解决办法">解决办法</h2>
-<pre><code class="language-bash">conda config --remove-key channels
-conda config --append channels conda-forge --append channels bioconda --append channels defaults
-</code></pre>
-<h2 id="参考">参考</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dPRFN1bmVyL2FydGljbGUvZGV0YWlscy8xMjkyNjk1ODE=">Conda更新报错:requests.exceptions.HTTPError: 404<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Conda</category>
-      </categories>
-      <tags>
-        <tag>Python环境</tag>
-        <tag>Conda</tag>
-        <tag>错误排查</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Docker安装 Cvat</title>
-    <url>/2025/01/01/%E8%BF%90%E7%BB%B4/Docker%E5%AE%89%E8%A3%85%20CVAT/</url>
-    <content><![CDATA[<h2 id="安装准备">安装准备</h2>
-<h3 id="系统要求">系统要求</h3>
-<ul>
-<li>Docker 20.10+</li>
-<li>8GB以上内存</li>
-<li>50GB可用存储空间</li>
-</ul>
-<h2 id="部署流程">部署流程</h2>
-<pre><code class="language-bash">docker-compose -f docker-compose.yml -f components/autoannotation/docker-compose.autoannotation.yml up -d
-</code></pre>
-
-<h2 id="扩展配置">扩展配置</h2>
-<ol>
-<li>克隆代码仓库：</li>
-</ol>
-<pre><code class="language-bash">git clone https://github.com/opencv/cvat
-cd cvat
-</code></pre>
-<ol start="2">
-<li>创建覆盖配置文件：</li>
-</ol>
-<pre><code class="language-bash">cp docker-compose.yml docker-compose.override.yml
-</code></pre>
-<ol start="3">
-<li>修改<code>docker-compose.override.yml</code>中的traefik配置：</li>
-</ol>
-<pre><code class="language-yaml">services:
-  cvat:
-    labels:
-      traefik.http.routers.cvat.rule: Host(`your-domain.com`)
-  cvat_ui:
-    labels:
-      traefik.http.routers.cvat.rule: Host(`your-domain.com`)
-</code></pre>
-<h2 id="服务管理">服务管理</h2>
-<p><strong>启动服务：</strong></p>
-<pre><code class="language-bash">docker-compose up -d
-</code></pre>
-<p><strong>停止服务：</strong></p>
-<pre><code class="language-bash">docker-compose down
-</code></pre>
-<h2 id="常见问题">常见问题</h2>
-<h3 id="外部访问配置">外部访问配置</h3>
-<p>需要指定CVAT_HOST环境变量，建议通过修改<code>docker-compose.override.yml</code>配置文件实现。</p>
-<h3 id="数据持久化">数据持久化</h3>
-<p>所有标注数据存储在<code>~/cvat/data</code>目录，建议定期备份。</p>
-<h2 id="参考资源">参考资源</h2>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9vcGVudmlub3Rvb2xraXQuZ2l0aHViLmlvL2N2YXQvZG9jcy9hZG1pbmlzdHJhdGlvbi9iYXNpY3MvaW5zdGFsbGF0aW9uLw==">CVAT官方安装指南<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1b2hlbllKL2FydGljbGUvZGV0YWlscy8xMTM3Nzg4ODk=">CSDN安装教程<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9hbGV4MDA3LmJsb2cuY3Nkbi5uZXQvYXJ0aWNsZS9kZXRhaWxzLzEwNzcxMTA3Ng==">用户操作指南<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Docker</category>
-      </categories>
-      <tags>
-        <tag>cvat</tag>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Windows10 安装 Pytorch</title>
     <url>/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/</url>
     <content><![CDATA[<h1>Windows 10 安装 PyTorch 开发环境，以及验证 YOLOv8</h1>
@@ -4334,6 +4203,790 @@ Results saved to runs\detect\predict
         <tag>Pytorch</tag>
         <tag>Windows</tag>
         <tag>YOLOv8</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nanopi R6C 更换源</title>
+    <url>/2025/01/01/nanoPC/NanoPi%20R6C%20%E6%9B%B4%E6%8D%A2%E6%BA%90/</url>
+    <content><![CDATA[<h1>NanoPi R6C 更换源报错</h1>
+<blockquote>
+<p>Ubuntu 22.04 LTS 阿里源更换后报错。</p>
+</blockquote>
+<blockquote>
+<pre><code>E: Failed to fetch  http://mirrors.aliyun.com/ubuntu-ports/dists/jammy/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
+E: Failed to fetch http://mirrors.aliyun.com/ubuntu-ports/dists/jammy-security/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
+E: Failed to fetch http://mirrors.aliyun.com/ubuntu-ports/dists/jammy-updates/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
+E: Failed to fetch http://mirrors.aliyun.com/ubuntu-ports/dists/jammy-proposed/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
+E: Failed to fetch http://mirrors.aliyun.com/ubuntu-ports/dists/jammy-backports/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
+
+</code></pre>
+</blockquote>
+<h2 id="解决方案">解决方案</h2>
+<pre><code class="language-bash">sudo cp /etc/apt/sources.list /etc/apt/sources.list_bak
+sudo gedit /etc/apt/sources.list
+</code></pre>
+<p><strong>NOTE： 在ubuntu后面加上<code>-ports</code></strong></p>
+<pre><code class="language-bash">deb http://mirrors.aliyun.com/ubuntu-ports/ jammy main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu-ports/ jammy-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu-ports/ jammy-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu-ports/ jammy-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu-ports/ jammy-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy-backports main restricted universe multiverse
+</code></pre>
+<h2 id="参考">[参考]</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzYyMDYyODUwL2FydGljbGUvZGV0YWlscy8xMjU0OTQ3NjU=">[踩坑记录] aarch64版本Ubuntu apt-get更换阿里源后更新失败<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbGl1amlheGluMjAxOC9wLzE2MzczNjY4Lmh0bWw=">ubuntu 22.04如何更换阿里源<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>nanoPC</category>
+      </categories>
+      <tags>
+        <tag>nanoPC T4 更换源</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nanoPC T4 ( Rk 3399 核心板）刷桌面版系统</title>
+    <url>/2025/01/01/nanoPC/nanoPC-T4%20(%20RK%203399%20%E6%A0%B8%E5%BF%83%E6%9D%BF%EF%BC%89%E5%88%B7%E6%A1%8C%E9%9D%A2%E7%89%88%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<blockquote>
+<p>仓库角落里发现了一个迷你小电脑 (nanoPC), 连上显示器和键鼠，进去不记得密码了，不得不重新刷一下系统。想装一个桌面系统，所以找了一圈，找到 <span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3po">nanoPC的官网<i class="fa fa-external-link-alt"></i></span>，</p>
+</blockquote>
+<h1>nanoPC-T4 刷桌面</h1>
+<h2 id="准备好相关工具">准备好相关工具</h2>
+<p><strong>软件</strong></p>
+<ol>
+<li>瑞芯微驱动助手，<strong>DriverAssitant_v4.5</strong></li>
+<li>系统固件，<strong>rk3399-usb-friendlydesktop-bionic-4.4-arm64-20220919</strong></li>
+</ol>
+<p><span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMWtWMVFJeWhKU1VkSVYzUlluemZObHc=">百度网盘链接<i class="fa fa-external-link-alt"></i></span> 提取码：8888</p>
+<p><strong>硬件</strong></p>
+<ol>
+<li>nanoPC-T4</li>
+<li>键鼠</li>
+<li>显示器及连接线</li>
+<li>type-c连接线</li>
+</ol>
+<h2 id="开始刷机">开始刷机</h2>
+<ol>
+<li>在 <code>Windows</code>上安装 USB 驱动助手；</li>
+</ol>
+
+
+<ol>
+<li><code>nanoPC</code> 上电，<code>USB</code> 连接宿主电脑（<code>Windows</code>）</li>
+<li>解压刷机文件 <code>rk3399-usb-friendlydesktop-bionic-4.4-arm64-20220919</code>, 找到文件 <code>RKDevTool</code>，双击打开，会显示没有找到设备，需要重启启动并 <code>reset nano</code>。</li>
+<li>按照下图所示，
+</li>
+</ol>
+<p>按住Recovery键再长按(1.5秒以上)Power键开机，并同时按住reset键，然后松开，如果 <code>RKDevTool</code>显示发现设备，那么可以在 <code>下载镜像</code> Tab 页面点击 <code>执行</code>。静等即可。</p>
+
+<ol start="4">
+<li>最后可以看到nanoPC重启后的桌面。</li>
+</ol>
+<pre><code> 普通用户：
+    用户名: pi
+    密码: pi
+ Root用户： 
+    用户名: root
+    密码: fa
+</code></pre>
+<h2 id="官方步骤">官方步骤</h2>
+
+
+<p><strong>我这里实验用的 Windows Type-C 线刷的方式。</strong></p>
+<h2 id="【参考】">【参考】</h2>
+<ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3po">https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T4/zh<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3poI0ZyaWVuZGx5RGVza3RvcC5FNy5CMy5CQi5FNy5CQi45Ri5FNy45QS44NC5FNC5CRC5CRi5FNy45NC5BOA==">https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T4/zh#FriendlyDesktop.E7.B3.BB.E7.BB.9F.E7.9A.84.E4.BD.BF.E7.94.A8<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poendhbmcvYXJ0aWNsZS9kZXRhaWxzLzEwNzc2MTE4MA==">https://blog.csdn.net/zhzwang/article/details/107761180<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzY2MjU4MzI5L2FydGljbGUvZGV0YWlscy8xMjY1MTIyMjA=">https://blog.csdn.net/qq_66258329/article/details/126512220<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82MTA3NGQxMjM4Nzg=">https://www.jianshu.com/p/61074d123878<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+]]></content>
+      <categories>
+        <category>nanoPC</category>
+      </categories>
+      <tags>
+        <tag>nanoPC T4 刷机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nanopc T4 Upgrade报错</title>
+    <url>/2025/01/01/nanoPC/nanoPC-T4%20upgrade%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<h2 id="【问题】">【问题】</h2>
+<blockquote>
+<p>nanoPC-T4 在 <code># sudo apt update 和 sudo apt upgrade</code>升级或安装软件 <code>sudo apt install xxx</code>时遇到以下问题：<code>Failed to set up interface with /etc/hostapd/</code></p>
+</blockquote>
+<pre><code class="language-bash">Setting up hostapd (2:2.6-15ubuntu2.8) ...
+Job for hostapd.service failed because the control process exited with error code.
+See &quot;systemctl status hostapd.service&quot; and &quot;journalctl -xe&quot; for details.
+invoke-rc.d: initscript hostapd, action &quot;restart&quot; failed.
+● hostapd.service - Advanced IEEE 802.11 AP and IEEE 802.1X/WPA/WPA2/EAP Authenticator
+   Loaded: loaded (/lib/systemd/system/hostapd.service; disabled; vendor preset: enabled)
+   Active: failed (Result: exit-code) since Fri 2022-11-11 07:23:16 UTC; 22ms ago
+  Process: 12218 ExecStart=/usr/sbin/hostapd -P /run/hostapd.pid -B $DAEMON_OPTS $&#123;DAEMON_CONF&#125; (code=exited, status=1/FAILURE)
+
+Nov 11 07:23:16 NanoPC-T4 systemd[1]: Starting Advanced IEEE 802.11 AP and IEEE 802.1X/WPA/WPA2/EAP Authenticator...
+Nov 11 07:23:16 NanoPC-T4 hostapd[12218]: Configuration file: /etc/hostapd/hostapd.conf
+Nov 11 07:23:16 NanoPC-T4 hostapd[12218]: Could not open configuration file '/etc/hostapd/hostapd.conf' for reading.
+Nov 11 07:23:16 NanoPC-T4 hostapd[12218]: Failed to set up interface with /etc/hostapd/hostapd.conf
+Nov 11 07:23:16 NanoPC-T4 hostapd[12218]: Failed to initialize interface
+Nov 11 07:23:16 NanoPC-T4 systemd[1]: hostapd.service: Control process exited, code=exited status=1
+Nov 11 07:23:16 NanoPC-T4 systemd[1]: hostapd.service: Failed with result 'exit-code'.
+Nov 11 07:23:16 NanoPC-T4 systemd[1]: Failed to start Advanced IEEE 802.11 AP and IEEE 802.1X/WPA/WPA2/EAP Authenticator.
+dpkg: error processing package hostapd (--configure):
+ installed hostapd package post-installation script subprocess returned error exit status 1
+Errors were encountered while processing:
+ hostapd
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+</code></pre>
+<h2 id="【解决】">【解决】</h2>
+<h3 id="发现问题">发现问题</h3>
+<p><code>Could not open configuration file '/etc/hostapd/hostapd.conf' for reading.</code></p>
+<p>在目录下查看 <code>hostapd.conf</code>， 发现没有该文件，当然无法打开配置文件了。</p>
+<h3 id="如何重新找到该文件">如何重新找到该文件</h3>
+<p>在目录 <code>/usr/share/doc/hostapd</code> 下可以看到有一个 <code>README.Debian</code> 文件, 文件内容如下：</p>
+<pre><code class="language-bash">hostapd for Debian
+------------------
+
+This package provides two methods for managing hostapd process(es); an
+initscript and an ifupdown hook. Both methods require creation of a
+hostapd daemon configuration file (eg. /etc/hostapd/hostapd.conf) to
+function correctly.
+
+An example hostapd.conf may be used as a template but _must_ be edited
+to suit your local configuration. An example is located at:
+  /usr/share/doc/hostapd/examples/hostapd.conf.gz
+
+To use the example as a template:
+  # zcat /usr/share/doc/hostapd/examples/hostapd.conf.gz &gt; \
+  	/etc/hostapd/hostapd.conf
+  # $EDITOR /etc/hostapd/hostapd.conf
+
+To use the initscript method of starting a hostapd daemon see
+/etc/default/hostapd.
+
+To use the ifupdown method, the path to hostapd configuration file can
+be specified in a network interfaces configuration stanza in
+/etc/network/interfaces like so:
+
+iface eth1 inet static
+	hostapd /etc/hostapd/hostapd.conf
+	...
+
+The hostapd process will be started in the pre-up phase of ifup, and be
+terminated in the post-down phase of ifdown.
+
+ -- Kel Modderman &lt;kel@otaku42.de&gt;  Tue, 27 Oct 2009 12:03:01 +1000
+
+Please note:
+* If you want to use hostapd with a Prism2/2.5/3 card in WPA mode, you'll need
+  STA firmware version &gt;= 1.7.0.
+
+ -- Faidon Liambotis &lt;faidon@cube.gr&gt;, Mon, 10 Oct 2005 14:57:11 +0300
+
+</code></pre>
+<h3 id="done">done</h3>
+<pre><code>zcat /usr/share/doc/hostapd/examples/hostapd.conf.gz &gt; /etc/hostapd/hostapd.conf
+</code></pre>
+<p>或者下载 <span class="exturl" data-url="aHR0cHM6Ly9kb3dubG9hZC5jc2RuLm5ldC9kb3dubG9hZC96aG91amlud2FuZy84Njk1NTA1Nw==">地址<i class="fa fa-external-link-alt"></i></span></p>
+<pre><code class="language-bash">pi@NanoPC-T4:~$ sudo apt update
+Hit:1 http://ports.ubuntu.com bionic InRelease
+Hit:2 http://ports.ubuntu.com bionic-backports InRelease
+Hit:3 http://ports.ubuntu.com bionic-proposed InRelease
+Hit:4 http://ports.ubuntu.com bionic-security InRelease
+Hit:5 http://ports.ubuntu.com bionic-updates InRelease
+Reading package lists... Done                      
+Building dependency tree       
+Reading state information... Done
+4 packages can be upgraded. Run 'apt list --upgradable' to see them.
+pi@NanoPC-T4:~$ sudo apt upgrade
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Calculating upgrade... Done
+The following packages have been kept back:
+  u-boot-tools xserver-common xserver-xorg-core xserver-xorg-legacy
+0 upgraded, 0 newly installed, 0 to remove and 4 not upgraded.
+</code></pre>
+<p>看起来好像可以升级不报错了。不知道后面有没有后遗症。暂时不用<strong>科学上网</strong>了。</p>
+<h2 id="【其他】">【其他】</h2>
+<h3 id="ssh-登录-nanoPC-T4">ssh 登录 nanoPC-T4</h3>
+<pre><code class="language-bash">ssh pi@pi_addr  # 例如： pi@192.168.0.49
+</code></pre>
+<p>然后输入密码 <code>pi</code>。就可以远程访问和操作nanoPC-T4了</p>
+<pre><code class="language-bash">Warning: Permanently added '192.168.0.49' (ECDSA) to the list of known hosts.
+pi@192.168.0.49's password: 
+ _____     _                _ _       _____ _     _____ ____ 
+|  ___| __(_) ___ _ __   __| | |_   _| ____| |   | ____/ ___|
+| |_ | '__| |/ _ \ '_ \ / _` | | | | |  _| | |   |  _|| |  
+|  _|| |  | |  __/ | | | (_| | | |_| | |___| |___| |__| |___ 
+|_|  |_|  |_|\___|_| |_|\__,_|_|\__, |_____|_____|_____\____|
+                                |___/                      
+
+Welcome to Ubuntu 18.04.6 LTS 4.4.179
+System load:   0.00            	Up time:       9 min		Local users:   2          
+Memory usage:  10 % of 3845Mb 	IP:            192.168.0.49
+CPU temp:      42°C         
+Usage of /:    44% of 8.2G   
+
+ * Documentation: http://wiki.friendlyarm.com/Ubuntu
+ * Forum: http://www.friendlyarm.com/Forum/
+
+To run Qt5 demo, type &quot;qt5demo&quot; at the command prompt and then hit the enter key.
+To play a video demo, use command &quot;sudo gst-player.sh&quot;.
+Last login: Fri Nov 11 08:12:07 2022
+
+pi@NanoPC-T4:~$ ls
+demo.mp4  Desktop  Documents  Downloads  h264ify   Music  Pictures  Public  Templates  Videos
+</code></pre>
+<h3 id="远程拷贝和下载资料">远程拷贝和下载资料</h3>
+<pre><code class="language-bash">scp pi@192.168.0.49:/usr/share/doc/hostapd/README.Debian /home/john/Documents/
+</code></pre>
+<p>输入密码 <code>pi</code>。就可以下载资料了。</p>
+]]></content>
+      <categories>
+        <category>nanoPC</category>
+      </categories>
+      <tags>
+        <tag>nanoPC T4 Upgrade</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nanoPC T4 安装OpenCV</title>
+    <url>/2025/01/01/nanoPC/nanoPC-T4%20%E5%AE%89%E8%A3%85OpenCV/</url>
+    <content><![CDATA[<h1>nanoPC-T4 安装 OpenCV</h1>
+<blockquote>
+<p>Note: OpenCV has been pre-installed in <strong>FriendlyCore/FriendlyDesktop</strong> (Version after 201905) and does not require manual installation.</p>
+<p>Please download the latest FriendlyCore/FriendlyDesktop Image file from the following URL: <span class="exturl" data-url="aHR0cDovL2Rvd25sb2FkLmZyaWVuZGx5YXJtLmNvbQ==">http://download.friendlyarm.com<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p><strong>参考 nanoPC-T4 环境配置</strong><br>
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc3OTgwOTU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】基于RK3399核心板的nanoPC-T4 线刷桌面版系统<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4NDg4ODU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】nanoPC-T4 线刷ubuntu2004核心非桌面版<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4MDk0MTE/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】解决nanoPC-T4 upgrade报错<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4Njc0OTI/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】nanoPC-T4 挂载NVME硬盘<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="安装OpenCV">安装OpenCV</h2>
+<p>按照上述配置刷机系统已经预装了 <code>OpenCV</code>;</p>
+<h3 id="建立-Python3-的-OpenCV-开发环境">建立 Python3 的 OpenCV 开发环境</h3>
+<p><strong>注意：这里仅仅拷贝激活脚本，不做其他任何操作</strong></p>
+<pre><code class="language-bash">git clone https://github.com/friendlyarm/install-opencv-on-friendlycore
+cd install-opencv-on-friendlycore
+cp examples/py/cv-env.sh /usr/bin/
+</code></pre>
+<p><strong>测试</strong></p>
+<pre><code class="language-bash">pi@NanoPC-T4:/media/nvme/install-opencv-on-friendlycore$ cd examples/py/
+pi@NanoPC-T4:/media/nvme/install-opencv-on-friendlycore/examples/py$ . cv-env.sh 
+(cv) pi@NanoPC-T4:/media/nvme/install-opencv-on-friendlycore/examples/py$ python ver.py 
+4.2.0
+</code></pre>
+<p><strong>虚拟环境激活</strong>  <code>. cv-env.sh</code><br>
+<strong>虚拟环境退出</strong>  <code>deactivate</code></p>
+<h3 id="建立-C-的-OpenCV-开发环境">建立 C++ 的 OpenCV 开发环境</h3>
+<p><code>OpenCV</code> 在 <code>nanoPC-T4</code> 里已经预装了。</p>
+<p>命令查看下版本号，<code>/usr/local/bin/opencv_version</code></p>
+<pre><code class="language-bash">.
+├── CMakeLists.txt
+├── README.md
+├── sample.png
+└── showimage.cpp
+</code></pre>
+<pre><code class="language-cmake"># cmake needs this line 
+cmake_minimum_required(VERSION 2.8) 
+
+# Enable C++11 
+set(CMAKE_CXX_STANDARD 11) 
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE) 
+
+# Define project name 
+project(showimage) 
+
+# Find OpenCV, you may need to set OpenCV_DIR variable 
+# to the absolute path to the directory containing OpenCVConfig.cmake file 
+# via the command line or GUI 
+find_package(OpenCV REQUIRED COMPONENTS core highgui calib3d) 
+include_directories( $&#123;OpenCV_INCLUDE_DIRS&#125; ) 
+
+# Declare the executable target built from your sources 
+add_executable(showimage showimage.cpp) 
+
+# Link your application with OpenCV libraries 
+target_link_libraries(showimage $&#123;OpenCV_LIBS&#125;)
+</code></pre>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;opencv2/opencv.hpp&gt;
+#include &lt;opencv2/highgui.hpp&gt;
+#include &lt;cstdlib&gt;
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt; 
+
+using namespace std;
+using namespace cv;
+
+int main(int argc,char* argv[]) 
+&#123;
+	Mat image = imread(&quot;sample.png&quot;);
+	if (image.empty())
+	&#123;
+		cout&lt;&lt;&quot;no image&quot;&lt;&lt;endl;
+		return -1;
+	&#125;	
+	imshow(&quot;test&quot;, image);
+	waitKey(0);	
+	destroyAllWindows();
+    return 0;
+&#125;
+</code></pre>
+<pre><code class="language-bash">mkdir build 
+cp sample.png build/
+cd build
+cmake .. 
+make -j4
+./showimage
+</code></pre>
+<p>别急，执行完这里会黑屏的，那还是因为环境没有配好，和代码没有关系。</p>
+<p>继续执行以下命令：</p>
+<pre><code class="language-bash">su pi
+</code></pre>
+<p>输入密码： <code>pi</code></p>
+<pre><code class="language-bash">export DISPLAY=:0.0
+. setqt5env
+</code></pre>
+<p>再执行 <code>./showimage</code> 效果正常。</p>
+<h2 id="【参考】">【参考】</h2>
+<ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyaWVuZGx5YXJtL2luc3RhbGwtb3BlbmN2LW9uLWZyaWVuZGx5Y29yZQ==">install-opencv-on-friendlycore<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3poIy5FNi45Qi5CNC5FNi44RC5BMi5FNS5CQy44MC5FNi45Qy5CQUxPR08=">官网 Wiki<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+]]></content>
+      <categories>
+        <category>nanoPC</category>
+      </categories>
+      <tags>
+        <tag>nanoPC T4 安装OpenCV</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nanopc T4 安装Ncnn</title>
+    <url>/2025/01/01/nanoPC/nanoPC-T4%20%E5%AE%89%E8%A3%85ncnn/</url>
+    <content><![CDATA[<h1>nanoPC-T4 安装 ncnn</h1>
+<p><strong>参考 nanoPC-T4 环境配置</strong><br>
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc3OTgwOTU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】基于RK3399核心板的nanoPC-T4 线刷桌面版系统<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4NDg4ODU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】nanoPC-T4 线刷ubuntu2004核心非桌面版<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4MDk0MTE/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】解决nanoPC-T4 upgrade报错<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4Njc0OTI/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】nanoPC-T4 挂载NVME硬盘<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>ncnn 库是深度学习理库最好的，没有之一</strong></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1RlbmNlbnQvbmNubg==">ncnn官网<i class="fa fa-external-link-alt"></i></span></p>
+<ol>
+<li>下载代码仓库</li>
+</ol>
+<pre><code class="language-bash">git clone https://github.com/Tencent/ncnn.git
+</code></pre>
+<ol start="2">
+<li>编译安装</li>
+</ol>
+<pre><code class="language-bash">cd ncnn
+mkdir build &amp;&amp; cd build
+cmake -DNCNN_BUILD_TOOLS=OFF ..
+make -j4
+make install 
+</code></pre>
+<ol start="3">
+<li>使用</li>
+</ol>
+<p>在项目的 <code>CMakeLists.txt</code> 里加入</p>
+<pre><code># ncnn路径设置
+set(NCNN_DIR &quot;/media/nvme/ncnn/build/install&quot;)
+set(NCNN_INCLUDE_DIR &quot;$&#123;NCNN_DIR&#125;/include/ncnn&quot;)
+set(NCNN_LIB_DIR &quot;$&#123;NCNN_DIR&#125;/lib&quot;)
+include_directories(&quot;$&#123;NCNN_INCLUDE_DIR&#125;&quot;)
+link_directories(&quot;$&#123;NCNN_LIB_DIR&#125;&quot;)
+list(APPEND EXTRA_LIBS ncnn)
+</code></pre>
+<p>在对应的生成库或者生成应用程序里链接ncnn的库</p>
+<pre><code>target_link_libraries($&#123;CMAKE_PROJECT_NAME&#125; PRIVATE $&#123;EXTRA_LIBS&#125; -lpthread -lm)
+</code></pre>
+<p><code>$&#123;CMAKE_PROJECT_NAME&#125;</code> 替换成自己的库或者程序名称</p>
+]]></content>
+      <categories>
+        <category>nanoPC</category>
+      </categories>
+      <tags>
+        <tag>nanoPC T4 安装ncnn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nanoPC T4 挂载NVME硬盘</title>
+    <url>/2025/01/01/nanoPC/nanoPC-T4%20%E6%8C%82%E8%BD%BDNVME%E7%A1%AC%E7%9B%98/</url>
+    <content><![CDATA[<h1>步骤如下</h1>
+<h2 id="检测NVME硬盘">检测NVME硬盘</h2>
+<pre><code class="language-bash">cat /proc/partitions 
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code class="language-bash">major minor  #blocks  name
+
+   1        0       4096 ram0
+   1        1       4096 ram1
+   1        2       4096 ram2
+   1        3       4096 ram3
+   1        4       4096 ram4
+   1        5       4096 ram5
+   1        6       4096 ram6
+   1        7       4096 ram7
+ 259        0  488386584 nvme0n1
+ 179        0   15267840 mmcblk1
+ 179        1       4096 mmcblk1p1
+ 179        2       4096 mmcblk1p2
+ 179        3       4096 mmcblk1p3
+ 179        4      12288 mmcblk1p4
+ 179        5      32768 mmcblk1p5
+ 179        6      32768 mmcblk1p6
+ 179        7    6553600 mmcblk1p7
+ 179        8    8611840 mmcblk1p8
+ 179       96       4096 mmcblk1rpmb
+ 179       64       4096 mmcblk1boot1
+ 179       32       4096 mmcblk1boot0
+</code></pre>
+<p>如果有 <code>nvme0n1</code> 就说明有 <code>NVME SSD</code>硬盘。可以进行下一步。</p>
+<h2 id="分区">分区</h2>
+<p>只分一个区</p>
+<pre><code class="language-bash">(echo g; echo n; echo p; echo 1; echo &quot;&quot;; echo &quot;&quot;; echo w; echo q) | sudo fdisk /dev/nvme0n1
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code class="language-bash">Welcome to fdisk (util-linux 2.31.1).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+Device does not contain a recognized partition table.
+Created a new DOS disklabel with disk identifier 0x5b899dc5.
+
+Command (m for help): Created a new GPT disklabel (GUID: 41364481-DE8B-DA4B-AF5B-3966AF3946FB).
+
+Command (m for help): Partition number (1-128, default 1): Value out of range.
+Partition number (1-128, default 1): First sector (2048-976773134, default 2048): Last sector, +sectors or +size&#123;K,M,G,T,P&#125; (2048-976773134, default 976773134): 
+Created a new partition 1 of type 'Linux filesystem' and of size 465.8 GiB.
+
+Command (m for help): The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+</code></pre>
+<h2 id="格式化-EXT4">格式化 EXT4</h2>
+<pre><code class="language-bash">sudo mkfs.ext4 /dev/nvme0n1p1
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code class="language-bash">mke2fs 1.44.1 (24-Mar-2018)
+Discarding device blocks: done                          
+Creating filesystem with 122096385 4k blocks and 30531584 inodes
+Filesystem UUID: 6b369f2f-173b-4bbf-bbf9-4668e137cbef
+Superblock backups stored on blocks: 
+	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, 
+	4096000, 7962624, 11239424, 20480000, 23887872, 71663616, 78675968, 
+	102400000
+
+Allocating group tables: done                          
+Writing inode tables: done                          
+Creating journal (262144 blocks): 
+done
+Writing superblocks and filesystem accounting information:        
+done
+</code></pre>
+<h2 id="系统启动自动挂载">系统启动自动挂载</h2>
+<p><strong>1. 查看BlockID</strong></p>
+<pre><code class="language-bash">sudo blkid /dev/nvme0n1p1
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code class="language-bash">/dev/nvme0n1p1: UUID=&quot;6b369f2f-173b-4bbf-bbf9-4668e137cbef&quot; TYPE=&quot;ext4&quot; PARTUUID=&quot;9e55ee97-8c07-504e-beef-e7963967e9bf&quot;
+</code></pre>
+<p><strong>修改 <code>fstab</code></strong></p>
+<pre><code class="language-bash">sudo vi /etc/fstab
+
+UUID=6b369f2f-173b-4bbf-bbf9-4668e137cbef /media/nvme ext4 defaults 0 0
+</code></pre>
+<p><strong>建立目录和修改权限</strong></p>
+<pre><code class="language-bash">sudo mkdir -p /media/nvme
+sudo chmod 777 /media/nvme
+</code></pre>
+<p><strong>挂载</strong></p>
+<pre><code class="language-bash">sudo mount /media/nvme
+</code></pre>
+<p><strong>重启</strong></p>
+<pre><code class="language-bash">sudo reboot
+</code></pre>
+]]></content>
+      <categories>
+        <category>nanoPC</category>
+      </categories>
+      <tags>
+        <tag>nanoPC T4 挂载NVME硬盘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nanoPC T4 更换欢迎信息和Logo  暂时放弃编译内核</title>
+    <url>/2025/01/01/nanoPC/nanoPC-T4%20%E6%9B%B4%E6%8D%A2%E6%AC%A2%E8%BF%8E%E4%BF%A1%E6%81%AF%E5%92%8CLOGO--%E6%9A%82%E6%97%B6%E6%94%BE%E5%BC%83%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8/</url>
+    <content><![CDATA[<h2 id="定制命令行的欢迎信息">定制命令行的欢迎信息</h2>
+<p>欢迎信息如下</p>
+<pre><code class="language-bash"> _____     _                _ _       _____ _     _____ ____ 
+|  ___| __(_) ___ _ __   __| | |_   _| ____| |   | ____/ ___|
+| |_ | '__| |/ _ \ '_ \ / _` | | | | |  _| | |   |  _|| |  
+|  _|| |  | |  __/ | | | (_| | | |_| | |___| |___| |__| |___ 
+|_|  |_|  |_|\___|_| |_|\__,_|_|\__, |_____|_____|_____\____|
+                                |___/                  
+</code></pre>
+<p><strong>如何修改显示的内容呢？</strong></p>
+<p>修改方式，找到 <code>/etc/update-motd.d/10-header</code>文件，修改其中的</p>
+<p><code>TERM=linux toilet -f standard -F metal $BOARD_VENDOR</code> 为</p>
+<p><code>TERM=linux toilet -f standard -F metal $COMPANY</code></p>
+<p><strong>修改时区</strong></p>
+<p>例如更改为Shanghai时区:</p>
+<pre><code>sudo rm /etc/localtime
+sudo ln -ls /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</code></pre>
+<h2 id="定制开机-LOGO">定制开机 LOGO</h2>
+<ol>
+<li>替换内核下面的两个文件，重新编译内核：<br>
+<strong>kernel/logo.bmp</strong><br>
+<strong>kernel/logo_kernel.bmp</strong></li>
+<li>或者使用脚本来操作，如下所示：</li>
+</ol>
+<p><strong>NOTE:</strong></p>
+<p><strong>下载仓库</strong></p>
+<pre><code class="language-bash">git clone https://github.com/friendlyarm/sd-fuse_rk3399
+cd sd-fuse_rk3399
+</code></pre>
+<p>将需要替换的 <code>logo</code> 放到 <code>sd-fuse_rk3399/files</code> 文件夹下，并命名为 <code>logo.jpg</code> 。</p>
+<p><strong>图片转换</strong></p>
+<pre><code class="language-bash">convert files/logo.png -type truecolor /tmp/logo.bmp
+convert files/logo.png -type truecolor /tmp/logo_kernel.bmp
+</code></pre>
+<blockquote>
+<p>新装的系统可能没有 <code>convert</code> 命令, 会报错，所以需要先安装软件包<br>
+<code>sudo  apt-get install imagemagick</code></p>
+</blockquote>
+<p><strong>打包与编译内核</strong></p>
+<pre><code class="language-bash">LOGO=/tmp/logo.bmp KERNEL_LOGO=/tmp/logo_kernel.bmp ./build-kernel.sh eflasher
+LOGO=/tmp/logo.bmp KERNEL_LOGO=/tmp/logo_kernel.bmp ./build-kernel.sh friendlydesktop-arm64
+</code></pre>
+<pre><code class="language-bash">./mk-emmc-image.sh friendlydesktop-arm64
+</code></pre>
+<p>这中间可能会退出，因为没有 <code>/opt/FriendlyARM/toolchain/6.4-aarch64</code> 目录和相关的交叉编译工具；终端会有如下提示。</p>
+<pre><code class="language-bash">root@NanoPC-T4:/media/nvme/sd-fuse_rk3399# LOGO=/tmp/logo.bmp KERNEL_LOGO=/tmp/logo_kernel.bmp ./build-kernel.sh eflasher
+please install aarch64-gcc-6.4 first, using these commands: 
+\tgit clone https://github.com/friendlyarm/prebuilts.git -b master --depth 1
+\tcd prebuilts/gcc-x64
+\tcat toolchain-6.4-aarch64.tar.gz* | sudo tar xz -C /
+</code></pre>
+<p>按照提示输入以上命令（<strong>NOTE: 还是会报错，不要执行以下命令</strong>）：</p>
+<p><s>git clone <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyaWVuZGx5YXJtL3ByZWJ1aWx0cy5naXQ=">https://github.com/friendlyarm/prebuilts.git<i class="fa fa-external-link-alt"></i></span> -b master --depth 1</s><br>
+<s>cd prebuilts/gcc-x64</s><br>
+<s>cat toolchain-4.9.3-armhf.tar.gz* | sudo tar xz -C /</s><br>
+<s>cat toolchain-6.4-aarch64.tar.gz* | sudo tar xz -C /</s></p>
+<p><em>报错信息</em></p>
+<pre><code>/opt/FriendlyARM/toolchain/6.4-aarch64/bin/aarch64-linux-gnu-gcc: 1: /opt/FriendlyARM/toolchain/6.4-aarch64/bin/aarch64-linux-gnu-gcc: ELF: not found /opt/FriendlyARM/toolchain/6.4-aarch64/bin/aarch64-linux-gnu-gcc: 2: /opt/FriendlyARM/toolchain/6.4-aarch64/bin/aarch64-linux-gnu-gcc: Syntax error: &quot;(&quot; unexpected scripts/kconfig/conf  --silentoldconfig Kconfig
+</code></pre>
+<p>查找了编译链版本，版本对不上，一般情况下该类问题都是因为环境有问题。那么有了最新的7.5版本的就不用6.4版本的了。需要修改 <code>build-kernel.sh</code> 里 <code>export PATH=/opt/FriendlyARM/toolchain/6.4-aarch64/bin:$PATH</code> （如果已经安装了，注释掉该段代码）</p>
+<p>如果还没有安装<code>6.4</code>版本的编译器，这一段代码也可以注释掉：</p>
+<pre><code class="language-bash">#if [ ! -d /opt/FriendlyARM/toolchain/6.4-aarch64 ]; then
+#	echo &quot;please install aarch64-gcc-6.4 first, using these commands: &quot;
+#	echo &quot;\tgit clone https://github.com/friendlyarm/prebuilts.git -b master --depth 1&quot;
+#	echo &quot;\tcd prebuilts/gcc-x64&quot;
+#	echo &quot;\tcat toolchain-6.4-aarch64.tar.gz* | sudo tar xz -C /&quot;
+#	exit 1
+#fi
+</code></pre>
+<blockquote>
+<p>报错： <code>./fusing.sh: line 210: ./tools/sd_update: cannot execute binary file: Exec format error</code></p>
+</blockquote>
+<p><code>./mk-sd-image.sh friendlydesktop-arm64</code></p>
+<blockquote>
+<p><strong>File not found: ./friendlydesktop-arm64/partmap.txt, please download the latest version of the image files from <span class="exturl" data-url="aHR0cDovL2RsLmZyaWVuZGx5YXJtLmNvbS9uYW5vcGN0NA==">http://dl.friendlyarm.com/nanopct4<i class="fa fa-external-link-alt"></i></span></strong></p>
+</blockquote>
+<blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kbC5mcmllbmRseWVsZWMuY29tL25hbm9wY3Q0">官网 百度网盘<i class="fa fa-external-link-alt"></i></span> yn6r<br>
+下载</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>安装完成后，执行 <code>./clean.sh</code> 命令，清理一下空间</li>
+</ul>
+</blockquote>
+<p>friendlydesktop-arm64-images.tgz</p>
+<h2 id="【参考】">【参考】</h2>
+<ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3poI0ZyaWVuZGx5Q29yZS5FNy45QS44NC5FNC5CRC5CRi5FNy45NC5BOA==">官网<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+]]></content>
+      <categories>
+        <category>nanoPC</category>
+      </categories>
+      <tags>
+        <tag>nanoPC T4 更换信息</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nanoPC T4 线刷Ubuntu2004核心非桌面版</title>
+    <url>/2025/01/01/nanoPC/nanoPC-T4%20%E7%BA%BF%E5%88%B7ubuntu2004%E6%A0%B8%E5%BF%83%E9%9D%9E%E6%A1%8C%E9%9D%A2%E7%89%88/</url>
+    <content><![CDATA[<h2 id="Windows下通过Type-C数据线进行烧写"><strong>Windows下通过Type-C数据线进行烧写</strong></h2>
+<p>访问<span class="exturl" data-url="aHR0cDovL2Rvd25sb2FkLmZyaWVuZGx5ZWxlYy5jb20vTmFub1BDLVQ0">此处的下载地址<i class="fa fa-external-link-alt"></i></span>下载Windows下使用Type-C数据线烧写所需的文件及工具:</p>
+
+<p>视频教程：<br>
+<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL2F2MzgwNTI1NjIv">https://www.bilibili.com/video/av38052562/<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="准备">准备</h2>
+<p>参考 <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc3OTgwOTU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDE=">【边缘设备】基于RK3399核心板的nanoPC-T4 线刷桌面版系统<i class="fa fa-external-link-alt"></i></span></p>
+<p>下载 驱动和 <code>rk3399-usb-friendlycore-lite-focal-5.15-arm64-20220919.zip</code></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMWtWMVFJeWhKU1VkSVYzUlluemZObHc=">百度网盘链接<i class="fa fa-external-link-alt"></i></span> 提取码：8888</p>
+<h2 id="安装">安装</h2>
+<p>解压 <code>rk3399-usb-friendlycore-lite-focal-5.15-arm64-20220919.zip</code> 打开其中的 <code>RKDevTool</code>；按住Recovery键再长按(1.5秒以上)Power键开机，并同时按住reset键，然后松开，如果 <code>RKDevTool</code>显示发现设备，那么可以在 <code>下载镜像</code> Tab 页面点击 <code>执行</code>。静等即可。</p>
+
+<p><strong>NOTE</strong></p>
+<p>由于设备之前安装了其他版本的固件，如果遇到不支持写<code>GPT</code>错误信息，可以在升级固件里，重新升级选择 <code>MiniLoaderAll</code> 并升级和擦除 <code>Flash</code>， 然后重新执行下载镜像。</p>
+<p>安装完成后，记得</p>
+<p>输入用户名: <code>pi</code> 和密码: <code>pi</code></p>
+<pre><code class="language-bash">sudo apt update
+sudo apt upgrade
+</code></pre>
+<h2 id="【参考】">【参考】</h2>
+<ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3po">https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T4/zh<i class="fa fa-external-link-alt"></i></span> 4.2.2 节</li>
+</ol>
+]]></content>
+      <categories>
+        <category>nanoPC</category>
+      </categories>
+      <tags>
+        <tag>nanoPC T4 线刷</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Conda ERROR：Failed building wheel for lap解决方法</title>
+    <url>/2025/01/01/%E8%BF%90%E7%BB%B4/Conda%20ERROR/</url>
+    <content><![CDATA[<h2 id="问题">问题</h2>
+<pre><code class="language-bash">  note: This error originates from a subprocess, and is likely not a problem with pip.
+  ERROR: Failed building wheel for lap
+  Running setup.py clean for lap
+Failed to build lap
+ERROR: Could not build wheels for lap, which is required to install pyproject.toml-based projects
+</code></pre>
+<img data-src="/2025/01/01/%E8%BF%90%E7%BB%B4/Conda%20ERROR/1688619634377.png" class="" title="Conda构建错误截图">
+<h2 id="解决方法">解决方法</h2>
+<pre><code class="language-bash">conda install -c conda-forge lap
+</code></pre>
+<h2 id="参考引用">参考引用</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ2MzkwMTIwL2FydGljbGUvZGV0YWlscy8xMzAxNjQ1Njk/YXBwX3ZlcnNpb249NS44LjAmY3Nkbl9zaGFyZV90YWlsPSU3QiUyMnR5cGUlMjIlM0ElMjJibG9nJTIyJTJDJTIyclR5cGUlMjIlM0ElMjJhcnRpY2xlJTIyJTJDJTIycklkJTIyJTNBJTIyMTMwMTY0NTY5JTIyJTJDJTIyc291cmNlJTIyJTNBJTIyd2VpeGluXzQ2MDA3OTE3JTIyJTdEJnV0bV9zb3VyY2U9YXBw">YOLOv8—运行mode=track报错 ERROR: subprocess-exited-with-error与 ERROR: Failed building wheel for lap解决<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="问题：">问题：</h2>
+<blockquote>
+<p><code>conda</code> 创建新的虚拟环境时报错</p>
+</blockquote>
+ <img data-src="/2025/01/01/%E8%BF%90%E7%BB%B4/Conda%20ERROR/1688618320036.png" class="" title="1688618320036.png">
+<pre><code class="language-bash">Collecting package metadata (current_repodata.json): done
+Solving environment: done
+
+# &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; ERROR REPORT &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+
+    Traceback (most recent call last):
+      File &quot;/home/xxx/anaconda3/lib/python3.10/site-packages/conda/gateways/repodata/__init__.py&quot;, line 132, in conda_http_errors
+        yield
+      File &quot;/home/xxx/anaconda3/lib/python3.10/site-packages/conda/gateways/repodata/__init__.py&quot;, line 101, in repodata
+        response.raise_for_status()
+      File &quot;/home/xxx/anaconda3/lib/python3.10/site-packages/requests/models.py&quot;, line 1022, in raise_for_status
+        raise HTTPError(http_error_msg, response=self)
+    requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/linux-64/current_repodata.json
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File &quot;/home/xxx/anaconda3/lib/python3.10/site-packages/requests/models.py&quot;, line 972, in json
+        return complexjson.loads(self.text, **kwargs)
+      File &quot;/home/xxx/anaconda3/lib/python3.10/site-packages/simplejson/__init__.py&quot;, line 514, in loads
+        return _default_decoder.decode(s)
+      File &quot;/home/xxx/anaconda3/lib/python3.10/site-packages/simplejson/decoder.py&quot;, line 386, in decode
+        obj, end = self.raw_decode(s)
+      File &quot;/home/xxx/anaconda3/lib/python3.10/site-packages/simplejson/decoder.py&quot;, line 416, in raw_decode
+        return self.scan_once(s, idx=_w(s, idx).end())
+    simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+    
+    During handling of the above exception, another exception occurred:
+
+</code></pre>
+<h2 id="解决办法">解决办法</h2>
+<pre><code class="language-bash">conda config --remove-key channels
+conda config --append channels conda-forge --append channels bioconda --append channels defaults
+</code></pre>
+<h2 id="参考">参考</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dPRFN1bmVyL2FydGljbGUvZGV0YWlscy8xMjkyNjk1ODE=">Conda更新报错:requests.exceptions.HTTPError: 404<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Conda</category>
+      </categories>
+      <tags>
+        <tag>Python环境</tag>
+        <tag>Conda</tag>
+        <tag>错误排查</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Docker安装 Cvat</title>
+    <url>/2025/01/01/%E8%BF%90%E7%BB%B4/Docker%E5%AE%89%E8%A3%85%20CVAT/</url>
+    <content><![CDATA[<h2 id="安装准备">安装准备</h2>
+<h3 id="系统要求">系统要求</h3>
+<ul>
+<li>Docker 20.10+</li>
+<li>8GB以上内存</li>
+<li>50GB可用存储空间</li>
+</ul>
+<h2 id="部署流程">部署流程</h2>
+<pre><code class="language-bash">docker-compose -f docker-compose.yml -f components/autoannotation/docker-compose.autoannotation.yml up -d
+</code></pre>
+
+<h2 id="扩展配置">扩展配置</h2>
+<ol>
+<li>克隆代码仓库：</li>
+</ol>
+<pre><code class="language-bash">git clone https://github.com/opencv/cvat
+cd cvat
+</code></pre>
+<ol start="2">
+<li>创建覆盖配置文件：</li>
+</ol>
+<pre><code class="language-bash">cp docker-compose.yml docker-compose.override.yml
+</code></pre>
+<ol start="3">
+<li>修改<code>docker-compose.override.yml</code>中的traefik配置：</li>
+</ol>
+<pre><code class="language-yaml">services:
+  cvat:
+    labels:
+      traefik.http.routers.cvat.rule: Host(`your-domain.com`)
+  cvat_ui:
+    labels:
+      traefik.http.routers.cvat.rule: Host(`your-domain.com`)
+</code></pre>
+<h2 id="服务管理">服务管理</h2>
+<p><strong>启动服务：</strong></p>
+<pre><code class="language-bash">docker-compose up -d
+</code></pre>
+<p><strong>停止服务：</strong></p>
+<pre><code class="language-bash">docker-compose down
+</code></pre>
+<h2 id="常见问题">常见问题</h2>
+<h3 id="外部访问配置">外部访问配置</h3>
+<p>需要指定CVAT_HOST环境变量，建议通过修改<code>docker-compose.override.yml</code>配置文件实现。</p>
+<h3 id="数据持久化">数据持久化</h3>
+<p>所有标注数据存储在<code>~/cvat/data</code>目录，建议定期备份。</p>
+<h2 id="参考资源">参考资源</h2>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9vcGVudmlub3Rvb2xraXQuZ2l0aHViLmlvL2N2YXQvZG9jcy9hZG1pbmlzdHJhdGlvbi9iYXNpY3MvaW5zdGFsbGF0aW9uLw==">CVAT官方安装指南<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1b2hlbllKL2FydGljbGUvZGV0YWlscy8xMTM3Nzg4ODk=">CSDN安装教程<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9hbGV4MDA3LmJsb2cuY3Nkbi5uZXQvYXJ0aWNsZS9kZXRhaWxzLzEwNzcxMTA3Ng==">用户操作指南<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>cvat</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -5266,557 +5919,6 @@ envs_dirs: /path/to/large/disk/conda/envs
       </tags>
   </entry>
   <entry>
-    <title>Nanopi R6C 更换源</title>
-    <url>/2025/01/01/nanoPC/NanoPi%20R6C%20%E6%9B%B4%E6%8D%A2%E6%BA%90/</url>
-    <content><![CDATA[<h1>NanoPi R6C 更换源报错</h1>
-<blockquote>
-<p>Ubuntu 22.04 LTS 阿里源更换后报错。</p>
-</blockquote>
-<blockquote>
-<pre><code>E: Failed to fetch  http://mirrors.aliyun.com/ubuntu-ports/dists/jammy/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
-E: Failed to fetch http://mirrors.aliyun.com/ubuntu-ports/dists/jammy-security/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
-E: Failed to fetch http://mirrors.aliyun.com/ubuntu-ports/dists/jammy-updates/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
-E: Failed to fetch http://mirrors.aliyun.com/ubuntu-ports/dists/jammy-proposed/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
-E: Failed to fetch http://mirrors.aliyun.com/ubuntu-ports/dists/jammy-backports/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
-
-</code></pre>
-</blockquote>
-<h2 id="解决方案">解决方案</h2>
-<pre><code class="language-bash">sudo cp /etc/apt/sources.list /etc/apt/sources.list_bak
-sudo gedit /etc/apt/sources.list
-</code></pre>
-<p><strong>NOTE： 在ubuntu后面加上<code>-ports</code></strong></p>
-<pre><code class="language-bash">deb http://mirrors.aliyun.com/ubuntu-ports/ jammy main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu-ports/ jammy-security main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy-security main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu-ports/ jammy-updates main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy-updates main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu-ports/ jammy-proposed main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy-proposed main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu-ports/ jammy-backports main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy-backports main restricted universe multiverse
-</code></pre>
-<h2 id="参考">[参考]</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzYyMDYyODUwL2FydGljbGUvZGV0YWlscy8xMjU0OTQ3NjU=">[踩坑记录] aarch64版本Ubuntu apt-get更换阿里源后更新失败<i class="fa fa-external-link-alt"></i></span><br>
-<span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbGl1amlheGluMjAxOC9wLzE2MzczNjY4Lmh0bWw=">ubuntu 22.04如何更换阿里源<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>nanoPC</category>
-      </categories>
-      <tags>
-        <tag>nanoPC T4 更换源</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>nanoPC T4 ( Rk 3399 核心板）刷桌面版系统</title>
-    <url>/2025/01/01/nanoPC/nanoPC-T4%20(%20RK%203399%20%E6%A0%B8%E5%BF%83%E6%9D%BF%EF%BC%89%E5%88%B7%E6%A1%8C%E9%9D%A2%E7%89%88%E7%B3%BB%E7%BB%9F/</url>
-    <content><![CDATA[<blockquote>
-<p>仓库角落里发现了一个迷你小电脑 (nanoPC), 连上显示器和键鼠，进去不记得密码了，不得不重新刷一下系统。想装一个桌面系统，所以找了一圈，找到 <span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3po">nanoPC的官网<i class="fa fa-external-link-alt"></i></span>，</p>
-</blockquote>
-<h1>nanoPC-T4 刷桌面</h1>
-<h2 id="准备好相关工具">准备好相关工具</h2>
-<p><strong>软件</strong></p>
-<ol>
-<li>瑞芯微驱动助手，<strong>DriverAssitant_v4.5</strong></li>
-<li>系统固件，<strong>rk3399-usb-friendlydesktop-bionic-4.4-arm64-20220919</strong></li>
-</ol>
-<p><span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMWtWMVFJeWhKU1VkSVYzUlluemZObHc=">百度网盘链接<i class="fa fa-external-link-alt"></i></span> 提取码：8888</p>
-<p><strong>硬件</strong></p>
-<ol>
-<li>nanoPC-T4</li>
-<li>键鼠</li>
-<li>显示器及连接线</li>
-<li>type-c连接线</li>
-</ol>
-<h2 id="开始刷机">开始刷机</h2>
-<ol>
-<li>在 <code>Windows</code>上安装 USB 驱动助手；</li>
-</ol>
-
-
-<ol>
-<li><code>nanoPC</code> 上电，<code>USB</code> 连接宿主电脑（<code>Windows</code>）</li>
-<li>解压刷机文件 <code>rk3399-usb-friendlydesktop-bionic-4.4-arm64-20220919</code>, 找到文件 <code>RKDevTool</code>，双击打开，会显示没有找到设备，需要重启启动并 <code>reset nano</code>。</li>
-<li>按照下图所示，
-</li>
-</ol>
-<p>按住Recovery键再长按(1.5秒以上)Power键开机，并同时按住reset键，然后松开，如果 <code>RKDevTool</code>显示发现设备，那么可以在 <code>下载镜像</code> Tab 页面点击 <code>执行</code>。静等即可。</p>
-
-<ol start="4">
-<li>最后可以看到nanoPC重启后的桌面。</li>
-</ol>
-<pre><code> 普通用户：
-    用户名: pi
-    密码: pi
- Root用户： 
-    用户名: root
-    密码: fa
-</code></pre>
-<h2 id="官方步骤">官方步骤</h2>
-
-
-<p><strong>我这里实验用的 Windows Type-C 线刷的方式。</strong></p>
-<h2 id="【参考】">【参考】</h2>
-<ol>
-<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3po">https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T4/zh<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3poI0ZyaWVuZGx5RGVza3RvcC5FNy5CMy5CQi5FNy5CQi45Ri5FNy45QS44NC5FNC5CRC5CRi5FNy45NC5BOA==">https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T4/zh#FriendlyDesktop.E7.B3.BB.E7.BB.9F.E7.9A.84.E4.BD.BF.E7.94.A8<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poendhbmcvYXJ0aWNsZS9kZXRhaWxzLzEwNzc2MTE4MA==">https://blog.csdn.net/zhzwang/article/details/107761180<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzY2MjU4MzI5L2FydGljbGUvZGV0YWlscy8xMjY1MTIyMjA=">https://blog.csdn.net/qq_66258329/article/details/126512220<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82MTA3NGQxMjM4Nzg=">https://www.jianshu.com/p/61074d123878<i class="fa fa-external-link-alt"></i></span></li>
-</ol>
-]]></content>
-      <categories>
-        <category>nanoPC</category>
-      </categories>
-      <tags>
-        <tag>nanoPC T4 刷机</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nanopc T4 Upgrade报错</title>
-    <url>/2025/01/01/nanoPC/nanoPC-T4%20upgrade%E6%8A%A5%E9%94%99/</url>
-    <content><![CDATA[<h2 id="【问题】">【问题】</h2>
-<blockquote>
-<p>nanoPC-T4 在 <code># sudo apt update 和 sudo apt upgrade</code>升级或安装软件 <code>sudo apt install xxx</code>时遇到以下问题：<code>Failed to set up interface with /etc/hostapd/</code></p>
-</blockquote>
-<pre><code class="language-bash">Setting up hostapd (2:2.6-15ubuntu2.8) ...
-Job for hostapd.service failed because the control process exited with error code.
-See &quot;systemctl status hostapd.service&quot; and &quot;journalctl -xe&quot; for details.
-invoke-rc.d: initscript hostapd, action &quot;restart&quot; failed.
-● hostapd.service - Advanced IEEE 802.11 AP and IEEE 802.1X/WPA/WPA2/EAP Authenticator
-   Loaded: loaded (/lib/systemd/system/hostapd.service; disabled; vendor preset: enabled)
-   Active: failed (Result: exit-code) since Fri 2022-11-11 07:23:16 UTC; 22ms ago
-  Process: 12218 ExecStart=/usr/sbin/hostapd -P /run/hostapd.pid -B $DAEMON_OPTS $&#123;DAEMON_CONF&#125; (code=exited, status=1/FAILURE)
-
-Nov 11 07:23:16 NanoPC-T4 systemd[1]: Starting Advanced IEEE 802.11 AP and IEEE 802.1X/WPA/WPA2/EAP Authenticator...
-Nov 11 07:23:16 NanoPC-T4 hostapd[12218]: Configuration file: /etc/hostapd/hostapd.conf
-Nov 11 07:23:16 NanoPC-T4 hostapd[12218]: Could not open configuration file '/etc/hostapd/hostapd.conf' for reading.
-Nov 11 07:23:16 NanoPC-T4 hostapd[12218]: Failed to set up interface with /etc/hostapd/hostapd.conf
-Nov 11 07:23:16 NanoPC-T4 hostapd[12218]: Failed to initialize interface
-Nov 11 07:23:16 NanoPC-T4 systemd[1]: hostapd.service: Control process exited, code=exited status=1
-Nov 11 07:23:16 NanoPC-T4 systemd[1]: hostapd.service: Failed with result 'exit-code'.
-Nov 11 07:23:16 NanoPC-T4 systemd[1]: Failed to start Advanced IEEE 802.11 AP and IEEE 802.1X/WPA/WPA2/EAP Authenticator.
-dpkg: error processing package hostapd (--configure):
- installed hostapd package post-installation script subprocess returned error exit status 1
-Errors were encountered while processing:
- hostapd
-E: Sub-process /usr/bin/dpkg returned an error code (1)
-</code></pre>
-<h2 id="【解决】">【解决】</h2>
-<h3 id="发现问题">发现问题</h3>
-<p><code>Could not open configuration file '/etc/hostapd/hostapd.conf' for reading.</code></p>
-<p>在目录下查看 <code>hostapd.conf</code>， 发现没有该文件，当然无法打开配置文件了。</p>
-<h3 id="如何重新找到该文件">如何重新找到该文件</h3>
-<p>在目录 <code>/usr/share/doc/hostapd</code> 下可以看到有一个 <code>README.Debian</code> 文件, 文件内容如下：</p>
-<pre><code class="language-bash">hostapd for Debian
-------------------
-
-This package provides two methods for managing hostapd process(es); an
-initscript and an ifupdown hook. Both methods require creation of a
-hostapd daemon configuration file (eg. /etc/hostapd/hostapd.conf) to
-function correctly.
-
-An example hostapd.conf may be used as a template but _must_ be edited
-to suit your local configuration. An example is located at:
-  /usr/share/doc/hostapd/examples/hostapd.conf.gz
-
-To use the example as a template:
-  # zcat /usr/share/doc/hostapd/examples/hostapd.conf.gz &gt; \
-  	/etc/hostapd/hostapd.conf
-  # $EDITOR /etc/hostapd/hostapd.conf
-
-To use the initscript method of starting a hostapd daemon see
-/etc/default/hostapd.
-
-To use the ifupdown method, the path to hostapd configuration file can
-be specified in a network interfaces configuration stanza in
-/etc/network/interfaces like so:
-
-iface eth1 inet static
-	hostapd /etc/hostapd/hostapd.conf
-	...
-
-The hostapd process will be started in the pre-up phase of ifup, and be
-terminated in the post-down phase of ifdown.
-
- -- Kel Modderman &lt;kel@otaku42.de&gt;  Tue, 27 Oct 2009 12:03:01 +1000
-
-Please note:
-* If you want to use hostapd with a Prism2/2.5/3 card in WPA mode, you'll need
-  STA firmware version &gt;= 1.7.0.
-
- -- Faidon Liambotis &lt;faidon@cube.gr&gt;, Mon, 10 Oct 2005 14:57:11 +0300
-
-</code></pre>
-<h3 id="done">done</h3>
-<pre><code>zcat /usr/share/doc/hostapd/examples/hostapd.conf.gz &gt; /etc/hostapd/hostapd.conf
-</code></pre>
-<p>或者下载 <span class="exturl" data-url="aHR0cHM6Ly9kb3dubG9hZC5jc2RuLm5ldC9kb3dubG9hZC96aG91amlud2FuZy84Njk1NTA1Nw==">地址<i class="fa fa-external-link-alt"></i></span></p>
-<pre><code class="language-bash">pi@NanoPC-T4:~$ sudo apt update
-Hit:1 http://ports.ubuntu.com bionic InRelease
-Hit:2 http://ports.ubuntu.com bionic-backports InRelease
-Hit:3 http://ports.ubuntu.com bionic-proposed InRelease
-Hit:4 http://ports.ubuntu.com bionic-security InRelease
-Hit:5 http://ports.ubuntu.com bionic-updates InRelease
-Reading package lists... Done                      
-Building dependency tree       
-Reading state information... Done
-4 packages can be upgraded. Run 'apt list --upgradable' to see them.
-pi@NanoPC-T4:~$ sudo apt upgrade
-Reading package lists... Done
-Building dependency tree       
-Reading state information... Done
-Calculating upgrade... Done
-The following packages have been kept back:
-  u-boot-tools xserver-common xserver-xorg-core xserver-xorg-legacy
-0 upgraded, 0 newly installed, 0 to remove and 4 not upgraded.
-</code></pre>
-<p>看起来好像可以升级不报错了。不知道后面有没有后遗症。暂时不用<strong>科学上网</strong>了。</p>
-<h2 id="【其他】">【其他】</h2>
-<h3 id="ssh-登录-nanoPC-T4">ssh 登录 nanoPC-T4</h3>
-<pre><code class="language-bash">ssh pi@pi_addr  # 例如： pi@192.168.0.49
-</code></pre>
-<p>然后输入密码 <code>pi</code>。就可以远程访问和操作nanoPC-T4了</p>
-<pre><code class="language-bash">Warning: Permanently added '192.168.0.49' (ECDSA) to the list of known hosts.
-pi@192.168.0.49's password: 
- _____     _                _ _       _____ _     _____ ____ 
-|  ___| __(_) ___ _ __   __| | |_   _| ____| |   | ____/ ___|
-| |_ | '__| |/ _ \ '_ \ / _` | | | | |  _| | |   |  _|| |  
-|  _|| |  | |  __/ | | | (_| | | |_| | |___| |___| |__| |___ 
-|_|  |_|  |_|\___|_| |_|\__,_|_|\__, |_____|_____|_____\____|
-                                |___/                      
-
-Welcome to Ubuntu 18.04.6 LTS 4.4.179
-System load:   0.00            	Up time:       9 min		Local users:   2          
-Memory usage:  10 % of 3845Mb 	IP:            192.168.0.49
-CPU temp:      42°C         
-Usage of /:    44% of 8.2G   
-
- * Documentation: http://wiki.friendlyarm.com/Ubuntu
- * Forum: http://www.friendlyarm.com/Forum/
-
-To run Qt5 demo, type &quot;qt5demo&quot; at the command prompt and then hit the enter key.
-To play a video demo, use command &quot;sudo gst-player.sh&quot;.
-Last login: Fri Nov 11 08:12:07 2022
-
-pi@NanoPC-T4:~$ ls
-demo.mp4  Desktop  Documents  Downloads  h264ify   Music  Pictures  Public  Templates  Videos
-</code></pre>
-<h3 id="远程拷贝和下载资料">远程拷贝和下载资料</h3>
-<pre><code class="language-bash">scp pi@192.168.0.49:/usr/share/doc/hostapd/README.Debian /home/john/Documents/
-</code></pre>
-<p>输入密码 <code>pi</code>。就可以下载资料了。</p>
-]]></content>
-      <categories>
-        <category>nanoPC</category>
-      </categories>
-      <tags>
-        <tag>nanoPC T4 Upgrade</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>nanoPC T4 安装OpenCV</title>
-    <url>/2025/01/01/nanoPC/nanoPC-T4%20%E5%AE%89%E8%A3%85OpenCV/</url>
-    <content><![CDATA[<h1>nanoPC-T4 安装 OpenCV</h1>
-<blockquote>
-<p>Note: OpenCV has been pre-installed in <strong>FriendlyCore/FriendlyDesktop</strong> (Version after 201905) and does not require manual installation.</p>
-<p>Please download the latest FriendlyCore/FriendlyDesktop Image file from the following URL: <span class="exturl" data-url="aHR0cDovL2Rvd25sb2FkLmZyaWVuZGx5YXJtLmNvbQ==">http://download.friendlyarm.com<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p><strong>参考 nanoPC-T4 环境配置</strong><br>
-<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc3OTgwOTU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】基于RK3399核心板的nanoPC-T4 线刷桌面版系统<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4NDg4ODU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】nanoPC-T4 线刷ubuntu2004核心非桌面版<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4MDk0MTE/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】解决nanoPC-T4 upgrade报错<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4Njc0OTI/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】nanoPC-T4 挂载NVME硬盘<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="安装OpenCV">安装OpenCV</h2>
-<p>按照上述配置刷机系统已经预装了 <code>OpenCV</code>;</p>
-<h3 id="建立-Python3-的-OpenCV-开发环境">建立 Python3 的 OpenCV 开发环境</h3>
-<p><strong>注意：这里仅仅拷贝激活脚本，不做其他任何操作</strong></p>
-<pre><code class="language-bash">git clone https://github.com/friendlyarm/install-opencv-on-friendlycore
-cd install-opencv-on-friendlycore
-cp examples/py/cv-env.sh /usr/bin/
-</code></pre>
-<p><strong>测试</strong></p>
-<pre><code class="language-bash">pi@NanoPC-T4:/media/nvme/install-opencv-on-friendlycore$ cd examples/py/
-pi@NanoPC-T4:/media/nvme/install-opencv-on-friendlycore/examples/py$ . cv-env.sh 
-(cv) pi@NanoPC-T4:/media/nvme/install-opencv-on-friendlycore/examples/py$ python ver.py 
-4.2.0
-</code></pre>
-<p><strong>虚拟环境激活</strong>  <code>. cv-env.sh</code><br>
-<strong>虚拟环境退出</strong>  <code>deactivate</code></p>
-<h3 id="建立-C-的-OpenCV-开发环境">建立 C++ 的 OpenCV 开发环境</h3>
-<p><code>OpenCV</code> 在 <code>nanoPC-T4</code> 里已经预装了。</p>
-<p>命令查看下版本号，<code>/usr/local/bin/opencv_version</code></p>
-<pre><code class="language-bash">.
-├── CMakeLists.txt
-├── README.md
-├── sample.png
-└── showimage.cpp
-</code></pre>
-<pre><code class="language-cmake"># cmake needs this line 
-cmake_minimum_required(VERSION 2.8) 
-
-# Enable C++11 
-set(CMAKE_CXX_STANDARD 11) 
-set(CMAKE_CXX_STANDARD_REQUIRED TRUE) 
-
-# Define project name 
-project(showimage) 
-
-# Find OpenCV, you may need to set OpenCV_DIR variable 
-# to the absolute path to the directory containing OpenCVConfig.cmake file 
-# via the command line or GUI 
-find_package(OpenCV REQUIRED COMPONENTS core highgui calib3d) 
-include_directories( $&#123;OpenCV_INCLUDE_DIRS&#125; ) 
-
-# Declare the executable target built from your sources 
-add_executable(showimage showimage.cpp) 
-
-# Link your application with OpenCV libraries 
-target_link_libraries(showimage $&#123;OpenCV_LIBS&#125;)
-</code></pre>
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;opencv2/opencv.hpp&gt;
-#include &lt;opencv2/highgui.hpp&gt;
-#include &lt;cstdlib&gt;
-#include &lt;stdio.h&gt;
-#include &lt;time.h&gt; 
-
-using namespace std;
-using namespace cv;
-
-int main(int argc,char* argv[]) 
-&#123;
-	Mat image = imread(&quot;sample.png&quot;);
-	if (image.empty())
-	&#123;
-		cout&lt;&lt;&quot;no image&quot;&lt;&lt;endl;
-		return -1;
-	&#125;	
-	imshow(&quot;test&quot;, image);
-	waitKey(0);	
-	destroyAllWindows();
-    return 0;
-&#125;
-</code></pre>
-<pre><code class="language-bash">mkdir build 
-cp sample.png build/
-cd build
-cmake .. 
-make -j4
-./showimage
-</code></pre>
-<p>别急，执行完这里会黑屏的，那还是因为环境没有配好，和代码没有关系。</p>
-<p>继续执行以下命令：</p>
-<pre><code class="language-bash">su pi
-</code></pre>
-<p>输入密码： <code>pi</code></p>
-<pre><code class="language-bash">export DISPLAY=:0.0
-. setqt5env
-</code></pre>
-<p>再执行 <code>./showimage</code> 效果正常。</p>
-<h2 id="【参考】">【参考】</h2>
-<ol>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyaWVuZGx5YXJtL2luc3RhbGwtb3BlbmN2LW9uLWZyaWVuZGx5Y29yZQ==">install-opencv-on-friendlycore<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3poIy5FNi45Qi5CNC5FNi44RC5BMi5FNS5CQy44MC5FNi45Qy5CQUxPR08=">官网 Wiki<i class="fa fa-external-link-alt"></i></span></li>
-</ol>
-]]></content>
-      <categories>
-        <category>nanoPC</category>
-      </categories>
-      <tags>
-        <tag>nanoPC T4 安装OpenCV</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nanopc T4 安装Ncnn</title>
-    <url>/2025/01/01/nanoPC/nanoPC-T4%20%E5%AE%89%E8%A3%85ncnn/</url>
-    <content><![CDATA[<h1>nanoPC-T4 安装 ncnn</h1>
-<p><strong>参考 nanoPC-T4 环境配置</strong><br>
-<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc3OTgwOTU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】基于RK3399核心板的nanoPC-T4 线刷桌面版系统<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4NDg4ODU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】nanoPC-T4 线刷ubuntu2004核心非桌面版<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4MDk0MTE/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】解决nanoPC-T4 upgrade报错<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4Njc0OTI/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】nanoPC-T4 挂载NVME硬盘<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>ncnn 库是深度学习理库最好的，没有之一</strong></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1RlbmNlbnQvbmNubg==">ncnn官网<i class="fa fa-external-link-alt"></i></span></p>
-<ol>
-<li>下载代码仓库</li>
-</ol>
-<pre><code class="language-bash">git clone https://github.com/Tencent/ncnn.git
-</code></pre>
-<ol start="2">
-<li>编译安装</li>
-</ol>
-<pre><code class="language-bash">cd ncnn
-mkdir build &amp;&amp; cd build
-cmake -DNCNN_BUILD_TOOLS=OFF ..
-make -j4
-make install 
-</code></pre>
-<ol start="3">
-<li>使用</li>
-</ol>
-<p>在项目的 <code>CMakeLists.txt</code> 里加入</p>
-<pre><code># ncnn路径设置
-set(NCNN_DIR &quot;/media/nvme/ncnn/build/install&quot;)
-set(NCNN_INCLUDE_DIR &quot;$&#123;NCNN_DIR&#125;/include/ncnn&quot;)
-set(NCNN_LIB_DIR &quot;$&#123;NCNN_DIR&#125;/lib&quot;)
-include_directories(&quot;$&#123;NCNN_INCLUDE_DIR&#125;&quot;)
-link_directories(&quot;$&#123;NCNN_LIB_DIR&#125;&quot;)
-list(APPEND EXTRA_LIBS ncnn)
-</code></pre>
-<p>在对应的生成库或者生成应用程序里链接ncnn的库</p>
-<pre><code>target_link_libraries($&#123;CMAKE_PROJECT_NAME&#125; PRIVATE $&#123;EXTRA_LIBS&#125; -lpthread -lm)
-</code></pre>
-<p><code>$&#123;CMAKE_PROJECT_NAME&#125;</code> 替换成自己的库或者程序名称</p>
-]]></content>
-      <categories>
-        <category>nanoPC</category>
-      </categories>
-      <tags>
-        <tag>nanoPC T4 安装ncnn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>nanoPC T4 挂载NVME硬盘</title>
-    <url>/2025/01/01/nanoPC/nanoPC-T4%20%E6%8C%82%E8%BD%BDNVME%E7%A1%AC%E7%9B%98/</url>
-    <content><![CDATA[<h1>步骤如下</h1>
-<h2 id="检测NVME硬盘">检测NVME硬盘</h2>
-<pre><code class="language-bash">cat /proc/partitions 
-</code></pre>
-<p><strong>输出</strong></p>
-<pre><code class="language-bash">major minor  #blocks  name
-
-   1        0       4096 ram0
-   1        1       4096 ram1
-   1        2       4096 ram2
-   1        3       4096 ram3
-   1        4       4096 ram4
-   1        5       4096 ram5
-   1        6       4096 ram6
-   1        7       4096 ram7
- 259        0  488386584 nvme0n1
- 179        0   15267840 mmcblk1
- 179        1       4096 mmcblk1p1
- 179        2       4096 mmcblk1p2
- 179        3       4096 mmcblk1p3
- 179        4      12288 mmcblk1p4
- 179        5      32768 mmcblk1p5
- 179        6      32768 mmcblk1p6
- 179        7    6553600 mmcblk1p7
- 179        8    8611840 mmcblk1p8
- 179       96       4096 mmcblk1rpmb
- 179       64       4096 mmcblk1boot1
- 179       32       4096 mmcblk1boot0
-</code></pre>
-<p>如果有 <code>nvme0n1</code> 就说明有 <code>NVME SSD</code>硬盘。可以进行下一步。</p>
-<h2 id="分区">分区</h2>
-<p>只分一个区</p>
-<pre><code class="language-bash">(echo g; echo n; echo p; echo 1; echo &quot;&quot;; echo &quot;&quot;; echo w; echo q) | sudo fdisk /dev/nvme0n1
-</code></pre>
-<p><strong>输出</strong></p>
-<pre><code class="language-bash">Welcome to fdisk (util-linux 2.31.1).
-Changes will remain in memory only, until you decide to write them.
-Be careful before using the write command.
-
-Device does not contain a recognized partition table.
-Created a new DOS disklabel with disk identifier 0x5b899dc5.
-
-Command (m for help): Created a new GPT disklabel (GUID: 41364481-DE8B-DA4B-AF5B-3966AF3946FB).
-
-Command (m for help): Partition number (1-128, default 1): Value out of range.
-Partition number (1-128, default 1): First sector (2048-976773134, default 2048): Last sector, +sectors or +size&#123;K,M,G,T,P&#125; (2048-976773134, default 976773134): 
-Created a new partition 1 of type 'Linux filesystem' and of size 465.8 GiB.
-
-Command (m for help): The partition table has been altered.
-Calling ioctl() to re-read partition table.
-Syncing disks.
-</code></pre>
-<h2 id="格式化-EXT4">格式化 EXT4</h2>
-<pre><code class="language-bash">sudo mkfs.ext4 /dev/nvme0n1p1
-</code></pre>
-<p><strong>输出</strong></p>
-<pre><code class="language-bash">mke2fs 1.44.1 (24-Mar-2018)
-Discarding device blocks: done                          
-Creating filesystem with 122096385 4k blocks and 30531584 inodes
-Filesystem UUID: 6b369f2f-173b-4bbf-bbf9-4668e137cbef
-Superblock backups stored on blocks: 
-	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, 
-	4096000, 7962624, 11239424, 20480000, 23887872, 71663616, 78675968, 
-	102400000
-
-Allocating group tables: done                          
-Writing inode tables: done                          
-Creating journal (262144 blocks): 
-done
-Writing superblocks and filesystem accounting information:        
-done
-</code></pre>
-<h2 id="系统启动自动挂载">系统启动自动挂载</h2>
-<p><strong>1. 查看BlockID</strong></p>
-<pre><code class="language-bash">sudo blkid /dev/nvme0n1p1
-</code></pre>
-<p><strong>输出</strong></p>
-<pre><code class="language-bash">/dev/nvme0n1p1: UUID=&quot;6b369f2f-173b-4bbf-bbf9-4668e137cbef&quot; TYPE=&quot;ext4&quot; PARTUUID=&quot;9e55ee97-8c07-504e-beef-e7963967e9bf&quot;
-</code></pre>
-<p><strong>修改 <code>fstab</code></strong></p>
-<pre><code class="language-bash">sudo vi /etc/fstab
-
-UUID=6b369f2f-173b-4bbf-bbf9-4668e137cbef /media/nvme ext4 defaults 0 0
-</code></pre>
-<p><strong>建立目录和修改权限</strong></p>
-<pre><code class="language-bash">sudo mkdir -p /media/nvme
-sudo chmod 777 /media/nvme
-</code></pre>
-<p><strong>挂载</strong></p>
-<pre><code class="language-bash">sudo mount /media/nvme
-</code></pre>
-<p><strong>重启</strong></p>
-<pre><code class="language-bash">sudo reboot
-</code></pre>
-]]></content>
-      <categories>
-        <category>nanoPC</category>
-      </categories>
-      <tags>
-        <tag>nanoPC T4 挂载NVME硬盘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>nanoPC T4 线刷Ubuntu2004核心非桌面版</title>
-    <url>/2025/01/01/nanoPC/nanoPC-T4%20%E7%BA%BF%E5%88%B7ubuntu2004%E6%A0%B8%E5%BF%83%E9%9D%9E%E6%A1%8C%E9%9D%A2%E7%89%88/</url>
-    <content><![CDATA[<h2 id="Windows下通过Type-C数据线进行烧写"><strong>Windows下通过Type-C数据线进行烧写</strong></h2>
-<p>访问<span class="exturl" data-url="aHR0cDovL2Rvd25sb2FkLmZyaWVuZGx5ZWxlYy5jb20vTmFub1BDLVQ0">此处的下载地址<i class="fa fa-external-link-alt"></i></span>下载Windows下使用Type-C数据线烧写所需的文件及工具:</p>
-
-<p>视频教程：<br>
-<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL2F2MzgwNTI1NjIv">https://www.bilibili.com/video/av38052562/<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="准备">准备</h2>
-<p>参考 <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc3OTgwOTU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDE=">【边缘设备】基于RK3399核心板的nanoPC-T4 线刷桌面版系统<i class="fa fa-external-link-alt"></i></span></p>
-<p>下载 驱动和 <code>rk3399-usb-friendlycore-lite-focal-5.15-arm64-20220919.zip</code></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMWtWMVFJeWhKU1VkSVYzUlluemZObHc=">百度网盘链接<i class="fa fa-external-link-alt"></i></span> 提取码：8888</p>
-<h2 id="安装">安装</h2>
-<p>解压 <code>rk3399-usb-friendlycore-lite-focal-5.15-arm64-20220919.zip</code> 打开其中的 <code>RKDevTool</code>；按住Recovery键再长按(1.5秒以上)Power键开机，并同时按住reset键，然后松开，如果 <code>RKDevTool</code>显示发现设备，那么可以在 <code>下载镜像</code> Tab 页面点击 <code>执行</code>。静等即可。</p>
-
-<p><strong>NOTE</strong></p>
-<p>由于设备之前安装了其他版本的固件，如果遇到不支持写<code>GPT</code>错误信息，可以在升级固件里，重新升级选择 <code>MiniLoaderAll</code> 并升级和擦除 <code>Flash</code>， 然后重新执行下载镜像。</p>
-<p>安装完成后，记得</p>
-<p>输入用户名: <code>pi</code> 和密码: <code>pi</code></p>
-<pre><code class="language-bash">sudo apt update
-sudo apt upgrade
-</code></pre>
-<h2 id="【参考】">【参考】</h2>
-<ol>
-<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3po">https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T4/zh<i class="fa fa-external-link-alt"></i></span> 4.2.2 节</li>
-</ol>
-]]></content>
-      <categories>
-        <category>nanoPC</category>
-      </categories>
-      <tags>
-        <tag>nanoPC T4 线刷</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>md2docx：让Markdown文档秒变精美Word文档的神器</title>
     <url>/2025/05/01/%E9%A1%B9%E7%9B%AE/markdown2docx/</url>
     <content><![CDATA[<h1>md2docx：让Markdown文档秒变精美Word文档的神器</h1>
@@ -5902,108 +6004,6 @@ sudo apt upgrade
       <tags>
         <tag>Python</tag>
         <tag>文档处理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>nanoPC T4 更换欢迎信息和Logo  暂时放弃编译内核</title>
-    <url>/2025/01/01/nanoPC/nanoPC-T4%20%E6%9B%B4%E6%8D%A2%E6%AC%A2%E8%BF%8E%E4%BF%A1%E6%81%AF%E5%92%8CLOGO--%E6%9A%82%E6%97%B6%E6%94%BE%E5%BC%83%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8/</url>
-    <content><![CDATA[<h2 id="定制命令行的欢迎信息">定制命令行的欢迎信息</h2>
-<p>欢迎信息如下</p>
-<pre><code class="language-bash"> _____     _                _ _       _____ _     _____ ____ 
-|  ___| __(_) ___ _ __   __| | |_   _| ____| |   | ____/ ___|
-| |_ | '__| |/ _ \ '_ \ / _` | | | | |  _| | |   |  _|| |  
-|  _|| |  | |  __/ | | | (_| | | |_| | |___| |___| |__| |___ 
-|_|  |_|  |_|\___|_| |_|\__,_|_|\__, |_____|_____|_____\____|
-                                |___/                  
-</code></pre>
-<p><strong>如何修改显示的内容呢？</strong></p>
-<p>修改方式，找到 <code>/etc/update-motd.d/10-header</code>文件，修改其中的</p>
-<p><code>TERM=linux toilet -f standard -F metal $BOARD_VENDOR</code> 为</p>
-<p><code>TERM=linux toilet -f standard -F metal $COMPANY</code></p>
-<p><strong>修改时区</strong></p>
-<p>例如更改为Shanghai时区:</p>
-<pre><code>sudo rm /etc/localtime
-sudo ln -ls /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-</code></pre>
-<h2 id="定制开机-LOGO">定制开机 LOGO</h2>
-<ol>
-<li>替换内核下面的两个文件，重新编译内核：<br>
-<strong>kernel/logo.bmp</strong><br>
-<strong>kernel/logo_kernel.bmp</strong></li>
-<li>或者使用脚本来操作，如下所示：</li>
-</ol>
-<p><strong>NOTE:</strong></p>
-<p><strong>下载仓库</strong></p>
-<pre><code class="language-bash">git clone https://github.com/friendlyarm/sd-fuse_rk3399
-cd sd-fuse_rk3399
-</code></pre>
-<p>将需要替换的 <code>logo</code> 放到 <code>sd-fuse_rk3399/files</code> 文件夹下，并命名为 <code>logo.jpg</code> 。</p>
-<p><strong>图片转换</strong></p>
-<pre><code class="language-bash">convert files/logo.png -type truecolor /tmp/logo.bmp
-convert files/logo.png -type truecolor /tmp/logo_kernel.bmp
-</code></pre>
-<blockquote>
-<p>新装的系统可能没有 <code>convert</code> 命令, 会报错，所以需要先安装软件包<br>
-<code>sudo  apt-get install imagemagick</code></p>
-</blockquote>
-<p><strong>打包与编译内核</strong></p>
-<pre><code class="language-bash">LOGO=/tmp/logo.bmp KERNEL_LOGO=/tmp/logo_kernel.bmp ./build-kernel.sh eflasher
-LOGO=/tmp/logo.bmp KERNEL_LOGO=/tmp/logo_kernel.bmp ./build-kernel.sh friendlydesktop-arm64
-</code></pre>
-<pre><code class="language-bash">./mk-emmc-image.sh friendlydesktop-arm64
-</code></pre>
-<p>这中间可能会退出，因为没有 <code>/opt/FriendlyARM/toolchain/6.4-aarch64</code> 目录和相关的交叉编译工具；终端会有如下提示。</p>
-<pre><code class="language-bash">root@NanoPC-T4:/media/nvme/sd-fuse_rk3399# LOGO=/tmp/logo.bmp KERNEL_LOGO=/tmp/logo_kernel.bmp ./build-kernel.sh eflasher
-please install aarch64-gcc-6.4 first, using these commands: 
-\tgit clone https://github.com/friendlyarm/prebuilts.git -b master --depth 1
-\tcd prebuilts/gcc-x64
-\tcat toolchain-6.4-aarch64.tar.gz* | sudo tar xz -C /
-</code></pre>
-<p>按照提示输入以上命令（<strong>NOTE: 还是会报错，不要执行以下命令</strong>）：</p>
-<p><s>git clone <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyaWVuZGx5YXJtL3ByZWJ1aWx0cy5naXQ=">https://github.com/friendlyarm/prebuilts.git<i class="fa fa-external-link-alt"></i></span> -b master --depth 1</s><br>
-<s>cd prebuilts/gcc-x64</s><br>
-<s>cat toolchain-4.9.3-armhf.tar.gz* | sudo tar xz -C /</s><br>
-<s>cat toolchain-6.4-aarch64.tar.gz* | sudo tar xz -C /</s></p>
-<p><em>报错信息</em></p>
-<pre><code>/opt/FriendlyARM/toolchain/6.4-aarch64/bin/aarch64-linux-gnu-gcc: 1: /opt/FriendlyARM/toolchain/6.4-aarch64/bin/aarch64-linux-gnu-gcc: ELF: not found /opt/FriendlyARM/toolchain/6.4-aarch64/bin/aarch64-linux-gnu-gcc: 2: /opt/FriendlyARM/toolchain/6.4-aarch64/bin/aarch64-linux-gnu-gcc: Syntax error: &quot;(&quot; unexpected scripts/kconfig/conf  --silentoldconfig Kconfig
-</code></pre>
-<p>查找了编译链版本，版本对不上，一般情况下该类问题都是因为环境有问题。那么有了最新的7.5版本的就不用6.4版本的了。需要修改 <code>build-kernel.sh</code> 里 <code>export PATH=/opt/FriendlyARM/toolchain/6.4-aarch64/bin:$PATH</code> （如果已经安装了，注释掉该段代码）</p>
-<p>如果还没有安装<code>6.4</code>版本的编译器，这一段代码也可以注释掉：</p>
-<pre><code class="language-bash">#if [ ! -d /opt/FriendlyARM/toolchain/6.4-aarch64 ]; then
-#	echo &quot;please install aarch64-gcc-6.4 first, using these commands: &quot;
-#	echo &quot;\tgit clone https://github.com/friendlyarm/prebuilts.git -b master --depth 1&quot;
-#	echo &quot;\tcd prebuilts/gcc-x64&quot;
-#	echo &quot;\tcat toolchain-6.4-aarch64.tar.gz* | sudo tar xz -C /&quot;
-#	exit 1
-#fi
-</code></pre>
-<blockquote>
-<p>报错： <code>./fusing.sh: line 210: ./tools/sd_update: cannot execute binary file: Exec format error</code></p>
-</blockquote>
-<p><code>./mk-sd-image.sh friendlydesktop-arm64</code></p>
-<blockquote>
-<p><strong>File not found: ./friendlydesktop-arm64/partmap.txt, please download the latest version of the image files from <span class="exturl" data-url="aHR0cDovL2RsLmZyaWVuZGx5YXJtLmNvbS9uYW5vcGN0NA==">http://dl.friendlyarm.com/nanopct4<i class="fa fa-external-link-alt"></i></span></strong></p>
-</blockquote>
-<blockquote>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kbC5mcmllbmRseWVsZWMuY29tL25hbm9wY3Q0">官网 百度网盘<i class="fa fa-external-link-alt"></i></span> yn6r<br>
-下载</p>
-</blockquote>
-<blockquote>
-<ul>
-<li>安装完成后，执行 <code>./clean.sh</code> 命令，清理一下空间</li>
-</ul>
-</blockquote>
-<p>friendlydesktop-arm64-images.tgz</p>
-<h2 id="【参考】">【参考】</h2>
-<ol>
-<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3poI0ZyaWVuZGx5Q29yZS5FNy45QS44NC5FNC5CRC5CRi5FNy45NC5BOA==">官网<i class="fa fa-external-link-alt"></i></span></li>
-</ol>
-]]></content>
-      <categories>
-        <category>nanoPC</category>
-      </categories>
-      <tags>
-        <tag>nanoPC T4 更换信息</tag>
       </tags>
   </entry>
   <entry>

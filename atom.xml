@@ -295,9 +295,9 @@ OS： Windows 10&lt;br&gt;
     <category term="Android" scheme="https://znza.top/categories/OpenCV/JNI/Android/"/>
     
     
-    <category term="OpenCV" scheme="https://znza.top/tags/OpenCV/"/>
-    
     <category term="JNI" scheme="https://znza.top/tags/JNI/"/>
+    
+    <category term="OpenCV" scheme="https://znza.top/tags/OpenCV/"/>
     
     <category term="环境配置" scheme="https://znza.top/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
     
@@ -399,11 +399,11 @@ OS： Windows 10&lt;br&gt;
     <category term="运维" scheme="https://znza.top/categories/OpenCV/%E8%BF%90%E7%BB%B4/"/>
     
     
+    <category term="OpenCV" scheme="https://znza.top/tags/OpenCV/"/>
+    
     <category term="show" scheme="https://znza.top/tags/show/"/>
     
     <category term="报错" scheme="https://znza.top/tags/%E6%8A%A5%E9%94%99/"/>
-    
-    <category term="OpenCV" scheme="https://znza.top/tags/OpenCV/"/>
     
   </entry>
   
@@ -540,6 +540,35 @@ OS： Windows 10&lt;br&gt;
   </entry>
   
   <entry>
+    <title>Git 之 .Gitignore</title>
+    <link href="https://znza.top/2025/01/01/Git/Git%20%E4%B9%8B%20.gitignore/"/>
+    <id>https://znza.top/2025/01/01/Git/Git%20%E4%B9%8B%20.gitignore/</id>
+    <published>2024-12-31T16:00:00.000Z</published>
+    <updated>2025-08-31T13:11:39.605Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="【问题】">【问题】</h2><p><code>Git</code>是应用极其广泛的代码版本管理工具。在编写代码的过程中会遇到很多问题，之前遇到过团队成员在提交代码仓库时，提交了大量的图片和视频文件以及一些编译的临时文件，导致代码仓库非常大，每次其他成员拉取的时候都要拉取一堆垃圾信息。那么如何避免该问题呢？</p><h2 id="【解决办法】">【解决办法】</h2><p>在新建仓库的时候，建立一个 <code>.gitignore</code> 文件，该文件可以忽略掉那些临时文件，或者不需要跟踪的文件，也可以忽略掉一些文件夹。那么 <code>.gitignore</code> 的规则如何呢？</p><ol><li><code>.gitignore</code> 文件的存放<br>该文件可以存放在仓库的根目录下，它递归应用于整个仓库中。也可以放在子目录中，子目录中的 <code>.gitignore</code> 作用域在其目录。</li><li><code>.gitignore</code> 格式规范</li></ol><ul><li>所有空行或者以 <code># </code> 开头的行都会被 <code>Git</code> 忽略；</li><li>可以使用标准的 glob 模式匹配，它会递归应用到整个工作区；</li><li>匹配模式可以以 <code>/</code> 开头防止递归；</li><li>匹配模式可以以 <code>/</code> 结尾指定目录；</li><li>要忽略那些指定格式的文件或目录，可以在模式前加上 <code>!</code> 取反，即该类文件或目录继续进行跟踪。</li></ul><blockquote><p><code>glob</code> 模式是指 <code>shell</code> 简化了正则表达式。<code>*</code> 匹配0个或多个任意字符，<code>[abc]</code> 匹配任意一个列在方括号中的字符（要么匹配 <code>a</code>, 要么匹配 <code>b</code>, 要么匹配 <code>c</code> ）。<code>?</code> 只匹配一个任意字符。如果方括号中使用了短划线分割两个字符，如 <code>[0-9]</code> 会匹配 <code>0~9</code> 之间的数字；使用 <code>**</code> 表示匹配任意中间目录，如 <code>a/**/z</code> 表示匹配 <code>a/z</code>, <code>a/b/z</code>, <code>a/b/c/d/e/z</code>；</p></blockquote><pre><code># 忽略所有的 .a 文件*.a# 但跟踪所有的 lib.a，即便你在前面忽略了 .a 文件!lib.a# 只忽略当前目录下的 TODO 文件，而不忽略 subdir/TODO/TODO# 忽略任何目录下名为 build 的文件夹build/# 忽略 doc/notes.txt，但不忽略 doc/server/arch.txtdoc/*.txt# 忽略 doc/ 目录及其所有子目录下的 .pdf 文件doc/**/*.pdf</code></pre><ol start="3"><li>要养成一个好的习惯<br>每次建立新仓库的时候，应及时建立 <code>.gitignore</code> 文件，以免将来提交无用的文件。</li></ol><blockquote><p><code>Git </code> 除了利用 <code>.gitignore</code> 方式忽略不需要跟踪的文件外。还提供了另外一种方式 <code>exclude</code>,  <code>exclude</code> 存放在 <code>.git/info/exclude </code> ， 它与 <code>.gitignore</code> 不同的是， <code>exclude</code> 是本地需要排除的文件，不会提交到仓库中应用在别人机器上，而 <code>.gitignore</code> 本身可以提交到仓库中，适用于使用仓库的所有人。</p></blockquote><blockquote><p><code>.gitignore</code> 文件可以作为占位文件，例如有些文件夹需要同步到仓库中，可以在文件夹中新建一个 <code>.gitignore </code>文件，下次拉取的时候可以同步拉取了这个空目录。</p></blockquote><ol start="4"><li>如果已经提交了大文件到仓库中， 怎么办？<br><strong>思考中，下集再见</strong></li></ol><h2 id="【示例】">【示例】</h2><p><a href="https://github.com/github/gitignore"><code>.gitignore</code> 模板文件</a></p><p><code>c++/cuda</code> 项目下的 <code>.gitignore</code> 文件模板</p><pre><code># Prerequisites*.d# Compiled Object files*.slo*.lo*.o*.obj# Precompiled Headers*.gch*.pch# Compiled Dynamic libraries*.so*.dylib*.dll# Fortran module files*.mod*.smod# Compiled Static libraries*.lai*.la*.a*.lib# Executables*.exe*.out*.app# cuda*.i*.ii*.gpu*.ptx*.cubin*.fatbin</code></pre><p><code>c </code>项目下的 <code>.gitignore</code> 文件模板</p><pre><code># Prerequisites*.d# Object files*.o*.ko*.obj*.elf# Linker output*.ilk*.map*.exp# Precompiled Headers*.gch*.pch# Libraries*.lib*.a*.la*.lo# Shared objects (inc. Windows DLLs)*.dll*.so*.so.**.dylib# Executables*.exe*.out*.app*.i*86*.x86_64*.hex# Debug files*.dSYM/*.su*.idb*.pdb# Kernel Module Compile Results*.mod**.cmd.tmp_versions/modules.orderModule.symversMkfile.olddkms.conf</code></pre><p><code>Python </code>项目下的 <code>.gitignore</code> 文件模板</p><pre><code># Byte-compiled / optimized / DLL files__pycache__/*.py[cod]*$py.class# C extensions*.so# Distribution / packaging.Pythonbuild/develop-eggs/dist/downloads/eggs/.eggs/lib/lib64/parts/sdist/var/wheels/share/python-wheels/*.egg-info/.installed.cfg*.eggMANIFEST# PyInstaller#  Usually these files are written by a python script from a template#  before PyInstaller builds the exe, so as to inject date/other infos into it.*.manifest*.spec# Installer logspip-log.txtpip-delete-this-directory.txt# Unit test / coverage reportshtmlcov/.tox/.nox/.coverage.coverage.*.cachenosetests.xmlcoverage.xml*.cover*.py,cover.hypothesis/.pytest_cache/cover/# Translations*.mo*.pot# Django stuff:*.loglocal_settings.pydb.sqlite3db.sqlite3-journal# Flask stuff:instance/.webassets-cache# Scrapy stuff:.scrapy# Sphinx documentationdocs/_build/# PyBuilder.pybuilder/target/# Jupyter Notebook.ipynb_checkpoints# IPythonprofile_default/ipython_config.py# pyenv#   For a library or package, you might want to ignore these files since the code is#   intended to run in multiple environments; otherwise, check them in:# .python-version# pipenv#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.#   However, in case of collaboration, if having platform-specific dependencies or dependencies#   having no cross-platform support, pipenv may install dependencies that don't work, or not#   install all needed dependencies.#Pipfile.lock# poetry#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.#   This is especially recommended for binary packages to ensure reproducibility, and is more#   commonly ignored for libraries.#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control#poetry.lock# pdm#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.#pdm.lock#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it#   in version control.#   https://pdm.fming.dev/#use-with-ide.pdm.toml# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm__pypackages__/# Celery stuffcelerybeat-schedulecelerybeat.pid# SageMath parsed files*.sage.py# Environments.env.venvenv/venv/ENV/env.bak/venv.bak/# Spyder project settings.spyderproject.spyproject# Rope project settings.ropeproject# mkdocs documentation/site# mypy.mypy_cache/.dmypy.jsondmypy.json# Pyre type checker.pyre/# pytype static type analyzer.pytype/# Cython debug symbolscython_debug/# PyCharm#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore#  and can be added to the global gitignore or merged into this file.  For a more nuclear#  option (not recommended) you can uncomment the following to ignore the entire idea folder.#.idea/</code></pre><h2 id="【参考】">【参考】</h2><ol><li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vcHlsZW1vbi9hcmNoaXZlLzIwMTIvMDcvMTYvMjU5MzExMi5odG1s">https://www.cnblogs.com/pylemon/archive/2012/07/16/2593112.html<i class="fa fa-external-link-alt"></i></span></li><li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dpdGh1Yi9naXRpZ25vcmU=">https://github.com/github/gitignore<i class="fa fa-external-link-alt"></i></span></li><li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoaW5rV29uL2FydGljbGUvZGV0YWlscy8xMDE0NDc4NjY=">https://blog.csdn.net/ThinkWon/article/details/101447866<i class="fa fa-external-link-alt"></i></span></li></ol>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="Git" scheme="https://znza.top/categories/Git/"/>
+    
+    
+    <category term="Git常用命令" scheme="https://znza.top/tags/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    
+    <category term=".gitignore" scheme="https://znza.top/tags/gitignore/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Git之大瘦身</title>
     <link href="https://znza.top/2025/01/01/Git/Git%E4%B9%8B%E5%A4%A7%E7%98%A6%E8%BA%AB/"/>
     <id>https://znza.top/2025/01/01/Git/Git%E4%B9%8B%E5%A4%A7%E7%98%A6%E8%BA%AB/</id>
@@ -567,35 +596,6 @@ OS： Windows 10&lt;br&gt;
     <category term="Git常用命令" scheme="https://znza.top/tags/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
     
     <category term="仓库瘦身" scheme="https://znza.top/tags/%E4%BB%93%E5%BA%93%E7%98%A6%E8%BA%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git 之 .Gitignore</title>
-    <link href="https://znza.top/2025/01/01/Git/Git%20%E4%B9%8B%20.gitignore/"/>
-    <id>https://znza.top/2025/01/01/Git/Git%20%E4%B9%8B%20.gitignore/</id>
-    <published>2024-12-31T16:00:00.000Z</published>
-    <updated>2025-08-31T13:11:39.605Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="【问题】">【问题】</h2><p><code>Git</code>是应用极其广泛的代码版本管理工具。在编写代码的过程中会遇到很多问题，之前遇到过团队成员在提交代码仓库时，提交了大量的图片和视频文件以及一些编译的临时文件，导致代码仓库非常大，每次其他成员拉取的时候都要拉取一堆垃圾信息。那么如何避免该问题呢？</p><h2 id="【解决办法】">【解决办法】</h2><p>在新建仓库的时候，建立一个 <code>.gitignore</code> 文件，该文件可以忽略掉那些临时文件，或者不需要跟踪的文件，也可以忽略掉一些文件夹。那么 <code>.gitignore</code> 的规则如何呢？</p><ol><li><code>.gitignore</code> 文件的存放<br>该文件可以存放在仓库的根目录下，它递归应用于整个仓库中。也可以放在子目录中，子目录中的 <code>.gitignore</code> 作用域在其目录。</li><li><code>.gitignore</code> 格式规范</li></ol><ul><li>所有空行或者以 <code># </code> 开头的行都会被 <code>Git</code> 忽略；</li><li>可以使用标准的 glob 模式匹配，它会递归应用到整个工作区；</li><li>匹配模式可以以 <code>/</code> 开头防止递归；</li><li>匹配模式可以以 <code>/</code> 结尾指定目录；</li><li>要忽略那些指定格式的文件或目录，可以在模式前加上 <code>!</code> 取反，即该类文件或目录继续进行跟踪。</li></ul><blockquote><p><code>glob</code> 模式是指 <code>shell</code> 简化了正则表达式。<code>*</code> 匹配0个或多个任意字符，<code>[abc]</code> 匹配任意一个列在方括号中的字符（要么匹配 <code>a</code>, 要么匹配 <code>b</code>, 要么匹配 <code>c</code> ）。<code>?</code> 只匹配一个任意字符。如果方括号中使用了短划线分割两个字符，如 <code>[0-9]</code> 会匹配 <code>0~9</code> 之间的数字；使用 <code>**</code> 表示匹配任意中间目录，如 <code>a/**/z</code> 表示匹配 <code>a/z</code>, <code>a/b/z</code>, <code>a/b/c/d/e/z</code>；</p></blockquote><pre><code># 忽略所有的 .a 文件*.a# 但跟踪所有的 lib.a，即便你在前面忽略了 .a 文件!lib.a# 只忽略当前目录下的 TODO 文件，而不忽略 subdir/TODO/TODO# 忽略任何目录下名为 build 的文件夹build/# 忽略 doc/notes.txt，但不忽略 doc/server/arch.txtdoc/*.txt# 忽略 doc/ 目录及其所有子目录下的 .pdf 文件doc/**/*.pdf</code></pre><ol start="3"><li>要养成一个好的习惯<br>每次建立新仓库的时候，应及时建立 <code>.gitignore</code> 文件，以免将来提交无用的文件。</li></ol><blockquote><p><code>Git </code> 除了利用 <code>.gitignore</code> 方式忽略不需要跟踪的文件外。还提供了另外一种方式 <code>exclude</code>,  <code>exclude</code> 存放在 <code>.git/info/exclude </code> ， 它与 <code>.gitignore</code> 不同的是， <code>exclude</code> 是本地需要排除的文件，不会提交到仓库中应用在别人机器上，而 <code>.gitignore</code> 本身可以提交到仓库中，适用于使用仓库的所有人。</p></blockquote><blockquote><p><code>.gitignore</code> 文件可以作为占位文件，例如有些文件夹需要同步到仓库中，可以在文件夹中新建一个 <code>.gitignore </code>文件，下次拉取的时候可以同步拉取了这个空目录。</p></blockquote><ol start="4"><li>如果已经提交了大文件到仓库中， 怎么办？<br><strong>思考中，下集再见</strong></li></ol><h2 id="【示例】">【示例】</h2><p><a href="https://github.com/github/gitignore"><code>.gitignore</code> 模板文件</a></p><p><code>c++/cuda</code> 项目下的 <code>.gitignore</code> 文件模板</p><pre><code># Prerequisites*.d# Compiled Object files*.slo*.lo*.o*.obj# Precompiled Headers*.gch*.pch# Compiled Dynamic libraries*.so*.dylib*.dll# Fortran module files*.mod*.smod# Compiled Static libraries*.lai*.la*.a*.lib# Executables*.exe*.out*.app# cuda*.i*.ii*.gpu*.ptx*.cubin*.fatbin</code></pre><p><code>c </code>项目下的 <code>.gitignore</code> 文件模板</p><pre><code># Prerequisites*.d# Object files*.o*.ko*.obj*.elf# Linker output*.ilk*.map*.exp# Precompiled Headers*.gch*.pch# Libraries*.lib*.a*.la*.lo# Shared objects (inc. Windows DLLs)*.dll*.so*.so.**.dylib# Executables*.exe*.out*.app*.i*86*.x86_64*.hex# Debug files*.dSYM/*.su*.idb*.pdb# Kernel Module Compile Results*.mod**.cmd.tmp_versions/modules.orderModule.symversMkfile.olddkms.conf</code></pre><p><code>Python </code>项目下的 <code>.gitignore</code> 文件模板</p><pre><code># Byte-compiled / optimized / DLL files__pycache__/*.py[cod]*$py.class# C extensions*.so# Distribution / packaging.Pythonbuild/develop-eggs/dist/downloads/eggs/.eggs/lib/lib64/parts/sdist/var/wheels/share/python-wheels/*.egg-info/.installed.cfg*.eggMANIFEST# PyInstaller#  Usually these files are written by a python script from a template#  before PyInstaller builds the exe, so as to inject date/other infos into it.*.manifest*.spec# Installer logspip-log.txtpip-delete-this-directory.txt# Unit test / coverage reportshtmlcov/.tox/.nox/.coverage.coverage.*.cachenosetests.xmlcoverage.xml*.cover*.py,cover.hypothesis/.pytest_cache/cover/# Translations*.mo*.pot# Django stuff:*.loglocal_settings.pydb.sqlite3db.sqlite3-journal# Flask stuff:instance/.webassets-cache# Scrapy stuff:.scrapy# Sphinx documentationdocs/_build/# PyBuilder.pybuilder/target/# Jupyter Notebook.ipynb_checkpoints# IPythonprofile_default/ipython_config.py# pyenv#   For a library or package, you might want to ignore these files since the code is#   intended to run in multiple environments; otherwise, check them in:# .python-version# pipenv#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.#   However, in case of collaboration, if having platform-specific dependencies or dependencies#   having no cross-platform support, pipenv may install dependencies that don't work, or not#   install all needed dependencies.#Pipfile.lock# poetry#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.#   This is especially recommended for binary packages to ensure reproducibility, and is more#   commonly ignored for libraries.#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control#poetry.lock# pdm#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.#pdm.lock#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it#   in version control.#   https://pdm.fming.dev/#use-with-ide.pdm.toml# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm__pypackages__/# Celery stuffcelerybeat-schedulecelerybeat.pid# SageMath parsed files*.sage.py# Environments.env.venvenv/venv/ENV/env.bak/venv.bak/# Spyder project settings.spyderproject.spyproject# Rope project settings.ropeproject# mkdocs documentation/site# mypy.mypy_cache/.dmypy.jsondmypy.json# Pyre type checker.pyre/# pytype static type analyzer.pytype/# Cython debug symbolscython_debug/# PyCharm#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore#  and can be added to the global gitignore or merged into this file.  For a more nuclear#  option (not recommended) you can uncomment the following to ignore the entire idea folder.#.idea/</code></pre><h2 id="【参考】">【参考】</h2><ol><li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vcHlsZW1vbi9hcmNoaXZlLzIwMTIvMDcvMTYvMjU5MzExMi5odG1s">https://www.cnblogs.com/pylemon/archive/2012/07/16/2593112.html<i class="fa fa-external-link-alt"></i></span></li><li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dpdGh1Yi9naXRpZ25vcmU=">https://github.com/github/gitignore<i class="fa fa-external-link-alt"></i></span></li><li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoaW5rV29uL2FydGljbGUvZGV0YWlscy8xMDE0NDc4NjY=">https://blog.csdn.net/ThinkWon/article/details/101447866<i class="fa fa-external-link-alt"></i></span></li></ol>]]></content>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="Git" scheme="https://znza.top/categories/Git/"/>
-    
-    
-    <category term="Git常用命令" scheme="https://znza.top/tags/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
-    
-    <category term=".gitignore" scheme="https://znza.top/tags/gitignore/"/>
     
   </entry>
   

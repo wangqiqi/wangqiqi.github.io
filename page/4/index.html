@@ -305,6 +305,1243 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/nanoPC/NanoPi%20R6C%20%E6%9B%B4%E6%8D%A2%E6%BA%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/nanoPC/NanoPi%20R6C%20%E6%9B%B4%E6%8D%A2%E6%BA%90/" class="post-title-link" itemprop="url">Nanopi R6C 更换源</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:28:43" itemprop="dateModified" datetime="2025-08-31T21:28:43+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/nanoPC/" itemprop="url" rel="index"><span itemprop="name">nanoPC</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>NanoPi R6C 更换源报错</h1>
+<blockquote>
+<p>Ubuntu 22.04 LTS 阿里源更换后报错。</p>
+</blockquote>
+<blockquote>
+<pre><code>E: Failed to fetch  http://mirrors.aliyun.com/ubuntu-ports/dists/jammy/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
+E: Failed to fetch http://mirrors.aliyun.com/ubuntu-ports/dists/jammy-security/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
+E: Failed to fetch http://mirrors.aliyun.com/ubuntu-ports/dists/jammy-updates/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
+E: Failed to fetch http://mirrors.aliyun.com/ubuntu-ports/dists/jammy-proposed/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
+E: Failed to fetch http://mirrors.aliyun.com/ubuntu-ports/dists/jammy-backports/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
+
+</code></pre>
+</blockquote>
+<h2 id="解决方案">解决方案</h2>
+<pre><code class="language-bash">sudo cp /etc/apt/sources.list /etc/apt/sources.list_bak
+sudo gedit /etc/apt/sources.list
+</code></pre>
+<p><strong>NOTE： 在ubuntu后面加上<code>-ports</code></strong></p>
+<pre><code class="language-bash">deb http://mirrors.aliyun.com/ubuntu-ports/ jammy main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu-ports/ jammy-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu-ports/ jammy-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu-ports/ jammy-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu-ports/ jammy-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy-backports main restricted universe multiverse
+</code></pre>
+<h2 id="参考">[参考]</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzYyMDYyODUwL2FydGljbGUvZGV0YWlscy8xMjU0OTQ3NjU=">[踩坑记录] aarch64版本Ubuntu apt-get更换阿里源后更新失败<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbGl1amlheGluMjAxOC9wLzE2MzczNjY4Lmh0bWw=">ubuntu 22.04如何更换阿里源<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/nanoPC/nanoPC-T4%20(%20RK%203399%20%E6%A0%B8%E5%BF%83%E6%9D%BF%EF%BC%89%E5%88%B7%E6%A1%8C%E9%9D%A2%E7%89%88%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/nanoPC/nanoPC-T4%20(%20RK%203399%20%E6%A0%B8%E5%BF%83%E6%9D%BF%EF%BC%89%E5%88%B7%E6%A1%8C%E9%9D%A2%E7%89%88%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">nanoPC T4 ( Rk 3399 核心板）刷桌面版系统</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:24:04" itemprop="dateModified" datetime="2025-08-31T21:24:04+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/nanoPC/" itemprop="url" rel="index"><span itemprop="name">nanoPC</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>仓库角落里发现了一个迷你小电脑 (nanoPC), 连上显示器和键鼠，进去不记得密码了，不得不重新刷一下系统。想装一个桌面系统，所以找了一圈，找到 <span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3po">nanoPC的官网<i class="fa fa-external-link-alt"></i></span>，</p>
+</blockquote>
+<h1>nanoPC-T4 刷桌面</h1>
+<h2 id="准备好相关工具">准备好相关工具</h2>
+<p><strong>软件</strong></p>
+<ol>
+<li>瑞芯微驱动助手，<strong>DriverAssitant_v4.5</strong></li>
+<li>系统固件，<strong>rk3399-usb-friendlydesktop-bionic-4.4-arm64-20220919</strong></li>
+</ol>
+<p><span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMWtWMVFJeWhKU1VkSVYzUlluemZObHc=">百度网盘链接<i class="fa fa-external-link-alt"></i></span> 提取码：8888</p>
+<p><strong>硬件</strong></p>
+<ol>
+<li>nanoPC-T4</li>
+<li>键鼠</li>
+<li>显示器及连接线</li>
+<li>type-c连接线</li>
+</ol>
+<h2 id="开始刷机">开始刷机</h2>
+<ol>
+<li>在 <code>Windows</code>上安装 USB 驱动助手；</li>
+</ol>
+
+
+<ol>
+<li><code>nanoPC</code> 上电，<code>USB</code> 连接宿主电脑（<code>Windows</code>）</li>
+<li>解压刷机文件 <code>rk3399-usb-friendlydesktop-bionic-4.4-arm64-20220919</code>, 找到文件 <code>RKDevTool</code>，双击打开，会显示没有找到设备，需要重启启动并 <code>reset nano</code>。</li>
+<li>按照下图所示，
+</li>
+</ol>
+<p>按住Recovery键再长按(1.5秒以上)Power键开机，并同时按住reset键，然后松开，如果 <code>RKDevTool</code>显示发现设备，那么可以在 <code>下载镜像</code> Tab 页面点击 <code>执行</code>。静等即可。</p>
+
+<ol start="4">
+<li>最后可以看到nanoPC重启后的桌面。</li>
+</ol>
+<pre><code> 普通用户：
+    用户名: pi
+    密码: pi
+ Root用户： 
+    用户名: root
+    密码: fa
+</code></pre>
+<h2 id="官方步骤">官方步骤</h2>
+
+
+<p><strong>我这里实验用的 Windows Type-C 线刷的方式。</strong></p>
+<h2 id="【参考】">【参考】</h2>
+<ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3po">https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T4/zh<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3poI0ZyaWVuZGx5RGVza3RvcC5FNy5CMy5CQi5FNy5CQi45Ri5FNy45QS44NC5FNC5CRC5CRi5FNy45NC5BOA==">https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T4/zh#FriendlyDesktop.E7.B3.BB.E7.BB.9F.E7.9A.84.E4.BD.BF.E7.94.A8<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poendhbmcvYXJ0aWNsZS9kZXRhaWxzLzEwNzc2MTE4MA==">https://blog.csdn.net/zhzwang/article/details/107761180<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzY2MjU4MzI5L2FydGljbGUvZGV0YWlscy8xMjY1MTIyMjA=">https://blog.csdn.net/qq_66258329/article/details/126512220<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82MTA3NGQxMjM4Nzg=">https://www.jianshu.com/p/61074d123878<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/nanoPC/nanoPC-T4%20upgrade%E6%8A%A5%E9%94%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/nanoPC/nanoPC-T4%20upgrade%E6%8A%A5%E9%94%99/" class="post-title-link" itemprop="url">Nanopc T4 Upgrade报错</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:28:15" itemprop="dateModified" datetime="2025-08-31T21:28:15+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/nanoPC/" itemprop="url" rel="index"><span itemprop="name">nanoPC</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="【问题】">【问题】</h2>
+<blockquote>
+<p>nanoPC-T4 在 <code># sudo apt update 和 sudo apt upgrade</code>升级或安装软件 <code>sudo apt install xxx</code>时遇到以下问题：<code>Failed to set up interface with /etc/hostapd/</code></p>
+</blockquote>
+<pre><code class="language-bash">Setting up hostapd (2:2.6-15ubuntu2.8) ...
+Job for hostapd.service failed because the control process exited with error code.
+See &quot;systemctl status hostapd.service&quot; and &quot;journalctl -xe&quot; for details.
+invoke-rc.d: initscript hostapd, action &quot;restart&quot; failed.
+● hostapd.service - Advanced IEEE 802.11 AP and IEEE 802.1X/WPA/WPA2/EAP Authenticator
+   Loaded: loaded (/lib/systemd/system/hostapd.service; disabled; vendor preset: enabled)
+   Active: failed (Result: exit-code) since Fri 2022-11-11 07:23:16 UTC; 22ms ago
+  Process: 12218 ExecStart=/usr/sbin/hostapd -P /run/hostapd.pid -B $DAEMON_OPTS $&#123;DAEMON_CONF&#125; (code=exited, status=1/FAILURE)
+
+Nov 11 07:23:16 NanoPC-T4 systemd[1]: Starting Advanced IEEE 802.11 AP and IEEE 802.1X/WPA/WPA2/EAP Authenticator...
+Nov 11 07:23:16 NanoPC-T4 hostapd[12218]: Configuration file: /etc/hostapd/hostapd.conf
+Nov 11 07:23:16 NanoPC-T4 hostapd[12218]: Could not open configuration file '/etc/hostapd/hostapd.conf' for reading.
+Nov 11 07:23:16 NanoPC-T4 hostapd[12218]: Failed to set up interface with /etc/hostapd/hostapd.conf
+Nov 11 07:23:16 NanoPC-T4 hostapd[12218]: Failed to initialize interface
+Nov 11 07:23:16 NanoPC-T4 systemd[1]: hostapd.service: Control process exited, code=exited status=1
+Nov 11 07:23:16 NanoPC-T4 systemd[1]: hostapd.service: Failed with result 'exit-code'.
+Nov 11 07:23:16 NanoPC-T4 systemd[1]: Failed to start Advanced IEEE 802.11 AP and IEEE 802.1X/WPA/WPA2/EAP Authenticator.
+dpkg: error processing package hostapd (--configure):
+ installed hostapd package post-installation script subprocess returned error exit status 1
+Errors were encountered while processing:
+ hostapd
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+</code></pre>
+<h2 id="【解决】">【解决】</h2>
+<h3 id="发现问题">发现问题</h3>
+<p><code>Could not open configuration file '/etc/hostapd/hostapd.conf' for reading.</code></p>
+<p>在目录下查看 <code>hostapd.conf</code>， 发现没有该文件，当然无法打开配置文件了。</p>
+<h3 id="如何重新找到该文件">如何重新找到该文件</h3>
+<p>在目录 <code>/usr/share/doc/hostapd</code> 下可以看到有一个 <code>README.Debian</code> 文件, 文件内容如下：</p>
+<pre><code class="language-bash">hostapd for Debian
+------------------
+
+This package provides two methods for managing hostapd process(es); an
+initscript and an ifupdown hook. Both methods require creation of a
+hostapd daemon configuration file (eg. /etc/hostapd/hostapd.conf) to
+function correctly.
+
+An example hostapd.conf may be used as a template but _must_ be edited
+to suit your local configuration. An example is located at:
+  /usr/share/doc/hostapd/examples/hostapd.conf.gz
+
+To use the example as a template:
+  # zcat /usr/share/doc/hostapd/examples/hostapd.conf.gz &gt; \
+  	/etc/hostapd/hostapd.conf
+  # $EDITOR /etc/hostapd/hostapd.conf
+
+To use the initscript method of starting a hostapd daemon see
+/etc/default/hostapd.
+
+To use the ifupdown method, the path to hostapd configuration file can
+be specified in a network interfaces configuration stanza in
+/etc/network/interfaces like so:
+
+iface eth1 inet static
+	hostapd /etc/hostapd/hostapd.conf
+	...
+
+The hostapd process will be started in the pre-up phase of ifup, and be
+terminated in the post-down phase of ifdown.
+
+ -- Kel Modderman &lt;kel@otaku42.de&gt;  Tue, 27 Oct 2009 12:03:01 +1000
+
+Please note:
+* If you want to use hostapd with a Prism2/2.5/3 card in WPA mode, you'll need
+  STA firmware version &gt;= 1.7.0.
+
+ -- Faidon Liambotis &lt;faidon@cube.gr&gt;, Mon, 10 Oct 2005 14:57:11 +0300
+
+</code></pre>
+<h3 id="done">done</h3>
+<pre><code>zcat /usr/share/doc/hostapd/examples/hostapd.conf.gz &gt; /etc/hostapd/hostapd.conf
+</code></pre>
+<p>或者下载 <span class="exturl" data-url="aHR0cHM6Ly9kb3dubG9hZC5jc2RuLm5ldC9kb3dubG9hZC96aG91amlud2FuZy84Njk1NTA1Nw==">地址<i class="fa fa-external-link-alt"></i></span></p>
+<pre><code class="language-bash">pi@NanoPC-T4:~$ sudo apt update
+Hit:1 http://ports.ubuntu.com bionic InRelease
+Hit:2 http://ports.ubuntu.com bionic-backports InRelease
+Hit:3 http://ports.ubuntu.com bionic-proposed InRelease
+Hit:4 http://ports.ubuntu.com bionic-security InRelease
+Hit:5 http://ports.ubuntu.com bionic-updates InRelease
+Reading package lists... Done                      
+Building dependency tree       
+Reading state information... Done
+4 packages can be upgraded. Run 'apt list --upgradable' to see them.
+pi@NanoPC-T4:~$ sudo apt upgrade
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Calculating upgrade... Done
+The following packages have been kept back:
+  u-boot-tools xserver-common xserver-xorg-core xserver-xorg-legacy
+0 upgraded, 0 newly installed, 0 to remove and 4 not upgraded.
+</code></pre>
+<p>看起来好像可以升级不报错了。不知道后面有没有后遗症。暂时不用<strong>科学上网</strong>了。</p>
+<h2 id="【其他】">【其他】</h2>
+<h3 id="ssh-登录-nanoPC-T4">ssh 登录 nanoPC-T4</h3>
+<pre><code class="language-bash">ssh pi@pi_addr  # 例如： pi@192.168.0.49
+</code></pre>
+<p>然后输入密码 <code>pi</code>。就可以远程访问和操作nanoPC-T4了</p>
+<pre><code class="language-bash">Warning: Permanently added '192.168.0.49' (ECDSA) to the list of known hosts.
+pi@192.168.0.49's password: 
+ _____     _                _ _       _____ _     _____ ____ 
+|  ___| __(_) ___ _ __   __| | |_   _| ____| |   | ____/ ___|
+| |_ | '__| |/ _ \ '_ \ / _` | | | | |  _| | |   |  _|| |  
+|  _|| |  | |  __/ | | | (_| | | |_| | |___| |___| |__| |___ 
+|_|  |_|  |_|\___|_| |_|\__,_|_|\__, |_____|_____|_____\____|
+                                |___/                      
+
+Welcome to Ubuntu 18.04.6 LTS 4.4.179
+System load:   0.00            	Up time:       9 min		Local users:   2          
+Memory usage:  10 % of 3845Mb 	IP:            192.168.0.49
+CPU temp:      42°C         
+Usage of /:    44% of 8.2G   
+
+ * Documentation: http://wiki.friendlyarm.com/Ubuntu
+ * Forum: http://www.friendlyarm.com/Forum/
+
+To run Qt5 demo, type &quot;qt5demo&quot; at the command prompt and then hit the enter key.
+To play a video demo, use command &quot;sudo gst-player.sh&quot;.
+Last login: Fri Nov 11 08:12:07 2022
+
+pi@NanoPC-T4:~$ ls
+demo.mp4  Desktop  Documents  Downloads  h264ify   Music  Pictures  Public  Templates  Videos
+</code></pre>
+<h3 id="远程拷贝和下载资料">远程拷贝和下载资料</h3>
+<pre><code class="language-bash">scp pi@192.168.0.49:/usr/share/doc/hostapd/README.Debian /home/john/Documents/
+</code></pre>
+<p>输入密码 <code>pi</code>。就可以下载资料了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/nanoPC/nanoPC-T4%20%E5%AE%89%E8%A3%85OpenCV/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/nanoPC/nanoPC-T4%20%E5%AE%89%E8%A3%85OpenCV/" class="post-title-link" itemprop="url">nanoPC T4 安装OpenCV</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:25:51" itemprop="dateModified" datetime="2025-08-31T21:25:51+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/nanoPC/" itemprop="url" rel="index"><span itemprop="name">nanoPC</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>nanoPC-T4 安装 OpenCV</h1>
+<blockquote>
+<p>Note: OpenCV has been pre-installed in <strong>FriendlyCore/FriendlyDesktop</strong> (Version after 201905) and does not require manual installation.</p>
+<p>Please download the latest FriendlyCore/FriendlyDesktop Image file from the following URL: <span class="exturl" data-url="aHR0cDovL2Rvd25sb2FkLmZyaWVuZGx5YXJtLmNvbQ==">http://download.friendlyarm.com<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p><strong>参考 nanoPC-T4 环境配置</strong><br>
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc3OTgwOTU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】基于RK3399核心板的nanoPC-T4 线刷桌面版系统<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4NDg4ODU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】nanoPC-T4 线刷ubuntu2004核心非桌面版<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4MDk0MTE/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】解决nanoPC-T4 upgrade报错<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4Njc0OTI/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】nanoPC-T4 挂载NVME硬盘<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="安装OpenCV">安装OpenCV</h2>
+<p>按照上述配置刷机系统已经预装了 <code>OpenCV</code>;</p>
+<h3 id="建立-Python3-的-OpenCV-开发环境">建立 Python3 的 OpenCV 开发环境</h3>
+<p><strong>注意：这里仅仅拷贝激活脚本，不做其他任何操作</strong></p>
+<pre><code class="language-bash">git clone https://github.com/friendlyarm/install-opencv-on-friendlycore
+cd install-opencv-on-friendlycore
+cp examples/py/cv-env.sh /usr/bin/
+</code></pre>
+<p><strong>测试</strong></p>
+<pre><code class="language-bash">pi@NanoPC-T4:/media/nvme/install-opencv-on-friendlycore$ cd examples/py/
+pi@NanoPC-T4:/media/nvme/install-opencv-on-friendlycore/examples/py$ . cv-env.sh 
+(cv) pi@NanoPC-T4:/media/nvme/install-opencv-on-friendlycore/examples/py$ python ver.py 
+4.2.0
+</code></pre>
+<p><strong>虚拟环境激活</strong>  <code>. cv-env.sh</code><br>
+<strong>虚拟环境退出</strong>  <code>deactivate</code></p>
+<h3 id="建立-C-的-OpenCV-开发环境">建立 C++ 的 OpenCV 开发环境</h3>
+<p><code>OpenCV</code> 在 <code>nanoPC-T4</code> 里已经预装了。</p>
+<p>命令查看下版本号，<code>/usr/local/bin/opencv_version</code></p>
+<pre><code class="language-bash">.
+├── CMakeLists.txt
+├── README.md
+├── sample.png
+└── showimage.cpp
+</code></pre>
+<pre><code class="language-cmake"># cmake needs this line 
+cmake_minimum_required(VERSION 2.8) 
+
+# Enable C++11 
+set(CMAKE_CXX_STANDARD 11) 
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE) 
+
+# Define project name 
+project(showimage) 
+
+# Find OpenCV, you may need to set OpenCV_DIR variable 
+# to the absolute path to the directory containing OpenCVConfig.cmake file 
+# via the command line or GUI 
+find_package(OpenCV REQUIRED COMPONENTS core highgui calib3d) 
+include_directories( $&#123;OpenCV_INCLUDE_DIRS&#125; ) 
+
+# Declare the executable target built from your sources 
+add_executable(showimage showimage.cpp) 
+
+# Link your application with OpenCV libraries 
+target_link_libraries(showimage $&#123;OpenCV_LIBS&#125;)
+</code></pre>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;opencv2/opencv.hpp&gt;
+#include &lt;opencv2/highgui.hpp&gt;
+#include &lt;cstdlib&gt;
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt; 
+
+using namespace std;
+using namespace cv;
+
+int main(int argc,char* argv[]) 
+&#123;
+	Mat image = imread(&quot;sample.png&quot;);
+	if (image.empty())
+	&#123;
+		cout&lt;&lt;&quot;no image&quot;&lt;&lt;endl;
+		return -1;
+	&#125;	
+	imshow(&quot;test&quot;, image);
+	waitKey(0);	
+	destroyAllWindows();
+    return 0;
+&#125;
+</code></pre>
+<pre><code class="language-bash">mkdir build 
+cp sample.png build/
+cd build
+cmake .. 
+make -j4
+./showimage
+</code></pre>
+<p>别急，执行完这里会黑屏的，那还是因为环境没有配好，和代码没有关系。</p>
+<p>继续执行以下命令：</p>
+<pre><code class="language-bash">su pi
+</code></pre>
+<p>输入密码： <code>pi</code></p>
+<pre><code class="language-bash">export DISPLAY=:0.0
+. setqt5env
+</code></pre>
+<p>再执行 <code>./showimage</code> 效果正常。</p>
+<h2 id="【参考】">【参考】</h2>
+<ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyaWVuZGx5YXJtL2luc3RhbGwtb3BlbmN2LW9uLWZyaWVuZGx5Y29yZQ==">install-opencv-on-friendlycore<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3poIy5FNi45Qi5CNC5FNi44RC5BMi5FNS5CQy44MC5FNi45Qy5CQUxPR08=">官网 Wiki<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/nanoPC/nanoPC-T4%20%E5%AE%89%E8%A3%85ncnn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/nanoPC/nanoPC-T4%20%E5%AE%89%E8%A3%85ncnn/" class="post-title-link" itemprop="url">Nanopc T4 安装Ncnn</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:24:59" itemprop="dateModified" datetime="2025-08-31T21:24:59+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/nanoPC/" itemprop="url" rel="index"><span itemprop="name">nanoPC</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>nanoPC-T4 安装 ncnn</h1>
+<p><strong>参考 nanoPC-T4 环境配置</strong><br>
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc3OTgwOTU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】基于RK3399核心板的nanoPC-T4 线刷桌面版系统<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4NDg4ODU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】nanoPC-T4 线刷ubuntu2004核心非桌面版<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4MDk0MTE/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】解决nanoPC-T4 upgrade报错<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4Njc0OTI/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】nanoPC-T4 挂载NVME硬盘<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>ncnn 库是深度学习理库最好的，没有之一</strong></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1RlbmNlbnQvbmNubg==">ncnn官网<i class="fa fa-external-link-alt"></i></span></p>
+<ol>
+<li>下载代码仓库</li>
+</ol>
+<pre><code class="language-bash">git clone https://github.com/Tencent/ncnn.git
+</code></pre>
+<ol start="2">
+<li>编译安装</li>
+</ol>
+<pre><code class="language-bash">cd ncnn
+mkdir build &amp;&amp; cd build
+cmake -DNCNN_BUILD_TOOLS=OFF ..
+make -j4
+make install 
+</code></pre>
+<ol start="3">
+<li>使用</li>
+</ol>
+<p>在项目的 <code>CMakeLists.txt</code> 里加入</p>
+<pre><code># ncnn路径设置
+set(NCNN_DIR &quot;/media/nvme/ncnn/build/install&quot;)
+set(NCNN_INCLUDE_DIR &quot;$&#123;NCNN_DIR&#125;/include/ncnn&quot;)
+set(NCNN_LIB_DIR &quot;$&#123;NCNN_DIR&#125;/lib&quot;)
+include_directories(&quot;$&#123;NCNN_INCLUDE_DIR&#125;&quot;)
+link_directories(&quot;$&#123;NCNN_LIB_DIR&#125;&quot;)
+list(APPEND EXTRA_LIBS ncnn)
+</code></pre>
+<p>在对应的生成库或者生成应用程序里链接ncnn的库</p>
+<pre><code>target_link_libraries($&#123;CMAKE_PROJECT_NAME&#125; PRIVATE $&#123;EXTRA_LIBS&#125; -lpthread -lm)
+</code></pre>
+<p><code>$&#123;CMAKE_PROJECT_NAME&#125;</code> 替换成自己的库或者程序名称</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/nanoPC/nanoPC-T4%20%E6%8C%82%E8%BD%BDNVME%E7%A1%AC%E7%9B%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/nanoPC/nanoPC-T4%20%E6%8C%82%E8%BD%BDNVME%E7%A1%AC%E7%9B%98/" class="post-title-link" itemprop="url">nanoPC T4 挂载NVME硬盘</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:27:31" itemprop="dateModified" datetime="2025-08-31T21:27:31+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/nanoPC/" itemprop="url" rel="index"><span itemprop="name">nanoPC</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>步骤如下</h1>
+<h2 id="检测NVME硬盘">检测NVME硬盘</h2>
+<pre><code class="language-bash">cat /proc/partitions 
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code class="language-bash">major minor  #blocks  name
+
+   1        0       4096 ram0
+   1        1       4096 ram1
+   1        2       4096 ram2
+   1        3       4096 ram3
+   1        4       4096 ram4
+   1        5       4096 ram5
+   1        6       4096 ram6
+   1        7       4096 ram7
+ 259        0  488386584 nvme0n1
+ 179        0   15267840 mmcblk1
+ 179        1       4096 mmcblk1p1
+ 179        2       4096 mmcblk1p2
+ 179        3       4096 mmcblk1p3
+ 179        4      12288 mmcblk1p4
+ 179        5      32768 mmcblk1p5
+ 179        6      32768 mmcblk1p6
+ 179        7    6553600 mmcblk1p7
+ 179        8    8611840 mmcblk1p8
+ 179       96       4096 mmcblk1rpmb
+ 179       64       4096 mmcblk1boot1
+ 179       32       4096 mmcblk1boot0
+</code></pre>
+<p>如果有 <code>nvme0n1</code> 就说明有 <code>NVME SSD</code>硬盘。可以进行下一步。</p>
+<h2 id="分区">分区</h2>
+<p>只分一个区</p>
+<pre><code class="language-bash">(echo g; echo n; echo p; echo 1; echo &quot;&quot;; echo &quot;&quot;; echo w; echo q) | sudo fdisk /dev/nvme0n1
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code class="language-bash">Welcome to fdisk (util-linux 2.31.1).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+Device does not contain a recognized partition table.
+Created a new DOS disklabel with disk identifier 0x5b899dc5.
+
+Command (m for help): Created a new GPT disklabel (GUID: 41364481-DE8B-DA4B-AF5B-3966AF3946FB).
+
+Command (m for help): Partition number (1-128, default 1): Value out of range.
+Partition number (1-128, default 1): First sector (2048-976773134, default 2048): Last sector, +sectors or +size&#123;K,M,G,T,P&#125; (2048-976773134, default 976773134): 
+Created a new partition 1 of type 'Linux filesystem' and of size 465.8 GiB.
+
+Command (m for help): The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+</code></pre>
+<h2 id="格式化-EXT4">格式化 EXT4</h2>
+<pre><code class="language-bash">sudo mkfs.ext4 /dev/nvme0n1p1
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code class="language-bash">mke2fs 1.44.1 (24-Mar-2018)
+Discarding device blocks: done                          
+Creating filesystem with 122096385 4k blocks and 30531584 inodes
+Filesystem UUID: 6b369f2f-173b-4bbf-bbf9-4668e137cbef
+Superblock backups stored on blocks: 
+	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, 
+	4096000, 7962624, 11239424, 20480000, 23887872, 71663616, 78675968, 
+	102400000
+
+Allocating group tables: done                          
+Writing inode tables: done                          
+Creating journal (262144 blocks): 
+done
+Writing superblocks and filesystem accounting information:        
+done
+</code></pre>
+<h2 id="系统启动自动挂载">系统启动自动挂载</h2>
+<p><strong>1. 查看BlockID</strong></p>
+<pre><code class="language-bash">sudo blkid /dev/nvme0n1p1
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code class="language-bash">/dev/nvme0n1p1: UUID=&quot;6b369f2f-173b-4bbf-bbf9-4668e137cbef&quot; TYPE=&quot;ext4&quot; PARTUUID=&quot;9e55ee97-8c07-504e-beef-e7963967e9bf&quot;
+</code></pre>
+<p><strong>修改 <code>fstab</code></strong></p>
+<pre><code class="language-bash">sudo vi /etc/fstab
+
+UUID=6b369f2f-173b-4bbf-bbf9-4668e137cbef /media/nvme ext4 defaults 0 0
+</code></pre>
+<p><strong>建立目录和修改权限</strong></p>
+<pre><code class="language-bash">sudo mkdir -p /media/nvme
+sudo chmod 777 /media/nvme
+</code></pre>
+<p><strong>挂载</strong></p>
+<pre><code class="language-bash">sudo mount /media/nvme
+</code></pre>
+<p><strong>重启</strong></p>
+<pre><code class="language-bash">sudo reboot
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/nanoPC/nanoPC-T4%20%E6%9B%B4%E6%8D%A2%E6%AC%A2%E8%BF%8E%E4%BF%A1%E6%81%AF%E5%92%8CLOGO--%E6%9A%82%E6%97%B6%E6%94%BE%E5%BC%83%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/nanoPC/nanoPC-T4%20%E6%9B%B4%E6%8D%A2%E6%AC%A2%E8%BF%8E%E4%BF%A1%E6%81%AF%E5%92%8CLOGO--%E6%9A%82%E6%97%B6%E6%94%BE%E5%BC%83%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8/" class="post-title-link" itemprop="url">nanoPC T4 更换欢迎信息和Logo  暂时放弃编译内核</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:26:48" itemprop="dateModified" datetime="2025-08-31T21:26:48+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/nanoPC/" itemprop="url" rel="index"><span itemprop="name">nanoPC</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="定制命令行的欢迎信息">定制命令行的欢迎信息</h2>
+<p>欢迎信息如下</p>
+<pre><code class="language-bash"> _____     _                _ _       _____ _     _____ ____ 
+|  ___| __(_) ___ _ __   __| | |_   _| ____| |   | ____/ ___|
+| |_ | '__| |/ _ \ '_ \ / _` | | | | |  _| | |   |  _|| |  
+|  _|| |  | |  __/ | | | (_| | | |_| | |___| |___| |__| |___ 
+|_|  |_|  |_|\___|_| |_|\__,_|_|\__, |_____|_____|_____\____|
+                                |___/                  
+</code></pre>
+<p><strong>如何修改显示的内容呢？</strong></p>
+<p>修改方式，找到 <code>/etc/update-motd.d/10-header</code>文件，修改其中的</p>
+<p><code>TERM=linux toilet -f standard -F metal $BOARD_VENDOR</code> 为</p>
+<p><code>TERM=linux toilet -f standard -F metal $COMPANY</code></p>
+<p><strong>修改时区</strong></p>
+<p>例如更改为Shanghai时区:</p>
+<pre><code>sudo rm /etc/localtime
+sudo ln -ls /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</code></pre>
+<h2 id="定制开机-LOGO">定制开机 LOGO</h2>
+<ol>
+<li>替换内核下面的两个文件，重新编译内核：<br>
+<strong>kernel/logo.bmp</strong><br>
+<strong>kernel/logo_kernel.bmp</strong></li>
+<li>或者使用脚本来操作，如下所示：</li>
+</ol>
+<p><strong>NOTE:</strong></p>
+<p><strong>下载仓库</strong></p>
+<pre><code class="language-bash">git clone https://github.com/friendlyarm/sd-fuse_rk3399
+cd sd-fuse_rk3399
+</code></pre>
+<p>将需要替换的 <code>logo</code> 放到 <code>sd-fuse_rk3399/files</code> 文件夹下，并命名为 <code>logo.jpg</code> 。</p>
+<p><strong>图片转换</strong></p>
+<pre><code class="language-bash">convert files/logo.png -type truecolor /tmp/logo.bmp
+convert files/logo.png -type truecolor /tmp/logo_kernel.bmp
+</code></pre>
+<blockquote>
+<p>新装的系统可能没有 <code>convert</code> 命令, 会报错，所以需要先安装软件包<br>
+<code>sudo  apt-get install imagemagick</code></p>
+</blockquote>
+<p><strong>打包与编译内核</strong></p>
+<pre><code class="language-bash">LOGO=/tmp/logo.bmp KERNEL_LOGO=/tmp/logo_kernel.bmp ./build-kernel.sh eflasher
+LOGO=/tmp/logo.bmp KERNEL_LOGO=/tmp/logo_kernel.bmp ./build-kernel.sh friendlydesktop-arm64
+</code></pre>
+<pre><code class="language-bash">./mk-emmc-image.sh friendlydesktop-arm64
+</code></pre>
+<p>这中间可能会退出，因为没有 <code>/opt/FriendlyARM/toolchain/6.4-aarch64</code> 目录和相关的交叉编译工具；终端会有如下提示。</p>
+<pre><code class="language-bash">root@NanoPC-T4:/media/nvme/sd-fuse_rk3399# LOGO=/tmp/logo.bmp KERNEL_LOGO=/tmp/logo_kernel.bmp ./build-kernel.sh eflasher
+please install aarch64-gcc-6.4 first, using these commands: 
+\tgit clone https://github.com/friendlyarm/prebuilts.git -b master --depth 1
+\tcd prebuilts/gcc-x64
+\tcat toolchain-6.4-aarch64.tar.gz* | sudo tar xz -C /
+</code></pre>
+<p>按照提示输入以上命令（<strong>NOTE: 还是会报错，不要执行以下命令</strong>）：</p>
+<p><s>git clone <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyaWVuZGx5YXJtL3ByZWJ1aWx0cy5naXQ=">https://github.com/friendlyarm/prebuilts.git<i class="fa fa-external-link-alt"></i></span> -b master --depth 1</s><br>
+<s>cd prebuilts/gcc-x64</s><br>
+<s>cat toolchain-4.9.3-armhf.tar.gz* | sudo tar xz -C /</s><br>
+<s>cat toolchain-6.4-aarch64.tar.gz* | sudo tar xz -C /</s></p>
+<p><em>报错信息</em></p>
+<pre><code>/opt/FriendlyARM/toolchain/6.4-aarch64/bin/aarch64-linux-gnu-gcc: 1: /opt/FriendlyARM/toolchain/6.4-aarch64/bin/aarch64-linux-gnu-gcc: ELF: not found /opt/FriendlyARM/toolchain/6.4-aarch64/bin/aarch64-linux-gnu-gcc: 2: /opt/FriendlyARM/toolchain/6.4-aarch64/bin/aarch64-linux-gnu-gcc: Syntax error: &quot;(&quot; unexpected scripts/kconfig/conf  --silentoldconfig Kconfig
+</code></pre>
+<p>查找了编译链版本，版本对不上，一般情况下该类问题都是因为环境有问题。那么有了最新的7.5版本的就不用6.4版本的了。需要修改 <code>build-kernel.sh</code> 里 <code>export PATH=/opt/FriendlyARM/toolchain/6.4-aarch64/bin:$PATH</code> （如果已经安装了，注释掉该段代码）</p>
+<p>如果还没有安装<code>6.4</code>版本的编译器，这一段代码也可以注释掉：</p>
+<pre><code class="language-bash">#if [ ! -d /opt/FriendlyARM/toolchain/6.4-aarch64 ]; then
+#	echo &quot;please install aarch64-gcc-6.4 first, using these commands: &quot;
+#	echo &quot;\tgit clone https://github.com/friendlyarm/prebuilts.git -b master --depth 1&quot;
+#	echo &quot;\tcd prebuilts/gcc-x64&quot;
+#	echo &quot;\tcat toolchain-6.4-aarch64.tar.gz* | sudo tar xz -C /&quot;
+#	exit 1
+#fi
+</code></pre>
+<blockquote>
+<p>报错： <code>./fusing.sh: line 210: ./tools/sd_update: cannot execute binary file: Exec format error</code></p>
+</blockquote>
+<p><code>./mk-sd-image.sh friendlydesktop-arm64</code></p>
+<blockquote>
+<p><strong>File not found: ./friendlydesktop-arm64/partmap.txt, please download the latest version of the image files from <span class="exturl" data-url="aHR0cDovL2RsLmZyaWVuZGx5YXJtLmNvbS9uYW5vcGN0NA==">http://dl.friendlyarm.com/nanopct4<i class="fa fa-external-link-alt"></i></span></strong></p>
+</blockquote>
+<blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kbC5mcmllbmRseWVsZWMuY29tL25hbm9wY3Q0">官网 百度网盘<i class="fa fa-external-link-alt"></i></span> yn6r<br>
+下载</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>安装完成后，执行 <code>./clean.sh</code> 命令，清理一下空间</li>
+</ul>
+</blockquote>
+<p>friendlydesktop-arm64-images.tgz</p>
+<h2 id="【参考】">【参考】</h2>
+<ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3poI0ZyaWVuZGx5Q29yZS5FNy45QS44NC5FNC5CRC5CRi5FNy45NC5BOA==">官网<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/nanoPC/nanoPC-T4%20%E7%BA%BF%E5%88%B7ubuntu2004%E6%A0%B8%E5%BF%83%E9%9D%9E%E6%A1%8C%E9%9D%A2%E7%89%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/nanoPC/nanoPC-T4%20%E7%BA%BF%E5%88%B7ubuntu2004%E6%A0%B8%E5%BF%83%E9%9D%9E%E6%A1%8C%E9%9D%A2%E7%89%88/" class="post-title-link" itemprop="url">nanoPC T4 线刷Ubuntu2004核心非桌面版</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:27:51" itemprop="dateModified" datetime="2025-08-31T21:27:51+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/nanoPC/" itemprop="url" rel="index"><span itemprop="name">nanoPC</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Windows下通过Type-C数据线进行烧写"><strong>Windows下通过Type-C数据线进行烧写</strong></h2>
+<p>访问<span class="exturl" data-url="aHR0cDovL2Rvd25sb2FkLmZyaWVuZGx5ZWxlYy5jb20vTmFub1BDLVQ0">此处的下载地址<i class="fa fa-external-link-alt"></i></span>下载Windows下使用Type-C数据线烧写所需的文件及工具:</p>
+
+<p>视频教程：<br>
+<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL2F2MzgwNTI1NjIv">https://www.bilibili.com/video/av38052562/<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="准备">准备</h2>
+<p>参考 <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc3OTgwOTU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDE=">【边缘设备】基于RK3399核心板的nanoPC-T4 线刷桌面版系统<i class="fa fa-external-link-alt"></i></span></p>
+<p>下载 驱动和 <code>rk3399-usb-friendlycore-lite-focal-5.15-arm64-20220919.zip</code></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMWtWMVFJeWhKU1VkSVYzUlluemZObHc=">百度网盘链接<i class="fa fa-external-link-alt"></i></span> 提取码：8888</p>
+<h2 id="安装">安装</h2>
+<p>解压 <code>rk3399-usb-friendlycore-lite-focal-5.15-arm64-20220919.zip</code> 打开其中的 <code>RKDevTool</code>；按住Recovery键再长按(1.5秒以上)Power键开机，并同时按住reset键，然后松开，如果 <code>RKDevTool</code>显示发现设备，那么可以在 <code>下载镜像</code> Tab 页面点击 <code>执行</code>。静等即可。</p>
+
+<p><strong>NOTE</strong></p>
+<p>由于设备之前安装了其他版本的固件，如果遇到不支持写<code>GPT</code>错误信息，可以在升级固件里，重新升级选择 <code>MiniLoaderAll</code> 并升级和擦除 <code>Flash</code>， 然后重新执行下载镜像。</p>
+<p>安装完成后，记得</p>
+<p>输入用户名: <code>pi</code> 和密码: <code>pi</code></p>
+<pre><code class="language-bash">sudo apt update
+sudo apt upgrade
+</code></pre>
+<h2 id="【参考】">【参考】</h2>
+<ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3po">https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T4/zh<i class="fa fa-external-link-alt"></i></span> 4.2.2 节</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/%E8%BF%90%E7%BB%B4/Conda%20ERROR/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -417,1548 +1654,6 @@ conda config --append channels conda-forge --append channels bioconda --append c
 </code></pre>
 <h2 id="参考">参考</h2>
 <p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0dPRFN1bmVyL2FydGljbGUvZGV0YWlscy8xMjkyNjk1ODE=">Conda更新报错:requests.exceptions.HTTPError: 404<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/%E8%BF%90%E7%BB%B4/Docker%E5%AE%89%E8%A3%85%20CVAT/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/person.jpg">
-      <meta itemprop="name" content="老周">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="老周有AI">
-      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 老周有AI">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/01/01/%E8%BF%90%E7%BB%B4/Docker%E5%AE%89%E8%A3%85%20CVAT/" class="post-title-link" itemprop="url">Docker安装 Cvat</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-08-31 21:40:25" itemprop="dateModified" datetime="2025-08-31T21:40:25+08:00">2025-08-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="安装准备">安装准备</h2>
-<h3 id="系统要求">系统要求</h3>
-<ul>
-<li>Docker 20.10+</li>
-<li>8GB以上内存</li>
-<li>50GB可用存储空间</li>
-</ul>
-<h2 id="部署流程">部署流程</h2>
-<pre><code class="language-bash">docker-compose -f docker-compose.yml -f components/autoannotation/docker-compose.autoannotation.yml up -d
-</code></pre>
-
-<h2 id="扩展配置">扩展配置</h2>
-<ol>
-<li>克隆代码仓库：</li>
-</ol>
-<pre><code class="language-bash">git clone https://github.com/opencv/cvat
-cd cvat
-</code></pre>
-<ol start="2">
-<li>创建覆盖配置文件：</li>
-</ol>
-<pre><code class="language-bash">cp docker-compose.yml docker-compose.override.yml
-</code></pre>
-<ol start="3">
-<li>修改<code>docker-compose.override.yml</code>中的traefik配置：</li>
-</ol>
-<pre><code class="language-yaml">services:
-  cvat:
-    labels:
-      traefik.http.routers.cvat.rule: Host(`your-domain.com`)
-  cvat_ui:
-    labels:
-      traefik.http.routers.cvat.rule: Host(`your-domain.com`)
-</code></pre>
-<h2 id="服务管理">服务管理</h2>
-<p><strong>启动服务：</strong></p>
-<pre><code class="language-bash">docker-compose up -d
-</code></pre>
-<p><strong>停止服务：</strong></p>
-<pre><code class="language-bash">docker-compose down
-</code></pre>
-<h2 id="常见问题">常见问题</h2>
-<h3 id="外部访问配置">外部访问配置</h3>
-<p>需要指定CVAT_HOST环境变量，建议通过修改<code>docker-compose.override.yml</code>配置文件实现。</p>
-<h3 id="数据持久化">数据持久化</h3>
-<p>所有标注数据存储在<code>~/cvat/data</code>目录，建议定期备份。</p>
-<h2 id="参考资源">参考资源</h2>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9vcGVudmlub3Rvb2xraXQuZ2l0aHViLmlvL2N2YXQvZG9jcy9hZG1pbmlzdHJhdGlvbi9iYXNpY3MvaW5zdGFsbGF0aW9uLw==">CVAT官方安装指南<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1b2hlbllKL2FydGljbGUvZGV0YWlscy8xMTM3Nzg4ODk=">CSDN安装教程<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9hbGV4MDA3LmJsb2cuY3Nkbi5uZXQvYXJ0aWNsZS9kZXRhaWxzLzEwNzcxMTA3Ng==">用户操作指南<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/%E8%BF%90%E7%BB%B4/Docker%E5%AE%89%E8%A3%85%20Redmine/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/person.jpg">
-      <meta itemprop="name" content="老周">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="老周有AI">
-      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 老周有AI">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/01/01/%E8%BF%90%E7%BB%B4/Docker%E5%AE%89%E8%A3%85%20Redmine/" class="post-title-link" itemprop="url">Docker安装 Redmine</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-08-31 21:40:28" itemprop="dateModified" datetime="2025-08-31T21:40:28+08:00">2025-08-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="安装">安装</h2>
-<p><strong>1. 获取镜像</strong></p>
-<pre><code class="language-bash">sudo docker pull sameersbn/redmine:latest
-</code></pre>
-<p><strong>2. 安装</strong></p>
-<p><strong>Step 1. Launch a postgresql container</strong></p>
-<pre><code class="language-bash">sudo docker run --name=postgresql-redmine -d \
-  --env='DB_NAME=redmine_production' \
-  --env='DB_USER=redmine' --env='DB_PASS=password' \
-  --volume=/srv/docker/redmine/postgresql:/var/lib/postgresql \
-  sameersbn/postgresql:9.6-4
-</code></pre>
-<p><strong>Step 2. Launch the redmine container</strong></p>
-<pre><code class="language-bash">sudo docker run --name=redmine -d \
-  --link=postgresql-redmine:postgresql --publish=10083:80 \
-  --env='REDMINE_PORT=10083' \
-  --volume=/srv/docker/redmine/redmine:/home/redmine/data \
-  --volume=/srv/docker/redmine/redmine-logs:/var/log/redmine/ \
-  sameersbn/redmine:5.0.0-1
-</code></pre>
-<h2 id="参考链接">[参考链接]</h2>
-<ol>
-<li><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL3NhbWVlcnNibi9yZWRtaW5lLw==">https://hub.docker.com/r/sameersbn/redmine/<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC80OTMyNTMwNzY=">https://zhuanlan.zhihu.com/p/493253076<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NhbWVlcnNibi9kb2NrZXItcmVkbWluZQ==">https://github.com/sameersbn/docker-redmine<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h4cGphdmExL2FydGljbGUvZGV0YWlscy83OTcxMDk5OQ==">redmine插件安装<i class="fa fa-external-link-alt"></i></span></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/%E8%BF%90%E7%BB%B4/Docker%E5%AE%89%E8%A3%85Gitlab/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/person.jpg">
-      <meta itemprop="name" content="老周">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="老周有AI">
-      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 老周有AI">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/01/01/%E8%BF%90%E7%BB%B4/Docker%E5%AE%89%E8%A3%85Gitlab/" class="post-title-link" itemprop="url">Docker安装Gitlab</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-08-31 21:40:32" itemprop="dateModified" datetime="2025-08-31T21:40:32+08:00">2025-08-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="安装">安装</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGxhYi5jb20vZWUvaW5zdGFsbC9kb2NrZXIuaHRtbA==">Docker安装Gitlab官方文档<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>Gitlab</strong> 分为了 <em>gitlab-ee</em> 和 <em>gitlab-ce</em> 两个版本，经过权衡比较，还是使用 <em>gitlab-ee</em> 版本，因为 <em>gitlab-ee</em> 版本包含了<em>gitlab-ce</em>版本的所有功能，其他功能以后想升级更容易；</p>
-<p><strong>1. 拉取镜像</strong></p>
-<pre><code class="language-bash">sudo docker pull  gitlab/gitlab-ee
-</code></pre>
-<p><strong>2. 配置存放卷的路径</strong></p>
-<pre><code class="language-bash">`sudo mkdir -p /srv/docker/gitlab-ee/config /srv/docker/gitlab-ee/logs /srv/docker/gitlab-ee/data 
-</code></pre>
-<p><strong>3. 构建容器</strong><br>
-<em>多行代码</em></p>
-<pre><code class="language-bash">sudo docker run --detach \
---publish 8443:443 \   
---publish 10084:10084 \
---publish 8222:22 \
---name gitlab \
---restart always \
---volume /srv/docker/gitlab-ee/config:/etc/gitlab \
---volume /srv/docker/gitlab-ee/logs:/var/log/gitlab \
---volume /srv/docker/gitlab-ee/data:/var/opt/gitlab \
-gitlab/gitlab-ee:latest
-</code></pre>
-<p><em>单行代码</em></p>
-<pre><code class="language-bash">sudo docker run --detach --publish 8443:443 --publish 10084:10084 --publish 8222:22 --name gitlab --restart always --volume /srv/docker/gitlab-ee/config:/etc/gitlab --volume /srv/docker/gitlab-ee/logs:/var/log/gitlab --volume /srv/docker/gitlab-ee/data:/var/opt/gitlab gitlab/gitlab-ee:latest
-</code></pre>
-<p>***NOTE:***构建完成后需要修改<code>config</code>下面的<code>gitlab.rb</code>文件</p>
-<p><strong>4. 修改配置文件</strong><br>
-在<code>gitlab.rb</code>文件中新增</p>
-<pre><code class="language-bash">external_url 'http://192.168.0.86:10084'  # 换成自己的
-gitlab_rails['gitlab_shell_ssh_port'] = 8222 # 换成自己的
-</code></pre>
-<p><strong>修改完文件后，重新配置容器</strong></p>
-<pre><code class="language-bash">sudo docker exec -it gitlab gitlab-ctl reconfigure
-</code></pre>
-<p><strong>重启容器</strong></p>
-<pre><code class="language-bash">sudo docker restart gitlab
-</code></pre>
-<h2 id="docker-进入gitlab修改密码">docker 进入gitlab修改密码</h2>
-<p>一般情况下，不用修改密码，在<code>config</code>文件夹下有一个文件叫<code>initial_root_password</code>, 里面存放了最初始的密码，24小时内有效，请登录后及时修改到方便记忆的密码；</p>
-<ol>
-<li>进入gitlab容器内</li>
-</ol>
-<pre><code class="language-bash">docker exec -uroot -it gitlab /bin/bash
-</code></pre>
-<ol start="2">
-<li>一次执行下面的命令：</li>
-</ol>
-<pre><code class="language-bash">gitlab-rails console -e production
-user = User.where(id: 1).first
-user.password = ‘password’ # 换成自己的
-user.password_confirmation = ‘password’ # 换成自己的
-user.save!
-exit
-</code></pre>
-<h2 id="邮箱配置">邮箱配置</h2>
-<p>主要用于gitlab 日常使用中邮件通知服务</p>
-<p><strong>1.修改配置文件,建议使用企业邮箱</strong><br>
-修改文件 <code>gitlab.rb</code></p>
-<pre><code class="language-bash">gitlab_rails['smtp_enable'] = true
-gitlab_rails['smtp_address'] = &quot;smtp.qiye.aliyun.com&quot; # 换成自己的
-gitlab_rails['smtp_port'] = 465
-gitlab_rails['smtp_user_name'] = &quot;gitlab@example.com&quot; # 换成自己的域名
-gitlab_rails['smtp_password'] = &quot;gitlab_pw&quot; # 换成自己的密码
-gitlab_rails['smtp_domain'] = &quot;smtp.qiye.aliyun.com&quot;
-gitlab_rails['smtp_authentication'] = &quot;login&quot;
-gitlab_rails['smtp_enable_starttls_auto'] = true
-gitlab_rails['smtp_tls'] = true
-# gitlab_rails['smtp_pool'] = false
-gitlab_rails['gitlab_email_from'] = 'send_from'  # 换成自己的
-</code></pre>
-<p><strong>测试</strong><br>
-<em>开启 gitlab 的 bash 工具</em></p>
-<pre><code class="language-bash">$ docker exec -it gitlab bash
-</code></pre>
-<p><em>开启 gitlab-rails 工具</em></p>
-<pre><code class="language-bash">$ gitlab-rails console production
-</code></pre>
-<p><em>发送邮件进行测试</em></p>
-<pre><code class="language-bash">Notify.test_email('test@xxx.com', 'Message Subject', 'Message Body').deliver_now
-</code></pre>
-<p><strong>重新配置与重启</strong></p>
-<pre><code class="language-bash">sudo docker exec -it gitlab gitlab-ctl reconfigure
-sudo docker restart gitlab
-</code></pre>
-<h2 id="【参考】">【参考】</h2>
-<ol>
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbGlqaW5jaGFuZy9wLzEyNjk1MzcyLmh0bWw=">https://www.cnblogs.com/lijinchang/p/12695372.html<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N4eV9MRy9hcnRpY2xlL2RldGFpbHMvMTAyOTY3ODA0">https://blog.csdn.net/cxy_LG/article/details/102967804<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zNDIxMzY4MjY=">https://zhuanlan.zhihu.com/p/342136826<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21pbmcxOTk1MTIyNC9hcnRpY2xlL2RldGFpbHMvMTA1NDc5MDMz">https://blog.csdn.net/ming19951224/article/details/105479033<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9iYnMuY3Nkbi5uZXQvdG9waWNzLzM5NzEzMTE5MA==">https://bbs.csdn.net/topics/397131190<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Nhc2liaW5nZHUvYXJ0aWNsZS9kZXRhaWxzLzEyMDA3NjIyNg==">https://blog.csdn.net/sasibingdu/article/details/120076226<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BvbHl3Zy9hcnRpY2xlL2RldGFpbHMvMTEzOTM1MzE4">配置邮箱<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zMjg3OTUxMDI=">docker下gitlab安装与配置<i class="fa fa-external-link-alt"></i></span></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/%E8%BF%90%E7%BB%B4/Docker%E6%93%8D%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/person.jpg">
-      <meta itemprop="name" content="老周">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="老周有AI">
-      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 老周有AI">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/01/01/%E8%BF%90%E7%BB%B4/Docker%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">Docker操作</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-08-31 21:40:35" itemprop="dateModified" datetime="2025-08-31T21:40:35+08:00">2025-08-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong>服务器端操作(已安装，不用管)</strong><br>
-安装ssh   <code>sudo apt install openssh-server</code><br>
-开启ssh  <code>service sshd start</code></p>
-<p><strong>客户端操作</strong><br>
-连接服务器</p>
-<pre><code class="language-bash">ssh username@192.168.0.86
-</code></pre>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMyNDQ3MzAxL2FydGljbGUvZGV0YWlscy83OTM4NzY0OQ==">Docker删除容器与镜像<i class="fa fa-external-link-alt"></i></span></p>
-<p>列出所有容器ID</p>
-<pre><code class="language-bash">sudo docker ps -aq
-</code></pre>
-<p>查看所有运行或者不运行容器</p>
-<pre><code class="language-bash">sudo docker ps -a
-</code></pre>
-<p>停止所有的<code>container</code>（容器），这样才能够删除其中的<code>images</code>：</p>
-<pre><code class="language-bash">sudo docker stop $(docker ps -a -q) 或者 docker stop $(docker ps -aq)
-</code></pre>
-<p>如果想要删除所有container（容器）的话再加一个指令：</p>
-<pre><code class="language-bash">sudo docker rm $(docker ps -a -q) 或者 docker rm $(docker ps -aq)
-</code></pre>
-<p>查看当前有些什么images</p>
-<pre><code class="language-bash">sudo docker images
-</code></pre>
-<p>删除images（镜像），通过image的id来指定删除谁</p>
-<pre><code class="language-bash">sudo docker rmi &lt;image id&gt;
-</code></pre>
-<p>想要删除<code>untagged images</code>，也就是那些<code>id</code>为的<code>image</code>的话可以用</p>
-<pre><code class="language-bash">sudo docker rmi $(docker images | grep &quot;^&lt;none&gt;&quot; | awk &quot;&#123;print $3&#125;&quot;)
-</code></pre>
-<p>要删除全部<code>image</code>（镜像）的话</p>
-<pre><code class="language-bash">sudo docker rmi $(docker images -q)
-</code></pre>
-<p>强制删除全部<code>image</code>的话</p>
-<pre><code class="language-bash">docker rmi -f $(docker images -q)
-</code></pre>
-<p>从容器到宿主机复制</p>
-<pre><code class="language-bash">sudo docker cp tomcat：/webapps/js/text.js /home/admin
-sudo docker  cp 容器名:  容器路径       宿主机路径 
-</code></pre>
-<p>从宿主机到容器复制</p>
-<pre><code class="language-bash">sudo docker cp /home/admin/text.js tomcat：/webapps/js
-sudo docker cp 宿主路径中文件      容器名  容器路径   
-</code></pre>
-<p>删除所有停止的容器</p>
-<pre><code class="language-bash">sudo docker container prune
-</code></pre>
-<p>删除所有不使用的镜像</p>
-<pre><code class="language-bash">sudo docker image prune --force --all 或者 docker image prune -f -a
-</code></pre>
-<p><strong>停止、启动、杀死、重启一个容器(常用)</strong></p>
-<pre><code class="language-bash">sudo docker stop Name 或者 ID  
-sudo docker start Name 或者 ID  
-sudo docker kill Name 或者 ID  
-sudo docker restart name 或者 ID
-</code></pre>
-<p>docker进入容器，查看配置文件</p>
-<pre><code class="language-bash">docker exec ：在运行的容器中执行命令
-        -d :分离模式: 在后台运行
-        -i :即使没有附加也保持STDIN（标准输入） 打开,以交互模式运行容器，通常与 -t 同时使用；
-        -t: 为容器重新分配一个伪输入终端，通常与 -i 同时使用；
-sudo docker exec -it  f94d2c317477 /bin/bash
-</code></pre>
-<p>1、如果要正常退出不关闭容器，请按<code>Ctrl+P+Q</code>进行退出容器<br>
-2、如果使用exit退出，那么在退出之后会关闭容器，可以使用下面的流程进行恢复</p>
-<p><strong>使用 sudo docker restart 命令重启容器</strong><br>
-<strong>使用 sudo docker attach 命令进入容器</strong></p>
-<h2 id="Docker-Compose-管理容器">Docker Compose 管理容器</h2>
-<p><strong>Docker Compose是一个管理多容器的Docker工具，通过YAML文件来配置容器服务，并允许通过一个命令来创建和运行所有的容器服务。</strong></p>
-<pre><code class="language-bash">sudo docker-compose check
-</code></pre>
-<p>运行容器</p>
-<pre><code class="language-bash">sudo docker-compose up -d
-</code></pre>
-<p>停止容器</p>
-<pre><code class="language-bash">sudo docker-compose down
-</code></pre>
-<h2 id="Install-Docker-Engine-on-Ubuntu">Install Docker Engine on Ubuntu</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vZW5naW5lL2luc3RhbGwvdWJ1bnR1LyNzZXQtdXAtdGhlLXJlcG9zaXRvcnk=">https://docs.docker.com/engine/install/ubuntu/#set-up-the-repository<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="修改Docker容器启动配置参数">修改Docker容器启动配置参数</h2>
-<p>有时候，我们创建容器时忘了添加参数 --restart=always ，当 Docker 重启时，容器未能自动启动，现在要添加该参数怎么办呢，</p>
-<p><strong>Docker 命令修改</strong></p>
-<pre><code class="language-bash">docker container update --restart=always 容器名字
-</code></pre>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vemh1b2Nob25nL3AvMTAwNzA1MTYuaHRtbA==">https://www.cnblogs.com/zhuochong/p/10070516.html<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="如何清理Docker容器、镜像、数据卷和网络">如何清理Docker容器、镜像、数据卷和网络</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTI1MTY5MTQvYXJ0aWNsZS9kZXRhaWxzLzEwODg5MjAzOQ==">https://blog.csdn.net/u012516914/article/details/108892039<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbXItd3V4aWFuc2hlbmcvcC8xMTQxMjYwNi5odG1s">https://www.cnblogs.com/mr-wuxiansheng/p/11412606.html<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/%E8%BF%90%E7%BB%B4/VI%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/person.jpg">
-      <meta itemprop="name" content="老周">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="老周有AI">
-      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 老周有AI">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/01/01/%E8%BF%90%E7%BB%B4/VI%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Vi命令</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-08-31 21:40:40" itemprop="dateModified" datetime="2025-08-31T21:40:40+08:00">2025-08-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>1、vi的基本概念</p>
-<p>基本上vi可以分为三种状态，分别是命令模式（command mode）、插入模式（Insert mode）和底行模式（last line mode），各模式的功能区分如下：</p>
-<pre><code>1) 命令行模式command mode）
-</code></pre>
-<p>控制屏幕光标的移动，字符、字或行的删除，移动复制某区段及进入Insert mode下，或者到 last line mode。</p>
-<pre><code>2) 插入模式（Insert mode）
-</code></pre>
-<p>只有在Insert mode下，才可以做文字输入，按「ESC」键可回到命令行模式。</p>
-<pre><code>3) 底行模式（last line mode）
-</code></pre>
-<p>将文件保存或退出vi，也可以设置编辑环境，如寻找字符串、列出行号……等。</p>
-<pre><code>不过一般我们在使用时把vi简化成两个模式，就是将底行模式（last line mode）也算入命令行模式command mode）。
-</code></pre>
-<p>2、vi的基本操作</p>
-<p>a) 进入vi</p>
-<p>在系统提示符号输入vi及文件名称后，进入vi之后，是处于「命令行模式（command mode）」，您要切换到「插入模式（Insert mode）」才能够输入文字。初次使用vi的人都会想先用上下左右键移动光标，结果电脑一直哔哔叫，把自己气个半死，所以进入vi后，先不要乱动，转换到「插入模式（Insert mode）」再说吧！</p>
-<p>b) 切换至插入模式（Insert mode）编辑文件</p>
-<p>在「命令行模式（command mode）」下按一下字母「i」就可以进入「插入模式（Insert mode）」，这时候你就可以开始输入文字了。</p>
-<p>c) Insert 的切换</p>
-<p>目前处于「插入模式（Insert mode）」，就只能一直输入文字，如果发现输错了字！想用光标键往回移动，将该字删除，就要先按一下「ESC」键转到「命令行模式（command mode）」再删除文字。</p>
-<p>d) 退出vi及保存文件</p>
-<p>在「命令行模式（command mode）」下，按一下「：」冒号键进入「Last line mode」，例如：</p>
-<p>: w filename （输入 「w filename」将文章以指定的文件名filename保存）</p>
-<p>: wq (输入「wq」，存盘并退出vi)</p>
-<p>: q! (输入q!， 不存盘强制退出vi)</p>
-<p>3、命令行模式（command mode）功能键</p>
-<p>1）. 插入模式</p>
-<pre><code>按「i」切换进入插入模式「insert mode」，按&quot;i&quot;进入插入模式后是从光标当前位置开始输入文件；
-</code></pre>
-<p>按「a」进入插入模式后，是从目前光标所在位置的下一个位置开始输入文字；</p>
-<p>按「o」进入插入模式后，是插入新的一行，从行首开始输入文字。</p>
-<p>2）. 从插入模式切换为命令行模式</p>
-<pre><code>按「ESC」键。
-</code></pre>
-<p>3）. 移动光标</p>
-<p>vi可以直接用键盘上的光标来上下左右移动，但正规的vi是用小写英文字母「h」、「j」、「k」、「l」，分别控制光标左、下、上、右移一格。</p>
-<p>按「ctrl」+「b」：屏幕往&quot;后&quot;移动一页。</p>
-<p>按「ctrl」+「f」：屏幕往&quot;前&quot;移动一页。</p>
-<p>按「ctrl」+「u」：屏幕往&quot;后&quot;移动半页。</p>
-<p>按「ctrl」+「d」：屏幕往&quot;前&quot;移动半页。</p>
-<p>按数字「0」：移到文章的开头。</p>
-<p>按「G」：移动到文章的最后。</p>
-<p>按「$」：移动到光标所在行的&quot;行尾&quot;。</p>
-<p>按「^」：移动到光标所在行的&quot;行首&quot;</p>
-<p>按「w」：光标跳到下个字的开头</p>
-<p>按「e」：光标跳到下个字的字尾</p>
-<p>按「b」：光标回到上个字的开头</p>
-<p>按「#l」：光标移到该行的第#个位置，如：5l,56l。</p>
-<p>4）. 删除文字</p>
-<p>「x」：每按一次，删除光标所在位置的&quot;后面&quot;一个字符。</p>
-<p>「#x」：例如，「6x」表示删除光标所在位置的&quot;后面&quot;6个字符。</p>
-<p>「X」：大写的X，每按一次，删除光标所在位置的&quot;前面&quot;一个字符。</p>
-<p>「#X」：例如，「20X」表示删除光标所在位置的&quot;前面&quot;20个字符。</p>
-<p>「dd」：删除光标所在行。</p>
-<p>「#dd」：从光标所在行开始删除#行</p>
-<p>5）. 复制</p>
-<p>「yw」：将光标所在之处到字尾的字符复制到缓冲区中。</p>
-<p>「#yw」：复制#个字到缓冲区</p>
-<p>「yy」：复制光标所在行到缓冲区。</p>
-<p>「#yy」：例如，「6yy」表示拷贝从光标所在的该行&quot;往下数&quot;6行文字。</p>
-<p>「p」：将缓冲区内的字符贴到光标所在位置。注意：所有与&quot;y&quot;有关的复制命令都必须与&quot;p&quot;配合才能完成复制与粘贴功能。</p>
-<p>6）. 替换</p>
-<p>「r」：替换光标所在处的字符。</p>
-<p>「R」：替换光标所到之处的字符，直到按下「ESC」键为止。</p>
-<p>7）. 回复上一次操作</p>
-<p>「u」：如果您误执行一个命令，可以马上按下「u」，回到上一个操作。按多次&quot;u&quot;可以执行多次回复。</p>
-<p>8）. 更改</p>
-<p>「cw」：更改光标所在处的字到字尾处</p>
-<p>「c#w」：例如，「c3w」表示更改3个字</p>
-<p>9）. 跳至指定的行</p>
-<p>「ctrl」+「g」列出光标所在行的行号。</p>
-<p>「#G」：例如，「15G」，表示移动光标至文章的第15行行首。</p>
-<p>4、Last line mode下命令简介</p>
-<p>在使用「last line mode」之前，请记住先按「ESC」键确定您已经处于「command mode」下后，再按「：」冒号即可进入「last line mode」。</p>
-<p>A) 列出行号</p>
-<p>「set nu」：输入「set nu」后，会在文件中的每一行前面列出行号。</p>
-<p>B) 跳到文件中的某一行</p>
-<p>「#」：「#」号表示一个数字，在冒号后输入一个数字，再按回车键就会跳到该行了，如输入数字15，再回车，就会跳到文章的第15行。</p>
-<p>C) 查找字符</p>
-<p>「/关键字」：先按「/」键，再输入您想寻找的字符，如果第一次找的关键字不是您想要的，可以一直按「n」会往后寻找到您要的关键字为止。</p>
-<p>「?关键字」：先按「?」键，再输入您想寻找的字符，如果第一次找的关键字不是您想要的，可以一直按「n」会往前寻找到您要的关键字为止。</p>
-<p>D) 保存文件</p>
-<p>「w」：在冒号输入字母「w」就可以将文件保存起来。</p>
-<p>E) 离开vi</p>
-<p>「q」：按「q」就是退出，如果无法离开vi，可以在「q」后跟一个「!」强制离开vi。</p>
-<p>「qw」：一般建议离开时，搭配「w」一起使用，这样在退出的时候还可以保存文件。</p>
-<p>5、vi命令列表</p>
-<p>1、下表列出命令模式下的一些键的功能：</p>
-<p>h</p>
-<p>左移光标一个字符</p>
-<p>l</p>
-<p>右移光标一个字符</p>
-<p>k</p>
-<p>光标上移一行</p>
-<p>j</p>
-<p>光标下移一行</p>
-<p>^</p>
-<p>光标移动至行首</p>
-<p>0</p>
-<p>数字&quot;0&quot;，光标移至文章的开头</p>
-<p>G</p>
-<p>光标移至文章的最后</p>
-<p>$</p>
-<p>光标移动至行尾</p>
-<p>Ctrl+f</p>
-<p>向前翻屏</p>
-<p>Ctrl+b</p>
-<p>向后翻屏</p>
-<p>Ctrl+d</p>
-<p>向前翻半屏</p>
-<p>Ctrl+u</p>
-<p>向后翻半屏</p>
-<p>i</p>
-<p>在光标位置前插入字符</p>
-<p>a</p>
-<p>在光标所在位置的后一个字符开始增加</p>
-<p>o</p>
-<p>插入新的一行，从行首开始输入</p>
-<p>ESC</p>
-<p>从输入状态退至命令状态</p>
-<p>x</p>
-<p>删除光标后面的字符</p>
-<p>#x</p>
-<p>删除光标后的＃个字符</p>
-<p>X</p>
-<p>(大写X)，删除光标前面的字符</p>
-<p>#X</p>
-<p>删除光标前面的#个字符</p>
-<p>dd</p>
-<p>删除光标所在的行</p>
-<p>#dd</p>
-<p>删除从光标所在行数的#行</p>
-<p>yw</p>
-<p>复制光标所在位置的一个字</p>
-<p>#yw</p>
-<p>复制光标所在位置的#个字</p>
-<p>yy</p>
-<p>复制光标所在位置的一行</p>
-<p>#yy</p>
-<p>复制从光标所在行数的#行</p>
-<p>p</p>
-<p>粘贴</p>
-<p>u</p>
-<p>取消操作</p>
-<p>cw</p>
-<p>更改光标所在位置的一个字</p>
-<p>#cw</p>
-<p>更改光标所在位置的#个字</p>
-<p>2、下表列出行命令模式下的一些指令</p>
-<p>w filename</p>
-<p>储存正在编辑的文件为filename</p>
-<p>wq filename</p>
-<p>储存正在编辑的文件为filename，并退出vi</p>
-<p>q!</p>
-<p>放弃所有修改，退出vi</p>
-<p>set nu</p>
-<p>显示行号</p>
-<p>/或?</p>
-<p>查找，在/后输入要查找的内容</p>
-<p>n</p>
-<p>与/或?一起使用，如果查找的内容不是想要找的关键字，按n或向后（与/联用）或向前（与?联用）继续查找，直到找到为止。</p>
-<p>对于第一次用vi，有几点注意要提醒一下：</p>
-<p>1、用vi打开文件后，是处于「命令行模式（command mode）」，您要切换到「插入模式（Insert mode）」才能够输入文字。切换方法：在「命令行模式（command mode）」下按一下字母「i」就可以进入「插入模式（Insert mode）」，这时候你就可以开始输入文字了。</p>
-<p>2、编辑好后，需从插入模式切换为命令行模式才能对文件进行保存，切换方法：按「ESC」键。</p>
-<p>3、保存并退出文件：在命令模式下输入:wq即可！（别忘了wq前面的:）</p>
-<p>在屏幕上移动</p>
-<p>Vi提供了三个关于光标在全屏幕上移动并且文件本身不发生滚动的命令。它们分别是H、M和L命令。</p>
-<p>H命令</p>
-<p>该命令将光标移至屏幕首行的行首（即左上角），也就是当前屏幕的第一行，而不是整个文件的第一行。利用此命令可以快速将光标移至屏幕顶部。若在H命令之前加上数字n，则将光标移至第n行的行首。</p>
-<p>M命令</p>
-<p>该命令将光标移至屏幕显示文件的中间行的行首。即如果当前屏幕已经充满,则移动到整个屏幕的中间行；如果并未充满，则移动到文本的那些行的中间行。利用此命令可以快速地将光标从屏幕的任意位置移至屏幕显示文件的中间行的行首。例如，在上面屏幕显示的情况下（不论光标在屏幕的何处），在命令模式下，输入命令M之后，光标都将移到add这一行的字母a上。</p>
-<p>同样值得一提的是，使用命令dM将会删除从光标当前所在行至屏幕显示文件的中间行的全部内容。</p>
-<p>L命令</p>
-<p>当文件显示内容超过一屏时，该命令将光标移至屏幕上的最底行的行首；当文件显示内容不足一屏时，该命令将光标移至文件的最后一行的行首。可见，利用此命令可以快速准确地将光标移至屏幕底部或文件的最后一行。若在L命令之前加上数字n，则将光标移至从屏幕底部算起第n行的行首。例如，在上面屏幕显示的情况下（不论光标在屏幕的何处），在命令模式下，输入命令3L之后，光标都将移到x++这一行的字母x上。</p>
-<p>同样值得一提的是，使用命令dL将会删除从光标当前行至屏幕底行的全部内容。</p>
-<p>按字移动光标</p>
-<p>首先介绍一下Vi中“字”的概念。在Vi中“字”有两种含义。一种是广义的字，它可以是两个空格之间的任何内容。另一种字是狭义上的字，在此种意义之下，英文单词、标点符号和非字母字符（如!、@、#、$、%、^、&amp;、*、（、）、-、+、{、}、[、]、~、|、&quot;、&lt;、&gt;、/等）均被当成是一个字。因此，上面那一行中就包括{、int、k、；这4个字。</p>
-<p>Vi中使用大写命令一般就是指将字作为广义来对待，使用小写命令就是作为狭义对待。</p>
-<p>搞清楚Vi中字的含义后，我们就可以介绍按字移动光标的命令了。</p>
-<p>Vi 一共提供了三组关于按字移动光标的命令，分别是：</p>
-<p>w和W命令</p>
-<p>将光标右移至下一个字的字首；</p>
-<p>e和E命令</p>
-<p>如果光标起始位置处于字内（即非字尾处），则该命令将把光标移到本字字尾；如果光标起始位置处于字尾，则该命令将把光标移动到下一个字的字尾。</p>
-<p>b和B</p>
-<p>如果光标处于所在字内（即非字首），则该命令将把光标移至本字字首；如果光标处于所在字字首，则该命令将把光标移到上一个字的字首。</p>
-<p>按句移动光标</p>
-<p>在Vi中，一个句子被定义为是以逗号（,）、句号（.）、问号（?）和感叹号（!）结尾，且其后面跟着至少两个以上（含两个）空格或一个换行符的字符序列。</p>
-<p>Vi提供了关于按句移动光标的两个命令，分别为：</p>
-<ol>
-<li>（ 命令</li>
-</ol>
-<p>将光标移至上一个句子的开头。</p>
-<ol start="2">
-<li>） 命令</li>
-</ol>
-<p>该命令将光标移至下一个句子的开头。</p>
-<p>按段移动光标</p>
-<p>在Vi中，一个段被定义为是以一个空白行开始和结束的片段。Vi提供了关于按段移动光标的两个命令，分别为：</p>
-<ol>
-<li>{ 命令</li>
-</ol>
-<p>该命令将光标向前移至上一个段的开头；</p>
-<ol start="2">
-<li>} 命令</li>
-</ol>
-<p>该命令将光标向后移至下一个段的开头。</p>
-<p>屏幕滚动</p>
-<p>屏幕命令是以屏幕为单位移动光标的，常用于文件的滚屏和分页。需要注意的是，屏幕命令不是光标移动命令，不能作为文本限定符用于删除命令中。</p>
-<p>在命令模式下和文本输入模式下均可以使用屏幕滚动命令。</p>
-<ol>
-<li>滚屏命令</li>
-</ol>
-<p>关于滚屏命令有两个：</p>
-<p>· &lt; Ctrl+u &gt; 将屏幕向前（文件头方向）翻滚半屏；</p>
-<p>· &lt; Ctrl+d &gt; 将屏幕向后（文件尾方向）翻滚半屏。</p>
-<p>可以在这两个命令之前加上一个数字n，则屏幕向前或向后翻滚n行。并且这个值被系统记住，以后再用&lt; Ctrl+u &gt;和&lt; Ctrl+d &gt;命令滚屏时，还滚相应的行数。</p>
-<ol start="2">
-<li>分页命令</li>
-</ol>
-<p>关于分页命令也有两个：</p>
-<p>· &lt; Ctrl+f &gt; 将屏幕向文件尾方向翻滚一整屏（即一页）；</p>
-<p>· &lt; Ctrl+b &gt; 将屏幕向文件首方向翻滚一整屏（即一页）。</p>
-<p>同样也可以在这两个命令之前加上一个数字n，则屏幕向前或向后移动n页。</p>
-<ol start="3">
-<li>状态命令&lt; Ctrl+G &gt;</li>
-</ol>
-<p>命令显示在vi状态行上的vi状态信息，包括正在编辑的文件名、是否修改过、当前行号、文件的行数以及光标之前的行占整个文件的百分比。</p>
-<ol start="4">
-<li>屏幕调零命令</li>
-</ol>
-<p>Vi 提供了三个有关屏幕调零的命令。它们的格式分别为：</p>
-<p>· [行号] z [行数] &lt;回车&gt;</p>
-<p>· [行号] z [行数] .</p>
-<p>· [行号] z [行数] _</p>
-<p>若省略了行号和行数，这三个命令分别为将光标所在的当前行作为屏幕的首行、中间行和最末行重新显示；若给出行号，那么该行号所对应的行就作为当前行显示在屏幕的首行、中间行和最末行；若给出行数，则它规定了在屏幕上显示的行数。</p>
-<p>[例13]</p>
-<p>8z16&lt;回车&gt; ：将文件中的第8行作为屏幕显示的首行，并一共显示16行。</p>
-<p>15z . ：将文件中的第15行作为屏幕显示的中间行，显示行数为整屏。</p>
-<p>15z 5_ ：将文件中的第15行作为屏幕显示的最末行，显示行数为5行。</p>
-<p>文本插入操作</p>
-<p>在命令模式下用户输入的任何字符都被Vi当作命令加以解释执行，如果用户要将输入的字符当作是文本内容时，则首先应将Vi的工作模式从命令模式切换到文本输入模式。切换的方式是使用下面的命令。</p>
-<p>插入（Insert）命令</p>
-<p>Vi提供了两个插入命令：i和 I。</p>
-<p>i命令</p>
-<p>插入文本从光标所在位置前开始,并且插入过程中可以使用键删除错误的输入。此时Vi处于插入状态，屏幕最下行显示“–INSERT–”（插入）字样。</p>
-<p>I命令</p>
-<p>该命令是将光标移到当前行的行首，然后在其前插入文本。</p>
-<p>附加（append）命令</p>
-<p>Vi提供了两个附加插入命令：a和A。</p>
-<p>a命令</p>
-<p>该命令用于在光标当前所在位置之后追加新文本。新输入的文本放在光标之后，在光标后的原文本将相应地向后移动。光标可在一行的任何位置。</p>
-<p>A命令</p>
-<p>该命令与a命令不同的是，A命令将把光标挪到所在行的行尾，从那里开始插入新文本。当输入A命令后，光标自动移到该行的行尾。</p>
-<p>a和A命令是把文本插入到行尾的唯一方法。</p>
-<p>打开（open）命令</p>
-<p>不论是Insert命令也好，还是append命令也好，所插入的内容都是从当前行中的某个位置开始的。若我们希望在某行之前或某行之后插入一些新行，则应使用open命令。</p>
-<p>Vi提供了两个打开命令：o和O。</p>
-<p>o命令</p>
-<p>该命令将在光标所在行的下面新开一行，并将光标置于该行的行首，等待输入文本。要注意，当使用删除字符时只能删除从插入模式开始的位置以后的字符，对于以前的字符不起作用。而且还可以在文本输入方式下输入一些控制字符，例如，Ctrl+l即是插入分页符，显示为^L。</p>
-<p>O命令</p>
-<p>和o命令相反，O命令是在光标所在行的上面插入一行，并将光标置于该行的行首，等待输入文本。</p>
-<p>11.3.4　文本修改</p>
-<p>在命令模式下可以使用Vi提供的各种有关命令对文本进行修改，包括对文本内容的删除、复制、取代和替换等。</p>
-<p>文本删除</p>
-<p>在编辑文本时，经常需要删除一些不需要的文本，我们可以用键将输错或不需要的文本删除，但此时有一个限制就是当删到行头之后，再想删上面那行的内容是不可能的。</p>
-<p>在命令模式下，Vi提供了许多删除命令。这些命令大多是以d开头的。常用的有：</p>
-<ol>
-<li>删除单个字符</li>
-</ol>
-<p>x： 删除光标处的字符。若在x之前加上一个数字n，则删除从光标所在位置开始向右的n个字符。</p>
-<p>X：删除光标前面的那个字符。若在X之前加上一个数字n，则删除从光标前面那个字符开始向左的n个字符。</p>
-<p>显然这两个命令是删除少量字符的快捷方法。</p>
-<ol start="2">
-<li>删除多个字符</li>
-</ol>
-<p>dd：删除光标所在的整行。在dd前可加上一个数字n，表示删除当前行及其后n-1行的内容。</p>
-<p>D或d$：两命令功能一样，都是删除从光标所在处开始到行尾的内容。</p>
-<p>d0：删除从光标前一个字符开始到行首的内容。</p>
-<p>dw：删除一个单词。若光标处在某个词的中间，则从光标所在位置开始删至词尾。同dd命令一样，可在dw之前加一个数字n，表示删除n个指定的单词。</p>
-<p>如果用户不小心进行了误删除操作，也不要紧，Vi提供了恢复误操作的命令，并且可以将恢复的内容移动，放在文本的任何地方。恢复命令用² np，其中n为寄存器号。这是因为Vi内部有9个用于维护删除操作的寄存器，分别用数字1，2，¼ ，9表示，它们分别保存以往用dd命令删除的内容。这些寄存器组成一个队列，例如最近一次使用dd命令删除的内容被放到寄存器1中；当下次再使用dd命令删除文本内容时，Vi将把寄存器1的内容转存到寄存器2中，而寄存器1中又将是最近一次dd命令删除的内容。以此类推，Vi可以保存有最近九次用dd命令删除的内容，而前面的用dd命令删除的内容则被抛弃。</p>
-<p>在最末行模式下，也可以对文件内容进行删除，但它只能删除整行，一次可将某个指定范围内（起始行号，终止行号）的所有行全部删除。需要注意的是，用此种方法进行删除时，Vi并不把所删内容放入寄存器中，因而当发生误删除操作时，不能用² np命令恢复，只能用u命令进行有限的恢复。</p>
-<p>最后提一下，如何在文本输入方式时将所输入文本删除。用户使用组合键即可，此时光标将返回插入开始的位置，并且Vi仍处于文本输入方式。</p>
-<p>取消上一命令（Undo）</p>
-<p>取消上一命令（Undo），也称复原命令，是非常有用的命令，它可以取消前一次的误操作或不合适的操作对文件造成的影响，使之回复到这种误操作或不合适操作被执行之前的状态。</p>
-<p>取消上一命令有两种形式，在命令模式下键入字符u和U。它们的功能都是取消刚才输入的命令，恢复到原来的情况。小写u和大写U在具体细节上有所不同，二者的区别在于，大写U命令的功能是恢复到误操作命令前的情况，即如果插入命令后使用U命令，就删除刚刚插入的内容；如果删除命令后使用U命令，就相当于在光标处又插入刚刚删除的内容。这里把所有修改文本的命令都视为插入命令。也就是说，U命令只能取消前一步操作，如果用U命令撤消了前一步操作，当再按U键时，并不是撤消再前一步的操作，而是撤消了刚才U命令执行的操作，也就是又恢复到第一次使用U命令之前的状态，结果是什么都没做。而小写u命令的功能是把当前行恢复成被编辑前的状态，而不管此行被编辑了多少次。</p>
-<p>注意：对于取消命令仍可以再使用取消命令。这时会产生一种“负负得正”的效果，文件状态将恢复到第一次执行取消命令之前的状态，如同没做任何操作一般。例如在上例中，再使用一次命令U，屏幕将显示的内容仍为插入后的内容。</p>
-<p>重复命令（Redo）</p>
-<p>重复命令也是一个非常常用的命令。在文本编辑中经常会碰到需要机械地重复一些操作，这时就需要用到重复命令。它可以让用户方便地再执行一次前面刚完成的某个复杂的命令。</p>
-<p>重复命令只能在命令模式下工作，在该模式下按“.”键既可。执行一个重复命令时，其结果是依赖于光标当前位置的。</p>
-<p>文本内容的修改</p>
-<p>文本内容的修改是指在编辑过程中，可以对文本中的某些字符，某些行进行修改，即用新输入的文本代替需要修改的老文本，它等于先用删除命令删除需要修改的内容，然后再利用插入命令插入新的内容。所以在使用修改命令后，vi进入到文本输入模式下，当输入完新的内容后，一定要再按回到命令模式，否则Vi会一直认为是在文本输入模式下，此时输入的任何内容都被认为是修改的新内容。</p>
-<p>Vi提供了三种修改命令，分别是c、C和cc。它们修改文本的范围是由光标位置和光标移动命令二者限定的。下面分别介绍这三种修改命令。</p>
-<p>c命令</p>
-<p>c后紧跟光标移动命令，限定修改内容的范围是从光标当前位置开始到指定的位置为止。命令c中修改文本的范围是由光标位置和光标移动命令二者限定的。</p>
-<p>C、c$命令</p>
-<p>C 、c$命令可以修改从光标当前位置开始到该行末尾或从光标当前位置开始到某行末尾范围内的内容。</p>
-<p>当在命令C之前加上数字n时，表示可以修改指定行数的内容。例如，3C命令就表示把光标所在位置的字符之后（注意不是整行）直到下面两个整行的内容删除，由随后输入的内容代替。</p>
-<p>cc命令</p>
-<p>cc命令的功能和C相同，只是修改的范围和C不同，它是修改从光标所在行的起始位（不管光标处于该行的何列）到该行末尾或指定某行末尾范围内的内容。光标所在行的全部内容都由新输入的内容所代替。</p>
-<p>同命令C一样，也可以在cc之前加上数字n，表示要从光标当前行算起一共修改n行的内容。例如，5cc表示先删除光标所在行及其下面的4行，然后输入要修改的内容。</p>
-<p>文本的替换</p>
-<p>文本的替换即是用新输入的文本代替原已有的文本。它同文本修改一样，也是先执行删除操作，再执行插入操作。</p>
-<p>Vi提供的替换的命令有取代命令、替换命令和字替换命令。</p>
-<ol>
-<li>取代命令 ：r和R</li>
-</ol>
-<p>r：用随后输入的一个字符代替当前光标处的那个字符。</p>
-<p>R：用随后输入的文本取代从当前光标处及其后面的若干字符，每输入一个字符就取代原有的一个字符，直到按&lt; Esc &gt;键结束这次取代。若新输入的字符数超过原有对应字符数，则多出部分就附加在后面。</p>
-<p>若在命令R之前加上一个数字，例如5R，则表示新输入的文本重复出现5次，但只取代一个被输入文本所覆盖的字符序列，当前行中未被覆盖的内容仍保留下来，只是位置相应右移。</p>
-<p>值得一提的是，利用R取代文本内容时，新输入的文本可以占多行，取代时也只有光标所在行的对应字符被覆盖。</p>
-<p>可见新输入的6个字符（包括空格，但不包括&lt; Esc &gt;）取代原行中的6个字符。</p>
-<ol start="2">
-<li>替换命令：s和S</li>
-</ol>
-<p>s（小写）：该命令表示用随后输入的文本替换当前光标所在的字符。</p>
-<p>如果只用一个新字符替换光标所在字符，则s命令与r命令功能类似，如sh与rh的作用都是将光标所在字符变为h。但二者也有区别，r命令仅完成置换，而s命令在完成置换同时，工作模式从命令方式转为文本输入方式。因此，s命令的一般使用方式是：s随后是要替换的正文，最后一定是, 结束文本输入模式，返回到命令模式。</p>
-<p>可以在s前面加一个数字n，则表示用s后输入的文本替换从光标所在字符开始及其后的n-1个字符（共n个字符）。</p>
-<p>S（大写）：该命令表示用新打入的正文替换光标当前行（整行）（不管光标位于何列）。</p>
-<p>如果在S之前给出一个数字n，例如3，则表示有3行（包括光标当前行及其下面2行）要被S命令之后输入的正文所替换。</p>
-<ol start="3">
-<li>字替换 cw</li>
-</ol>
-<p>如果我们只希望将某个字的内容用其他文本串替换，则可用cw命令。cw所替换的是一个狭义的字。输入这个命令后，Vi将把光标处的那个字删除，然后用户可输入任何文本内容。输入完成之后按键，Vi即用所输入的内容替换原光标位置至相应字结尾的所有内容。</p>
-<p>文本行的合并</p>
-<p>Vi提供了将文本中的某些行进行合并的命令。该命令用J（大写字母）表示，其功能是把光标所在行与下面一行合并为一行。</p>
-<p>如果在J命令之前给出一个数字n，例如3，则表示把光标当前行及其后面的2行（共3行）合并为一行。</p>
-<p>文本行的移动</p>
-<p>在Vi中我们可以方便地将某个范围内的文本行左右移动或从一个地方移至另外一个地方。</p>
-<p>文本行的左右移动。</p>
-<p>文本行左右移动的命令有 &gt;、&lt;、&gt;&gt; 和 &lt;&lt;四个。</p>
-<p>（1）&gt; 命令将限定正文行（屏幕的首行）向右移动，通常是8个空格，使用格式为：&gt;光标移动命令。移动正文行的范围由光标所在行和随后打入的光标移动命令所限定。</p>
-<p>（2）&lt; 命令将限定正文行向左移动。其使用方式与&gt;命令相同，只是移动方向相反。例如，&lt;6M，将光标当前行和屏幕显示中间行之间的各行都左移8个空格。</p>
-<p>（3）&gt;&gt; 命令将光标所在行右移8个空格。如果在&gt;&gt;命令之前给出一个数字n，例如4，则表示光标当前行及其下面的3行（共4行）都右移8个空格。</p>
-<p>（4）&lt;&lt; 命令将光标所在行左移8个空格。其使用与&gt;&gt;命令相同，只是移动方向相反。</p>
-<p>文本行的异行移动</p>
-<p>我们可以利用下面的步骤完成文本行从一个地方移至另外一个地方。</p>
-<p>将光标移至待移动文本的首行；</p>
-<p>按ndd命令。其中n为待移动的行数。此时Vi将把待移动的文本行从文件中删除，并将其放入到1号删除寄存器中；</p>
-<p>将光标移动到目的行处；</p>
-<p>按² 1p将待移动的文本行从删除寄存器中取出。</p>
-<p>此时待移动的文本行就出现在目的位置处了。</p>
-<p>上述方法虽然可以实现文本行的异行移动，但显然太烦琐。Vi还提供了另一种快捷的方法，就是在末行模式下使用命令m（Move命令）。使用方法为n m k，表示把第n行移至第k行的下方。</p>
-<p>现在想使第5行移至第4行位置处，可在末行模式下输入：</p>
-<p>:5 m 3</p>
-<p>在命令m之前，还可以指定一个行号范围（起始行号与终止行号），表示要把指定范围内的文本行移到指定位置。例如：</p>
-<p>:2，5 m 0</p>
-<p>表示把文件中的第二行至第五行的内容移至文件头（第零行之下，这个零行使一个虚行）。</p>
-<p>Vi中的行号</p>
-<p>Vi中的许多命令都要用到行号及行数等数值。若编辑的文件较大时，自己去数是非常不方便的。为此Vi提供了给文本加行号的功能。这些行号显示在屏幕的左边，而相应行的内容则显示在行号之后。</p>
-<p>使用的命令为：在末行方式下输入命令：</p>
-<p>:set number</p>
-<p>需要说明的是，这里加的行号只是显示给用户看的，它们并不是文件内容的一部分。</p>
-<p>在一个较大的文件中，用户可能需要了解光标当前行是哪一行，在文件中处于什么位置，可在命令模式下用组合键，此时Vi会在显示窗口的最后一行显示出相应信息。该命令可以在任何时候使用。</p>
-<p>在末行方式下，我们可以输入命令nu（单词number的缩写）来获得光标当前行的行号与该行内容。</p>
-<p>光标移动操作</p>
-<p>全屏幕文本编辑器中，光标的移动操作无疑是最经常使用的操作了。用户只有熟练地使用移动光标的这些命令，才能迅速准确地到达所期望的位置处进行编辑。</p>
-<p>Vi中的光标移动既可以在命令模式下，也可以在文本输入模式下，但操作的方法不尽相同。</p>
-<p>在文本输入模式下，可直接使用键盘上的四个方向键移动光标。</p>
-<p>在命令模式下，有很多移动光标的方法。不但可以使用四个方向键来移动光标，还可以用h、j、k、l这四个键代替四个方向键来移动光标，这样可以避免由于不同机器上的不同键盘定义所带来的矛盾，而且使用熟练后可以手不离开字母键盘位置就能完成所有操作，从而提高工作效率。另外还可以用、、和四个键或组合键移动光标。且以上这三种键在实现功能上是等价的。除此之外，还有一些移动光标的命令。下面对它们的工作方式介绍如下：</p>
-<p>、® （均称为右向键）</p>
-<p>右向键的作用是将光标向右移动一个位置。若在向右键前先输入一个数字n，那么光标就向右移动n个位置。例如5l表示光标向右移动5个位置。需要注意的是，光标移动不能超过当前行的末尾。若给定的n超过光标当前位置至行尾的字符个数，如果用右向键，光标只能移到行尾；如果用，光标移到下面一行或几行的适当位置。</p>
-<p>h、、¬ （向左键）</p>
-<p>执行一次向左键，光标向左移动一个位置。同向右键一样，也可以在向左键的前面输入一个数字n，那么光标就向左移动n个位置。需要注意的是，如果用左向键，光标左移不能超出该行的开头；如果用，光标移到上面一行或几行的适当位置。</p>
-<p>j、、¯ （向下键）</p>
-<p>执行一次向下键光标向下移动一个位置（即一行），但光标所在的列不变。当这些命令前面加上数字n，则光标下移n行。</p>
-<p>Vi除了可以用向下键将光标下移外，还可以用键和“+”键将光标下移一行或n行（不包括本行在内），但此时光标下移之后将位于该行的第一个字符处。例如：</p>
-<p>3j 光标下移3行，且光标所在列的位置不变。</p>
-<p>3+或3 光标下移3行，且光标位于该行的行首。</p>
-<p>k、、­ （向上键）</p>
-<p>执行一次向上键光标向上移动一个位置（即一行），但光标所在的列不变。同样在这些命令前面加上数字n，则光标上移n行。</p>
-<p>若希望光标上移之后，光标位于该行的行首，则可以使用命令“- ”。</p>
-<p>L （移至行首）</p>
-<p>L 命令是将光标移到当前行的开头，即将光标移至当前行的第一个非空白处（非制表符或非空格符）。</p>
-<p>$（移至行尾）</p>
-<p>该命令将光标移到当前行的行尾，停在最后一个字符上。若在$命令之前加上一个数字n，则光标下移n-1行并到达行尾。</p>
-<p>[行号] G（移至指定行）</p>
-<p>该命令将光标移至指定行号所指定的行的行首。这种移动称为绝对定位移动。</p>
-<p>光标移到了第6行的行首。</p>
-<p>若省略行号，则光标移至该文件的最后一行的行首，即无论该文件有多少屏，都跳至最后一行<br>
-————————————————<br>
-版权声明：本文为CSDN博主「傲骄鹿先生」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>
-原文链接：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N5bDEwMTgxNi9hcnRpY2xlL2RldGFpbHMvODIwMjY2Nzg=">https://blog.csdn.net/cyl101816/article/details/82026678<i class="fa fa-external-link-alt"></i></span></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/%E8%BF%90%E7%BB%B4/WSL%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/person.jpg">
-      <meta itemprop="name" content="老周">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="老周有AI">
-      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 老周有AI">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/01/01/%E8%BF%90%E7%BB%B4/WSL%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Wsl 常用命令</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-08-31 21:40:43" itemprop="dateModified" datetime="2025-08-31T21:40:43+08:00">2025-08-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/WSL/" itemprop="url" rel="index"><span itemprop="name">WSL</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1>WSL 的基本命令</h1>
-<p><strong>Windows Subsystem Linux</strong></p>
-<p>以下命令均在 <code>PowerShell</code>下运行。</p>
-<ul>
-<li>查看帮助</li>
-</ul>
-<pre><code class="language-bash">wsl --help
-</code></pre>
-<ul>
-<li>列出可用的<code>Linux</code>发行版</li>
-</ul>
-<pre><code class="language-bash">wsl --list --online
-</code></pre>
-<ul>
-<li>列出已安装的<code>Linux</code>发行版</li>
-</ul>
-<pre><code class="language-bash">wsl --list --verbose  
-# 或 
-wsl -l -v
-</code></pre>
-<ul>
-<li>将目录更改为主页</li>
-</ul>
-<pre><code class="language-bash">wsl ~
-# 也可
-cd ~
-</code></pre>
-<ul>
-<li>更新 <code>WSL</code></li>
-</ul>
-<pre><code class="language-bash">wsl --update
-</code></pre>
-<ul>
-<li>检查 <code>WSL</code> 状态</li>
-</ul>
-<pre><code class="language-bash">wsl --status
-</code></pre>
-<ul>
-<li>关闭<code>WSL</code>， <strong>默认情况下会占用很多内存，所以不用的情况下可以关闭掉</strong></li>
-</ul>
-<p>另外之前也提到过，如果要更改内存使用限制， 需要修改 <code>.wslconfig</code> 文件，在用户目录下。</p>
-<pre><code class="language-bash">wsl --shutdown
-</code></pre>
-<p><strong>当然，如果需要打开直接在 PowerShell下输入 <code>wsl</code> 即可开启。</strong></p>
-<p>##【参考】</p>
-<ol>
-<li><span class="exturl" data-url="aHR0cHM6Ly9sZWFybi5taWNyb3NvZnQuY29tL3poLWNuL3dpbmRvd3Mvd3NsL2Jhc2ljLWNvbW1hbmRz">WSL命令 官网<i class="fa fa-external-link-alt"></i></span></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/%E8%BF%90%E7%BB%B4/pip-conda%E6%B8%85%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/person.jpg">
-      <meta itemprop="name" content="老周">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="老周有AI">
-      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 老周有AI">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/01/01/%E8%BF%90%E7%BB%B4/pip-conda%E6%B8%85%E7%90%86/" class="post-title-link" itemprop="url">pip && conda 清理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-08-31 21:50:42" itemprop="dateModified" datetime="2025-08-31T21:50:42+08:00">2025-08-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1>pip-conda清理,释放空间</h1>
-<p>在日常使用 Python 进行开发的过程中，我们经常依赖 <code>pip</code> 和 <code>Conda</code> 来安装和管理第三方包。然而，随着项目增多、环境切换频繁，这些工具会在后台悄悄积累大量缓存文件——包括下载的包归档、临时文件、索引缓存等。这些文件可能占用数 GB 甚至更多的磁盘空间。</p>
-<p>本文将教你如何安全、高效地清理 <code>pip</code> 和 <code>Conda</code> 的缓存，释放宝贵的磁盘空间，同时保持开发环境的稳定。</p>
-<hr>
-<h2 id="一、为什么需要清理-pip-和-Conda-缓存？">一、为什么需要清理 pip 和 Conda 缓存？</h2>
-<ul>
-<li>✅ <strong>pip</strong>：每次使用 <code>pip install</code> 安装包时，它会将 <code>.whl</code> 或 <code>.tar.gz</code> 文件缓存在本地，以便下次快速重装。</li>
-<li>✅ <strong>Conda</strong>：作为 Anaconda/Miniconda 的包管理器，Conda 会缓存已下载的包、环境快照、索引信息等。</li>
-</ul>
-<p>这些缓存虽然能提升安装速度，但长期积累会占用大量空间。尤其是当你频繁创建/删除虚拟环境、测试不同版本的库时，缓存膨胀尤为明显。</p>
-<hr>
-<h2 id="二、清理-pip-缓存">二、清理 pip 缓存</h2>
-<h3 id="1-查看-pip-缓存使用情况">1. 查看 pip 缓存使用情况</h3>
-<pre><code class="language-bash">pip cache info
-</code></pre>
-<p>输出示例：</p>
-<pre><code>Cache entry count: 1284
-Cache size: 2.1 GB
-</code></pre>
-<p>这会告诉你当前缓存中有多少包，以及总共占用了多少空间。</p>
-<h3 id="2-清理所有-pip-缓存">2. 清理所有 pip 缓存</h3>
-<pre><code class="language-bash">pip cache purge
-</code></pre>
-<p>该命令会删除所有缓存的包文件，<strong>不会影响已安装的包</strong>，非常安全。</p>
-<blockquote>
-<p>💡 提示：如果你使用的是较老版本的 pip（&lt;20.1），可能不支持 <code>cache</code> 子命令。请先升级：</p>
-<pre><code class="language-bash">pip install --upgrade pip
-</code></pre>
-</blockquote>
-<hr>
-<h2 id="三、清理-Conda-缓存">三、清理 Conda 缓存</h2>
-<p>Conda 提供了强大的 <code>clean</code> 命令来清理各类缓存文件。</p>
-<h3 id="1-查看-Conda-缓存状态">1. 查看 Conda 缓存状态</h3>
-<pre><code class="language-bash">conda clean --dry-run --all
-</code></pre>
-<ul>
-<li><code>--dry-run</code>：模拟执行，查看哪些文件将被删除，<strong>不会真正删除</strong>。</li>
-<li><code>--all</code>：检查所有类型的缓存。</li>
-</ul>
-<h3 id="2-实际清理-Conda-缓存">2. 实际清理 Conda 缓存</h3>
-<p>执行以下命令清理所有无用文件：</p>
-<pre><code class="language-bash">conda clean --all
-</code></pre>
-<p>该命令会清理以下内容：</p>
-<ul>
-<li>📦 未使用的包缓存（<code>pkgs</code> 目录）</li>
-<li>🧠 索引缓存（<code>index cache</code>）</li>
-<li>🗑️ 临时文件</li>
-<li>🔄 锁文件（lock files）</li>
-<li>🌐 tarball 归档文件（<code>.tar.bz2</code>）</li>
-</ul>
-<p>你也可以选择性清理：</p>
-<pre><code class="language-bash">conda clean --packages      # 仅清理包缓存
-conda clean --index-cache   # 清理索引
-conda clean --tempfiles     # 清理临时文件
-conda clean --tarballs      # 清理 .tar.bz2 文件
-</code></pre>
-<hr>
-<h2 id="四、一键清理脚本（推荐）">四、一键清理脚本（推荐）</h2>
-<p>为了方便，你可以将以下命令组合成一个“清理脚本”，定期运行：</p>
-<h3 id="Linux-macOS（保存为-clean-py-sh）">Linux / macOS（保存为 <code>clean-py.sh</code>）</h3>
-<pre><code class="language-bash">#!/bin/bash
-echo &quot;开始清理 pip 和 Conda 缓存...&quot;
-
-# 清理 pip
-echo &quot;清理 pip 缓存...&quot;
-pip cache purge
-
-# 清理 Conda
-echo &quot;清理 Conda 缓存...&quot;
-conda clean --all --yes
-
-echo &quot;清理完成！&quot;
-</code></pre>
-<p>赋予执行权限并运行：</p>
-<pre><code class="language-bash">chmod +x clean-py.sh
-./clean-py.sh
-</code></pre>
-<h3 id="Windows（保存为-clean-py-bat）">Windows（保存为 <code>clean-py.bat</code>）</h3>
-<pre><code class="language-batch">@echo off
-echo 开始清理 pip 和 Conda 缓存...
-
-echo 清理 pip 缓存...
-pip cache purge
-
-echo 清理 Conda 缓存...
-conda clean --all --yes
-
-echo 清理完成！
-pause
-</code></pre>
-<p>双击即可运行。</p>
-<hr>
-<h2 id="五、额外建议：定期维护开发环境">五、额外建议：定期维护开发环境</h2>
-<ol>
-<li>
-<p><strong>删除无用的 Conda 环境</strong></p>
-<pre><code class="language-bash">conda env list                    # 查看所有环境
-conda env remove -n 旧环境名      # 删除不再需要的环境
-</code></pre>
-</li>
-<li>
-<p><strong>避免重复安装大包</strong><br>
-如 <code>pytorch</code>, <code>tensorflow</code>, <code>opencv</code> 等大包应谨慎安装，避免在多个环境中重复存在。</p>
-</li>
-<li>
-<p><strong>使用 <code>.condarc</code> 配置缓存路径</strong><br>
-可将 Conda 缓存目录移到空间更大的磁盘：</p>
-<pre><code class="language-yaml">pkgs_dirs: /path/to/large/disk/conda/pkgs
-envs_dirs: /path/to/large/disk/conda/envs
-</code></pre>
-</li>
-</ol>
-<hr>
-<h2 id="六、总结">六、总结</h2>
-<table>
-<thead>
-<tr>
-<th>工具</th>
-<th>清理命令</th>
-<th>安全性</th>
-<th>建议频率</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>pip</td>
-<td><code>pip cache purge</code></td>
-<td>⭐⭐⭐⭐⭐</td>
-<td>每月一次</td>
-</tr>
-<tr>
-<td>conda</td>
-<td><code>conda clean --all</code></td>
-<td>⭐⭐⭐⭐⭐</td>
-<td>每月一次</td>
-</tr>
-<tr>
-<td>环境</td>
-<td><code>conda env remove -n name</code></td>
-<td>⚠️ 注意确认</td>
-<td>按需</td>
-</tr>
-</tbody>
-</table>
-<p>通过定期执行 <code>pip cache purge</code> 和 <code>conda clean --all</code>，你可以轻松释放数 GB 的磁盘空间，同时不影响现有项目的正常运行。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/nanoPC/NanoPi%20R6C%20%E6%9B%B4%E6%8D%A2%E6%BA%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/person.jpg">
-      <meta itemprop="name" content="老周">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="老周有AI">
-      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 老周有AI">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/01/01/nanoPC/NanoPi%20R6C%20%E6%9B%B4%E6%8D%A2%E6%BA%90/" class="post-title-link" itemprop="url">Nanopi R6C 更换源</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-08-31 21:28:43" itemprop="dateModified" datetime="2025-08-31T21:28:43+08:00">2025-08-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/nanoPC/" itemprop="url" rel="index"><span itemprop="name">nanoPC</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1>NanoPi R6C 更换源报错</h1>
-<blockquote>
-<p>Ubuntu 22.04 LTS 阿里源更换后报错。</p>
-</blockquote>
-<blockquote>
-<pre><code>E: Failed to fetch  http://mirrors.aliyun.com/ubuntu-ports/dists/jammy/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
-E: Failed to fetch http://mirrors.aliyun.com/ubuntu-ports/dists/jammy-security/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
-E: Failed to fetch http://mirrors.aliyun.com/ubuntu-ports/dists/jammy-updates/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
-E: Failed to fetch http://mirrors.aliyun.com/ubuntu-ports/dists/jammy-proposed/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
-E: Failed to fetch http://mirrors.aliyun.com/ubuntu-ports/dists/jammy-backports/main/binary-arm64/Packages  404  Not Found [IP: 124.72.132.77 80]
-
-</code></pre>
-</blockquote>
-<h2 id="解决方案">解决方案</h2>
-<pre><code class="language-bash">sudo cp /etc/apt/sources.list /etc/apt/sources.list_bak
-sudo gedit /etc/apt/sources.list
-</code></pre>
-<p><strong>NOTE： 在ubuntu后面加上<code>-ports</code></strong></p>
-<pre><code class="language-bash">deb http://mirrors.aliyun.com/ubuntu-ports/ jammy main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu-ports/ jammy-security main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy-security main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu-ports/ jammy-updates main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy-updates main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu-ports/ jammy-proposed main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy-proposed main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu-ports/ jammy-backports main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu-ports/ jammy-backports main restricted universe multiverse
-</code></pre>
-<h2 id="参考">[参考]</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzYyMDYyODUwL2FydGljbGUvZGV0YWlscy8xMjU0OTQ3NjU=">[踩坑记录] aarch64版本Ubuntu apt-get更换阿里源后更新失败<i class="fa fa-external-link-alt"></i></span><br>
-<span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbGl1amlheGluMjAxOC9wLzE2MzczNjY4Lmh0bWw=">ubuntu 22.04如何更换阿里源<i class="fa fa-external-link-alt"></i></span></p>
 
       
     </div>
