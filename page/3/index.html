@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"znza.top","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.23.2","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":{"enable":true},"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":5,"unescape":false,"preload":true,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="老周有AI">
+<meta property="og:url" content="https://znza.top/page/3/index.html">
+<meta property="og:site_name" content="老周有AI">
+<meta property="og:description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://znza.top/images/logo.svg">
+<meta property="article:author" content="老周">
+<meta property="article:tag" content="计算机视觉, 人工智能, Python, OpenCV, MediaPipe, 深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://znza.top/images/logo.svg">
+
+
+<link rel="canonical" href="https://znza.top/page/3/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/3/index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>老周有AI - 计算机视觉与人工智能技术分享</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="老周有AI" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">老周有AI</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">计算机视觉与人工智能技术分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">76</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">23</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">48</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="老周"
+      src="/images/person.jpg">
+  <p class="site-author-name" itemprop="name">老周</p>
+  <div class="site-description" itemprop="description">老周的个人技术博客，专注于计算机视觉、人工智能和创意编程</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/Ubuntu/Get_more_security_updates_through_Ubuntu_Pro_with_'esm-apps'_enabled/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/Ubuntu/Get_more_security_updates_through_Ubuntu_Pro_with_'esm-apps'_enabled/" class="post-title-link" itemprop="url">Get_More_Security_Updates_Through_Ubuntu_Pro_With_'Esm Apps'_Enabled</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:43:13" itemprop="dateModified" datetime="2025-08-31T21:43:13+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>问题：</p>
+</blockquote>
+<pre><code class="language-bash">Get more security updates through Ubuntu Pro with 'esm-apps' enabled:
+  vlc-plugin-qt libvlc5 vlc-data libvlccore9 vlc vlc-bin vlc-l10n
+  libopenexr-dev libopenexr25 libpostproc55 vlc-plugin-samba libswscale-dev
+  libavcodec58 vlc-plugin-notify libavutil56 libswscale5
+  vlc-plugin-access-extra libavutil-dev vlc-plugin-skins2
+  vlc-plugin-video-splitter libswresample3 vlc-plugin-video-output
+  libavformat58 libavformat-dev libavcodec-dev libvlc-bin libswresample-dev
+  vlc-plugin-base vlc-plugin-visualization
+Learn more about Ubuntu Pro at https://ubuntu.com/pro
+The following packages have been kept back:
+  gjs initramfs-tools initramfs-tools-bin initramfs-tools-core libgjs0g
+</code></pre>
+<h2 id="解决方法-去掉这些提示">解决方法-去掉这些提示</h2>
+<pre><code class="language-bash">cd /etc/apt/apt.conf.d/
+sudo mkdir -p /etc/apt/backup
+sudo mv 20apt-esm-hook.conf /etc/apt/backup/
+sudo apt update
+sudo apt upgrade
+</code></pre>
+<h2 id="【参考】">【参考】</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly91YnVudHVoYW5kYm9vay5vcmcvaW5kZXgucGhwLzIwMjMvMDUvZXNtLWFwcHMtdXBkYXRlcy11YnVudHUvIzp+OnRleHQ9VWJ1bnR1JTIwbm93JTIwcHJvdmlkZXMlMjBleHBhbmRlZCUyMHNlY3VyaXR5JTIwbWFpbnRlbmFuY2UlMjAlMjhlc20lMjklMjB1cGRhdGVzLDEwJTIweWVhcnMlMjklMjBzZWN1cml0eSUyMHVwZGF0ZXMlMjBzdXBwb3J0JTIwZm9yJTIwVWJ1bnR1JTIwTFRT">Enable Ubuntu Pro to get 5 Years More Security Updates in Ubuntu 22.04,20.04,18.04<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/Ubuntu/Ubuntu2204%E4%B8%8BVSCode%E6%97%A0%E6%B3%95%E8%BE%93%E5%85%A5%E4%B8%AD%E6%96%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/Ubuntu/Ubuntu2204%E4%B8%8BVSCode%E6%97%A0%E6%B3%95%E8%BE%93%E5%85%A5%E4%B8%AD%E6%96%87/" class="post-title-link" itemprop="url">Ubuntu2204下Vscode无法输入中文</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:46:29" itemprop="dateModified" datetime="2025-08-31T21:46:29+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>VS Code 无法输入中文</h1>
+<blockquote>
+<p>系统环境： <code>Ubuntu 22.04 LTS</code></p>
+</blockquote>
+<p><code>VS Code</code> 早期安装的时候用的是 <code>Ubuntu Software</code> 方式进行安装的。编辑器里无法输入中文（搜狗输入法无法使用）；一开始还以为是输入法没安装好。后来才知道主要原因是软件市场里的 <code>Code</code> 是阉割版，无法添加中文。</p>
+<p>参考 <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1llWWFMaW5nMTIzL2FydGljbGUvZGV0YWlscy8xMjkxMjc4OTY=">解决Visual Studio Code无法输入中文问题<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="【解决办法】">【解决办法】</h2>
+<ol>
+<li>卸载 <code>Code</code></li>
+</ol>
+<pre><code class="language-bash">sudo snap remove code
+</code></pre>
+<ol start="2">
+<li>重新安装</li>
+</ol>
+<pre><code class="language-bash">wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+
+sudo add-apt-repository &quot;deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main&quot;
+
+sudo apt install code
+
+sudo apt update
+
+sudo apt upgrade
+</code></pre>
+<h2 id="【参考】">【参考】</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1llWWFMaW5nMTIzL2FydGljbGUvZGV0YWlscy8xMjkxMjc4OTY=">解决Visual Studio Code无法输入中文问题<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/Ubuntu/Ubuntu2204%E6%8C%82%E8%BD%BD%E7%BE%A4%E6%99%96NAS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/Ubuntu/Ubuntu2204%E6%8C%82%E8%BD%BD%E7%BE%A4%E6%99%96NAS/" class="post-title-link" itemprop="url">Ubuntu2204挂载群晖Nas</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:45:29" itemprop="dateModified" datetime="2025-08-31T21:45:29+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>之前一直用的 <code>samba</code> 连接的 群晖 <code>NAS</code>，不知道升级完后突然出现了状况，连接不上群晖了。找资料说用 <code>mount</code> 挂载有更多的好处。</p>
+</blockquote>
+<h2 id="安装cifs-utils">安装cifs-utils</h2>
+<pre><code class="language-bash">sudo apt install cifs-utils
+</code></pre>
+<h2 id="新建挂载目录">新建挂载目录</h2>
+<pre><code class="language-bash">cd /mnt
+sudo mkdir nas
+</code></pre>
+<h2 id="执行挂载">执行挂载</h2>
+<pre><code class="language-bash">sudo mount -t cifs -o uid=***,username=***,password=***,iocharset=utf8 nas地址 本地地址
+</code></pre>
+<blockquote>
+<p><code>uid</code>: 最关键，可以指定所有者，解决只能 <code>root</code> 权限的问题，这里为 Ubuntu用户名<br>
+<code>username</code>: 在 <code>nas</code> 上的用户名<br>
+<code>password</code>: <code>nas</code>上用户名对应的密码，可以不写，回车后会有密码输入行<br>
+<code>iocharset</code>: 路径中如有中文则添加此项，支持中文路径<br>
+<code>nas</code>地址: 如 <code>//192.168.0.1/share</code><br>
+本地地址: 如 <code>/mnt/nas</code></p>
+</blockquote>
+<h2 id="开机自动挂载">开机自动挂载</h2>
+<pre><code class="language-bash">sudo vim /etc/fstab
+</code></pre>
+<p>最后一行添加</p>
+<p><code>nas地址 本地地址 cifs uid=***,username=***,password=***,iocharset=utf8 0 0</code></p>
+<p>重启电脑测试一下。</p>
+<h2 id="【参考】">【参考】</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1NoYXJlUHJvZ3Jlc3MvYXJ0aWNsZS9kZXRhaWxzLzEyMTAzMzkwOQ==">Ubuntu中挂载使用nas服务器<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/Ubuntu/ubuntu-jetson%E4%B8%8A%E7%9A%84%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/Ubuntu/ubuntu-jetson%E4%B8%8A%E7%9A%84%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="post-title-link" itemprop="url">Ubuntu Jetson上的定时任务</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:43:35" itemprop="dateModified" datetime="2025-08-31T21:43:35+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>使用 crontab 制定定时任务</h1>
+<h2 id="目标">目标</h2>
+<ol>
+<li>每分钟清理当前分钟之前的图片。 [可选]</li>
+<li>每小时清理当前小时之前的图片。 [可选]</li>
+<li>每天清理当前日期之前的图片。   [可选]</li>
+</ol>
+<h2 id="环境">环境</h2>
+<ul>
+<li>操作系统：Ubuntu 22.04 (jetson)</li>
+<li>需要清理的文件夹：<code>/home/nvidia/install/Snapshot</code></li>
+</ul>
+<h2 id="步骤">步骤</h2>
+<h3 id="1-编写清理脚本">1. 编写清理脚本</h3>
+<ol>
+<li>
+<p><strong>创建清理脚本</strong>：</p>
+<pre><code class="language-bash">sudo gedit /home/nvidia/install/cleanup_images.sh
+</code></pre>
+</li>
+<li>
+<p><strong>编辑脚本</strong>，输入以下内容：(可选就是选择其中一个,不需要的注释起来)</p>
+<pre><code class="language-bash">#!/bin/bash
+
+# 设置日志文件路径
+LOG_FILE=&quot;/home/nvidia/install/cleanup_images.log&quot;
+
+# 获取当前日期和时间
+CURRENT_DATE=$(date +%Y-%m-%d)
+CURRENT_HOUR=$(date +%H)
+CURRENT_MINUTE=$(date +%M)
+
+# 每分钟清理当前分钟之前的图片 [可选]
+find /home/nvidia/install/Snapshot -type f -name &quot;*.jpg&quot; -mmin +1 -exec rm -f &#123;&#125; \;
+echo &quot;$(date): Cleaned up images older than $CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE (minute)&quot; &gt;&gt; $LOG_FILE
+
+# 每小时清理当前小时之前的图片 [可选]
+find /home/nvidia/install/Snapshot -type f -name &quot;*.jpg&quot; -mmin +60 -exec rm -f &#123;&#125; \;
+echo &quot;$(date): Cleaned up images older than $CURRENT_DATE $CURRENT_HOUR:00 (hour)&quot; &gt;&gt; $LOG_FILE
+
+# 每天清理当前日期之前的图片  [可选]
+find /home/nvidia/install/Snapshot -type f -name &quot;*.jpg&quot; -mtime +1 -exec rm -f &#123;&#125; \;
+echo &quot;$(date): Cleaned up images older than $CURRENT_DATE 00:00 (day)&quot; &gt;&gt; $LOG_FILE
+</code></pre>
+</li>
+<li>
+<p><strong>保存并关闭编辑器</strong></p>
+</li>
+<li>
+<p><strong>使脚本可执行</strong>：</p>
+<pre><code class="language-bash">sudo chmod +x /home/nvidia/install/cleanup_images.sh
+</code></pre>
+</li>
+</ol>
+<h3 id="2-编辑-crontab-文件">2. 编辑 <code>crontab</code> 文件</h3>
+<ol>
+<li>
+<p><strong>使用 <code>vim</code> 编辑 <code>crontab</code> 文件</strong>：</p>
+<pre><code class="language-bash">EDITOR=vim crontab -e
+</code></pre>
+</li>
+<li>
+<p><strong>添加多种清理任务</strong>： (可选就是选择其中一个,不需要的注释起来)</p>
+<pre><code class="language-bash"># 每分钟清理当前分钟之前的图片  [可选]
+* * * * * /home/nvidia/install/cleanup_images.sh
+
+# 每小时清理当前小时之前的图片  [可选]
+0 * * * * /home/nvidia/install/cleanup_images.sh
+
+# 每天清理当前日期之前的图片   [可选]
+0 0 * * * /home/nvidia/install/cleanup_images.sh
+</code></pre>
+</li>
+<li>
+<p><strong>保存并退出</strong>：</p>
+<ul>
+<li>按 <code>Esc</code> 键进入命令模式。</li>
+<li>输入 <code>:wq</code> 保存并退出。</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-验证-cron-任务">3. 验证 <code>cron</code> 任务</h3>
+<ol>
+<li>
+<p><strong>检查 <code>cron</code> 任务是否已添加</strong>：</p>
+<pre><code class="language-bash">crontab -l
+</code></pre>
+<p>你应该能看到类似以下的输出：</p>
+<pre><code>* * * * * /home/nvidia/install/cleanup_images.sh
+0 * * * * /home/nvidia/install/cleanup_images.sh
+0 0 * * * /home/nvidia/install/cleanup_images.sh
+</code></pre>
+</li>
+<li>
+<p><strong>检查 <code>cron</code> 日志</strong>，确保定时任务已成功执行：</p>
+<pre><code class="language-bash">sudo tail -f /home/nvidia/install/cleanup_images.log
+</code></pre>
+<p><strong>预期输出</strong>：</p>
+<ul>
+<li>你应该能看到 <code>cron</code> 任务的执行日志。</li>
+</ul>
+</li>
+<li>
+<p><strong>检查清理日志</strong>，确保脚本已成功执行：</p>
+<pre><code class="language-bash">cat /home/nvidia/install/cleanup_images.log
+</code></pre>
+<p><strong>预期输出</strong>：</p>
+<ul>
+<li>你应该能看到类似以下的记录：<pre><code>2024-11-19 15:01:00: Cleaned up images older than 2024-11-19 15:00 (minute)
+2024-11-19 15:00:00: Cleaned up images older than 2024-11-19 14:00 (hour)
+2024-11-19 00:00:00: Cleaned up images older than 2024-11-18 00:00 (day)
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/Ubuntu/ubuntu2204%20%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/Ubuntu/ubuntu2204%20%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Ubuntu2204 环境配置</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:44:49" itemprop="dateModified" datetime="2025-08-31T21:44:49+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><span class="exturl" data-url="aHR0cHM6Ly93d3cuc3lzZ2Vlay5jbi9pbnN0YWxsLXVidW50dS0yMi0wNC1sdHMvIzp+OnRleHQ9JUU1JUE2JTgyJUU0JUJEJTk1JUU1JUFFJTg5JUU4JUEzJTg1JTIwVWJ1bnR1JTIwMjIuMDQlMjBMVFMlMjAlRTYlQTElOEMlRTklOUQlQTIlRTclODklODglRUYlQkMlOEMlRTglQUYlQTYlRTclQkIlODYlRTYlQUQlQTUlRTklQUElQTQlMjAxJTIwJUU1JUFFJTg5JUU4JUEzJTg1JTIwVWJ1bnR1LDIyLjA0JTIwTFRTJTIwNiUyMCVFNiVBRCVBNSVFOSVBQSVBNDUlRUYlQkMlOUElRTUlQUUlOEMlRTYlODglOTAlMjBVYnVudHUlMjAyMi4wNCUyMExUUyUyMCVFNSVBRSU4OSVFOCVBMyU4NQ==">https://www.sysgeek.cn/install-ubuntu-22-04-lts/#:~:text=如何安装 Ubuntu 22.04 LTS 桌面版，详细步骤 1 安装 Ubuntu,22.04 LTS 6 步骤5：完成 Ubuntu 22.04 LTS 安装<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="环境配置">环境配置</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NyaXNfSHUvYXJ0aWNsZS9kZXRhaWxzLzEyNDcxMTA5Mw==">https://blog.csdn.net/Cris_Hu/article/details/124711093<i class="fa fa-external-link-alt"></i></span></p>
+<p>sudo gedit /etc/apt/sources.list</p>
+<pre><code class="language-bash"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+ 
+# 预发布软件源，不建议启用
+# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse
+</code></pre>
+<pre><code class="language-bash">
+sudo apt update
+ 
+sudo apt upgrade
+</code></pre>
+<ol start="2">
+<li>及时替换python 的<strong>pip源</strong></li>
+</ol>
+<pre><code class="language-cobol">cd ~
+mkdir .pip
+sudo gedit ~/.pip/pip.conf
+</code></pre>
+<p>在文本输入下面内容，并保存：</p>
+<pre><code class="language-cobol">[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple/ 
+[install]
+trusted-host = pypi.tuna.tsinghua.edu.cn
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/Ubuntu/ubuntu2204-cudnn%20GPG%20key%20%E9%94%99%E8%AF%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/Ubuntu/ubuntu2204-cudnn%20GPG%20key%20%E9%94%99%E8%AF%AF/" class="post-title-link" itemprop="url">Ubuntu2204 Cudnn Gpg Key 错误</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:45:16" itemprop="dateModified" datetime="2025-08-31T21:45:16+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>问题: cudnn GPG error</p>
+</blockquote>
+<pre><code class="language-bash">Reading package lists... Done                                                                                                                                  
+W: GPG error: file:/var/cudnn-local-repo-ubuntu2204-8.8.0.121  InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 91B24998B66125A0
+E: The repository 'file:/var/cudnn-local-repo-ubuntu2204-8.8.0.121  InRelease' is not signed.
+N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+</code></pre>
+<h2 id="解决方案">解决方案</h2>
+<p>找到 <code>/var</code> 目录下对应的 <code>cudnn*</code> 文件夹，然后执行如下命令</p>
+<pre><code class="language-bash">sudo cp /var/cudnn-local-repo-ubuntu2204-8.8.0.121/*.gpg /usr/share/keyrings/
+sudo apt update
+sudo apt upgrade
+</code></pre>
+<h2 id="【参考】">【参考】</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUzMDA2Mjk0L2FydGljbGUvZGV0YWlscy8xMjYxMzcxMDA=">W: GPG error: cudnn GPG key 错误<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/Ubuntu/ubuntu2204%E4%B8%AD%E7%BC%BA%E5%B0%91WPS%E5%AD%97%E4%BD%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/Ubuntu/ubuntu2204%E4%B8%AD%E7%BC%BA%E5%B0%91WPS%E5%AD%97%E4%BD%93/" class="post-title-link" itemprop="url">Ubuntu2204中缺少Wps字体</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:47:49" itemprop="dateModified" datetime="2025-08-31T21:47:49+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>在 <code>Ubuntu 22.04 LTS</code> 或者其他 <code>Linux</code> 系统下安装了 <code>WPS</code> 软件，每次打开，总是提示<code>缺少字体 Symbol, Wingdings, ....</code></p>
+</blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1FpSHNNaW5nL2FydGljbGUvZGV0YWlscy8xMDM4MjczNDQ=">参考链接<i class="fa fa-external-link-alt"></i></span></p>
+<ol>
+<li>下载字体</li>
+</ol>
+<p><span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMTRkZnpVckt6V19PSk80ZGFFckNMUFE=">wps_symbol_fonts.zip<i class="fa fa-external-link-alt"></i></span> 提取码: 8888</p>
+<ol start="2">
+<li>解压缩到指定目录</li>
+</ol>
+<pre><code class="language-bash">sudo cp *.ttf  *.TTF /usr/share/fonts
+</code></pre>
+<ol start="3">
+<li>生成字体索引</li>
+</ol>
+<pre><code class="language-bash">sudo mkfontscale
+sudo mkfontdir
+</code></pre>
+<ol start="4">
+<li>更新字体缓存。</li>
+</ol>
+<pre><code class="language-bash">sudo fc-cache
+</code></pre>
+<ol start="5">
+<li>重启 WPS</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/Ubuntu/ubuntu2204%E5%9B%BE%E7%89%87%E5%90%88%E6%88%90%E8%A7%86%E9%A2%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/Ubuntu/ubuntu2204%E5%9B%BE%E7%89%87%E5%90%88%E6%88%90%E8%A7%86%E9%A2%91/" class="post-title-link" itemprop="url">Ubuntu2204图片合成视频</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:46:09" itemprop="dateModified" datetime="2025-08-31T21:46:09+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>ubuntu 22.04 多张图片合成视频，多个视频合成一个大视频</h1>
+<blockquote>
+<p>环境： <code>ubuntu 22.04 LTS</code><br>
+工具： <code>ffmpeg</code></p>
+</blockquote>
+<h2 id="ffmpeg-多张图片合成视频">ffmpeg 多张图片合成视频</h2>
+<img data-src="/2025/01/01/Ubuntu/ubuntu2204%E5%9B%BE%E7%89%87%E5%90%88%E6%88%90%E8%A7%86%E9%A2%91/1682070348389.png" class="" title="1682070348389.png">
+<p>在 <code>ubuntu</code> 下全选目录下的所有文件，右键 <code>rename</code>, 选择 <code>1,2,3,4</code> 即可；当然也可以使用其他命名方式；</p>
+<p>在图片文件夹当前路径下，打开终端（Terminal）,输入以下命令并执行</p>
+<pre><code class="language-bash">ffmpeg -f image2 -i %d.jpg video.mp4
+</code></pre>
+<h2 id="ffmpeg-多个视频合成一个视频">ffmpeg 多个视频合成一个视频</h2>
+<p>新建一个视频文件列表 <code>allvediolist.txt</code>，</p>
+<p>文件列表内容如下：</p>
+<pre><code class="language-bash">file '/home/xx/videolist/1.mp4'
+file '/home/xx/videolist/2.mp4'
+file '/home/xx/videolist/3.mp4'
+file '/home/xx/videolist/4.mp4'
+</code></pre>
+<p>在当前文件夹下，打开终端（Terminal），输入以下命令，完成视频合成任务</p>
+<pre><code class="language-bash">ffmpeg -f concat -safe 0 -i allvediolist.txt -c copy output.mp4
+</code></pre>
+<img data-src="/2025/01/01/Ubuntu/ubuntu2204%E5%9B%BE%E7%89%87%E5%90%88%E6%88%90%E8%A7%86%E9%A2%91/1682070752671.png" class="" title="1682070752671.png">
+<h2 id="【参考】">【参考】</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vc2h1aWxhbmd0aW5nL2FydGljbGUvZGV0YWlscy8xMjAxOTQ4OTU=">ubuntu下ffmpeg图片转视频<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQxMzI5NDcvYXJ0aWNsZS9kZXRhaWxzLzEwODY5NDYzMg==">Ubuntu ffmpeg 多个视频合成 命令<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/Ubuntu/ubuntu2204%E5%9C%A8VS-Code%E9%87%8C%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA%E6%96%87%E6%A1%A3%E6%88%96%E5%9B%BE%E7%89%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/Ubuntu/ubuntu2204%E5%9C%A8VS-Code%E9%87%8C%E7%94%A8ssh%E8%BF%9E%E6%8E%A5%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA%E6%96%87%E6%A1%A3%E6%88%96%E5%9B%BE%E7%89%87/" class="post-title-link" itemprop="url">Ubuntu2204在Vs Code里用Ssh连接无法显示文档或图片</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:47:20" itemprop="dateModified" datetime="2025-08-31T21:47:20+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>系统环境: ubuntu 22.04 LTS,<br>
+vs code<br>
+远程连接其他电脑或设备进行编程。<br>
+<code>vscode加载web 视图，报错:“Error: Could not register serviceworkers: InvalidstateError: Failed to ....</code></p>
+</blockquote>
+<p><strong>解决办法:</strong></p>
+<ol>
+<li>关闭 VS Code；</li>
+<li>在终端执行 <code>code --no-sandbox</code>。</li>
+<li><code>VS Code</code> 会重启并可以正常渲染显示远程的 <code>图片</code>和 <code>markdown</code> 文件。</li>
+</ol>
+<p>参考：</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzU4NzI0NzgzL2FydGljbGUvZGV0YWlscy8xMjc4Nzk3Nzc=">https://blog.csdn.net/m0_58724783/article/details/127879777<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/Ubuntu/ubuntu%E4%B8%8B%E7%9A%84%E4%BF%9D%E6%8C%81%E7%A8%8B%E5%BA%8F%E4%B8%80%E7%9B%B4%E8%BF%90%E8%A1%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/Ubuntu/ubuntu%E4%B8%8B%E7%9A%84%E4%BF%9D%E6%8C%81%E7%A8%8B%E5%BA%8F%E4%B8%80%E7%9B%B4%E8%BF%90%E8%A1%8C/" class="post-title-link" itemprop="url">Ubuntu下的保持程序一直运行</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:48:11" itemprop="dateModified" datetime="2025-08-31T21:48:11+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>useApplication 重启程序（保持一直运行状态）</h1>
+<h2 id="目标">目标</h2>
+<p>确保 <code>useApplication</code> 在意外停止后能够自动重启，提高服务的可用性和稳定性。</p>
+<h2 id="环境">环境</h2>
+<ul>
+<li>操作系统：Ubuntu 22.04 (jetson)</li>
+<li>应用程序：<code>useApplication</code></li>
+<li>安装路径：<code>/home/nvidia/install/APP</code></li>
+</ul>
+<h2 id="步骤">步骤</h2>
+<h3 id="1-创建-systemd-服务文件">1. 创建 <code>systemd</code> 服务文件</h3>
+<ol>
+<li>
+<p><strong>打开终端</strong>。</p>
+</li>
+<li>
+<p><strong>创建服务文件</strong>：</p>
+<pre><code class="language-bash">sudo gedit /etc/systemd/system/useapp.service
+</code></pre>
+</li>
+<li>
+<p><strong>编辑服务文件</strong>，输入以下内容：</p>
+<pre><code class="language-ini">[Unit]
+Description=UserAPP Service
+After=network.target
+
+[Service]
+User=nvidia
+WorkingDirectory=/home/nvidia/install/APP
+Environment=LD_LIBRARY_PATH=/home/nvidia/install/APP:$LD_LIBRARY_PATH
+ExecStart=/home/nvidia/install/APP/useApplication
+Restart=always # 设置服务在任何情况下都重新启动
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p><strong>解释</strong>：</p>
+<ul>
+<li><code>[Unit]</code>：服务的基本信息。
+<ul>
+<li><code>Description</code>：服务的描述。</li>
+<li><code>After</code>：确保服务在网络服务启动之后再启动。</li>
+</ul>
+</li>
+<li><code>[Service]</code>：服务的具体配置。
+<ul>
+<li><code>User</code>：运行服务的用户。</li>
+<li><code>WorkingDirectory</code>：服务的工作目录。</li>
+<li><code>Environment</code>：设置环境变量 <code>LD_LIBRARY_PATH</code>。</li>
+<li><code>ExecStart</code>：启动服务的命令。</li>
+<li><code>Restart</code>：设置服务在任何情况下都重新启动。</li>
+<li><code>RestartSec</code>：服务重启前的等待时间（秒）。</li>
+</ul>
+</li>
+<li><code>[Install]</code>：安装配置。
+<ul>
+<li><code>WantedBy</code>：服务在多用户模式下启动。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>保存并关闭编辑器</strong>（按 <code>Ctrl+X</code>，然后按 <code>Y</code>，最后按 <code>Enter</code>）。</p>
+</li>
+</ol>
+<h3 id="2-重新加载-systemd-配置">2. 重新加载 <code>systemd</code> 配置</h3>
+<ol>
+<li><strong>重新加载 <code>systemd</code> 配置</strong>：<pre><code class="language-bash">sudo systemctl daemon-reload
+</code></pre>
+</li>
+</ol>
+<h3 id="3-启用并启动服务">3. 启用并启动服务</h3>
+<ol>
+<li>
+<p><strong>启用服务</strong>（确保服务在系统启动时自动启动）：</p>
+<pre><code class="language-bash">sudo systemctl enable useapp.service
+</code></pre>
+</li>
+<li>
+<p><strong>启动服务</strong>：</p>
+<pre><code class="language-bash">sudo systemctl start useapp.service
+</code></pre>
+</li>
+</ol>
+<h3 id="4-检查服务状态">4. 检查服务状态</h3>
+<ol>
+<li>
+<p><strong>检查服务状态</strong>：</p>
+<pre><code class="language-bash">sudo systemctl status useapp.service
+</code></pre>
+<p><strong>预期输出</strong>：</p>
+<ul>
+<li>服务应显示为 <code>active (running)</code>。</li>
+<li>如果服务未启动，查看错误信息并进行相应调整。</li>
+</ul>
+</li>
+</ol>
+<h3 id="5-查看日志">5. 查看日志</h3>
+<ol>
+<li>
+<p><strong>查看 <code>systemd</code> 日志</strong>，以了解服务启动和重启的详细信息：</p>
+<pre><code class="language-bash">sudo journalctl -u useapp.service --since &quot;10 minutes ago&quot;
+</code></pre>
+<p><strong>解释</strong>：</p>
+<ul>
+<li><code>--since &quot;10 minutes ago&quot;</code>：只显示最近10分钟的日志。</li>
+<li>查看日志中的错误信息，以确定服务启动失败的原因。</li>
+</ul>
+</li>
+</ol>
+<h3 id="6-手动测试">6. 手动测试</h3>
+<ol>
+<li>
+<p><strong>手动终止 <code>useApplication</code> 进程</strong>：</p>
+<pre><code class="language-bash">sudo kill $(pgrep useApplication)
+</code></pre>
+</li>
+<li>
+<p><strong>等待几秒钟</strong>，然后检查进程是否重新启动：</p>
+<pre><code class="language-bash">ps -aux | grep useApplication
+</code></pre>
+<p><strong>预期输出</strong>：</p>
+<ul>
+<li>应能看到 <code>useApplication</code> 进程重新启动。</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">老周</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

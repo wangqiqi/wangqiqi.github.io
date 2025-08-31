@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"znza.top","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.23.2","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":{"enable":true},"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":5,"unescape":false,"preload":true,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="使用 crontab 制定定时任务 目标  每分钟清理当前分钟之前的图片。 [可选] 每小时清理当前小时之前的图片。 [可选] 每天清理当前日期之前的图片。   [可选]  环境  操作系统：Ubuntu 22.04 (jetson) 需要清理的文件夹：&#x2F;home&#x2F;nvidia&#x2F;install&#x2F;Snapshot  步骤 1. 编写清理脚本   创建清理脚本： sudo gedit &#x2F;home&#x2F;nv">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Ubuntu Jetson上的定时任务">
+<meta property="og:url" content="https://znza.top/2025/01/01/Ubuntu/ubuntu-jetson%E4%B8%8A%E7%9A%84%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/index.html">
+<meta property="og:site_name" content="老周有AI">
+<meta property="og:description" content="使用 crontab 制定定时任务 目标  每分钟清理当前分钟之前的图片。 [可选] 每小时清理当前小时之前的图片。 [可选] 每天清理当前日期之前的图片。   [可选]  环境  操作系统：Ubuntu 22.04 (jetson) 需要清理的文件夹：&#x2F;home&#x2F;nvidia&#x2F;install&#x2F;Snapshot  步骤 1. 编写清理脚本   创建清理脚本： sudo gedit &#x2F;home&#x2F;nv">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://znza.top/images/logo.svg">
+<meta property="article:published_time" content="2024-12-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-31T13:43:35.358Z">
+<meta property="article:author" content="老周">
+<meta property="article:tag" content="Jetson">
+<meta property="article:tag" content="定时任务">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://znza.top/images/logo.svg">
+
+
+<link rel="canonical" href="https://znza.top/2025/01/01/Ubuntu/ubuntu-jetson%E4%B8%8A%E7%9A%84%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://znza.top/2025/01/01/Ubuntu/ubuntu-jetson%E4%B8%8A%E7%9A%84%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/","path":"2025/01/01/Ubuntu/ubuntu-jetson上的定时任务/","title":"Ubuntu Jetson上的定时任务"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Ubuntu Jetson上的定时任务 | 老周有AI</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="老周有AI" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">老周有AI</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">计算机视觉与人工智能技术分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">76</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">23</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">48</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">使用 crontab 制定定时任务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87"><span class="nav-number">1.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83"><span class="nav-number">1.2.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.3.</span> <span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%BC%96%E5%86%99%E6%B8%85%E7%90%86%E8%84%9A%E6%9C%AC"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 编写清理脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BC%96%E8%BE%91-crontab-%E6%96%87%E4%BB%B6"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 编辑 crontab 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E9%AA%8C%E8%AF%81-cron-%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.3.3.</span> <span class="nav-text">3. 验证 cron 任务</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="老周"
+      src="/images/person.jpg">
+  <p class="site-author-name" itemprop="name">老周</p>
+  <div class="site-description" itemprop="description">老周的个人技术博客，专注于计算机视觉、人工智能和创意编程</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/Ubuntu/ubuntu-jetson%E4%B8%8A%E7%9A%84%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Ubuntu Jetson上的定时任务 | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ubuntu Jetson上的定时任务
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:43:35" itemprop="dateModified" datetime="2025-08-31T21:43:35+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>使用 crontab 制定定时任务</h1>
+<h2 id="目标">目标</h2>
+<ol>
+<li>每分钟清理当前分钟之前的图片。 [可选]</li>
+<li>每小时清理当前小时之前的图片。 [可选]</li>
+<li>每天清理当前日期之前的图片。   [可选]</li>
+</ol>
+<h2 id="环境">环境</h2>
+<ul>
+<li>操作系统：Ubuntu 22.04 (jetson)</li>
+<li>需要清理的文件夹：<code>/home/nvidia/install/Snapshot</code></li>
+</ul>
+<h2 id="步骤">步骤</h2>
+<h3 id="1-编写清理脚本">1. 编写清理脚本</h3>
+<ol>
+<li>
+<p><strong>创建清理脚本</strong>：</p>
+<pre><code class="language-bash">sudo gedit /home/nvidia/install/cleanup_images.sh
+</code></pre>
+</li>
+<li>
+<p><strong>编辑脚本</strong>，输入以下内容：(可选就是选择其中一个,不需要的注释起来)</p>
+<pre><code class="language-bash">#!/bin/bash
+
+# 设置日志文件路径
+LOG_FILE=&quot;/home/nvidia/install/cleanup_images.log&quot;
+
+# 获取当前日期和时间
+CURRENT_DATE=$(date +%Y-%m-%d)
+CURRENT_HOUR=$(date +%H)
+CURRENT_MINUTE=$(date +%M)
+
+# 每分钟清理当前分钟之前的图片 [可选]
+find /home/nvidia/install/Snapshot -type f -name &quot;*.jpg&quot; -mmin +1 -exec rm -f &#123;&#125; \;
+echo &quot;$(date): Cleaned up images older than $CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE (minute)&quot; &gt;&gt; $LOG_FILE
+
+# 每小时清理当前小时之前的图片 [可选]
+find /home/nvidia/install/Snapshot -type f -name &quot;*.jpg&quot; -mmin +60 -exec rm -f &#123;&#125; \;
+echo &quot;$(date): Cleaned up images older than $CURRENT_DATE $CURRENT_HOUR:00 (hour)&quot; &gt;&gt; $LOG_FILE
+
+# 每天清理当前日期之前的图片  [可选]
+find /home/nvidia/install/Snapshot -type f -name &quot;*.jpg&quot; -mtime +1 -exec rm -f &#123;&#125; \;
+echo &quot;$(date): Cleaned up images older than $CURRENT_DATE 00:00 (day)&quot; &gt;&gt; $LOG_FILE
+</code></pre>
+</li>
+<li>
+<p><strong>保存并关闭编辑器</strong></p>
+</li>
+<li>
+<p><strong>使脚本可执行</strong>：</p>
+<pre><code class="language-bash">sudo chmod +x /home/nvidia/install/cleanup_images.sh
+</code></pre>
+</li>
+</ol>
+<h3 id="2-编辑-crontab-文件">2. 编辑 <code>crontab</code> 文件</h3>
+<ol>
+<li>
+<p><strong>使用 <code>vim</code> 编辑 <code>crontab</code> 文件</strong>：</p>
+<pre><code class="language-bash">EDITOR=vim crontab -e
+</code></pre>
+</li>
+<li>
+<p><strong>添加多种清理任务</strong>： (可选就是选择其中一个,不需要的注释起来)</p>
+<pre><code class="language-bash"># 每分钟清理当前分钟之前的图片  [可选]
+* * * * * /home/nvidia/install/cleanup_images.sh
+
+# 每小时清理当前小时之前的图片  [可选]
+0 * * * * /home/nvidia/install/cleanup_images.sh
+
+# 每天清理当前日期之前的图片   [可选]
+0 0 * * * /home/nvidia/install/cleanup_images.sh
+</code></pre>
+</li>
+<li>
+<p><strong>保存并退出</strong>：</p>
+<ul>
+<li>按 <code>Esc</code> 键进入命令模式。</li>
+<li>输入 <code>:wq</code> 保存并退出。</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-验证-cron-任务">3. 验证 <code>cron</code> 任务</h3>
+<ol>
+<li>
+<p><strong>检查 <code>cron</code> 任务是否已添加</strong>：</p>
+<pre><code class="language-bash">crontab -l
+</code></pre>
+<p>你应该能看到类似以下的输出：</p>
+<pre><code>* * * * * /home/nvidia/install/cleanup_images.sh
+0 * * * * /home/nvidia/install/cleanup_images.sh
+0 0 * * * /home/nvidia/install/cleanup_images.sh
+</code></pre>
+</li>
+<li>
+<p><strong>检查 <code>cron</code> 日志</strong>，确保定时任务已成功执行：</p>
+<pre><code class="language-bash">sudo tail -f /home/nvidia/install/cleanup_images.log
+</code></pre>
+<p><strong>预期输出</strong>：</p>
+<ul>
+<li>你应该能看到 <code>cron</code> 任务的执行日志。</li>
+</ul>
+</li>
+<li>
+<p><strong>检查清理日志</strong>，确保脚本已成功执行：</p>
+<pre><code class="language-bash">cat /home/nvidia/install/cleanup_images.log
+</code></pre>
+<p><strong>预期输出</strong>：</p>
+<ul>
+<li>你应该能看到类似以下的记录：<pre><code>2024-11-19 15:01:00: Cleaned up images older than 2024-11-19 15:00 (minute)
+2024-11-19 15:00:00: Cleaned up images older than 2024-11-19 14:00 (hour)
+2024-11-19 00:00:00: Cleaned up images older than 2024-11-18 00:00 (day)
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Jetson/" rel="tag"># Jetson</a>
+              <a href="/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" rel="tag"># 定时任务</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/01/01/Ubuntu/ubuntu2204%20%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" rel="prev" title="Ubuntu2204 环境配置">
+                  <i class="fa fa-angle-left"></i> Ubuntu2204 环境配置
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/01/01/Ubuntu/Ubuntu2204%E6%8C%82%E8%BD%BD%E7%BE%A4%E6%99%96NAS/" rel="next" title="Ubuntu2204挂载群晖Nas">
+                  Ubuntu2204挂载群晖Nas <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">老周</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

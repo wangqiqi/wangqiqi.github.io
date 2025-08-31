@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"znza.top","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.23.2","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":{"enable":true},"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":5,"unescape":false,"preload":true,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="保姆级教程，看这一篇就够用了。 在翻阅了网络上很多资料后，发现很多版本的信息比匹配。 花了一周的时间配置环境，以及环境验证，然后写了这篇长文。 有过程，有代码，有经验，欢迎大家批评指正。  一、环境准备 将宿主机和开发板接入同一个局域网，方便开发。 （一）宿主机  PC电脑，x86_64, 带显卡, 配置不表, 能训练和开发即可。 系统： ubuntu 22.04 LTS 版本( ubuntu">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效）">
+<meta property="og:url" content="https://znza.top/2025/01/01/RK3588/yolov5%E8%AE%AD%E7%BB%83%E4%B8%8Erknn%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%87%BA%E5%B9%B6%E5%9C%A8RK3588%E9%83%A8%E7%BD%B2%EF%BC%88%E4%BA%B2%E6%B5%8B%E6%9C%89%E6%95%88%EF%BC%89/index.html">
+<meta property="og:site_name" content="老周有AI">
+<meta property="og:description" content="保姆级教程，看这一篇就够用了。 在翻阅了网络上很多资料后，发现很多版本的信息比匹配。 花了一周的时间配置环境，以及环境验证，然后写了这篇长文。 有过程，有代码，有经验，欢迎大家批评指正。  一、环境准备 将宿主机和开发板接入同一个局域网，方便开发。 （一）宿主机  PC电脑，x86_64, 带显卡, 配置不表, 能训练和开发即可。 系统： ubuntu 22.04 LTS 版本( ubuntu">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://znza.top/images/logo.svg">
+<meta property="article:published_time" content="2025-01-01T08:45:48.000Z">
+<meta property="article:modified_time" content="2025-08-31T13:58:39.121Z">
+<meta property="article:author" content="老周">
+<meta property="article:tag" content="RK3588">
+<meta property="article:tag" content="YOLOv5">
+<meta property="article:tag" content="部署">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://znza.top/images/logo.svg">
+
+
+<link rel="canonical" href="https://znza.top/2025/01/01/RK3588/yolov5%E8%AE%AD%E7%BB%83%E4%B8%8Erknn%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%87%BA%E5%B9%B6%E5%9C%A8RK3588%E9%83%A8%E7%BD%B2%EF%BC%88%E4%BA%B2%E6%B5%8B%E6%9C%89%E6%95%88%EF%BC%89/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://znza.top/2025/01/01/RK3588/yolov5%E8%AE%AD%E7%BB%83%E4%B8%8Erknn%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%87%BA%E5%B9%B6%E5%9C%A8RK3588%E9%83%A8%E7%BD%B2%EF%BC%88%E4%BA%B2%E6%B5%8B%E6%9C%89%E6%95%88%EF%BC%89/","path":"2025/01/01/RK3588/yolov5训练与rknn模型导出并在RK3588部署（亲测有效）/","title":"Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效） | 老周有AI</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="老周有AI" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">老周有AI</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">计算机视觉与人工智能技术分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">76</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">23</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">48</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">一、环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E5%AE%BF%E4%B8%BB%E6%9C%BA"><span class="nav-number">1.1.</span> <span class="nav-text">（一）宿主机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E5%BC%80%E5%8F%91%E6%9D%BF"><span class="nav-number">1.2.</span> <span class="nav-text">（二）开发板</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%8E%AF%E5%A2%83%E9%AA%8C%E8%AF%81"><span class="nav-number">2.</span> <span class="nav-text">二、环境验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E6%9D%BF%E7%AB%AF%E9%AA%8C%E8%AF%81"><span class="nav-number">2.1.</span> <span class="nav-text">（一）板端验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89RKNN-Toolkit2-Lite-%E6%9D%BF%E7%AB%AF"><span class="nav-number">2.2.</span> <span class="nav-text">（二）RKNN-Toolkit2-Lite(板端)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%BF%E4%B8%BB%E6%9C%BA"><span class="nav-number">2.3.</span> <span class="nav-text">（三）宿主机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81yolov5-%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">三、yolov5 训练自己的模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%86%8D%E6%AC%A1%E9%AA%8C%E8%AF%81"><span class="nav-number">3.1.</span> <span class="nav-text">（一）虚拟环境再次验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E4%BB%93%E5%BA%93%E6%BA%90%E7%A0%81"><span class="nav-number">3.2.</span> <span class="nav-text">（二）仓库源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E8%AE%AD%E7%BB%83"><span class="nav-number">3.3.</span> <span class="nav-text">（三）训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E5%9B%9B%EF%BC%89%E5%AF%BC%E5%87%BA%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.4.</span> <span class="nav-text">（四）导出模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%94%EF%BC%89%E9%83%A8%E7%BD%B2%E6%B5%8B%E8%AF%95%E6%A8%A1%E5%9E%8B%EF%BC%88%E8%A7%81%E4%B8%8B%E4%B8%80%E7%AF%87%E5%8D%9A%E6%96%87%EF%BC%89"><span class="nav-number">3.5.</span> <span class="nav-text">（五）部署测试模型（见下一篇博文）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E5%BD%95%E4%BF%A1%E6%81%AF"><span class="nav-number">4.</span> <span class="nav-text">附录信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%84%E6%A0%BC%E4%B9%A6"><span class="nav-number">4.1.</span> <span class="nav-text">规格书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%EF%BC%88%E4%BB%A5%E4%B8%8B%E4%B8%BA%E7%BC%96%E6%92%B0%E6%9C%AC%E6%96%87%E7%9A%84%E5%BC%95%E7%94%A8%E5%8F%82%E8%80%83%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">参考（以下为编撰本文的引用参考）</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="老周"
+      src="/images/person.jpg">
+  <p class="site-author-name" itemprop="name">老周</p>
+  <div class="site-description" itemprop="description">老周的个人技术博客，专注于计算机视觉、人工智能和创意编程</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/RK3588/yolov5%E8%AE%AD%E7%BB%83%E4%B8%8Erknn%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%87%BA%E5%B9%B6%E5%9C%A8RK3588%E9%83%A8%E7%BD%B2%EF%BC%88%E4%BA%B2%E6%B5%8B%E6%9C%89%E6%95%88%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效） | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 16:45:48" itemprop="dateCreated datePublished" datetime="2025-01-01T16:45:48+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:58:39" itemprop="dateModified" datetime="2025-08-31T21:58:39+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/RK3588/" itemprop="url" rel="index"><span itemprop="name">RK3588</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p><strong>保姆级教程，看这一篇就够用了。</strong><br>
+在翻阅了网络上很多资料后，发现很多版本的信息比匹配。<br>
+花了一周的时间配置环境，以及环境验证，然后写了这篇长文。<br>
+有过程，有代码，有经验，欢迎大家批评指正。</p>
+</blockquote>
+<h2 id="一、环境准备">一、环境准备</h2>
+<p>将宿主机和开发板接入同一个局域网，方便开发。</p>
+<h3 id="（一）宿主机">（一）宿主机</h3>
+<ol>
+<li>PC电脑，<code>x86_64</code>, 带显卡, 配置不表, 能训练和开发即可。</li>
+<li>系统： <code>ubuntu 22.04 LTS</code> 版本( <code>ubuntu 18.04 LTS</code> 以上)</li>
+<li>自带的远程软件： <code>Remmina</code> 可以建立 <code>ssh</code> 连接，也可以建立 <code>sftp</code> 连接传输文件。</li>
+<li><code>Anaconda</code>: 可以配置 <code>python</code> 开发的虚拟环境</li>
+<li>需要在宿主机上安装 <strong>RKNN-Toolkit2</strong></li>
+</ol>
+<h4 id="1-RKNN-Toolkit2">1. RKNN-Toolkit2</h4>
+<blockquote>
+<p>用于在 PC 端将用户训练的模型转换为 RKNN 模型。</p>
+</blockquote>
+<p><code>RKNN-Toolkit2</code> 是为用户提供在 <code>PC</code> 平台上进行模型转换、推理和性能评估的开发套件，用户通过该工具提供的<code>Python</code> 接口可以便捷地完成以下功能：</p>
+<ul>
+<li>模型转换：支持 <code>Caffe、TensorFlow、TensorFlowLite、ONNX、DarkNet、PyTorch</code> 等模型转为 <code>RKNN</code> 模型，并支持 <code>RKNN</code> 模型导入导出， <code>RKNN</code> 模型能够在 <code>Rockchip NPU</code> 平台上加载使用。</li>
+<li>量化功能：支持将浮点模型量化为定点模型，目前支持的量化方法为非对称量化（asymmetric_quantized-8），并支持混合量化功能。</li>
+<li>模型推理：能够在 <code>PC（Linux x86平台）</code>上模拟 <code>Rockchip NPU</code> 运行 <code>RKNN</code> 模型并获取推理结果；或将 <code>RKNN</code> 模型分发到指定的 <code>NPU</code> 设备上进行推理并获取推理结果。</li>
+<li>性能和内存评估：将 <code>RKNN</code> 模型分发到指定 <code>NPU</code> 设备上运行，以评估模型在实际设备上运行时的性能和内存占用情况。</li>
+<li>量化精度分析：该功能将给出模型量化前后每一层推理结果与浮点模型推理结果的余弦距离，以便于分析量化误差是如何出现的，为提高量化模型的精度提供思路。</li>
+<li>模型加密功能：使用指定的加密等级将 <code>RKNN</code> 模型整体加密。因为 <code>RKNN</code> 模型的加密是在 <code>NPU</code> 驱动中完成的，使用加密模型时，与普通 <code>RKNN</code> 模型一样加载即可， <code>NPU</code> 驱动会自动对其进行解密。</li>
+</ul>
+<p>目前只支持 <code>Ubuntu 18.04 LTS</code> 以上版本系统。由于 <code>github</code> <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvY2tjaGlwLWxpbnV4L3Jrbm4tdG9vbGtpdDI=">https://github.com/rockchip-linux/rknn-toolkit2<i class="fa fa-external-link-alt"></i></span> 下载较慢，可以直接网盘下载:<span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMVhnUWlJQ1JfZDFlbDRrV2FZWmxvckE=">百度网盘-RKNN-Toolkit2<i class="fa fa-external-link-alt"></i></span>  提取码: 8888</p>
+<h3 id="（二）开发板">（二）开发板</h3>
+<ol>
+<li>整机，用的是 <code>RK3588</code> 整机。（<em>NOTE: 我这里用的是定昌电子提供的整机，其他设备没有尝试</em>）</li>
+<li>系统：<code>ubuntu 20.04 LTS</code> 版本</li>
+<li>需要在开发板上安装 <strong>RKNPU2</strong></li>
+</ol>
+<h4 id="1-RKNPU2">1. RKNPU2</h4>
+<p><code>RKNPU2</code> 提供了高级的接口访问 <code>Rockchip</code> 的 <code>NPU</code> ，可以在板端做很多应用。由于 <code>github</code>  <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvY2tjaGlwLWxpbnV4L3JrbnB1Mg==">https://github.com/rockchip-linux/rknpu2<i class="fa fa-external-link-alt"></i></span> 下载较慢，可以直接网盘下载: <span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMWlqZWdlcmdmQlpvSmdtSGhHRFdsV1E=">百度网盘-RKNPU2<i class="fa fa-external-link-alt"></i></span> 提取码: 8888</p>
+<blockquote>
+<p><strong>1.4.0</strong></p>
+<ul>
+<li>Support more NPU operators, such as Reshape、Transpose、MatMul、 Max、Min、exGelu、exSoftmax13、Resize etc.</li>
+<li>Add Weight Share function, reduce memory usage.</li>
+<li>Add Weight Compression function, reduce memory and bandwidth usage.(RK3588/RV1103/RV1106)</li>
+<li>RK3588 supports storing weights or feature maps on SRAM, reducing system bandwidth consumption.</li>
+<li>RK3588 adds the function of running a single model on multiple cores at the same time.</li>
+<li>Add new output layout NHWC (C has alignment restrictions) .</li>
+<li>Improve support for non-4D input.</li>
+<li>Add more examples such as rknn_yolov5_android_apk_demo and rknn_internal_mem_reuse_demo.</li>
+<li>Bug fix.</li>
+</ul>
+</blockquote>
+<h4 id="2-RKNN-Toolkit2-Lite">2. RKNN-Toolkit2-Lite</h4>
+<blockquote>
+<p><strong>在板端测试运行</strong></p>
+</blockquote>
+<p>-<code> RKNN-Toolkit-Lite2</code> 为 <code>Rockchip NPU</code> 平台（<code>RK3566、RK3568、RK3588、RK3598S</code>）提供 <code>Python</code> 编程接口，帮助用户部署 <code>RKNN</code> 模型并加速 <code>AI</code> 应用程序的实现。</p>
+<blockquote>
+<h4 id="刷机（非必要不刷机）">刷机（非必要不刷机）</h4>
+<p>非必要不刷机，一般情况下购买的板子已经刷好了系统，可以直接运行，我这里只测试了一个板子，其他板子未确定环境是否符合要求。<br>
+<strong>刷机工具</strong>: <span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMXNFNGhRa2lqaF93M2t5OHJvck9PV2c=">百度网盘-刷机工具<i class="fa fa-external-link-alt"></i></span> 提取码: 8888<br>
+<strong>刷机系统</strong>: <span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMXQxaTBrUTZrbU1hTU40VVMtSTVPSWc=">百度网盘-刷机系统<i class="fa fa-external-link-alt"></i></span> 提取码: 8888<br>
+刷机过程可以参考(过程类似):<br>
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc3OTgwOTU=">【边缘设备】基于RK3399核心板的nanoPC-T4 线刷桌面版系统<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<h2 id="二、环境验证">二、环境验证</h2>
+<h3 id="（一）板端验证">（一）板端验证</h3>
+<p><span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMU1yVVhzS1Y3Q3hsQzVfcGRrZ2c4d2c=">百度网盘-rknn_yolov5_rk3588_v14<i class="fa fa-external-link-alt"></i></span> 提取码: 8888</p>
+<p>在宿主机上打开 <code>Remmina</code>, 输入 <em>IP地址，用户名，密码</em> 连接开发板。将以上文件下载后，放到开发板上，并解压。<br>
+<img data-src="https://img-blog.csdnimg.cn/9c763fa19fdb47a4b551721051f216b0.png" alt="在这里插入图片描述"><br>
+<img data-src="https://img-blog.csdnimg.cn/83c6e9315b3c49da89b7b04dc044bfb3.png" alt="在这里插入图片描述"><br>
+可以看到在 <code>RK3588</code> 上利用 <code>NPU</code> 运行 <code>yolov5</code> 模型，耗时在 <code>33.8 ms</code> 左右。板端环境已经具备。</p>
+<h3 id="（二）RKNN-Toolkit2-Lite-板端">（二）RKNN-Toolkit2-Lite(板端)</h3>
+<h4 id="1-安装-Miniconda">1. 安装 <code>Miniconda</code></h4>
+<p>在板端下载 <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmNvbmRhLmlvL2VuL2xhdGVzdC9taW5pY29uZGEuaHRtbA==">Miniconda<i class="fa fa-external-link-alt"></i></span>， 版本为<br>
+<img data-src="https://img-blog.csdnimg.cn/72b62b3ea01f42559abe75849d0845e8.png" alt="在这里插入图片描述"></p>
+<pre><code class="language-bash">bash Miniconda3-py39_23.3.1-0-Linux-aarch64.sh
+</code></pre>
+<p>一路安装直到成功。</p>
+<h4 id="2-虚拟环境">2. 虚拟环境</h4>
+<p>在<strong>板端</strong>安装完成后。创建并激活虚拟环境</p>
+<pre><code class="language-bash">conda create -n rknn python=3.9
+conda activate rknn
+</code></pre>
+<p>进入 <code>rknn_toolkit_lite2</code> 目录，</p>
+<h4 id="3-安装环境依赖">3. 安装环境依赖</h4>
+<pre><code class="language-bash">pip install packages/rknn_toolkit_lite2-1.4.0-cp39-cp39-linux_aarch64.whl
+</code></pre>
+<p>如果安装较慢，修改国内的 <code>pip</code> 源，</p>
+<p><code>pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></p>
+<p>如果缺少其他包库，直接用 <code>pip</code> 进行安装。</p>
+<h4 id="4-测试验证">4. 测试验证</h4>
+<p>进入目录 <code>examples/inference_with_lite</code> ，</p>
+<p>执行 <code>python test.py</code> 即可。</p>
+<p>至此，板端的 rknn_toolkit_lite2 已经安装和验证完毕。后续可以在板端进行开发和部署 <code>python</code> 程序。</p>
+<p><strong>NOTE</strong></p>
+<blockquote>
+<p>如果执行 <code>python test.py</code> 提示缺少 <code>librknnrt.so</code> 或 <code>librga.so</code> 库，请在 github 下载，或者在其他目录下将 <code>librknnrt.so</code> 或 <code>librga.so</code>  拷贝至  <code>/usr/lib</code> 目录中。</p>
+</blockquote>
+<p>如果想在板端打开终端时默认启动 rknn 的虚拟环境，</p>
+<pre><code class="language-bash">vi ~/.bashrc
+</code></pre>
+<p>在里面添加 <code>conda activate rknn</code></p>
+<h3 id="（三）宿主机">（三）宿主机</h3>
+<h4 id="1-创建并激活虚拟环境">1. 创建并激活虚拟环境</h4>
+<p><strong>安装 <code>rknn</code> 虚拟环境</strong></p>
+<pre><code class="language-bash">conda create -n rknn python=3.8
+conda activate rknn
+</code></pre>
+<p><strong>安装 <code>pytorch</code> 虚拟环境</strong></p>
+<pre><code class="language-bash">conda create -n pytorch
+</code></pre>
+<p>这里可以简单一点，创建 <code>pytorch </code>环境的依赖, 也可以按照 <code>pytorch</code> 官方教程下载相应的包。</p>
+<pre><code class="language-bash">pip install ultralytics
+</code></pre>
+<p>缺啥补啥: <code>pip install xx</code></p>
+<h4 id="2-安装依赖">2. 安装依赖</h4>
+<p>进入 rknn 虚拟环境, 并进入 <code>rknn-toolkit2</code> 目录,</p>
+<pre><code class="language-bash">source activate rknn
+pip install -r doc/requirements_cp38-1.4.0.txt
+</code></pre>
+<blockquote>
+<p><strong>requirements_cp38-1.4.0.txt</strong> 文件内容如下：</p>
+</blockquote>
+<pre><code class="language-bash"># if install failed, please change the pip source to 'https://mirror.baidu.com/pypi/simple'
+
+# base deps
+numpy==1.19.5
+protobuf==3.12.2
+flatbuffers==1.12
+
+# utils
+requests==2.27.1
+psutil==5.9.0
+ruamel.yaml==0.17.4
+scipy==1.5.4
+tqdm==4.64.0
+bfloat16==1.1
+opencv-python==4.5.5.64
+
+# base
+onnx==1.9.0
+onnxoptimizer==0.2.7
+onnxruntime==1.10.0
+torch==1.10.1
+torchvision==0.11.2
+tensorflow==2.6.2
+</code></pre>
+<h4 id="3-安装环境">3. 安装环境</h4>
+<p>进入 rknn 虚拟环境, 并进入 <code>rknn-toolkit2</code> 目录</p>
+<pre><code class="language-bash">source activate rknn
+pip install packages/rknn_toolkit2-1.4.0_22dcfef4-cp38-cp38-linux_x86_64.whl
+</code></pre>
+<h4 id="4-进入-rknn-虚拟环境-并验证是否安装成功-rknn">4. 进入 rknn 虚拟环境, 并验证是否安装成功 <code>rknn</code></h4>
+<pre><code class="language-bash">source activate rknn
+</code></pre>
+<p><img data-src="https://img-blog.csdnimg.cn/75c10e6f648941ffa331eedbf865c6f0.png" alt="在这里插入图片描述"></p>
+<p><code>python</code> 进入开发环境</p>
+<pre><code class="language-python">from rknn.api import RKNN
+</code></pre>
+<p>没有报错，就说明 <code>RKNN</code> 已经安装成功。</p>
+<h4 id="5-测试">5. 测试</h4>
+<p>在<strong>宿主机</strong>上，进入 <code>rknn</code> 虚拟环境，</p>
+<pre><code class="language-bash">cd examples/onnx/yolov5/
+tree .
+</code></pre>
+<pre><code class="language-bash">.
+├── bus.jpg
+├── dataset.txt
+├── test.py
+└── yolov5s.onnx
+</code></pre>
+<pre><code class="language-bash">python test.py
+</code></pre>
+<p><img data-src="https://img-blog.csdnimg.cn/ce07d68875724ba89bf2cb3031600b43.png" alt="在这里插入图片描述"></p>
+<h4 id="6-将-rknn-模型放到板端验证">6. 将 <code>rknn</code> 模型放到板端验证</h4>
+<p>将上述步骤生成的  <code>yolov5s.rknn</code> 放到板端测试。</p>
+<pre><code class="language-bash">.
+├── lib
+│   ├── librga.so
+│   └── librknnrt.so
+├── model
+│   ├── RK356X
+│   │   └── yolov5s-640-640.rknn
+│   ├── RK3588
+│   │   ├── yolov5s-640-640.rknn
+│   │   └── yolov5s.rknn
+│   ├── RV110X
+│   │   └── yolov5s-640-640.rknn
+│   ├── bus.jpg
+│   └── coco_80_labels_list.txt
+├── out.jpg
+├── rknn_yolov5_demo
+└── testYolov5_rk3588.sh
+</code></pre>
+<p>修改 <strong>板端</strong> 文件</p>
+<p><code>bash testYolov5_rk3588.sh</code> 中的</p>
+<p><code>./rknn_yolov5_demo model/RK3588/yolov5s-640-640.rknn model/bus.jpg</code></p>
+<p>为</p>
+<p><code>./rknn_yolov5_demo model/RK3588/yolov5s.rknn model/bus.jpg</code>。</p>
+<p>并在板端执行 <code>bash testYolov5_rk3588.sh</code></p>
+<pre><code class="language-bash">ztl@ztl:~/workspace/demo_rknn_yolov5_rk3588_v14$ bash testYolov5_rk3588.sh 
+post process config: box_conf_threshold = 0.25, nms_threshold = 0.45
+Read model/bus.jpg ...
+img width = 640, img height = 640
+Loading mode...
+E RKNN: [05:25:08.050] failed to check rknpu hardware version: 0x46495245
+E RKNN: [05:25:08.050] This rknn model is for RK3566, but current platform is RK3588
+E RKNN: [05:25:08.050] rknn_init, load model failed!
+rknn_init error ret=-1
+</code></pre>
+<p>出现报错信息，重新在宿主机平台上设置平台信息；</p>
+<p>将</p>
+<p><code>rknn.config(mean_values=[[0, 0, 0]], std_values=[[255, 255, 255]])</code></p>
+<p>修改为</p>
+<p><code>rknn.config(mean_values=[[0, 0, 0]], std_values=[[255, 255, 255]], target_platform='rk3588')</code></p>
+<p>并重新执行</p>
+<p><code>python test.py</code></p>
+<p>生成 <code>yolov5s.rknn</code> 模型并上传到板端对应位置。</p>
+<p>重新在板端执行 <code>bash testYolov5_rk3588.sh</code>，运行效果正常。</p>
+<p>至此，已经可以在 <strong>宿主机</strong> 上用给定的 <code>demo</code> 转换模型，并将模型上传到 <strong>板端</strong> ，可以正确运行。</p>
+<blockquote>
+<p><strong>NOTE：共有四种方式开发和部署</strong></p>
+<ul>
+<li>第一种是借助 <code>RKNN-Toolkit2</code> 的功能在模拟 <code>NPU</code> 上运行 <code>RKNN</code> 模型并获取推理结果（在PC端）</li>
+<li>第二种是借助 <code>RKNN-Toolkit2</code> 的功能, 将板子与 <code>PC</code> 连接，将 <code>RKNN</code> 模型分发到指定的 <code>NPU</code> 设备进行推理并获取推理结果（网络推理在板端，脚本写在 <code>PC</code> 端）</li>
+<li>第三种是调用 <code>RKNN SDK</code> 的 <code>C/C++</code> 语言 <code>API</code> 进行测试代码编写，并使用交叉编译器进行编译，将得到的可执行文件拷贝到板子上运行（开发编译在 <code>PC</code> 端，运行在板端），此处也可以通过 <code>VS Code</code> 连接板端，在板端开发应用。</li>
+<li>第四种是在板端安装 <code>rknn-toolkit2-lite</code> 工具，使用 <code>python</code> 脚本在板端推理（代码开发运行都在板端）</li>
+</ul>
+</blockquote>
+<h2 id="三、yolov5-训练自己的模型">三、yolov5 训练自己的模型</h2>
+<h3 id="（一）虚拟环境再次验证">（一）虚拟环境再次验证</h3>
+<p>我的电脑上有多个虚拟环境，一个是 <code>pytorch</code> ( 常用的深度学习框架的虚拟环境 ), 一个是 <code>rknn</code>( 就是之前安装 <code>toolkit2</code> 时新建的虚拟环境)。</p>
+<p><strong>pytorch虚拟环境信息</strong></p>
+<pre><code class="language-bash">(base) jxx@desk:~$ source activate pytorch
+(pytorch) jxx@desk:~$ python
+Python 3.10.11 (main, Apr 20 2023, 19:02:41) [GCC 11.2.0] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import torch
+&gt;&gt;&gt; import torchvision
+&gt;&gt;&gt; print(torch.__version__)
+2.0.0+cu117
+&gt;&gt;&gt; print(torchvision.__version__)
+0.15.1+cu117
+</code></pre>
+<p><strong>rknn虚拟环境信息</strong></p>
+<pre><code class="language-bash">(base) jxx@desk:~$ source activate rknn
+(rknn) jxx@desk:~$ python
+Python 3.8.16 (default, Mar  2 2023, 03:21:46) 
+[GCC 11.2.0] :: Anaconda, Inc. on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import torch
+&gt;&gt;&gt; import torchvision
+&gt;&gt;&gt; print(torch.__version__)
+1.10.1+cu102
+&gt;&gt;&gt; print(torchvision.__version__)
+0.11.2+cu102
+&gt;&gt;&gt; 
+</code></pre>
+<h3 id="（二）仓库源码">（二）仓库源码</h3>
+<p>直接下载 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhbmdxaXFpL3lvbG92NQ==">rknn_dev yolov5 github<i class="fa fa-external-link-alt"></i></span>，并切换到 <code>rknn_dev</code> 分支</p>
+<pre><code class="language-bash">git clone https://github.com/wangqiqi/yolov5
+git checkout rknn_dev # 切换到 rknn_dev 分支
+</code></pre>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3VsdHJhbHl0aWNzL3lvbG92NS9yZWxlYXNlcy90YWcvdjUuMA==">预训练模型下载地址<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9vYmplY3RzLmdpdGh1YnVzZXJjb250ZW50LmNvbS9naXRodWItcHJvZHVjdGlvbi1yZWxlYXNlLWFzc2V0LTJlNjViZS8yNjQ4MTg2ODYvNTZkZDM0ODAtOWFmMy0xMWViLTljOTItM2VjZDE2Nzk2MWRjP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQUlXTkpZQVg0Q1NWRUg1M0ElMkYyMDIzMDUwNCUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyMzA1MDRUMDczOTAyWiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9MDIzMGYxNmFjOGU2MWVkMDZiOGFlNTFlNjljY2EzNTE5NDFiYTBiYjRkZTZiYTlmMzk2ODhmNDJmZWNmMzU1ZSZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QmYWN0b3JfaWQ9MzE4MjQ1MSZrZXlfaWQ9MCZyZXBvX2lkPTI2NDgxODY4NiZyZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPWF0dGFjaG1lbnQlM0IlMjBmaWxlbmFtZSUzRHlvbG92NXMucHQmcmVzcG9uc2UtY29udGVudC10eXBlPWFwcGxpY2F0aW9uJTJGb2N0ZXQtc3RyZWFt">yolov5s<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="（三）训练">（三）训练</h3>
+<h4 id="1-标注数据">1. 标注数据</h4>
+<p>可以用 <code>cvat</code> 或者 <code>labelme</code> 或者其他工具对检测数据进行标注。</p>
+<p>在 <code>yolov5</code> 同级目录新建一个 <code>datasets</code> 文件夹，将标注好的数据打包到项目名称文件夹，然后放到 <code>datasets</code> 目录下，后续其他项目也可以同样进行。</p>
+<h4 id="2-修改参数">2. 修改参数</h4>
+<h5 id="（1）修改-data-proj-yaml">（1）修改 <code>./data/proj.yaml</code></h5>
+<p>在 <code>yolov5</code> 文件下找到 <code>data</code> 目录，新建一个  <code>proj.yaml</code> 文件，类似于 <code>drp.yaml</code>。</p>
+<p>修改 <code>proj.yaml</code> 中的 <code>nc</code> 和 <code>names</code>;</p>
+<p><code>nc</code>: 类别数<br>
+<code>names</code>: 类别名称列表</p>
+<h5 id="（2）修改-config-onekey-sh">（2）修改 <code>config_onekey.sh</code></h5>
+<p>根据项目要求，修改 <code>config_onekey.sh</code> 文件中的相关参数；</p>
+<p>例如:</p>
+<p><code>__PRJNAME</code>, <code>__EPOCHSZ</code>, <code>__BATCHSZ</code>, <code>__IMSZ</code> 等等。</p>
+<h4 id="3-开始一键训练">3. 开始一键训练</h4>
+<p><strong>前提条件: 已经创建了虚拟环境 <code>pytorch</code></strong><br>
+<strong>前提条件: 已经创建了虚拟环境 <code>pytorch</code></strong><br>
+<strong>前提条件: 已经创建了虚拟环境 <code>pytorch</code></strong></p>
+<p>下载预训练模型到 <code>yolov5</code> 同级目录  <code>pre-trained</code> 文件夹下，预训练模型下载地址</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3VsdHJhbHl0aWNzL3lvbG92NS9yZWxlYXNlcy90YWcvdjUuMA==">预训练模型下载地址<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9vYmplY3RzLmdpdGh1YnVzZXJjb250ZW50LmNvbS9naXRodWItcHJvZHVjdGlvbi1yZWxlYXNlLWFzc2V0LTJlNjViZS8yNjQ4MTg2ODYvNTZkZDM0ODAtOWFmMy0xMWViLTljOTItM2VjZDE2Nzk2MWRjP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQUlXTkpZQVg0Q1NWRUg1M0ElMkYyMDIzMDUwNCUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyMzA1MDRUMDczOTAyWiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9MDIzMGYxNmFjOGU2MWVkMDZiOGFlNTFlNjljY2EzNTE5NDFiYTBiYjRkZTZiYTlmMzk2ODhmNDJmZWNmMzU1ZSZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QmYWN0b3JfaWQ9MzE4MjQ1MSZrZXlfaWQ9MCZyZXBvX2lkPTI2NDgxODY4NiZyZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPWF0dGFjaG1lbnQlM0IlMjBmaWxlbmFtZSUzRHlvbG92NXMucHQmcmVzcG9uc2UtY29udGVudC10eXBlPWFwcGxpY2F0aW9uJTJGb2N0ZXQtc3RyZWFt">yolov5s<i class="fa fa-external-link-alt"></i></span></p>
+<p>在训练之前确定  <code>./models/yolo.py</code> 文件中的 <code>class Detect(nn.Module):</code> 类 <code>line:55</code> 里 <code>forward</code> 代码是否解注释了。</p>
+<p><strong>如果训练， <code>forward</code> 应为</strong></p>
+<pre><code class="language-python">    def forward(self, x):
+        z = []  # inference output
+        for i in range(self.nl):
+            x[i] = self.m[i](x[i])  # conv
+        
+        ## 此处如果是训练, 请解开以下注释
+            bs, _, ny, nx = x[i].shape  # x(bs,255,20,20) to x(bs,3,20,20,85)
+            x[i] = x[i].view(bs, self.na, self.no, ny, nx).permute(0, 1, 3, 4, 2).contiguous()
+
+            if not self.training:  # inference
+                if self.grid[i].shape[2:4] != x[i].shape[2:4] or self.onnx_dynamic:
+                    self.grid[i] = self._make_grid(nx, ny).to(x[i].device)
+
+                y = x[i].sigmoid()
+                if self.inplace:
+                    y[..., 0:2] = (y[..., 0:2] * 2. - 0.5 + self.grid[i]) * self.stride[i]  # xy
+                    y[..., 2:4] = (y[..., 2:4] * 2) ** 2 * self.anchor_grid[i]  # wh
+                else:  # for YOLOv5 on AWS Inferentia https://github.com/ultralytics/yolov5/pull/2953
+                    xy = (y[..., 0:2] * 2. - 0.5 + self.grid[i]) * self.stride[i]  # xy
+                    wh = (y[..., 2:4] * 2) ** 2 * self.anchor_grid[i].view(1, self.na, 1, 1, 2)  # wh
+                    y = torch.cat((xy, wh, y[..., 4:]), -1)
+                z.append(y.view(bs, -1, self.no))
+
+        return x if self.training else (torch.cat(z, 1), x)
+</code></pre>
+<p><strong>开始一键训练</strong><br>
+<strong>前提条件: 已经创建了虚拟环境 <code>pytorch</code></strong><br>
+<strong>前提条件: 已经创建了虚拟环境 <code>pytorch</code></strong><br>
+<strong>前提条件: 已经创建了虚拟环境 <code>pytorch</code></strong></p>
+<pre><code class="language-bash">bash onekey_bash/train.sh
+</code></pre>
+<p><em>终端显示如下:</em></p>
+<pre><code class="language-bash">(base) jxxx@desk:~/workspace/algo/yolov5_rknn$ bash onekey_bash/train.sh 
+train: weights=../pre-trained/yolov5s.pt, cfg=, data=data/drp.yaml, hyp=data/hyps/hyp.scratch.yaml, epochs=100, batch_size=32, imgsz=320, rect=True, resume=False, nosave=False, noval=False, noautoanchor=False, evolve=None, bucket=, cache=None, image_weights=False, device=, multi_scale=False, single_cls=False, adam=False, sync_bn=False, workers=8, project=runs/train, entity=None, name=drp, exist_ok=True, quad=False, linear_lr=False, label_smoothing=0.0, upload_dataset=False, bbox_interval=-1, save_period=-1, artifact_alias=latest, local_rank=-1, freeze=0, patience=100
+github: ⚠️ YOLOv5 is out of date by 1203 commits. Use `git pull` or `git clone git@github.com:wangqiqi/yolov5` to update.
+YOLOv5 🚀 c5360f6 torch 2.0.0+cu117 CUDA:0 (NVIDIA GeForce RTX 4090, 24209.125MB)
+
+hyperparameters: lr0=0.01, lrf=0.2, momentum=0.937, weight_decay=0.0005, warmup_epochs=3.0, warmup_momentum=0.8, warmup_bias_lr=0.1, box=0.05, cls=0.5, cls_pw=1.0, obj=1.0, obj_pw=1.0, iou_t=0.2, anchor_t=4.0, fl_gamma=0.0, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, degrees=0.0, translate=0.1, scale=0.5, shear=0.0, perspective=0.0, flipud=0.0, fliplr=0.5, mosaic=1.0, mixup=0.0, copy_paste=0.0
+Weights &amp; Biases: run 'pip install wandb' to automatically track and visualize YOLOv5 🚀 runs (RECOMMENDED)
+TensorBoard: Start with 'tensorboard --logdir runs/train', view at http://localhost:6006/
+Overriding model.yaml nc=80 with nc=1
+
+                 from  n    params  module                                  arguments                     
+  0                -1  1      3520  models.common.Focus                     [3, 32, 3]                    
+  1                -1  1     18560  models.common.Conv                      [32, 64, 3, 2]                
+  2                -1  1     18816  models.common.C3                        [64, 64, 1]                   
+  3                -1  1     73984  models.common.Conv                      [64, 128, 3, 2]               
+  4                -1  3    156928  models.common.C3                        [128, 128, 3]                 
+  5                -1  1    295424  models.common.Conv                      [128, 256, 3, 2]              
+  6                -1  3    625152  models.common.C3                        [256, 256, 3]                 
+  7                -1  1   1180672  models.common.Conv                      [256, 512, 3, 2]              
+  8                -1  1    656896  models.common.SPP                       [512, 512, [5, 9, 13]]        
+  9                -1  1   1182720  models.common.C3                        [512, 512, 1, False]          
+ 10                -1  1    131584  models.common.Conv                      [512, 256, 1, 1]              
+ 11                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']          
+ 12           [-1, 6]  1         0  models.common.Concat                    [1]                           
+ 13                -1  1    361984  models.common.C3                        [512, 256, 1, False]          
+ 14                -1  1     33024  models.common.Conv                      [256, 128, 1, 1]              
+ 15                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']          
+ 16           [-1, 4]  1         0  models.common.Concat                    [1]                           
+ 17                -1  1     90880  models.common.C3                        [256, 128, 1, False]          
+ 18                -1  1    147712  models.common.Conv                      [128, 128, 3, 2]              
+ 19          [-1, 14]  1         0  models.common.Concat                    [1]                           
+ 20                -1  1    296448  models.common.C3                        [256, 256, 1, False]          
+ 21                -1  1    590336  models.common.Conv                      [256, 256, 3, 2]              
+ 22          [-1, 10]  1         0  models.common.Concat                    [1]                           
+ 23                -1  1   1182720  models.common.C3                        [512, 512, 1, False]          
+ 24      [17, 20, 23]  1     16182  models.yolo.Detect                      [1, [[10, 13, 16, 30, 33, 23], [30, 61, 62, 45, 59, 119], [116, 90, 156, 198, 373, 326]], [128, 256, 512]]
+ ....
+ ....
+ ....
+
+     Epoch   gpu_mem       box       obj       cls    labels  img_size
+     98/99     1.76G   0.02157  0.007322         0         3       320: 100%|███████████████████████████████████████████████████████████████████████████████████████████████| 59/59 [00:04&lt;00:00, 13.07it/s]
+               Class     Images     Labels          P          R     mAP@.5 mAP@.5:.95: 100%|███████████████████████████████████████████████████████████████████████████████| 30/30 [00:03&lt;00:00,  7.54it/s]
+                 all       1860       3277      0.979      0.962      0.991      0.727
+
+     Epoch   gpu_mem       box       obj       cls    labels  img_size
+     99/99     1.76G    0.0217  0.007213         0         3       320: 100%|███████████████████████████████████████████████████████████████████████████████████████████████| 59/59 [00:04&lt;00:00, 12.90it/s]
+               Class     Images     Labels          P          R     mAP@.5 mAP@.5:.95: 100%|███████████████████████████████████████████████████████████████████████████████| 30/30 [00:04&lt;00:00,  6.66it/s]
+                 all       1860       3277      0.979      0.967      0.992      0.737
+
+100 epochs completed in 0.244 hours.
+Optimizer stripped from runs/train/drp/weights/last.pt, 14.3MB
+Optimizer stripped from runs/train/drp/weights/best.pt, 14.3MB
+Results saved to runs/train/drp
+</code></pre>
+<h3 id="（四）导出模型">（四）导出模型</h3>
+<p><strong>前提条件: 已经创建了虚拟环境 <code>rknn</code></strong><br>
+<strong>前提条件: 已经创建了虚拟环境 <code>rknn</code></strong><br>
+<strong>前提条件: 已经创建了虚拟环境 <code>rknn</code></strong></p>
+<blockquote>
+<p><strong>问题及解决方案</strong><br>
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTY1MzYxMy9hcnRpY2xlL2RldGFpbHMvMTI4Njk5OTgyIzp+OnRleHQ9JUU4JUE3JUEzJUU1JTg2JUIzJTIwQXR0cmlidXRlRXJyb3IlM0ElMjBtb2R1bGUlMjAlRTIlODAlOTglMjBudW1weSUyMCVFMiU4MCU5OCUyMGhhcyUyMG5vLG51bXB5LiUyMGludCUyMCVFNiU5QiVCNCVFNiU5NCVCOSVFNCVCOCVCQSUyMG51bXB5LiUyMGludCUyMF8lRUYlQkMlOEMlMjBpbnQlMjAlRTMlODAlODI=">解决 AttributeError: module ‘numpy‘ has no attribute ‘int‘ 训练yolo时的问题<i class="fa fa-external-link-alt"></i></span>  原因：np.int在NumPy 1.20中已弃用，在NumPy 1.24中已删除。<br>
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoZWJlc3RfamFjay9hcnRpY2xlL2RldGFpbHMvMTI1NjQ5NDUx">一步真实解决RuntimeError: result type Float can‘t be cast to the desired output type long int<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p>在训练之前确定  <code>./models/yolo.py</code> 文件中的 <code>class Detect(nn.Module):</code> 类 <code>line:55</code> 里 <code>forward</code> 代码是否注释了。</p>
+<p>此时应修改 forward 代码为:</p>
+<pre><code class="language-python">    def forward(self, x):
+        z = []  # inference output
+        for i in range(self.nl):
+            x[i] = self.m[i](x[i])  # conv
+        return x # 此处如果是训练, 请注释
+</code></pre>
+<h4 id="1-修改参数">1. 修改参数</h4>
+<ol>
+<li>修改 <code>config_onekey.sh</code> 相关参数</li>
+<li>将测试用的图片放到 <code>export</code> 文件夹下，修改 <code>proj_dataset.txt</code> 的内容为自己的图片列表</li>
+</ol>
+<h4 id="2-开始一键导出">2. 开始一键导出</h4>
+<p><strong>前提条件: 已经创建了虚拟环境 <code>pytorch</code></strong><br>
+<strong>前提条件: 已经创建了虚拟环境 <code>pytorch</code></strong><br>
+<strong>前提条件: 已经创建了虚拟环境 <code>pytorch</code></strong></p>
+<pre><code class="language-bash">bash onekey_bash/export_rknn.sh
+</code></pre>
+<p><em>终端显示如下:</em></p>
+<pre><code class="language-bash">(base) jxxx@desk:~/workspace/algo/yolov5_rknn$ bash onekey_bash/export_rknn.sh 
+export: weights=runs/train/drp/weights/best.pt, img_size=[320], batch_size=1, device=cpu, include=['torchscript', 'onnx'], half=False, inplace=False, train=False, optimize=True, dynamic=False, simplify=True, opset=12
+YOLOv5 🚀 c5360f6 torch 2.0.0+cu117 CPU
+
+Fusing layers... 
+Model Summary: 224 layers, 7053910 parameters, 0 gradients, 16.3 GFLOPs
+
+PyTorch: starting from runs/train/drp/weights/best.pt (14.3 MB)
+
+TorchScript: starting export with torch 2.0.0+cu117...
+TorchScript: export success, saved as runs/train/drp/weights/best.torchscript.pt (28.3 MB)
+
+ONNX: starting export with onnx 1.13.1...
+...
+...
+I rknn buiding done
+done
+--&gt; Export rknn model
+done
+--&gt; Init runtime environment
+W init_runtime: Target is None, use simulator!
+done
+(0.3333333333333333, 0.3333333333333333) 0.0 70.0
+--&gt; Running model
+Analysing : 100%|███████████████████████████████████████████████| 161/161 [00:00&lt;00:00, 5866.87it/s]
+Preparing : 100%|█████████████████████████████████████████████████| 161/161 [00:04&lt;00:00, 39.76it/s]
+W inference: The dims of input(ndarray) shape (320, 320, 3) is wrong, expect dims is 4! Try expand dims to (1, 320, 320, 3)!
+W inference: The dims of input(ndarray) shape (320, 320, 3) is wrong, expect dims is 4! Try expand dims to (1, 320, 320, 3)!
+W inference: The dims of input(ndarray) shape (320, 320, 3) is wrong, expect dims is 4! Try expand dims to (1, 320, 320, 3)!
+W inference: The dims of input(ndarray) shape (320, 320, 3) is wrong, expect dims is 4! Try expand dims to (1, 320, 320, 3)!
+done
+class: person, score: 0.8913032412528992
+box coordinate topleft: (159.54501259326935, 145.2426918745041), bottomright: (177.8633736371994, 186.3882895708084)
+class: person, score: 0.8837643265724182
+box coordinate topleft: (82.14642906188965, 183.73637676239014), bottomright: (110.66749000549316, 226.49699115753174)
+class: person, score: 0.8643947243690491
+box coordinate topleft: (146.98097324371338, 140.67060202360153), bottomright: (164.14344692230225, 166.86144143342972)
+class: person, score: 0.8264284729957581
+box coordinate topleft: (110.99540531635284, 146.92019426822662), bottomright: (130.9836596250534, 177.2033714056015)
+class: person, score: 0.7860860824584961
+box coordinate topleft: (146.88146114349365, 127.81136840581894), bottomright: (163.5996789932251, 148.1453576683998)
+class: person, score: 0.7520475387573242
+box coordinate topleft: (170.8560609817505, 123.72485554218292), bottomright: (185.6856870651245, 143.04388225078583)
+class: person, score: 0.6209931373596191
+box coordinate topleft: (108.76676034927368, 133.68206477165222), bottomright: (119.2998595237732, 156.40799260139465)
+</code></pre>
+<p>成功后，可以看到 <code>export</code> 文件下多了 <code>rknn</code> 模型。</p>
+<p><img data-src="https://img-blog.csdnimg.cn/1bbad072629147b4afd87bbca3fb675e.png" alt="在这里插入图片描述"></p>
+<h3 id="（五）部署测试模型（见下一篇博文）">（五）部署测试模型（见下一篇博文）</h3>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMzA1NjM3Mjk/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】yolov5训练与rknn模型导出并在RK3588部署（亲测有效）二<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="附录信息">附录信息</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>仓库</strong></th>
+<th style="text-align:left"><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvY2tjaGlwLWxpbnV4L3JrbnB1Mg==">https://github.com/rockchip-linux/rknpu2<i class="fa fa-external-link-alt"></i></span></td>
+<td style="text-align:left">RKNPU2 provides an advanced interface to access Rockchip NPU.<br /><strong>Support Platform</strong>：<br /> - RK3566/RK3568<br />- <strong>RK3588/RK3588S</strong>- RV1103/RV1106<br />Note: The rknn model <strong>must be generated</strong> using <br />RKNN Toolkit 2: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvY2tjaGlwLWxpbnV4L3Jrbm4tdG9vbGtpdDI=">https://github.com/rockchip-linux/rknn-toolkit2<i class="fa fa-external-link-alt"></i></span></td>
+</tr>
+<tr>
+<td style="text-align:left"><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvY2tjaGlwLWxpbnV4L3Jrbm4tdG9vbGtpdDI=">https://github.com/rockchip-linux/rknn-toolkit2<i class="fa fa-external-link-alt"></i></span></td>
+<td style="text-align:left">RKNN-Toolkit2 is a software development kit for users to<br />perform model conversion, inference and performance evaluation on PC <br />and Rockchip NPU platforms (RK3566, RK3568, <strong>RK3588</strong>, RK3588S, RV1103, RV1106).<br />RKNN-Toolkit-Lite2 provides Python programming interfaces for Rockchip NPU platform <br />(RK3566, RK3568, <strong>RK3588</strong>, RK3588S) to help users deploy RKNN models and <br />accelerate the implementation of AI applications.<br /><br />For the deployment of the RKNN model, please refer to:<br /><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvY2tjaGlwLWxpbnV4L3JrbnB1Mg==">https://github.com/rockchip-linux/rknpu2<i class="fa fa-external-link-alt"></i></span> <br /><br />For RK1808/RV1109/RV1126/RK3399Pro, please use:<br /><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvY2tjaGlwLWxpbnV4L3Jrbm4tdG9vbGtpdA==">https://github.com/rockchip-linux/rknn-toolkit<i class="fa fa-external-link-alt"></i></span><br /><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvY2tjaGlwLWxpbnV4L3JrbnB1">https://github.com/rockchip-linux/rknpu<i class="fa fa-external-link-alt"></i></span><br /><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2Fpcm9ja2NoaXAvUkszMzk5UHJvX25wdQ==">https://github.com/airockchip/RK3399Pro_npu<i class="fa fa-external-link-alt"></i></span><strong>NOTES:</strong><br />- Currently rknn-toolkit2 is not compatible with <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvY2tjaGlwLWxpbnV4L3Jrbm4tdG9vbGtpdA==">rknn-toolkit<i class="fa fa-external-link-alt"></i></span><br />- Currently only support on Ubuntu 18.04 python 3.6 / Ubuntu 20.04 python 3.8<br />- Latest version:1.4.0(Release version)</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>仓库</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RK3566/RK3568/<strong>RK3588/RK3588S</strong>/RV1103/RV1106</td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvY2tjaGlwLWxpbnV4L3Jrbm4tdG9vbGtpdDI=">https://github.com/rockchip-linux/rknn-toolkit2<i class="fa fa-external-link-alt"></i></span><br /><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvY2tjaGlwLWxpbnV4L3JrbnB1Mg==">https://github.com/rockchip-linux/rknpu2<i class="fa fa-external-link-alt"></i></span></td>
+</tr>
+<tr>
+<td>RK1808/RK1806/RV1109/RV1126</td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvY2tjaGlwLWxpbnV4L3Jrbm4tdG9vbGtpdA==">https://github.com/rockchip-linux/rknn-toolkit<i class="fa fa-external-link-alt"></i></span><br /><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvY2tjaGlwLWxpbnV4L3JrbnB1">https://github.com/rockchip-linux/rknpu<i class="fa fa-external-link-alt"></i></span></td>
+</tr>
+<tr>
+<td>RK3399Pro</td>
+<td><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvY2tjaGlwLWxpbnV4L3Jrbm4tdG9vbGtpdA==">https://github.com/rockchip-linux/rknn-toolkit<i class="fa fa-external-link-alt"></i></span><a target="_blank" rel="noopener" href="https://github.com/airockchip/RK3399Pro_npu"><br />https://github.com/airockchip/RK3399Pro_npu</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="规格书">规格书</h3>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cucm9jay1jaGlwcy5jb20vdXBsb2Fkcy9wZGYvMjAyMi44LjI2LzE5MS9SSzM1ODglMjBCcmllZiUyMERhdGFzaGVldC5wZGY=">3588 Datasheet<i class="fa fa-external-link-alt"></i></span></p>
+<p><img data-src="https://img-blog.csdnimg.cn/a951656f12804b88b2944b7515477af3.png" alt="在这里插入图片描述"></p>
+<p><img data-src="https://img-blog.csdnimg.cn/fca1c2d2fd0840268e1fc01937fa267a.png" alt="在这里插入图片描述"></p>
+<h2 id="参考（以下为编撰本文的引用参考）">参考（以下为编撰本文的引用参考）</h2>
+<ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzU3MzE1NTM1L2FydGljbGUvZGV0YWlscy8xMjgyNTAwOTY=">yolov5训练pt模型并转换为rknn模型，部署在RK3588开发板上——从训练到部署全过程<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC81OTAzNjg5Njk=">RK3588模型推理总结<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLnQtZmlyZWZseS5jb20vemhfQ04vUk9DLVJLMzU4OFMtUEMvdXNhZ2VfbnB1Lmh0bWw=">NPU使用<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9iMjMudHYvYXpOa3NZNg==">一步一步教大家使用RK3588的NPU之在电脑端交叉编译yolov5运行在ARM平台上-哔哩哔哩<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9iMjMudHYvdFV5WThIdw==">转换yolov5s.onnx为rknn模型RK3588主板实时推理和电脑端模拟推理-哔哩哔哩<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9iMjMudHYvNEhFODJUag==">摆脱电脑，直接在RK3588平台上推理，帮用户部署 RKNN 模加速 AI 应用的落地-哔哩哔哩<i class="fa fa-external-link-alt"></i></span>】</li>
+<li><strong>仓库下载</strong> 参考 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JvY2tjaGlwLWxpbnV4L3Jrbm4tdG9vbGtpdC90cmVlL21hc3Rlci9leGFtcGxlcy9weXRvcmNoL3lvbG92NQ==">rknn-toolkit 教程<i class="fa fa-external-link-alt"></i></span>, 需要切换到 commit ID <code>c5360f6e7009eb4d05f14d1cc9dae0963e949213</code>, 可以直接在 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3VsdHJhbHl0aWNzL3lvbG92NQ==">官网github下载<i class="fa fa-external-link-alt"></i></span>， 然后终端执行 <code>git checkout c5360f6e7</code>。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/RK3588/" rel="tag"># RK3588</a>
+              <a href="/tags/YOLOv5/" rel="tag"># YOLOv5</a>
+              <a href="/tags/%E9%83%A8%E7%BD%B2/" rel="tag"># 部署</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/01/01/RK3588/RK3588%E4%B8%80%E7%9B%B4%E8%AF%BB%E5%8F%96%E8%A7%86%E9%A2%91%E5%A4%B1%E8%B4%A5/" rel="prev" title="Rk3588一直读取视频失败">
+                  <i class="fa fa-angle-left"></i> Rk3588一直读取视频失败
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/01/01/RK3588/yolov5%E8%AE%AD%E7%BB%83%E4%B8%8Erknn%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%87%BA%E5%B9%B6%E5%9C%A8RK3588%E9%83%A8%E7%BD%B2%EF%BC%88%E4%BA%B2%E6%B5%8B%E6%9C%89%E6%95%88%EF%BC%89%E4%BA%8C/" rel="next" title="Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效）二">
+                  Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效）二 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">老周</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

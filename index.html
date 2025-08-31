@@ -1,0 +1,2446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"znza.top","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.23.2","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":{"enable":true},"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":5,"unescape":false,"preload":true,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="老周有AI">
+<meta property="og:url" content="https://znza.top/index.html">
+<meta property="og:site_name" content="老周有AI">
+<meta property="og:description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://znza.top/images/logo.svg">
+<meta property="article:author" content="老周">
+<meta property="article:tag" content="计算机视觉, 人工智能, Python, OpenCV, MediaPipe, 深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://znza.top/images/logo.svg">
+
+
+<link rel="canonical" href="https://znza.top/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>老周有AI - 计算机视觉与人工智能技术分享</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="老周有AI" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">老周有AI</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">计算机视觉与人工智能技术分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">76</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">23</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">48</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="老周"
+      src="/images/person.jpg">
+  <p class="site-author-name" itemprop="name">老周</p>
+  <div class="site-description" itemprop="description">老周的个人技术博客，专注于计算机视觉、人工智能和创意编程</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/08/26/%E8%BF%90%E7%BB%B4/onekeycopy-depends/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/08/26/%E8%BF%90%E7%BB%B4/onekeycopy-depends/" class="post-title-link" itemprop="url">一键复制动态库依赖脚本</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-08-26 20:00:00" itemprop="dateCreated datePublished" datetime="2025-08-26T20:00:00+08:00">2025-08-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 17:09:52" itemprop="dateModified" datetime="2025-08-31T17:09:52+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">技术工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="一键复制依赖库脚本">一键复制依赖库脚本</h2>
+<p>在Linux开发中,当我们需要将编译好的动态库部署到其他机器时,经常会遇到依赖缺失的问题。手动查找和复制所有依赖库非常繁琐,这个脚本可以帮你自动完成这项工作。</p>
+<h3 id="功能介绍">功能介绍</h3>
+<ul>
+<li>自动识别目标动态库的所有依赖项</li>
+<li>创建专用目录存放依赖文件</li>
+<li>一键复制所有依赖到指定位置</li>
+</ul>
+<h3 id="使用方法">使用方法</h3>
+<pre><code class="language-bash">#!/bin/bash
+
+# 定义源.so文件路径、目标依赖存放路径和so文件名
+SO_FILE_PATH=&quot;libPID.so&quot;
+DEPENDS_DIR=&quot;depends&quot;
+
+# 检查并创建depends目录，如果它不存在
+if [ ! -d &quot;$DEPENDS_DIR&quot; ]; then
+    mkdir -p &quot;$DEPENDS_DIR&quot;
+    echo &quot;Directory $DEPENDS_DIR created.&quot;
+fi
+
+# 使用ldd获取.so文件的所有依赖，并循环处理每一行
+while IFS= read -r line; do
+    # 每一行格式类似 &quot;libxxx.so =&gt; /path/to/libxxx.so (version)&quot;
+    if [[ $line == *&quot;=&gt;&quot;* ]]; then
+        lib_path=$(echo &quot;$line&quot; | awk -F '=&gt;' '&#123;print $2&#125;' | awk '&#123;print $1&#125;')
+        
+        # 如果路径非空并且不是&quot;(0x00000000)&quot;这样的形式（表示静态链接或未找到）
+        if [[ ! -z &quot;$lib_path&quot; &amp;&amp; &quot;$lib_path&quot; != \&quot;\(*\)\&quot; ]]; then
+            lib_name=$(basename &quot;$lib_path&quot;)
+
+            # 将依赖库复制到目标目录
+            cp &quot;$lib_path&quot; &quot;$DEPENDS_DIR/$lib_name&quot;
+            echo &quot;Copied $lib_path to $DEPENDS_DIR/$lib_name&quot;
+        fi
+    fi
+done &lt; &lt;(ldd &quot;$SO_FILE_PATH&quot;)
+
+echo &quot;Done.&quot;
+
+</code></pre>
+<h3 id="参数说明">参数说明</h3>
+<ul>
+<li><code>SO_FILE_PATH</code>: 目标动态库文件路径(默认:libPID.so)</li>
+<li><code>DEPENDS_DIR</code>: 依赖库存放目录(默认:depends)</li>
+</ul>
+<h3 id="使用步骤">使用步骤</h3>
+<ol>
+<li>修改脚本中的<code>SO_FILE_PATH</code>指向你的动态库</li>
+<li>赋予执行权限: <code>chmod +x onekeycopy_depends.sh</code></li>
+<li>运行脚本: <code>./onekeycopy_depends.sh</code></li>
+</ol>
+<h3 id="注意事项">注意事项</h3>
+<ul>
+<li>需要系统安装<code>ldd</code>命令</li>
+<li>仅支持动态链接的依赖库</li>
+<li>确保对目标动态库有读取权限</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/08/02/%E9%A1%B9%E7%9B%AE/%E6%88%91%E7%9A%84github%E4%B8%BB%E9%A1%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/08/02/%E9%A1%B9%E7%9B%AE/%E6%88%91%E7%9A%84github%E4%B8%BB%E9%A1%B5/" class="post-title-link" itemprop="url">我的GitHub项目展示，有好多有趣的项目哦，快来探索吧！</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-08-02 10:00:00" itemprop="dateCreated datePublished" datetime="2025-08-02T10:00:00+08:00">2025-08-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 17:08:38" itemprop="dateModified" datetime="2025-08-31T17:08:38+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">项目</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="相关项目">相关项目</h2>
+<p>以下是使用这些资源的项目：</p>
+<h3 id="Eye-Laser-Game">Eye Laser Game</h3>
+<img data-src="/2025/08/02/%E9%A1%B9%E7%9B%AE/%E6%88%91%E7%9A%84github%E4%B8%BB%E9%A1%B5/gaze_laser_game1.png" class="" title="Eye Laser Game">
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL254dS1nYW1lL2dhemVfbGFzZXJfZ2FtZQ==">项目地址<i class="fa fa-external-link-alt"></i></span> - 基于眼睛追踪的激光射击游戏</li>
+</ul>
+<h3 id="Gesture-Snake-Game">Gesture Snake Game</h3>
+<img data-src="/2025/08/02/%E9%A1%B9%E7%9B%AE/%E6%88%91%E7%9A%84github%E4%B8%BB%E9%A1%B5/gensture_snake2.png" class="" title="Gesture Snake Game">
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL254dS1nYW1lL2dlc3R1cmUtc25ha2U=">项目地址<i class="fa fa-external-link-alt"></i></span> - 手势控制贪吃蛇游戏</li>
+</ul>
+<h3 id="AR-Pi-Tattoo">AR Pi Tattoo</h3>
+<img data-src="/2025/08/02/%E9%A1%B9%E7%9B%AE/%E6%88%91%E7%9A%84github%E4%B8%BB%E9%A1%B5/ar_pi_1.png" class="" title="AR Pi Tattoo">
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL254dS1nYW1lL2FyX3BpX3RhdHRvbw==">项目地址<i class="fa fa-external-link-alt"></i></span> - 基于AR的圆周率纹身互动应用</li>
+</ul>
+<h3 id="Head-Racing-Game">Head Racing Game</h3>
+<img data-src="/2025/08/02/%E9%A1%B9%E7%9B%AE/%E6%88%91%E7%9A%84github%E4%B8%BB%E9%A1%B5/head_racing_game.png" class="" title="Head Racing Game">
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL254dS1nYW1lL2hlYWQtcmFjaW5nLWdhbWU=">项目地址<i class="fa fa-external-link-alt"></i></span> - 头部运动控制的赛车游戏</li>
+</ul>
+<h3 id="Face-Mask-Application">Face Mask Application</h3>
+<img data-src="/2025/08/02/%E9%A1%B9%E7%9B%AE/%E6%88%91%E7%9A%84github%E4%B8%BB%E9%A1%B5/face_mask.png" class="" title="Face Mask Application">
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL254dS1nYW1lL2ZhY2VfbWFzaw==">项目地址<i class="fa fa-external-link-alt"></i></span> - 实时人脸面具应用</li>
+</ul>
+<h3 id="Hand-Gesture-Volume-Control">Hand Gesture Volume Control</h3>
+<img data-src="/2025/08/02/%E9%A1%B9%E7%9B%AE/%E6%88%91%E7%9A%84github%E4%B8%BB%E9%A1%B5/hand_vol.png" class="" title="Hand Gesture Volume Control">
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL254dS1nYW1lL2hhbmRfY29udHJvbF92b2w=">项目地址<i class="fa fa-external-link-alt"></i></span> - 手势音量控制系统</li>
+</ul>
+<h3 id="Scan-Effect-Generator">Scan Effect Generator</h3>
+<img data-src="/2025/08/02/%E9%A1%B9%E7%9B%AE/%E6%88%91%E7%9A%84github%E4%B8%BB%E9%A1%B5/scan_effect.jpg" class="" title="Scan Effect Generator">
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL254dS1nYW1lL3NjYW4tZWZmZWN0">项目地址<i class="fa fa-external-link-alt"></i></span> - 扫描线效果生成器</li>
+</ul>
+<h3 id="Virtual-Drag-and-Drop">Virtual Drag and Drop</h3>
+<img data-src="/2025/08/02/%E9%A1%B9%E7%9B%AE/%E6%88%91%E7%9A%84github%E4%B8%BB%E9%A1%B5/virtual_drag.png" class="" title="Virtual Drag and Drop">
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL254dS1nYW1lL3ZpcnR1YWxfZHJhZ19zY2FsZQ==">项目地址<i class="fa fa-external-link-alt"></i></span> - 虚拟拖放与缩放应用</li>
+</ul>
+<h2 id="联系方式">联系方式</h2>
+<div align="center">
+<table>
+  <tr align="center">
+    <td>
+      <img data-src="https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_wx_logo.png" width="40" height="40" alt="WeChat"/>
+    </td>
+    <td>
+      <img data-src="https://www.bilibili.com/favicon.ico" width="40" height="40" alt="Bilibili"/>
+    </td>
+    <td>
+      <img data-src="https://lf1-cdn-tos.bytegoofy.com/goofy/ies/douyin_web/public/favicon.ico" width="40" height="40" alt="Douyin"/>
+    </td>
+    <td>
+      <img data-src="https://cdn.brandfetch.io/idvL6iJWSM/w/205/h/96/theme/dark/logo.png?c=1dxbfHSJFAPEGdCLU4o5B" width="40" height="40" alt="Xiaohongshu" style="object-fit: contain;"/>
+    </td>
+    <td>
+      <img data-src="https://g.csdnimg.cn/static/logo/favicon64.ico" width="40" height="40" alt="CSDN"/>
+    </td>
+  </tr>
+  <tr align="center">
+    <td>
+      <img data-src="https://github.com/nxu-game/interesting_assets/raw/main/images/wechat.jpg" width="120" alt="WeChat QR Code"/>
+    </td>
+    <td>
+      <img data-src="https://github.com/nxu-game/interesting_assets/raw/main/images/bilibili.jpg" width="120" alt="Bilibili QR Code"/>
+    </td>
+    <td>
+      <img data-src="https://github.com/nxu-game/interesting_assets/raw/main/images/douyin.jpg" width="120" alt="Douyin QR Code"/>
+    </td>
+    <td>
+      <img data-src="https://github.com/nxu-game/interesting_assets/raw/main/images/xiaohongshu.png" width="120" alt="Xiaohongshu QR Code"/>
+    </td>
+    <td>
+      <img data-src="https://github.com/nxu-game/interesting_assets/raw/main/images/csdn.jpg" width="120" alt="CSDN QR Code"/>
+    </td>
+  </tr>
+</table>
+</div>
+<div style="text-align: center; margin-top: 20px;">
+  <a target="_blank" rel="noopener" href="https://github.com/wangqiqi">
+    <img data-src="https://img.icons8.com/bubbles/50/000000/github.png" alt="GitHub" width="40" height="40"/>
+  </a>
+  <a href="mailto:zhou24388@163.com">
+    <img data-src="https://img.icons8.com/bubbles/50/000000/new-post.png" alt="Email" width="40" height="40"/>
+  </a>
+</div>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/05/01/%E9%A1%B9%E7%9B%AE/markdown2docx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/05/01/%E9%A1%B9%E7%9B%AE/markdown2docx/" class="post-title-link" itemprop="url">md2docx：让Markdown文档秒变精美Word文档的神器</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-05-01T00:00:00+08:00">2025-05-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:53:56" itemprop="dateModified" datetime="2025-08-31T21:53:56+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%96%87%E6%A1%A3%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">文档处理</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>md2docx：让Markdown文档秒变精美Word文档的神器</h1>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhbmdxaXFpL21kMmRvY3g=">Github代码仓库<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>你是否曾经为了将Markdown笔记转换成公司要求的Word格式而头疼？是否厌倦了复制粘贴后还要手动调整格式？md2docx来解救你了！</p>
+</blockquote>
+<h2 id="🚀-这是什么神器？">🚀 这是什么神器？</h2>
+<p>md2docx是一款强大的Markdown转Word文档工具，它能够将你喜爱的Markdown格式无缝转换为精美的DOCX文档，保留原有的格式和样式，让你的文档在任何场合都能完美展示。</p>
+<p>作为一名程序员，我习惯用Markdown记录笔记、写文档，但公司和客户往往要求提供Word格式的文件。每次手动转换都是一场噩梦，于是我开发了这个工具，希望能帮助到和我有同样困扰的朋友们。</p>
+<h2 id="✨-主要特性">✨ 主要特性</h2>
+<ul>
+<li><strong>完整的Markdown语法支持</strong>：标题、列表、代码块、表格、引用、图片等全部支持</li>
+<li><strong>格式精准转换</strong>：精确还原Markdown的层级结构和样式</li>
+<li><strong>批量处理能力</strong>：一次性转换多个文件，效率翻倍</li>
+<li><strong>简单易用</strong>：命令行工具，一行代码搞定转换</li>
+<li><strong>本地处理</strong>：所有转换在本地完成，无需担心隐私泄露</li>
+</ul>
+<h2 id="🔍-它能转换哪些元素？">🔍 它能转换哪些元素？</h2>
+<p>md2docx几乎支持所有常用的Markdown语法元素：</p>
+<h3 id="1-文本格式化">1. 文本格式化</h3>
+<ul>
+<li>各级标题（H1-H6）</li>
+<li>粗体、斜体、删除线</li>
+<li>引用块（支持多层嵌套）</li>
+</ul>
+<h3 id="2-结构元素">2. 结构元素</h3>
+<ul>
+<li>有序列表和无序列表（支持多级嵌套）</li>
+<li>任务列表（TODO列表）</li>
+<li>分隔线</li>
+<li>代码块（带语法高亮）</li>
+</ul>
+<h3 id="3-媒体和链接">3. 媒体和链接</h3>
+<ul>
+<li>图片插入（本地和网络图片）</li>
+<li>超链接（内联链接和引用链接）</li>
+</ul>
+<h3 id="4-表格">4. 表格</h3>
+<ul>
+<li>基础表格</li>
+<li>对齐方式</li>
+<li>复杂表格样式</li>
+</ul>
+<h3 id="5-HTML支持">5. HTML支持</h3>
+<ul>
+<li>基础HTML标签转换</li>
+</ul>
+<h2 id="🚀-如何使用">🚀 如何使用</h2>
+<p>使用md2docx非常简单，只需一行命令：</p>
+<pre><code class="language-bash">python -m md2docx input.md output.docx
+</code></pre>
+<p>批量转换更是轻而易举：</p>
+<pre><code class="language-bash">python batch_convert_test.py --input-dir your_md_folder --output-dir your_docx_folder
+</code></pre>
+<h2 id="💡-使用场景">💡 使用场景</h2>
+<ul>
+<li><strong>技术文档转换</strong>：将GitHub上的README或技术文档转为公司内部可用的Word格式</li>
+<li><strong>博客文章导出</strong>：把你的Markdown博客文章导出为Word以便发布到其他平台</li>
+<li><strong>学术论文写作</strong>：用Markdown高效写作，然后转换为学校要求的Word格式提交</li>
+<li><strong>工作报告生成</strong>：使用Markdown编写工作报告，转换后直接提交给领导</li>
+</ul>
+<h2 id="🔮-未来计划">🔮 未来计划</h2>
+<p>我们正在开发更多激动人心的功能：</p>
+<ul>
+<li>图形用户界面，让非技术用户也能轻松使用</li>
+<li>自定义样式模板，让你的文档更具个性</li>
+<li>更多高级功能支持，如数学公式、流程图等</li>
+<li>双向转换，支持Word转回Markdown</li>
+</ul>
+<h2 id="🙏-结语">🙏 结语</h2>
+<p>md2docx诞生于实际需求，成长于社区反馈。如果你也是Markdown爱好者，却被Word格式所困扰，不妨试试这个工具。它或许不是最完美的，但一定是最实用的。</p>
+<p>欢迎在GitHub上给我们提出建议或贡献代码，让这个工具变得更好！</p>
+<hr>
+<blockquote>
+<p>工具不仅仅是为了解决问题，更是为了让工作变得更加愉悦。</p>
+<p>—— md2docx开发团队</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/Windows/Windows%E4%B8%8BWSL%E5%B0%86ubuntu%E6%8C%AA%E4%BD%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/Windows/Windows%E4%B8%8BWSL%E5%B0%86ubuntu%E6%8C%AA%E4%BD%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Windows下Wsl将Ubuntu挪位置 系统盘清理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 16:56:39" itemprop="dateCreated datePublished" datetime="2025-01-01T16:56:39+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 20:45:19" itemprop="dateModified" datetime="2025-08-31T20:45:19+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">技术文档</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="问题–垃圾太多，系统盘空间占用太大">问题–垃圾太多，系统盘空间占用太大</h2>
+<p>最近 C 盘空间暴涨，用工具 <a target="_blank" rel="noopener" href="https://windirstat.net/"><code>WinDirStat</code>-强烈推荐的工具</a> 查看发现 <code>WSL</code> 子系统占用了<strong>6个多 G</strong> 的空间，遂想办法挪个位置；<br>
+【关键字】将 <code>Windows</code> 里的子系统挪到非系统盘 <code>D</code> 盘；</p>
+<img data-src="/2025/01/01/Windows/Windows%E4%B8%8BWSL%E5%B0%86ubuntu%E6%8C%AA%E4%BD%8D%E7%BD%AE/1690637651503.png" class="" title="1690637651503.png">
+<h2 id="解决">解决</h2>
+<ol>
+<li>打开 WSL 控制台</li>
+</ol>
+<pre><code class="language-bash">wsl -l -v # 查看当前子系统
+</code></pre>
+<pre><code class="language-bash">PS D:\&gt; wsl -l  -v
+  NAME            STATE           VERSION
+* Ubuntu-22.04    Stopped         2
+</code></pre>
+<ol start="2">
+<li>导出</li>
+</ol>
+<pre><code class="language-bash">wsl --export Ubuntu-22.04 d:\ubuntu2204.tar
+</code></pre>
+<pre><code class="language-bash">正在导出，这可能需要几分钟时间。
+操作成功完成。
+</code></pre>
+<ol start="3">
+<li>注销</li>
+</ol>
+<pre><code class="language-bash">PS D:\&gt; wsl --unregister Ubuntu-22.04
+正在注销。
+操作成功完成。
+</code></pre>
+<ol start="4">
+<li>重新导入</li>
+</ol>
+<pre><code class="language-bash">PS D:\&gt; wsl --import Ubuntu-22.04 d:\Ubuntu-22.04 d:\ubuntu2204.tar --version 2
+</code></pre>
+<pre><code class="language-bash">正在导入，这可能需要几分钟时间。
+操作成功完成。
+</code></pre>
+<h2 id="补充清理其他垃圾">补充清理其他垃圾</h2>
+<h3 id="清理-WPS-垃圾">清理 WPS 垃圾</h3>
+<p>路径为： <code>C:\Users\xxx\AppData\Roaming\kingsoft\wps\addons\pool\win-i386</code></p>
+<p>照按上面的路径一层层的打开文件夹，<code>win-i386</code> 文件夹里的内容都是无用的垃圾，可以统统清除掉，<code>alt+a</code> 全选，右击【删除】</p>
+<h3 id="temp-垃圾">temp 垃圾</h3>
+<p><code>win+R </code>键，在命令框中输入<code>%temp%</code>，打开的文件夹里的都是系统缓存文件，<code>alt+a</code>全选，右键删除即可。</p>
+<h2 id="更改-Android-AVD-的路径">更改 Android AVD 的路径</h2>
+<p><code>AVD</code> 的默认路径仍然在 <code>C</code> 盘，且是以 <code>GB</code> 为单位在增长。</p>
+<img data-src="/2025/01/01/Windows/Windows%E4%B8%8BWSL%E5%B0%86ubuntu%E6%8C%AA%E4%BD%8D%E7%BD%AE/1690639362353.png" class="" title="1690639362353.png">
+<ul>
+<li>新建一个环境变量</li>
+</ul>
+<img data-src="/2025/01/01/Windows/Windows%E4%B8%8BWSL%E5%B0%86ubuntu%E6%8C%AA%E4%BD%8D%E7%BD%AE/1690639413294.png" class="" title="1690639413294.png">
+<p>打开 <code>Android Studio</code>,  <code>D:\Android\Android_AVD</code> 路径下会多出来一个 <code>.android</code> 文件夹，将 C 盘下对应路径的 .android 文件夹拷贝过来覆盖；</p>
+<ul>
+<li>修改配置</li>
+</ul>
+<p>在对应的 <code>AVD</code> 下如: <code>D:\Android\Android_AVD\.android\avd\Pixel_4_API_30.avd</code></p>
+<p>找到配置文件 <code>hardware-qemu.ini</code> ， <code>ctrl + H</code> 找到对应的老路径修改为新放置的路径。</p>
+<img data-src="/2025/01/01/Windows/Windows%E4%B8%8BWSL%E5%B0%86ubuntu%E6%8C%AA%E4%BD%8D%E7%BD%AE/1690639588752.png" class="" title="1690639588752.png">
+<h2 id="工具推荐">工具推荐</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kaXNtLmNmLw==">Dism++，也许是最强的实用工具<i class="fa fa-external-link-alt"></i></span>, 一般一下子能干掉几个 <strong>G</strong> 的垃圾。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cudm9pZHRvb2xzLmNvbS96aC1jbi8=">Everything Windows下基于名称快速定位文件和文件夹<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="【参考】">【参考】</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zODAyNDcyOTE=">电脑C盘爆满，10秒快速清理C盘垃圾<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDU4OTE1L2FydGljbGUvZGV0YWlscy8xMTM5MTQ2OTE=">更改Android Studio中AVD的默认路径<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/" class="post-title-link" itemprop="url">Windows10终端和Vscode下能够直接使用Anaconda Prompt</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 16:56:18" itemprop="dateCreated datePublished" datetime="2025-01-01T16:56:18+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 22:06:48" itemprop="dateModified" datetime="2025-08-31T22:06:48+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Windows/Pytorch/" itemprop="url" rel="index"><span itemprop="name">Pytorch</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Windows/Pytorch/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>很多小伙伴在 <code>Windows</code> 下做深度学习开发的时候，遇到终端没有在 <code>Linux</code> 那么方便，那么我们现在就可以来设置一下；这样我们也可以在文件夹内部右键打开终端，也可以在 <code>VS Code</code> 里面新建一个虚拟环境的控制台；这里主要是针对 <code>Anaconda</code> 环境下的虚拟环境进行终端配置，这样就可以很方便的在终端打开虚拟环境，不用搜索和应用程序里打开  <code>Anaconda Prompt</code> ;</p>
+</blockquote>
+<ol>
+<li>打开应用商店，安装 <code>Windows Terminal</code> ;</li>
+</ol>
+<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image-2.png" class="" title="image-2.png">
+<ol>
+<li>在文件夹内部可以右键打开终端了；</li>
+</ol>
+<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image.png" class="" title="image.png">
+<ol>
+<li>在打开的终端里，我们也可以配置</li>
+</ol>
+<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image-3.png" class="" title="image-3.png">
+<blockquote>
+<p>可以在名称里设置成  <code>Anaconda Prompt</code><br>
+命令行里写上 <code>cmd.exe /k &quot;d:\anaconda3\Scripts\activate.bat&quot;  yolov8</code>, 其中 <code>&quot;d:\anaconda3\Scripts\activate.bat&quot;</code> 为 <code>activate</code> 批处理路径, <code>yolov8</code> 为虚拟环境的名称；<br>
+启动目录你可以设置为常用的项目目录；<br>
+最后保存；</p>
+</blockquote>
+<p>这样你可以打开终端的时候，就可以直接选择 <code>Anaconda Prompt</code> 了；</p>
+<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image-1.png" class="" title="image-1.png">
+<ol>
+<li>在 <code>vs code</code> 下 按住 <code>ctrl</code> + ` 召唤终端，</li>
+</ol>
+<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image-4.png" class="" title="image-4.png">
+<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image-6.png" class="" title="image-6.png">
+<pre><code class="language-bash">        &quot;Anaconda Prompt&quot;: &#123;
+            &quot;path&quot;: [
+                &quot;$&#123;env:windir&#125;\\Sysnative\\cmd.exe&quot;,
+                &quot;$&#123;env:windir&#125;\\System32\\cmd.exe&quot;
+            ],
+            &quot;args&quot;: [&quot;/k&quot;, &quot;d:\\anaconda3\\Scripts\\activate.bat&quot; , &quot;yolov8&quot;],
+            &quot;icon&quot;: &quot;terminal-cmd&quot;        
+        &#125;,
+</code></pre>
+<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image-7.png" class="" title="image-7.png">
+<p>好了，这样下次就可以直接在 <code>VS Code</code> 里打开 <code>Anaconda Prompt </code>终端了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/Windows/Windows10-YOLOv8%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/Windows/Windows10-YOLOv8%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99/" class="post-title-link" itemprop="url">Windows10 Yolov8运行报错</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 16:55:29" itemprop="dateCreated datePublished" datetime="2025-01-01T16:55:29+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 22:06:54" itemprop="dateModified" datetime="2025-08-31T22:06:54+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Windows/Pytorch/" itemprop="url" rel="index"><span itemprop="name">Pytorch</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Windows/Pytorch/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>问题如下：<br>
+Windows10 运行 YOLOv8 出现如下错误：<br>
+Traceback (most recent call last):<br>
+File “<string>”, line 1, in <module><br>
+File “D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py”, line 116, in spawn_main<br>
+exitcode = _main(fd, parent_sentinel)<br>
+^^^^^^^^^^^^^^^^^^^^^^^^^<br>
+File “D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py”, line 125, in _main<br>
+prepare(preparation_data)<br>
+…</p>
+</blockquote>
+<pre><code class="language-bash">Traceback (most recent call last):
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py&quot;, line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py&quot;, line 131, in _main
+    prepare(preparation_data)
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py&quot;, line 242, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py&quot;, line 293, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;&lt;frozen runpy&gt;&quot;, line 291, in run_path
+  File &quot;&lt;frozen runpy&gt;&quot;, line 98, in _run_module_code
+  File &quot;&lt;frozen runpy&gt;&quot;, line 88, in _run_code
+  File &quot;F:\workspace\yolov8\train.py&quot;, line 8, in &lt;module&gt;
+    results = model.train(data=&quot;fsd.yaml&quot;, epochs=200, batch=16) 
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\engine\model.py&quot;, line 377, in train
+    self.trainer.train()
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\engine\trainer.py&quot;, line 192, in train
+    self._do_train(world_size)
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\engine\trainer.py&quot;, line 294, in _do_train
+    self._setup_train(world_size)
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\engine\trainer.py&quot;, line 259, in _setup_train
+    self.train_loader = self.get_dataloader(self.trainset, batch_size=batch_size, rank=RANK, mode='train')
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\models\yolo\detect\train.py&quot;, line 40, in get_dataloader
+    return build_dataloader(dataset, batch_size, workers, shuffle, rank)  # return dataloader
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\data\build.py&quot;, line 101, in build_dataloader
+    return InfiniteDataLoader(dataset=dataset,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\data\build.py&quot;, line 29, in __init__
+    self.iterator = super().__iter__()
+                    ^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\torch\utils\data\dataloader.py&quot;, line 441, in __iter__
+    return self._get_iterator()
+           ^^^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\torch\utils\data\dataloader.py&quot;, line 388, in _get_iterator
+    return _MultiProcessingDataLoaderIter(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\torch\utils\data\dataloader.py&quot;, line 1042, in __init__
+    w.start()
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\process.py&quot;, line 121, in start
+    self._popen = self._Popen(self)
+                  ^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\context.py&quot;, line 224, in _Popen
+    return _default_context.get_context().Process._Popen(process_obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\context.py&quot;, line 336, in _Popen
+    return Popen(process_obj)
+           ^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\popen_spawn_win32.py&quot;, line 45, in __init__
+    prep_data = spawn.get_preparation_data(process_obj._name)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py&quot;, line 160, in get_preparation_data
+    _check_not_importing_main()
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py&quot;, line 140, in _check_not_importing_main
+    raise RuntimeError('''
+RuntimeError:
+        An attempt has been made to start a new process before the
+        current process has finished its bootstrapping phase.
+
+        This probably means that you are not using fork to start your
+        child processes and you have forgotten to use the proper idiom
+        in the main module:
+
+            if __name__ == '__main__':
+                freeze_support()
+                ...
+
+        The &quot;freeze_support()&quot; line can be omitted if the program
+        is not going to be frozen to produce an executable.
+
+</code></pre>
+<p>修改</p>
+<p><code>D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\data</code> 路径下的  <code>build.py</code> 文件里的函数 <code>build_dataloader</code>， 将 <code>nw = min([os.cpu_count() // max(nd, 1), batch if batch &gt; 1 else 0, workers])  # number of workers</code>  直接修改为 <code>nw=0</code></p>
+<pre><code class="language-python">def build_dataloader(dataset, batch, workers, shuffle=True, rank=-1):
+    &quot;&quot;&quot;Return an InfiniteDataLoader or DataLoader for training or validation set.&quot;&quot;&quot;
+    batch = min(batch, len(dataset))
+    nd = torch.cuda.device_count()  # number of CUDA devices
+    # nw = min([os.cpu_count() // max(nd, 1), batch if batch &gt; 1 else 0, workers])  # number of workers
+    nw = 0 # update by jw 20230815
+    .....
+</code></pre>
+ <img data-src="/2025/01/01/Windows/Windows10-YOLOv8%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99/image.png" class="" title="image.png">
+<h2 id="【参考】">【参考】</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC81NTM0MDcwNjIjOn46dGV4dD1SdW50aW1lRXJyb3IlM0ElMjBBbiUyMGF0dGVtcHQlMjBoYXMlMjBiZWVuJTIwbWFkZSUyMHRvJTIwc3RhcnQsbWFpbiUyMG1vZHVsZSUzQSUyMGlmJTIwX19uYW1lX18lMjAlM0QlM0QlMjAlMjdfX21haW5fXyUyNyUzQSUyMGZyZWV6ZV9zdXBwb3J0JTIwJTI4JTI5">解决RuntimeError: An attempt has been made to start a new process before…办法<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vY2FybWVuLTAxOS9wLzE1MDc3NzQ5Lmh0bWw=">python进程 - 调试报错 you are not using fork to start your child processes<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/" class="post-title-link" itemprop="url">Windows10 安装 Pytorch</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 16:55:20" itemprop="dateCreated datePublished" datetime="2025-01-01T16:55:20+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 22:07:00" itemprop="dateModified" datetime="2025-08-31T22:07:00+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Windows/Pytorch/" itemprop="url" rel="index"><span itemprop="name">Pytorch</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Windows/Pytorch/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>Windows 10 安装 PyTorch 开发环境，以及验证 YOLOv8</h1>
+<blockquote>
+<p>环境：<br>
+OS： Windows 10<br>
+显卡： RTX 3090</p>
+</blockquote>
+<img data-src="/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/image-2.png" class="" title="image-2.png">
+<h2 id="安装-NVIDIA-驱动">安装 NVIDIA 驱动</h2>
+<p>根据显卡型号找到对应的驱动进行安装</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubnZpZGlhLmNuL2dlZm9yY2UvZHJpdmVycy8=">GeForce® 驱动程序<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="验证">验证</h3>
+<p>在终端中输入：  <code>nvidia-smi</code> 查看是否正确安装</p>
+<pre><code class="language-bash">PS F:\workspace\notebook&gt; nvidia-smi
+Tue Aug 15 09:23:21 2023
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 528.24       Driver Version: 528.24       CUDA Version: 12.0     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name            TCC/WDDM | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  NVIDIA GeForce ... WDDM  | 00000000:01:00.0  On |                  N/A |
+| 30%   38C    P8    19W / 350W |    782MiB / 24576MiB |      4%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|    0   N/A  N/A      1620    C+G   C:\Windows\System32\dwm.exe     N/A      |
+|    0   N/A  N/A      1908    C+G   ...ge\Application\msedge.exe    N/A      |
+</code></pre>
+<h2 id="安装-Visual-Studio-2019-Community">安装 Visual Studio 2019 Community</h2>
+<p>安装 VS2019 [Visual Studio Community 2019](<span class="exturl" data-url="aHR0cHM6Ly9teS52aXN1YWxzdHVkaW8uY29tL0Rvd25sb2Fkcz9xPXZpc3VhbCUyMHN0dWRpbyUyMDIwMTkmd3QubWNfaWQ9b35tc2Z0fnZzY29tfm9sZGVyLWRvd25sb2E=">https://my.visualstudio.com/Downloads?q=visual studio 2019&amp;wt.mc_id=o~msft~vscom~older-downloa<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="验证-2">验证</h3>
+<img data-src="/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/image-4.png" class="" title="image-4.png">
+<h2 id="安装-Git-CMake-Anaconda">安装 Git, CMake, Anaconda</h2>
+<p>安装 <span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS9kb3dubG9hZC93aW4=">git<i class="fa fa-external-link-alt"></i></span>,</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly90b3J0b2lzZWdpdC5vcmcv">tortoisegit 可以看文件状态<i class="fa fa-external-link-alt"></i></span></p>
+<p>安装 <span class="exturl" data-url="aHR0cHM6Ly9jbWFrZS5vcmcvZG93bmxvYWQv">cmake<i class="fa fa-external-link-alt"></i></span>， 跨平台编译时使用;</p>
+<p>安装 <span class="exturl" data-url="aHR0cHM6Ly93d3cuYW5hY29uZGEuY29tL3Byb2R1Y3RzL2luZGl2aWR1YWw=">Anaconda<i class="fa fa-external-link-alt"></i></span>，集成了很多 <code>python</code> 开发环境</p>
+<h3 id="验证-3">验证</h3>
+<h2 id="下载并安装-OpenCV">下载并安装 OpenCV</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9vcGVuY3Yub3JnL3JlbGVhc2VzLw==">OpenCV 下载地址<i class="fa fa-external-link-alt"></i></span></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">VC版本号</th>
+<th style="text-align:left">VS对应版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">vc6</td>
+<td style="text-align:left">VC6.0</td>
+</tr>
+<tr>
+<td style="text-align:left">vc7</td>
+<td style="text-align:left">VS2002</td>
+</tr>
+<tr>
+<td style="text-align:left">vc7.1</td>
+<td style="text-align:left">VS2003</td>
+</tr>
+<tr>
+<td style="text-align:left">vc8</td>
+<td style="text-align:left">VS2005</td>
+</tr>
+<tr>
+<td style="text-align:left">vc9</td>
+<td style="text-align:left">VS2008</td>
+</tr>
+<tr>
+<td style="text-align:left">vc10</td>
+<td style="text-align:left">VS2010</td>
+</tr>
+<tr>
+<td style="text-align:left">vc11</td>
+<td style="text-align:left">VS2012</td>
+</tr>
+<tr>
+<td style="text-align:left">vc12</td>
+<td style="text-align:left">VS2013</td>
+</tr>
+<tr>
+<td style="text-align:left">vc13</td>
+<td style="text-align:left">VS2014</td>
+</tr>
+<tr>
+<td style="text-align:left">vc14</td>
+<td style="text-align:left">VS2015</td>
+</tr>
+<tr>
+<td style="text-align:left">vc15</td>
+<td style="text-align:left">VS2017</td>
+</tr>
+<tr>
+<td style="text-align:left">vc16</td>
+<td style="text-align:left">VS2019</td>
+</tr>
+</tbody>
+</table>
+<p>既然上面安装的是 VS 2019, 那么我们就安装  VC16 版本的 OpenCV， 省得自己编译了；</p>
+<p>解压安装后，将 <code>build</code> 目录下的 <code>x64\vc16\bin</code> 添加到环境变量中。</p>
+<h2 id="安装-CUDA-和-CUDNN">安装 CUDA 和 CUDNN</h2>
+<p>这里有些人可能不知道需要安装什么版本的 cuda。因为我这里的 GPU 是 N卡 3090 还是比较好的，所以可以安装比较高阶版本的软件，但是也不能太新，我这里直接参考 PyTorch 里最新版本的框架依赖哪个？</p>
+<img data-src="/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/image.png" class="" title="image.png">
+<p>好了，那就安装 CUDA 11.8 和对应的 CUDNN 8 ；</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubnZpZGlhLmNvbS9jdWRhLTExLTgtMC1kb3dubG9hZC1hcmNoaXZlP3RhcmdldF9vcz1XaW5kb3dzJnRhcmdldF9hcmNoPXg4Nl82NCZ0YXJnZXRfdmVyc2lvbj0xMCZ0YXJnZXRfdHlwZT1leGVfbG9jYWw=">cuda11.8-exe_local-3GB<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubnZpZGlhLmNvbS9yZHAvY3Vkbm4tYXJjaGl2ZQ==">cudnn 下载对应版本<i class="fa fa-external-link-alt"></i></span></p>
+<p><em>注意： cudnn 要注册账号</em></p>
+<p>解压后，将 cudnn 文件夹下的所有文件夹复制到 <code>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\</code> 目录下。</p>
+<h3 id="验证-4">验证</h3>
+<pre><code class="language-bash">(base) D:\&gt;nvcc --version
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2022 NVIDIA Corporation
+Built on Wed_Sep_21_10:41:10_Pacific_Daylight_Time_2022
+Cuda compilation tools, release 11.8, V11.8.89
+Build cuda_11.8.r11.8/compiler.31833905_0
+</code></pre>
+<p>进入到安装目录 <code>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\extras\demo_suite</code>, 运行 <code>.\deviceQuery.exe</code></p>
+<img data-src="/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/image-3.png" class="" title="image-3.png">
+<h2 id="安装-PyTorch">安装 PyTorch</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9weXRvcmNoLm9yZy8=">PyTorch<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>conda 安装</strong></p>
+<pre><code class="language-bash">conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+</code></pre>
+<p><strong>pip 安装</strong></p>
+<pre><code class="language-bash">pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+</code></pre>
+<h3 id="验证-5">验证</h3>
+<pre><code class="language-bash">(base) D:\&gt;python
+Python 3.11.4 | packaged by Anaconda, Inc. | (main, Jul  5 2023, 13:38:37) [MSC v.1916 64 bit (AMD64)] on win32
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import torch
+&gt;&gt;&gt; print(torch.__version__)
+2.0.1
+&gt;&gt;&gt; torch.cuda.is_available()
+True
+&gt;&gt;&gt;
+</code></pre>
+<h2 id="ultralytics-YOLOv8">ultralytics/YOLOv8</h2>
+<p><strong>创建虚拟环境</strong></p>
+<pre><code class="language-bash">conda create --name yolov8 --clone base
+</code></pre>
+<p><strong>激活虚拟环境</strong></p>
+<pre><code class="language-bash">conda activate yolov8
+</code></pre>
+<p><strong>安装</strong></p>
+<pre><code class="language-bash">pip install ultralytics
+</code></pre>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3VsdHJhbHl0aWNzL3VsdHJhbHl0aWNz">代码 https://github.com/ultralytics/ultralytics<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3VsdHJhbHl0aWNzL2Fzc2V0cy9yZWxlYXNlcw==">权重 https://github.com/ultralytics/assets/releases<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="验证-6">验证</h3>
+<pre><code class="language-bash">yolo predict model=yolov8n.pt imgsz=640 conf=0.25
+</code></pre>
+<pre><code class="language-bash">(yolov8) F:\workspace\yolov8&gt;yolo predict model=yolov8n.pt imgsz=640 conf=0.25
+WARNING  'source' is missing. Using default 'source=D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\assets'.
+Ultralytics YOLOv8.0.154  Python-3.11.4 torch-2.0.1 CUDA:0 (NVIDIA GeForce RTX 3090, 24576MiB)
+YOLOv8n summary (fused): 168 layers, 3151904 parameters, 0 gradients
+
+image 1/2 D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\assets\bus.jpg: 640x480 4 persons, 1 bus, 1 stop sign, 160.2ms
+image 2/2 D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\assets\zidane.jpg: 384x640 2 persons, 1 tie, 154.0ms
+Speed: 41.6ms preprocess, 157.1ms inference, 72.6ms postprocess per image at shape (1, 3, 384, 640)
+Results saved to runs\detect\predict
+</code></pre>
+<h2 id="【参考】">【参考】</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC85OTg4MDIwND9mcm9tX3ZvdGVyc19wYWdlPXRydWU=">Windows 安装 CUDA/cuDNN<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzMwMTMzMy9hcnRpY2xlL2RldGFpbHMvMTIxNTUwMjU3">验证pytorch是否为GPU版本<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC82MjcxMDgzMDE=">YOLOv8环境搭建（Windows11）<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl82MTk4ODg4NS9hcnRpY2xlL2RldGFpbHMvMTI5NDIxNTM4">YOLOv8 从环境搭建到推理训练<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnVsdHJhbHl0aWNzLmNvbS9xdWlja3N0YXJ0Lw==">Ultralytics YOLOv8 Docs-Quickstart<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC82MTU1MzA3ODU=">Anaconda 创建，复制，移植，删除环境<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/OpenCV/Android-Studio-OpenCV-JNI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/OpenCV/Android-Studio-OpenCV-JNI/" class="post-title-link" itemprop="url">Android Studio OpenCV JNI集成指南</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 16:53:12" itemprop="dateCreated datePublished" datetime="2025-01-01T16:53:12+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 22:10:17" itemprop="dateModified" datetime="2025-08-31T22:10:17+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OpenCV/" itemprop="url" rel="index"><span itemprop="name">OpenCV</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OpenCV/JNI/" itemprop="url" rel="index"><span itemprop="name">JNI</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OpenCV/JNI/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>最近一个项目要编译深度学习的库，需要用到 opencv 和 JNI，本文档用于记录环境配置中遇到的常见错误以及解决方案</p>
+</blockquote>
+<h2 id="Invalid-Gradle-JDK-configuration-found">Invalid Gradle JDK configuration found</h2>
+<pre><code class="language-bash">failed
+Invalid Gradle JDK configuration found
+ 
+Invalid Gradle JDK configuration found. Open Gradle Settings 
+Change JDK location
+</code></pre>
+<p><strong>解决办法:</strong> 删除文件<br>
+<code>.idea/gradle.xml</code> 和 <code>.idea/workspace.xml</code>， 重新编译；</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F1YW50dW03L2FydGljbGUvZGV0YWlscy8xMjEwNDYzNzc=">解决办法：Invalid Gradle JDK configuration found<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="clang-error-unknown-argument-‘-static-openmp’">clang++: error: unknown argument: ‘-static-openmp’</h2>
+<p>原因是NDK版本过高，跟当前的AndroidStudio版本不匹配。选择升级AndroidStudio或者降低NDK版本即可。</p>
+<p>重新下载21.3.6528147版本，配置NDK通过，rebuild项目通过，问题解决， 最新版的 Android Studio 降级到 Android Studio 4.2.1 版本，NDK 降级到 21.3.6528147;</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0FsZ2VyX21hZ2ljL2FydGljbGUvZGV0YWlscy8xMjAyMDAwODE=">问题：clang++.exe: error: unknown argument: ‘-static-openmp‘<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jb2RlYW50ZW5uYS5jb20vYS9Vdzd3MzExRHVu">NDK版本！clang++: error: unknown argument: ‘-static-openmp‘<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="Android-res-values-v26-values-v26-xml-9-5-12-13-AAPT-error-resource-android-attr-colorError-not-f">Android res\values-v26\values-v26.xml:9:5-12:13: AAPT: error: resource android:attr/colorError not f</h2>
+<p>解决方法：<br>
+compileSdkVersion 设置为28</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NTg3MjA5L2FydGljbGUvZGV0YWlscy8xMDM2MzczNTY=">Android res\values-v26\values-v26.xml:9:5-12:13: AAPT: error: resource android:attr/colorError not f<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="2-files-found-with-path-‘lib-arm64-v8a-xxx-so‘-问题">2 files found with path ‘lib/arm64-v8a/xxx.so‘ 问题</h2>
+<p>最后在自己的 <code>nativelib module</code> 的 <code>build.gradle</code> 的  <code>android&#123;&#125;</code> 加上</p>
+<pre><code class="language-bash">sourceSets &#123;
+        main &#123;
+            jniLibs.srcDirs = ['libs']
+        &#125;
+    &#125;
+</code></pre>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3hpYW9iYWFpZGFiYTEyMy9hcnRpY2xlL2RldGFpbHMvMTIyNTIwMDYy">2 files found with path ‘lib/arm64-v8a/xxx.so‘ 问题<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="undefined-reference-to-cv-String-deallocate-一种可能解决方案">undefined reference to `cv::String::deallocate()一种可能解决方案</h2>
+<p>解决方案：替换库文件时候，同步替换头文件</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxMzY0NjI5L2FydGljbGUvZGV0YWlscy8xMjI3MzAzMDM=">undefined reference to `cv::String::deallocate()一种可能解决方案<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="关于解决gradle版本与gradle插件版本不一致问题的方法之一">关于解决gradle版本与gradle插件版本不一致问题的方法之一</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2FiY3h5ejIzNjUyL2FydGljbGUvZGV0YWlscy8xMTEwODM5NDM=">关于解决gradle版本与gradle插件版本不一致问题的方法之一<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="Algorithm-HmacPBESHA256-not-available">Algorithm HmacPBESHA256 not available</h2>
+<p>在 <code>D:\Android\sdk\.android</code> 的目录下找到文件 <code>debug.keystore</code>， 其实不缺少签名文件，这个问题，应该是之前安装了多个版本的 Android Studio，导致签名文件被覆盖了， 删除 <code>debug.keystore</code> 文件，重新签名即可。</p>
+<h2 id="JNI-GetFieldID和GetMethodID函数解释及方法签名">JNI GetFieldID和GetMethodID函数解释及方法签名</h2>
+<ol>
+<li><code>GetFieldID</code> 是得到 <code>java</code> 类中的参数 <code>ID</code> ，<code>GetMethodID</code> 得到 <code>java</code> 类中方法的 <code>ID</code> ，它们只能调用类中声明为 <code>public</code> 的参数或方法。</li>
+</ol>
+<p>举例说明：</p>
+<pre><code class="language-bash">jclass c = (*env)-&gt;FindClass(env,&quot;com/camera/webcam/Test&quot;);
+jfieldID width_id = (*env)-&gt;GetFieldID(env, c, &quot;width&quot;, &quot;I&quot;);
+</code></pre>
+<p>第一个参数：JNI接口对象；第二个参数：Java类对象；第三个参数：参数名（或方法名）；第四个参数：该参数（或方法）的签名。</p>
+<ol start="2">
+<li>方法签名</li>
+</ol>
+<p>调用 <code>JNI</code> 的 <code>GetMethodID</code> 函数获取一个 <code>jmethodID</code> 时，需要传入一个方法名称和方法签名，方法名称就是在 <code>Java</code> 中定义的方法名，方法签名的格式为：(形参参数类型列表)返回值。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI3Mjc4OTU3L2FydGljbGUvZGV0YWlscy83NzE2NDM1Mw==">JNI GetFieldID和GetMethodID函数解释及方法签名<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="如何从JNI返回多个数组到Java？">如何从JNI返回多个数组到Java？</h2>
+<p>当您希望从一个函数返回多个“东西”时，您有两个选项(这并不是 <code>JNI</code> 特有的)：要么创建一个包含所有结果的包装器对象(在您的例子中，是一个包含3个数组字段的 <code>Java</code> 类)，要么使用 <code>out</code> 参数。也许，在您的情况下，如果您知道调用前的长度，后者可能会更容易一些。</p>
+<p>所以，在 <code>Java</code> 中，您可以编写如下内容</p>
+<pre><code class="language-java">package p;
+
+public class C &#123;
+    public void f() &#123;
+        byte[] array1 = new byte[10];
+        int[] array2 = new int[20];
+        String[] array3 = new String[5];
+        fillArrays(array1, array2, array3);
+    &#125;
+    native void fillArrays(byte[] byteArray, int[] intArray, String[] stringArray);
+&#125;
+</code></pre>
+<p>现在，在 <code>C</code> 中，这看起来是这样的：</p>
+<pre><code class="language-cpp">JNIEXPORT void JNICALL 
+Java_p_C_fillArrays(JNIEnv *env, jobject thisC, jbyteArray byteArray, jintArray intArray, jobjectArray stringArray)
+&#123;
+    jboolean isCopy;
+    jint i = 0;
+    char* names[] = &#123;&quot;one&quot;, &quot;two&quot;, &quot;three&quot;&#125;;
+
+    jbyte *c_byteArray = (*env)-&gt;GetByteArrayElements(env, byteArray, &amp;isCopy);
+    for (i=0; i&lt;(*env)-&gt;GetArrayLength(env, byteArray); i++) &#123;
+        c_byteArray[i] = (jbyte)i;
+    &#125;
+    (*env)-&gt;ReleaseByteArrayElements(env, byteArray, c_byteArray, 0);
+
+    jint *c_intArray = (*env)-&gt;GetIntArrayElements(env, intArray, &amp;isCopy);
+    for (i=0; i&lt;(*env)-&gt;GetArrayLength(env, intArray); i++) &#123;
+        c_intArray[i] = i;
+    &#125;
+    (*env)-&gt;ReleaseIntArrayElements(env, intArray, c_intArray, 0);
+
+    for (i=0; i&lt;(*env)-&gt;GetArrayLength(env, stringArray) &amp;&amp; i&lt;sizeof(names)/sizeof(names[0]); i++) &#123;
+        (*env)-&gt;SetObjectArrayElement(env, stringArray, i, (*env)-&gt;NewStringUTF(env, names[i]));
+    &#125;
+&#125;
+</code></pre>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jbG91ZC50ZW5jZW50LmNvbS9kZXZlbG9wZXIvYXNrL3NvZi8xMTIwMzU5NzU=">如何从JNI返回多个数组到Java？<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="Java-JNI对数组赋值并返回给Java">Java: JNI对数组赋值并返回给Java</h2>
+<p>在 <code>JNI</code> 中对 <code>Java</code> 层的数组赋值有两种方式：一是在 <code>Java</code> 层创建好数组，然后传递到 <code>JNI</code> 层，由 <code>JNI</code> 层进行赋值；二是直接在 <code>JNI</code> 层创建好数组并赋值，然后返回数组到 <code>Java</code> 层。下面是两种方式的对比实现：</p>
+<p>创建两个 <code>native</code> 方法</p>
+<pre><code class="language-java">    //传递数组,操作后,返回
+    public native void passArrayMethod(int[] arr);
+
+    //创建指定长度数组
+    public native int[] createArrayMethod(int len);
+</code></pre>
+<p>生成对应的 <code>C</code> 函数</p>
+<pre><code class="language-cpp">JNIEXPORT void JNICALL Java_com_test_git_jnidemo_JniUtil_JniDemo_passArrayMethod
+  (JNIEnv *, jobject, jintArray);
+
+JNIEXPORT jintArray JNICALL Java_com_test_git_jnidemo_JniUtil_JniDemo_createArrayMethod
+  (JNIEnv *, jobject, jint);
+</code></pre>
+<p>传递数组给 <code>JNI</code> ，修改第一个元素值，然后排序</p>
+<pre><code class="language-cpp">int com(const void *a, const void *b)&#123;
+    return *(int *)a - *(int *)b;//升序
+&#125;
+JNIEXPORT void JNICALL Java_com_test_git_jnidemo_JniUtil_JniDemo_passArrayMethod
+        (JNIEnv *env, jobject jobj, jintArray jarr)&#123;
+    //1.获取数组指针
+    jint *arr = env-&gt;GetIntArrayElements(jarr, NULL);
+    *arr = 100;
+    //2.获取数组长度
+    int len = env-&gt;GetArrayLength(jarr);
+    //3.排序
+    qsort(arr, len, sizeof(jint), com);
+
+    //4.释放资源
+    env-&gt;ReleaseIntArrayElements(jarr, arr, JNI_COMMIT);
+//    env-&gt;ReleaseIntArrayElements(jarr, arr, JNI_ABORT);
+    //  对于最后一个参数(如果指针指向的数组为副本时，否则该参数不起作用)
+    //      0       copy back the content and free the elems buffer
+    //      JNI_COMMIT      copy back the content but do not free the elems buffer
+    //      JNI_ABORT       free the buffer without copying back the possible changes
+&#125;;
+</code></pre>
+<p><code>JNI</code> 生成数组，并返回</p>
+<pre><code class="language-cpp">JNIEXPORT jintArray JNICALL Java_com_test_git_jnidemo_JniUtil_JniDemo_createArrayMethod
+        (JNIEnv *env, jobject jobj, jint len)&#123;
+    //1.新建长度len数组
+    jintArray jarr = env-&gt;NewIntArray(len);
+    //2.获取数组指针
+    jint *arr = env-&gt;GetIntArrayElements(jarr, NULL);
+    //3.赋值
+    int i = 0;
+    for(; i &lt; len; i++)&#123;
+        arr[i] = i;
+    &#125;
+    //4.释放资源
+    env-&gt;ReleaseIntArrayElements(jarr, arr, 0);
+    //5.返回数组
+    return jarr;
+&#125;;
+</code></pre>
+<p><code>MainActivity</code> 中调用</p>
+<pre><code class="language-java">        int[] arr = &#123;1, 3, 2, 6, 8, 0&#125;;
+        Log.i(TAG, &quot;arr修改前: &quot; + getArrayString(arr));
+        jd.passArrayMethod(arr);
+        Log.i(TAG, &quot;arr修改后: &quot; + getArrayString(arr));
+
+        Log.i(TAG, &quot;------------------------------------------&quot;);
+
+        int[] arr_new = jd.createArrayMethod(10);
+        Log.i(TAG, &quot;arr_new: &quot;+ getArrayString(arr_new) );
+</code></pre>
+<p>输出结果：</p>
+<pre><code class="language-bash">09-26 17:02:29.454 994-994/com.test.git.jnidemo I/MainActivity-: arr修改前: ,1,3,2,6,8,0
+09-26 17:02:29.454 994-994/com.test.git.jnidemo I/MainActivity-: arr修改后: ,0,2,3,6,8,100
+09-26 17:02:29.454 994-994/com.test.git.jnidemo I/MainActivity-: ------------------------------------------
+09-26 17:02:29.454 994-994/com.test.git.jnidemo I/MainActivity-: arr_new: ,0,1,2,3,4,5,6,7,8,9
+</code></pre>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20veW9uZ2RhaW1pL3AvMTQwMjM0MDYuaHRtbA==">Java: JNI对数组赋值并返回给Java<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="JNI-编程上手指南之-JNIEnv-详解">[JNI 编程上手指南之 JNIEnv 详解]</h2>
+<ol>
+<li>JNIEnv 是什么?</li>
+</ol>
+<p><code>JNIEnv</code> 即 <code>Java Native Interface Environment</code>，<code>Java</code> 本地编程接口环境。<code>JNIEnv</code> 内部定义了很多函数用于简化我们的 <code>JNI</code> 编程。<br>
+<code>JNI</code> 把 <code>Java</code> 中的所有对象或者对象数组当作一个 <code>C</code> 指针传递到本地方法中，这个指针指向 <code>JVM</code> 中的内部数据结构(对象用 <code>jobject</code> 来表示，而对象数组用 <code>jobjectArray</code> 或者具体是基本类型数组)，而内部的数据结构在内存中的存储方式是不可见的。只能从 <code>JNIEnv</code> 指针指向的函数表中选择合适的 <code>JNI</code> 函数来操作 <code>JVM</code> 中的数据结构。</p>
+<p>在 <code>C</code> 语言中，<code>JNIEnv</code> 是一个指向 <code>JNINativeInterface_</code> 结构体的指针：</p>
+<pre><code class="language-cpp">#ifdef __cplusplus
+typedef JNIEnv_ JNIEnv;
+#else
+typedef const struct JNINativeInterface_ *JNIEnv; // C 语言
+#endif
+
+struct JNINativeInterface_ &#123;
+    void *reserved0;
+    void *reserved1;
+    void *reserved2;
+
+    void *reserved3;
+    jint (JNICALL *GetVersion)(JNIEnv *env);
+
+    jclass (JNICALL *DefineClass)
+      (JNIEnv *env, const char *name, jobject loader, const jbyte *buf,
+       jsize len);
+
+    jstring (JNICALL *NewStringUTF)
+      (JNIEnv *env, const char *utf);
+
+    //省略其他函数指针
+    //......
+&#125;
+</code></pre>
+<p><code>JNINativeInterface_</code> 结构体中定义了非常多的函数指针，这些函数用于简化我们的 <code>JNI</code> 编程。<code>C</code> 语言中，<code>JNIEnv</code> 中函数的使用方式如下:</p>
+<pre><code class="language-cpp">JNIEnv * env
+// env 的实际类型是 JNINativeInterface_**
+(*env)-&gt;NewStringUTF(env,&quot;Hello from JNI !&quot;);
+</code></pre>
+<p>在 <code>C++</code> 代码中，<code>JNIEnv</code> 是一个 <code>JNIEnv_</code> 结构体：</p>
+<pre><code class="language-cpp">#ifdef __cplusplus
+typedef JNIEnv_ JNIEnv;
+#else
+typedef const struct JNINativeInterface_ *JNIEnv; 
+#endif
+
+struct JNIEnv_ &#123;
+    const struct JNINativeInterface_ *functions;
+#ifdef __cplusplus
+
+    jint GetVersion() &#123;
+        return functions-&gt;GetVersion(this);
+    &#125;
+    jclass DefineClass(const char *name, jobject loader, const jbyte *buf,
+                       jsize len) &#123;
+        return functions-&gt;DefineClass(this, name, loader, buf, len);
+    &#125;
+    jclass FindClass(const char *name) &#123;
+        return functions-&gt;FindClass(this, name);
+    &#125;
+    jmethodID FromReflectedMethod(jobject method) &#123;
+        return functions-&gt;FromReflectedMethod(this,method);
+    &#125;
+    jfieldID FromReflectedField(jobject field) &#123;
+        return functions-&gt;FromReflectedField(this,field);
+    &#125;
+
+    jobject ToReflectedMethod(jclass cls, jmethodID methodID, jboolean isStatic) &#123;
+        return functions-&gt;ToReflectedMethod(this, cls, methodID, isStatic);
+    &#125;
+
+    jclass GetSuperclass(jclass sub) &#123;
+        return functions-&gt;GetSuperclass(this, sub);
+    &#125;
+    //省略其他函数
+    //......
+&#125;
+</code></pre>
+<p><code>JNIEnv_</code> 结构体中同样定义了非常多的成员函数，这些函数用于简化我们的 <code>JNI</code> 编程。<code>C++</code> <code>语言中，JNIEnv</code> 中函数的使用方式如下:</p>
+<pre><code class="language-cpp">//JNIEnv * env
+// env 的实际类型是 JNIEnv_*
+env-&gt;NewstringUTF ( &quot;Hello from JNI ! &quot;);
+</code></pre>
+<p>更多详情见： <span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC83MjQzODE5MDA5ODY2OTU2ODYw">JNI 编程上手指南之 JNIEnv 详解<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="Android-NDK开发：JNI实战篇"><span class="exturl" data-url="aHR0cHM6Ly9jZmFuci5jbi8yMDE3LzA4LzA1L0FuZHJvaWQtTkRLLWRldi1KTkktcy1wcmFjdGljZS8=">Android NDK开发：JNI实战篇<i class="fa fa-external-link-alt"></i></span></h2>
+<h2 id="java调用本地方法–JNI访问List集合"><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3cxOTkyd2lzaGVzL2FydGljbGUvZGV0YWlscy84MDI4OTc1Mw==">java调用本地方法–JNI访问List集合<i class="fa fa-external-link-alt"></i></span></h2>
+<h2 id="JNI系列-四-JAVA数据类型和JNI类型对照表"><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE3ODE1MjEvYXJ0aWNsZS9kZXRhaWxzLzEwNjk1NTM2Mw==">JNI系列(四)JAVA数据类型和JNI类型对照表<i class="fa fa-external-link-alt"></i></span></h2>
+
+<img data-src="/2025/01/01/OpenCV/Android-Studio-OpenCV-JNI/image-1.png" class="" title="image-1.png">
+<img data-src="/2025/01/01/OpenCV/Android-Studio-OpenCV-JNI/image-2.png" class="" title="image-2.png">
+<h2 id="【参考】">【参考】</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zMzc3ODUxNzE=">Android Studio配置OpenCV的JNI接口<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwODg1ODIxL2FydGljbGUvZGV0YWlscy8xMDY3ODczMjM=">【Android+OpenCV】Android Studio的安装全过程+在Android Studio中配置OpenCV-重点关注<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25pc2hpZ2VzYjEyMy9hcnRpY2xlL2RldGFpbHMvOTAwMjQ4MjE=">NDK开发遇到的三个错误：‘javah’ 不是内部或外部命令，编码GBK的不可映射字符， 程序包XX.XX不存在<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxODg1NjczL2FydGljbGUvZGV0YWlscy8xMTUzMjQyODM=">OpenCV 在 Android Studio 的使用教程<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1dvc2hpa3VubG9uZy9hcnRpY2xlL2RldGFpbHMvMTIxODUwMDc5">Android Studio使用OpenCV进行图像基本处理<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2d3cGxvdmVraW1pL2FydGljbGUvZGV0YWlscy8xMDYyNzY1NTc=">Android学习笔记之——基于Android的opencv开发（Android studio3.6+opencv4.3.0开发环境搭建）<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3F1YW50dW03L2FydGljbGUvZGV0YWlscy8xMjEwNDYzNzc=">解决办法：Invalid Gradle JDK configuration found<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jb2RlYW50ZW5uYS5jb20vYS9Vdzd3MzExRHVu">NDK版本！clang++: error: unknown argument: ‘-static-openmp‘<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0FsZ2VyX21hZ2ljL2FydGljbGUvZGV0YWlscy8xMjAyMDAwODE=">问题：clang++.exe: error: unknown argument: ‘-static-openmp‘<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NTg3MjA5L2FydGljbGUvZGV0YWlscy8xMDM2MzczNTY=">Android res\values-v26\values-v26.xml:9:5-12:13: AAPT: error: resource android:attr/colorError not f<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI3Mjc4OTU3L2FydGljbGUvZGV0YWlscy83NzE2NDM1Mw==">JNI GetFieldID和GetMethodID函数解释及方法签名<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jbG91ZC50ZW5jZW50LmNvbS9kZXZlbG9wZXIvYXNrL3NvZi8xMTIwMzU5NzU=">如何从JNI返回多个数组到Java？<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20veW9uZ2RhaW1pL3AvMTQwMjM0MDYuaHRtbA==">Java: JNI对数组赋值并返回给Java<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9qdWVqaW4uY24vcG9zdC83MjQzODE5MDA5ODY2OTU2ODYw">JNI 编程上手指南之 JNIEnv 详解<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jZmFuci5jbi8yMDE3LzA4LzA1L0FuZHJvaWQtTkRLLWRldi1KTkktcy1wcmFjdGljZS8=">Android NDK开发：JNI实战篇<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3cxOTkyd2lzaGVzL2FydGljbGUvZGV0YWlscy84MDI4OTc1Mw==">java调用本地方法–JNI访问List集合<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTE3ODE1MjEvYXJ0aWNsZS9kZXRhaWxzLzEwNjk1NTM2Mw==">JNI系列(四)JAVA数据类型和JNI类型对照表<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/OpenCV/raw%E4%B8%8Ejpg%E4%BA%92%E8%BD%ACpython-cpp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/OpenCV/raw%E4%B8%8Ejpg%E4%BA%92%E8%BD%ACpython-cpp/" class="post-title-link" itemprop="url">python-cpp 版本的 raw 与 jpg 互转代码</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 16:51:58" itemprop="dateCreated datePublished" datetime="2025-01-01T16:51:58+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 22:11:33" itemprop="dateModified" datetime="2025-08-31T22:11:33+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/raw2jpg/" itemprop="url" rel="index"><span itemprop="name">raw2jpg</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/raw2jpg/jpg2raw/" itemprop="url" rel="index"><span itemprop="name">jpg2raw</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>在工作中常常需要将图像转化为raw数据或者yuv数据，这里将提供 cpp 版本和 python 版本的互转代码</p>
+</blockquote>
+<p><strong>代码链接见文档尾部。</strong></p>
+<h2 id="cpp-版本">cpp 版本</h2>
+<h3 id="jpg2raw-cpp">jpg2raw.cpp</h3>
+<pre><code class="language-cpp">#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+#include &lt;opencv2/core.hpp&gt;
+#include &lt;opencv2/highgui.hpp&gt;
+
+// Windows 和 Linux 下通用的创建目录函数
+#ifdef _WIN32
+#include &lt;direct.h&gt; // For _mkdir on Windows
+#define MKDIR(dir) _mkdir(dir)
+#else
+#include &lt;sys/stat.h&gt; // For mkdir on POSIX systems
+#define MKDIR(dir) mkdir(dir, 0755)
+#endif
+
+bool create_directory(const std::string &amp;dir_path)
+&#123;
+#ifdef _WIN32
+    if (_mkdir(dir_path.c_str()) != 0)
+    &#123;
+        return false;
+    &#125;
+#else
+    if (MKDIR(dir_path.c_str()) != 0 &amp;&amp; errno != EEXIST)
+    &#123;
+        return false;
+    &#125;
+#endif
+    return true;
+&#125;
+
+int main(int argc, char **argv)
+&#123;
+    if (argc != 2)
+    &#123;
+        std::cerr &lt;&lt; &quot;Usage: ./image_to_raw input_image.jpg&quot; &lt;&lt; std::endl;
+        return -1;
+    &#125;
+
+    std::string input_image_path = argv[1];
+    std::string base_name = input_image_path.substr(input_image_path.find_last_of('/') + 1); // Unix风格路径分隔符
+#ifdef _WIN32
+    std::replace(base_name.begin(), base_name.end(), '\\', '/'); // 对于Windows下的反斜杠，统一转换为正斜杠
+#endif
+
+    std::cout &lt;&lt;&quot; ----------- input_image_path: &quot; &lt;&lt; input_image_path &lt;&lt; &quot; ------------------------&quot;&lt;&lt;std::endl;
+    std::cout &lt;&lt;&quot; ----------- basename: &quot; &lt;&lt; base_name &lt;&lt; &quot; ------------------------&quot;&lt;&lt;std::endl;
+
+    std::string raw_dir = &quot;raws/&quot;;
+    // std::string output_raw_path = raw_dir + base_name + &quot;.raw&quot;;
+
+    std::string file_name = input_image_path.substr(input_image_path.find_last_of(&quot;/\\&quot;) + 1);
+    std::string file_name_without_suffix = file_name.substr(0, file_name.find_last_of(&quot;.&quot;));
+    std::string file_name_with_suffix = file_name_without_suffix + &quot;.raw&quot;;
+    std::string output_raw_path = raw_dir + file_name_with_suffix;
+
+
+    // 创建 'raw' 子目录（如果不存在）
+    if (!create_directory(raw_dir))
+    &#123;
+        std::cerr &lt;&lt; &quot;Failed to create directory: &quot; &lt;&lt; raw_dir &lt;&lt; std::endl;
+        //return -1;
+    &#125;
+
+    cv::Mat img = cv::imread(input_image_path, 1);
+    if (img.empty())
+    &#123;
+        std::cerr &lt;&lt; &quot;Failed to load the image: &quot; &lt;&lt; input_image_path &lt;&lt; std::endl;
+        return -1;
+    &#125;
+
+    int im_width = img.cols;
+    int im_height = img.rows;
+    int im_depth = img.channels();
+
+    std::cout &lt;&lt; &quot;im_width: &quot; &lt;&lt; im_width &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;im_height: &quot; &lt;&lt; im_height &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;im_depth: &quot; &lt;&lt; im_depth &lt;&lt; std::endl;
+
+    // 写入 RAW 文件
+    std::ofstream raw_file(output_raw_path, std::ios::binary);
+    if (!raw_file.is_open())
+    &#123;
+        std::cerr &lt;&lt; &quot;Failed to open file for writing: &quot; &lt;&lt; output_raw_path &lt;&lt; std::endl;
+        return -1;
+    &#125;
+    raw_file.write(reinterpret_cast&lt;const char *&gt;(img.data), im_width * im_height * im_depth);
+    raw_file.close();
+
+    std::cout &lt;&lt; &quot;Converted &quot; &lt;&lt; input_image_path &lt;&lt; &quot; to &quot; &lt;&lt; output_raw_path &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+<h3 id="raw2jpg">raw2jpg</h3>
+<pre><code class="language-cpp">#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+#include &lt;opencv2/core.hpp&gt;
+#include &lt;opencv2/highgui.hpp&gt;
+#include &lt;opencv2/imgproc.hpp&gt;
+#include &lt;unordered_map&gt;
+
+#ifdef _WIN32
+#include &lt;direct.h&gt; // For _mkdir on Windows
+#define MKDIR(dir) _mkdir(dir)
+#else
+#include &lt;sys/stat.h&gt; // For mkdir on POSIX systems
+#define MKDIR(dir) mkdir(dir, 0755)
+#endif
+
+struct ImageSize
+&#123;
+    int width;
+    int height;
+&#125;;
+
+const std::unordered_map&lt;int, ImageSize&gt; image_sizes = &#123;
+    &#123;921600, &#123;640, 480&#125;&#125;,
+    &#123;2764800, &#123;1280, 720&#125;&#125;,
+    &#123;5858640, &#123;1896, 1030&#125;&#125;,
+    &#123;6220800, &#123;1920, 1080&#125;&#125;,
+    &#123;11059200, &#123;2560, 1440&#125;&#125;,
+    &#123;12257280, &#123;2688, 1520&#125;&#125;,
+    &#123;15116544, &#123;2592, 1944&#125;&#125;,
+    &#123;3686400, &#123;1280, 960&#125;&#125;&#125;;
+
+// 跨平台创建目录函数（仅支持Linux和Windows）
+bool create_directory(const std::string &amp;path)
+&#123;
+#ifdef _WIN32
+    return (_mkdir(path.c_str()) == 0);
+#else
+    return (::mkdir(path.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) == 0);
+#endif
+&#125;
+
+int main(int argc, char **argv)
+&#123;
+    if (argc != 2)
+    &#123;
+        std::cerr &lt;&lt; &quot;Usage: ./raw_image_viewer raw_image.raw&quot; &lt;&lt; std::endl;
+        return -1;
+    &#125;
+
+    std::string raw_image_path = argv[1];
+    std::cout &lt;&lt; &quot;raw_image_path: &quot; &lt;&lt; raw_image_path &lt;&lt; std::endl;
+
+    // 获取文件大小
+    std::ifstream file(raw_image_path, std::ios::binary | std::ios::ate);
+    size_t file_size = file.tellg();
+    file.close();
+    std::cout &lt;&lt; &quot;size: &quot; &lt;&lt; file_size &lt;&lt; &quot; bytes&quot; &lt;&lt; std::endl;
+
+    // 查找对应的图像尺寸
+    auto it = image_sizes.find(file_size);
+    if (it == image_sizes.end())
+    &#123;
+        std::cout &lt;&lt; file_size &lt;&lt; &quot; is not supported!&quot; &lt;&lt; std::endl;
+        return -1;
+    &#125;
+    const ImageSize &amp;size = it-&gt;second;
+    int im_width = size.width;
+    int im_height = size.height;
+    int im_depth = 3; // 假设所有图像都是RGB三通道
+
+    std::cout &lt;&lt; &quot;im_width: &quot; &lt;&lt; im_width &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;im_height: &quot; &lt;&lt; im_height &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;im_depth: &quot; &lt;&lt; im_depth &lt;&lt; std::endl;
+
+    cv::Mat raw_image(im_height, im_width, CV_8UC3);
+
+    // 读取 RAW 文件的内容
+    std::ifstream raw_file(raw_image_path, std::ios::binary);
+    raw_file.read(reinterpret_cast&lt;char *&gt;(raw_image.data), im_width * im_height * im_depth);
+    raw_file.close();
+
+    // 提取并创建 images 文件夹（跨平台）
+    std::string images_path = &quot;images/&quot;;
+    bool dir_created = create_directory(images_path);
+
+    std::string file_name = raw_image_path.substr(raw_image_path.find_last_of(&quot;/\\&quot;) + 1);
+    std::string file_name_without_suffix = file_name.substr(0, file_name.find_last_of(&quot;.&quot;));
+    std::string file_name_with_suffix = file_name_without_suffix + &quot;.jpg&quot;;
+    std::string output_path = images_path + file_name_with_suffix;
+
+    cv::imwrite(output_path, raw_image);
+
+    std::cout &lt;&lt; &quot; images_path: &quot; &lt;&lt; images_path &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot; file_name_with_suffix: &quot; &lt;&lt; file_name_with_suffix &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot; file save name: &quot; &lt;&lt; output_path &lt;&lt; std::endl;
+
+    if (!dir_created)
+    &#123;
+        std::cerr &lt;&lt; &quot;Failed to create 'images' directory.&quot; &lt;&lt; std::endl;
+    &#125;
+
+    // （可选）显示图像
+    // cv::imshow(&quot;raw_image&quot;, raw_image);
+    // cv::waitKey(5);
+    // cv::destroyAllWindows();
+
+    // （可选）删除原始 RAW 文件
+    // std::remove(raw_image_path.c_str());
+
+    return 0;
+&#125;
+</code></pre>
+<h3 id="CMakeLists-txt">CMakeLists.txt</h3>
+<pre><code class="language-cmake">cmake_minimum_required(VERSION 3.10)
+
+project(convertRAW2jpg CXX)
+
+# 设置安装目录
+set(CMAKE_INSTALL_PREFIX &quot;$&#123;PROJECT_BINARY_DIR&#125;/install&quot;)
+set(CMAKE_SKIP_INSTALL_RPATH FALSE)
+set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+set(CMAKE_INSTALL_RPATH &quot;$&#123;CMAKE_INSTALL_PREFIX&#125;/lib&quot;)
+
+# 要求编译器支持C++11
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+# Windows 特定选项和标志
+if(MSVC)
+    add_compile_options(/utf-8)
+    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+endif()
+
+
+# OpenCV 手动配置部分（保留 find_package 并注释）
+if(WIN32)
+    # find_package(OpenCV REQUIRED)  # 注释掉以使用自定义路径
+    set(OpenCV_DIR &quot;D:/opencv480vc16/build&quot; CACHE PATH &quot;Path to a custom OpenCV build on Windows&quot;)
+    set(OPENCV_INCLUDE_DIRS &quot;$&#123;OpenCV_DIR&#125;/include&quot;)
+    set(OPENCV_LIB_DIR     &quot;$&#123;OpenCV_DIR&#125;/x64/vc16/lib&quot;) # 根据实际编译器版本调整
+
+    include_directories($&#123;OPENCV_INCLUDE_DIRS&#125;)
+    link_directories($&#123;OPENCV_LIB_DIR&#125;)
+
+    list(APPEND EXTRA_LIBS opencv_world480.lib) # 根据实际OpenCV库名称调整
+elseif(NOT WIN32)
+    # Linux 下的手动 OpenCV 配置
+    # find_package(OpenCV REQUIRED)  # 注释掉以使用自定义路径
+    set(OpenCV_DIR &quot;~/install/opencv4.5.4&quot; CACHE PATH &quot;Path to a custom OpenCV build on Unix-like systems&quot;)
+    set(OPENCV_INCLUDE_DIRS &quot;$&#123;OpenCV_DIR&#125;/include/opencv4&quot;)
+    set(OPENCV_LIB_DIR     &quot;$&#123;OpenCV_DIR&#125;/lib&quot;)
+
+    include_directories($&#123;OPENCV_INCLUDE_DIRS&#125;)
+    link_directories($&#123;OPENCV_LIB_DIR&#125;)
+
+    list(APPEND EXTRA_LIBS opencv_world -fopenmp -lpthread -lm) # 根据实际OpenCV库名称和依赖调整
+endif()
+
+include_directories($&#123;OpenCV_INCLUDE_DIRS&#125;)
+
+# 添加源文件
+add_executable(raw2jpg src/raw2jpg.cpp)
+add_executable(jpg2raw src/jpg2raw.cpp)
+
+
+target_link_libraries(raw2jpg PRIVATE $&#123;EXTRA_LIBS&#125;)
+target_link_libraries(jpg2raw PRIVATE $&#123;EXTRA_LIBS&#125;)
+
+# 安装目标及辅助脚本
+set(TMP_TEST_DIR $&#123;PROJECT_SOURCE_DIR&#125;/temp_example)
+install(TARGETS raw2jpg
+        RUNTIME DESTINATION examples
+        RUNTIME DESTINATION $&#123;TMP_TEST_DIR&#125;)
+
+install(TARGETS jpg2raw
+        RUNTIME DESTINATION examples
+        RUNTIME DESTINATION $&#123;TMP_TEST_DIR&#125;)
+
+# 找到 assets 目录下所有的 raw 文件，并安装到临时目录
+FILE(GLOB RAWS assets/raws/*.raw)
+FILE(GLOB JPGS assets/jpgs/*.jpg)
+
+install(FILES $&#123;RAWS&#125; DESTINATION $&#123;TMP_TEST_DIR&#125;/test_raws)
+install(FILES $&#123;JPGS&#125; DESTINATION $&#123;TMP_TEST_DIR&#125;/test_jpgs)
+
+if (WIN32)
+    install(FILES $&#123;PROJECT_SOURCE_DIR&#125;/onekey_windows_batch2jpg.bat
+            DESTINATION examples
+            DESTINATION $&#123;TMP_TEST_DIR&#125;)
+    install(FILES $&#123;PROJECT_SOURCE_DIR&#125;/onekey_windows_batch2raw.bat
+            DESTINATION examples
+            DESTINATION $&#123;TMP_TEST_DIR&#125;)
+else()
+    install(FILES $&#123;PROJECT_SOURCE_DIR&#125;/onekey_ubuntu_batch2jpg.sh
+            DESTINATION examples
+            DESTINATION $&#123;TMP_TEST_DIR&#125;)
+    install(FILES $&#123;PROJECT_SOURCE_DIR&#125;/onekey_ubuntu_batch2raw.sh
+            DESTINATION examples
+            DESTINATION $&#123;TMP_TEST_DIR&#125;)
+endif(WIN32)
+</code></pre>
+<h3 id="批量将-raw-转换为-jpg-的脚本">批量将 raw 转换为 jpg 的脚本</h3>
+<h4 id="ubuntu">ubuntu</h4>
+<p><code>onekey_ubuntu_batch2jpg.sh</code></p>
+<pre><code class="language-bash">#!/bin/bash
+set -e
+
+if [ $# -eq 0 ]; then
+	im_path=`pwd`
+else
+	im_path=$1
+fi
+
+echo &quot;batch convert the raw image to jpg images in path: $im_path&quot;
+i=0
+for im in $(ls $im_path)
+do 
+	if [ &quot;$&#123;im##*.&#125;&quot; = &quot;raw&quot; ]; then
+		if [ -f $im_path/$im ];then
+			echo &quot;convert $file to jpg image...&quot;
+            ./raw2jpg $im_path/$im
+			let i+=1
+		fi
+	fi
+done 
+echo &quot;DONE: $i pictures been gennerated!&quot;**s**
+</code></pre>
+<h4 id="windows">windows</h4>
+<p><code>onekey_windows_batch2jpg.bat</code></p>
+<pre><code class="language-bash">@echo off
+
+@REM 如果没有输入路径, 就使用当前路径
+@if &quot;%~1&quot;==&quot;&quot; (
+    set &quot;im_path=%cd%&quot;
+) else (
+    set &quot;im_path=%~1&quot;
+)
+
+@REM 输出批处理将要转换文件的路径信息
+echo Batch converting RAW images to JPG in the current directory or specified path: %im_path%
+
+@REM 遍历指定目录及其子目录下的所有.raw文件
+for /R &quot;%im_path%&quot; %%i in (*.raw) do (
+    @REM 获取图片名称（不包括完整路径）
+    set &quot;img_file=%%~ni&quot;
+    @REM 输出正在处理的原始图像文件名
+    echo Processing image: %%i
+    @REM 调用 raw2jpg.exe 进行转换，由于程序内部已经设置了输出目录和文件名规则，所以这里仅传入原始文件路径即可
+    .\raw2jpg.exe &quot;%%i&quot;
+)
+
+@REM 暂停脚本执行，等待用户按键继续
+pause
+</code></pre>
+<h3 id="批量将-jpg-转换为-raw-的脚本">批量将 jpg 转换为 raw 的脚本</h3>
+<h4 id="ubuntu-2">ubuntu</h4>
+<p><code>onekey_ubuntu_batch2raw.sh</code></p>
+<pre><code class="language-bash">#!/bin/bash
+set -e
+
+if [ $# -eq 0 ]; then
+	im_path=`pwd`
+else
+	im_path=$1
+fi
+
+echo &quot;batch convert the jpg images to raw image in path: $im_path&quot;
+i=0
+for im in $(ls $im_path)
+do 
+	if [ &quot;$&#123;im##*.&#125;&quot; = &quot;jpg&quot; ]; then
+		if [ -f $im_path/$im ];then
+			echo &quot;convert $file to jpg image...&quot;
+            ./jpg2raw $im_path/$im
+			let i+=1
+		fi
+	fi
+done 
+echo &quot;DONE: $i pictures been gennerated!&quot;s
+</code></pre>
+<h4 id="windows-2">windows</h4>
+<p><code>onekey_windows_batch2raw.bat</code></p>
+<pre><code class="language-bash">@echo off
+
+@REM 如果没有输入路径, 就使用当前路径
+if &quot;%1&quot;==&quot;&quot; (
+    set &quot;im_path=%cd%&quot;
+) else (
+    set &quot;im_path=%~1&quot;
+)
+
+@REM 输出当前处理的路径
+echo Batch converting image files to raw images in path: %im_path%
+
+@REM 遍历指定目录及其子目录下的所有.jpg, .jpeg, .bmp, .png文件
+for /R &quot;%im_path%&quot; %%i in (*.jpg, *.jpeg, *.bmp, *.png) do (
+    @REM 获取图片名称（这里保留完整路径）
+    echo Processing image: %%i
+    .\jpg2raw.exe &quot;%%i&quot;
+)
+
+pause
+</code></pre>
+<p>所有代码见</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhbmdxaXFpL3JhdzJqcGcuZ2l0">raw2jpg-github<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/OpenCV/opencv%20xcb%E6%8A%A5%E9%94%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/OpenCV/opencv%20xcb%E6%8A%A5%E9%94%99/" class="post-title-link" itemprop="url">Opencv Xcb报错</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 16:51:09" itemprop="dateCreated datePublished" datetime="2025-01-01T16:51:09+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 22:10:49" itemprop="dateModified" datetime="2025-08-31T22:10:49+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OpenCV/" itemprop="url" rel="index"><span itemprop="name">OpenCV</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OpenCV/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="问题">问题</h2>
+<pre><code class="language-bash">Could not load the Qt platform plugin &quot;xcb&quot; in &quot;/home/&lt;username&gt;/miniconda3/envs/test/lib/python3.8/site-packages/cv2/qt/plugins&quot; even though it was found.
+This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
+
+Available platform plugins are: xcb, eglfs, linuxfb, minimal, minimalegl, offscreen, vnc, wayland-egl, wayland, wayland-xcomposite-egl, wayland-xcomposite-glx, webgl.
+</code></pre>
+<h2 id="解决方案">解决方案</h2>
+<pre><code class="language-bash">pip3 install opencv-python-headless
+</code></pre>
+<h2 id="参考引用">参考引用</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly8wc3NhbWFhazAuZ2l0aHViLmlvL0RMVEEtQUkvaW5zdGFsbGF0aW9uL3Byb2JsZW1zLw==">Solutions to possible problems<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">老周</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

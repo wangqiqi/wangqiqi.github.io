@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"znza.top","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.23.2","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":{"enable":true},"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":5,"unescape":false,"preload":true,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="RK3588 平台一直无法读取视频  问题描述: 我这边用的是 rk3588 的核心板，刷的固件里面有 opencv 4.5.5， 系统是 ubuntu 20.04 LTS 版本， 使用 cv::VideoCapture 无法读取 mp4 或其他视频，每次读取后 isOpened() 都是 false; 硬件是 rk3588 对应的开发板 以下编译安装直接在开发板上进行，不是在宿主机用交叉编译链编">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Rk3588一直读取视频失败">
+<meta property="og:url" content="https://znza.top/2025/01/01/RK3588/RK3588%E4%B8%80%E7%9B%B4%E8%AF%BB%E5%8F%96%E8%A7%86%E9%A2%91%E5%A4%B1%E8%B4%A5/index.html">
+<meta property="og:site_name" content="老周有AI">
+<meta property="og:description" content="RK3588 平台一直无法读取视频  问题描述: 我这边用的是 rk3588 的核心板，刷的固件里面有 opencv 4.5.5， 系统是 ubuntu 20.04 LTS 版本， 使用 cv::VideoCapture 无法读取 mp4 或其他视频，每次读取后 isOpened() 都是 false; 硬件是 rk3588 对应的开发板 以下编译安装直接在开发板上进行，不是在宿主机用交叉编译链编">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://znza.top/images/logo.svg">
+<meta property="article:published_time" content="2025-01-01T08:45:43.000Z">
+<meta property="article:modified_time" content="2025-08-31T13:59:09.700Z">
+<meta property="article:author" content="老周">
+<meta property="article:tag" content="OpenCV">
+<meta property="article:tag" content="RK3588">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://znza.top/images/logo.svg">
+
+
+<link rel="canonical" href="https://znza.top/2025/01/01/RK3588/RK3588%E4%B8%80%E7%9B%B4%E8%AF%BB%E5%8F%96%E8%A7%86%E9%A2%91%E5%A4%B1%E8%B4%A5/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://znza.top/2025/01/01/RK3588/RK3588%E4%B8%80%E7%9B%B4%E8%AF%BB%E5%8F%96%E8%A7%86%E9%A2%91%E5%A4%B1%E8%B4%A5/","path":"2025/01/01/RK3588/RK3588一直读取视频失败/","title":"Rk3588一直读取视频失败"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Rk3588一直读取视频失败 | 老周有AI</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="老周有AI" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">老周有AI</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">计算机视觉与人工智能技术分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">76</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">23</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">48</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">RK3588 平台一直无法读取视频</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#opencv-%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.</span> <span class="nav-text">opencv 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-libjasper-%E6%88%96%E8%AE%B8%E7%A1%AE%E8%AE%A4%E8%BF%99%E4%B8%AA%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%BA%86"><span class="nav-number">1.2.</span> <span class="nav-text">安装 libjasper 或许确认这个就可以了</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ffmpeg-%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85"><span class="nav-number">1.3.</span> <span class="nav-text">ffmpeg 重新安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BD%E5%8E%9F%E8%A3%85-opencv"><span class="nav-number">1.4.</span> <span class="nav-text">卸载原装 opencv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">1.5.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="老周"
+      src="/images/person.jpg">
+  <p class="site-author-name" itemprop="name">老周</p>
+  <div class="site-description" itemprop="description">老周的个人技术博客，专注于计算机视觉、人工智能和创意编程</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/RK3588/RK3588%E4%B8%80%E7%9B%B4%E8%AF%BB%E5%8F%96%E8%A7%86%E9%A2%91%E5%A4%B1%E8%B4%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Rk3588一直读取视频失败 | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Rk3588一直读取视频失败
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 16:45:43" itemprop="dateCreated datePublished" datetime="2025-01-01T16:45:43+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:59:09" itemprop="dateModified" datetime="2025-08-31T21:59:09+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/RK3588/" itemprop="url" rel="index"><span itemprop="name">RK3588</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>RK3588 平台一直无法读取视频</h1>
+<blockquote>
+<p><strong>问题描述</strong>:<br>
+我这边用的是 <code>rk3588</code> 的核心板，刷的固件里面有 <code>opencv 4.5.5</code>， 系统是 <code>ubuntu 20.04 LTS</code> 版本， 使用 <code>cv::VideoCapture</code> 无法读取 <code>mp4</code> 或其他视频，每次读取后 <code>isOpened()</code> 都是 false;<br>
+硬件是 <code>rk3588</code> 对应的开发板<br>
+<em>以下编译安装直接在开发板上进行，不是在宿主机用交叉编译链编译安装的。</em></p>
+</blockquote>
+<h2 id="opencv-安装"><code>opencv</code> 安装</h2>
+<p>下载 <code>opencv4.5.5.zip</code>， 解压后，在源代码目录新建 <code>build</code> 目录，进入 <code>build</code> 目录；</p>
+<p><strong>确保安装了相关依赖</strong><br>
+<strong>确保安装了相关依赖</strong><br>
+<strong>确保安装了相关依赖</strong></p>
+<pre><code class="language-bash">sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install build-essential
+sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
+sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev liblapacke-dev
+sudo apt-get install libxvidcore-dev libx264-dev
+sudo apt-get install libatlas-base-dev gfortran 
+sudo apt-get install -f ffmpeg   # show video
+</code></pre>
+<p><strong>如果 <code>libjasper</code> 安装失败，请往下翻</strong></p>
+<pre><code class="language-bash">cd opencv4.5.5
+mkdir build &amp;&amp; cd build
+cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=~/install/opencv4.5.5 -DBUILD_IPP_IW=OFF -DBUILD_WITH_DYNAMIC_IPP=OFF -DBUILD_JPEG=ON -DBUILD_PNG=ON -DBUILD_TIFF=ON -DBUILD_ZLIB=ON -DBUILD_SHARED_LIBS=ON -DBUILD_opencv_java_bindings_generator=OFF -DBUILD_opencv_python_bindings_generator=OFF -DWITH_MATLAB=OFF -DWITH_LAPACK=OFF -DWITH_FFMPEG=ON     -DWITH_TBB=ON -DWITH_V4L=ON -DWITH_GTK=ON -DWITH_OPENGL=ON -DWITH_IPP=OFF ..
+make -j$(nproc)
+make install
+</code></pre>
+<p>或者新建一个<strong>一键编译安装的脚本</strong></p>
+<blockquote>
+<p><code>build_ubuntu2004_arm64_opencv4.5.5.sh</code></p>
+</blockquote>
+<pre><code class="language-bash">#!/usr/bin/bash
+
+# ###############################################
+# # 确保安装了相关依赖
+# sudo apt-get update
+# sudo apt-get upgrade
+# sudo apt-get install build-essential
+# sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+# sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
+# sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev liblapacke-dev
+# sudo apt-get install libxvidcore-dev libx264-dev
+# sudo apt-get install libatlas-base-dev gfortran 
+# sudo apt-get install -f ffmpeg   # show video
+# ###################################################
+
+# opencv4.5.5
+SRC_NAME_VER=opencv4.5.5
+
+# 压缩包
+SRC_ZIP=~/depends/$&#123;SRC_NAME_VER&#125;.zip
+
+# 源码和编译目录
+SRC_DIR=~/depends/$&#123;SRC_NAME_VER&#125;
+BUILD_DIR=$&#123;SRC_DIR&#125;/build
+
+# 安装目录
+INSTALL_ROOT=~/install
+INSTALL_DIR=$&#123;INSTALL_ROOT&#125;/$&#123;SRC_NAME_VER&#125;
+
+
+# 清空源码目录、编译目录以及对应的安装目录
+rm -rf $&#123;BUILD_DIR&#125;
+rm -rf $&#123;SRC_DIR&#125;
+rm -rf $&#123;INSTALL_DIR&#125;
+
+# 新建源码目录，编译目录和安装目录
+mkdir -p $&#123;SRC_DIR&#125;
+mkdir -p $&#123;BUILD_DIR&#125;
+mkdir -p $&#123;INSTALL_DIR&#125;
+
+# 解压安装包
+unzip -d $SRC_DIR $SRC_ZIP
+
+# 进入对应目录进行编译
+pushd $&#123;BUILD_DIR&#125;
+
+cmake -DCMAKE_BUILD_TYPE=RELEASE \
+	-DCMAKE_INSTALL_PREFIX=$&#123;INSTALL_DIR&#125; \
+	-DBUILD_IPP_IW=OFF \
+	-DBUILD_WITH_DYNAMIC_IPP=OFF \
+	-DBUILD_JPEG=ON \
+	-DBUILD_PNG=ON \
+	-DBUILD_TIFF=ON \
+	-DBUILD_ZLIB=ON \
+	-DBUILD_SHARED_LIBS=ON \
+	-DBUILD_JAVA=OFF \
+	-DBUILD_opencv_java_bindings_generator=OFF \
+	-DBUILD_opencv_python_bindings_generator=OFF \
+	-DBUILD_opencv_python3=OFF \
+	-DBUILD_opencv_python_tests=OFF \
+	-DWITH_MATLAB=OFF \
+	-DWITH_LAPACK=OFF \
+	-DWITH_FFMPEG=ON \
+	-DFFMPEG_DIR=/usr/local/ffmpeg \
+	-DWITH_GSTREAMER=ON \
+	-DWITH_TBB=ON \
+	-DWITH_V4L=ON \
+	-DWITH_GTK=ON \
+	-DWITH_OPENCL=ON \
+	-DWITH_OPENGL=ON \
+	-DWITH_IPP=OFF ..
+
+make -j$(nproc)
+make install
+popd
+
+</code></pre>
+<h2 id="安装-libjasper-或许确认这个就可以了">安装 <code>libjasper</code> 或许确认这个就可以了</h2>
+<blockquote>
+<p><strong>大意了，一开始安装的时候，没有太在意这个库，所以一直重新编都没有管这个库</strong>；<br>
+所以在安装 opencv 的时候一定要按照步骤来，否则要找很久的问题。<br>
+<strong>如果上述 <code>opencv</code> 重新编译安装还是出现无法读取视频的问题，请确保每个依赖库都已经成功安装</strong>。<br>
+我相信很多人还是无法读取视频，那么就确认这个库吧。</p>
+</blockquote>
+<pre><code class="language-bash">sudo apt install libjasper1 libjasper-dev
+</code></pre>
+<p>执行上述命令会报错。那怎么办呢？修改 <code>/etc/apt/source.list</code></p>
+<pre><code class="language-bash">sudo cp /etc/apt/source.list /etc/apt/source.list.bak
+sudo gedit /etc/apt/source.list
+</code></pre>
+<pre><code class="language-bash">deb http://mirrors.aliyun.com/ubuntu-ports/ focal main restricted
+deb http://mirrors.aliyun.com/ubuntu-ports/ focal-updates main restricted
+deb http://mirrors.aliyun.com/ubuntu-ports/ focal universe
+deb http://mirrors.aliyun.com/ubuntu-ports/ focal-updates universe
+deb http://mirrors.aliyun.com/ubuntu-ports/ focal multiverse
+deb http://mirrors.aliyun.com/ubuntu-ports/ focal-updates multiverse
+deb http://mirrors.aliyun.com/ubuntu-ports/ focal-backports main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu-ports/ focal-security main restricted
+deb http://mirrors.aliyun.com/ubuntu-ports/ focal-security universe
+deb http://mirrors.aliyun.com/ubuntu-ports/ focal-security multiverse
+# 新增
+deb http://ports.ubuntu.com/ubuntu-ports xenial-security main  
+
+</code></pre>
+<pre><code class="language-bash">sudo apt update
+sudo apt upgrade
+sudo apt install libjasper1 libjasper-dev
+</code></pre>
+<p><strong>NOTE: 以下过程是试错过程，不一定是必要过程，如果上述过程能解决问题，下面就不用管了。</strong></p>
+<h2 id="ffmpeg-重新安装">ffmpeg 重新安装</h2>
+<p>这里为什么要重新安装 <code>ffmpeg</code> ？ 翻阅了很多博客，说要重新安装 <code>ffmpeg</code>.</p>
+<p>但是这里也不一定需要重新安装，重新安装肯定没问题。<strong>ffmpeg 版本不要安装太高</strong>，因为接口变换较大，可能 <code>opencv 4.5.5</code> 不兼容，我这里试过好几个版本( <code>ffmpeg 6.0</code>, <code>ffmpeg 5.0.3</code>, <code>ffmpeg 4.4.4</code>)，在重新编译opencv时都编译失败。 <code>ffmpeg 4.2.9</code> 可以成功。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9mZm1wZWcub3JnL2Rvd25sb2FkLmh0bWwjcmVsZWFzZXM=">Download FFmpeg<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9mZm1wZWcub3JnL3JlbGVhc2VzL2ZmbXBlZy00LjIuOS50YXIueHo=">ffmpeg-4.2.9<i class="fa fa-external-link-alt"></i></span></p>
+<pre><code class="language-bash">./configure --enable-shared --prefix=/usr/local/ffmpeg
+make -j4
+sudo make install
+</code></pre>
+<pre><code class="language-bash">INSTALL	libavdevice/libavdevice.a
+INSTALL	libavdevice/libavdevice.so
+STRIP	install-libavdevice-shared
+INSTALL	libavfilter/libavfilter.a
+INSTALL	libavfilter/libavfilter.so
+STRIP	install-libavfilter-shared
+INSTALL	libavformat/libavformat.a
+INSTALL	libavformat/libavformat.so
+STRIP	install-libavformat-shared
+INSTALL	libavcodec/libavcodec.a
+INSTALL	libavcodec/libavcodec.so
+STRIP	install-libavcodec-shared
+INSTALL	libswresample/libswresample.a
+INSTALL	libswresample/libswresample.so
+STRIP	install-libswresample-shared
+INSTALL	libswscale/libswscale.a
+INSTALL	libswscale/libswscale.so
+STRIP	install-libswscale-shared
+INSTALL	libavutil/libavutil.a
+INSTALL	libavutil/libavutil.so
+STRIP	install-libavutil-shared
+INSTALL	doc/ffmpeg.1
+INSTALL	doc/ffplay.1
+INSTALL	doc/ffprobe.1
+INSTALL	doc/ffmpeg-all.1
+INSTALL	doc/ffplay-all.1
+INSTALL	doc/ffprobe-all.1
+INSTALL	doc/ffmpeg-utils.1
+INSTALL	doc/ffmpeg-scaler.1
+INSTALL	doc/ffmpeg-resampler.1
+INSTALL	doc/ffmpeg-codecs.1
+INSTALL	doc/ffmpeg-bitstream-filters.1
+INSTALL	doc/ffmpeg-formats.1
+INSTALL	doc/ffmpeg-protocols.1
+INSTALL	doc/ffmpeg-devices.1
+INSTALL	doc/ffmpeg-filters.1
+INSTALL	doc/libavutil.3
+INSTALL	doc/libswscale.3
+INSTALL	doc/libswresample.3
+INSTALL	doc/libavcodec.3
+INSTALL	doc/libavformat.3
+INSTALL	doc/libavdevice.3
+INSTALL	doc/libavfilter.3
+INSTALL	doc/ffmpeg.1
+INSTALL	doc/ffplay.1
+INSTALL	doc/ffprobe.1
+INSTALL	doc/ffmpeg-all.1
+INSTALL	doc/ffplay-all.1
+INSTALL	doc/ffprobe-all.1
+INSTALL	doc/ffmpeg-utils.1
+INSTALL	doc/ffmpeg-scaler.1
+INSTALL	doc/ffmpeg-resampler.1
+INSTALL	doc/ffmpeg-codecs.1
+INSTALL	doc/ffmpeg-bitstream-filters.1
+INSTALL	doc/ffmpeg-formats.1
+INSTALL	doc/ffmpeg-protocols.1
+INSTALL	doc/ffmpeg-devices.1
+INSTALL	doc/ffmpeg-filters.1
+INSTALL	doc/libavutil.3
+INSTALL	doc/libswscale.3
+INSTALL	doc/libswresample.3
+INSTALL	doc/libavcodec.3
+INSTALL	doc/libavformat.3
+INSTALL	doc/libavdevice.3
+INSTALL	doc/libavfilter.3
+INSTALL	install-progs-yes
+INSTALL	ffmpeg
+INSTALL	ffplay
+INSTALL	ffprobe
+INSTALL	presets/libvpx-1080p50_60.ffpreset
+INSTALL	presets/libvpx-360p.ffpreset
+INSTALL	presets/libvpx-1080p.ffpreset
+INSTALL	presets/libvpx-720p50_60.ffpreset
+INSTALL	presets/libvpx-720p.ffpreset
+INSTALL	doc/ffprobe.xsd
+INSTALL	doc/examples/transcoding.c
+INSTALL	doc/examples/vaapi_transcode.c
+INSTALL	doc/examples/demuxing_decoding.c
+INSTALL	doc/examples/filtering_video.c
+INSTALL	doc/examples/muxing.c
+INSTALL	doc/examples/avio_dir_cmd.c
+INSTALL	doc/examples/extract_mvs.c
+INSTALL	doc/examples/encode_audio.c
+INSTALL	doc/examples/hw_decode.c
+INSTALL	doc/examples/filter_audio.c
+INSTALL	doc/examples/resampling_audio.c
+INSTALL	doc/examples/decode_video.c
+INSTALL	doc/examples/metadata.c
+INSTALL	doc/examples/remuxing.c
+INSTALL	doc/examples/filtering_audio.c
+INSTALL	doc/examples/http_multiclient.c
+INSTALL	doc/examples/avio_reading.c
+INSTALL	doc/examples/qsvdec.c
+INSTALL	doc/examples/vaapi_encode.c
+INSTALL	doc/examples/decode_audio.c
+INSTALL	doc/examples/transcode_aac.c
+INSTALL	doc/examples/encode_video.c
+INSTALL	doc/examples/scaling_video.c
+INSTALL	doc/examples/README
+INSTALL	doc/examples/Makefile
+INSTALL	doc/examples/transcoding.c
+INSTALL	doc/examples/vaapi_transcode.c
+INSTALL	doc/examples/demuxing_decoding.c
+INSTALL	doc/examples/filtering_video.c
+INSTALL	doc/examples/muxing.c
+INSTALL	doc/examples/avio_dir_cmd.c
+INSTALL	doc/examples/extract_mvs.c
+INSTALL	doc/examples/encode_audio.c
+INSTALL	doc/examples/hw_decode.c
+INSTALL	doc/examples/filter_audio.c
+INSTALL	doc/examples/resampling_audio.c
+INSTALL	doc/examples/decode_video.c
+INSTALL	doc/examples/metadata.c
+INSTALL	doc/examples/remuxing.c
+INSTALL	doc/examples/filtering_audio.c
+INSTALL	doc/examples/http_multiclient.c
+INSTALL	doc/examples/avio_reading.c
+INSTALL	doc/examples/qsvdec.c
+INSTALL	doc/examples/vaapi_encode.c
+INSTALL	doc/examples/decode_audio.c
+INSTALL	doc/examples/transcode_aac.c
+INSTALL	doc/examples/encode_video.c
+INSTALL	doc/examples/scaling_video.c
+INSTALL	doc/examples/README
+INSTALL	doc/examples/Makefile
+INSTALL	libavdevice/avdevice.h
+INSTALL	libavdevice/version.h
+INSTALL	libavdevice/libavdevice.pc
+INSTALL	libavfilter/avfilter.h
+INSTALL	libavfilter/buffersink.h
+INSTALL	libavfilter/buffersrc.h
+INSTALL	libavfilter/version.h
+INSTALL	libavfilter/libavfilter.pc
+INSTALL	libavformat/avformat.h
+INSTALL	libavformat/avio.h
+INSTALL	libavformat/version.h
+INSTALL	libavformat/libavformat.pc
+INSTALL	libavcodec/ac3_parser.h
+INSTALL	libavcodec/adts_parser.h
+INSTALL	libavcodec/avcodec.h
+INSTALL	libavcodec/avdct.h
+INSTALL	libavcodec/avfft.h
+INSTALL	libavcodec/d3d11va.h
+INSTALL	libavcodec/dirac.h
+INSTALL	libavcodec/dv_profile.h
+INSTALL	libavcodec/dxva2.h
+INSTALL	libavcodec/jni.h
+INSTALL	libavcodec/mediacodec.h
+INSTALL	libavcodec/qsv.h
+INSTALL	libavcodec/vaapi.h
+INSTALL	libavcodec/vdpau.h
+INSTALL	libavcodec/version.h
+INSTALL	libavcodec/videotoolbox.h
+INSTALL	libavcodec/vorbis_parser.h
+INSTALL	libavcodec/xvmc.h
+INSTALL	libavcodec/libavcodec.pc
+INSTALL	libswresample/swresample.h
+INSTALL	libswresample/version.h
+INSTALL	libswresample/libswresample.pc
+INSTALL	libswscale/swscale.h
+INSTALL	libswscale/version.h
+INSTALL	libswscale/libswscale.pc
+INSTALL	libavutil/adler32.h
+INSTALL	libavutil/aes.h
+INSTALL	libavutil/aes_ctr.h
+INSTALL	libavutil/attributes.h
+INSTALL	libavutil/audio_fifo.h
+INSTALL	libavutil/avassert.h
+INSTALL	libavutil/avstring.h
+INSTALL	libavutil/avutil.h
+INSTALL	libavutil/base64.h
+INSTALL	libavutil/blowfish.h
+INSTALL	libavutil/bprint.h
+INSTALL	libavutil/bswap.h
+INSTALL	libavutil/buffer.h
+INSTALL	libavutil/cast5.h
+INSTALL	libavutil/camellia.h
+INSTALL	libavutil/channel_layout.h
+INSTALL	libavutil/common.h
+INSTALL	libavutil/cpu.h
+INSTALL	libavutil/crc.h
+INSTALL	libavutil/des.h
+INSTALL	libavutil/dict.h
+INSTALL	libavutil/display.h
+INSTALL	libavutil/downmix_info.h
+INSTALL	libavutil/encryption_info.h
+INSTALL	libavutil/error.h
+INSTALL	libavutil/eval.h
+INSTALL	libavutil/fifo.h
+INSTALL	libavutil/file.h
+INSTALL	libavutil/frame.h
+INSTALL	libavutil/hash.h
+INSTALL	libavutil/hdr_dynamic_metadata.h
+INSTALL	libavutil/hmac.h
+INSTALL	libavutil/hwcontext.h
+INSTALL	libavutil/hwcontext_cuda.h
+INSTALL	libavutil/hwcontext_d3d11va.h
+INSTALL	libavutil/hwcontext_drm.h
+INSTALL	libavutil/hwcontext_dxva2.h
+INSTALL	libavutil/hwcontext_qsv.h
+INSTALL	libavutil/hwcontext_mediacodec.h
+INSTALL	libavutil/hwcontext_vaapi.h
+INSTALL	libavutil/hwcontext_videotoolbox.h
+INSTALL	libavutil/hwcontext_vdpau.h
+INSTALL	libavutil/imgutils.h
+INSTALL	libavutil/intfloat.h
+INSTALL	libavutil/intreadwrite.h
+INSTALL	libavutil/lfg.h
+INSTALL	libavutil/log.h
+INSTALL	libavutil/macros.h
+INSTALL	libavutil/mathematics.h
+INSTALL	libavutil/mastering_display_metadata.h
+INSTALL	libavutil/md5.h
+INSTALL	libavutil/mem.h
+INSTALL	libavutil/motion_vector.h
+INSTALL	libavutil/murmur3.h
+INSTALL	libavutil/opt.h
+INSTALL	libavutil/parseutils.h
+INSTALL	libavutil/pixdesc.h
+INSTALL	libavutil/pixelutils.h
+INSTALL	libavutil/pixfmt.h
+INSTALL	libavutil/random_seed.h
+INSTALL	libavutil/rc4.h
+INSTALL	libavutil/rational.h
+INSTALL	libavutil/replaygain.h
+INSTALL	libavutil/ripemd.h
+INSTALL	libavutil/samplefmt.h
+INSTALL	libavutil/sha.h
+INSTALL	libavutil/sha512.h
+INSTALL	libavutil/spherical.h
+INSTALL	libavutil/stereo3d.h
+INSTALL	libavutil/threadmessage.h
+INSTALL	libavutil/time.h
+INSTALL	libavutil/timecode.h
+INSTALL	libavutil/timestamp.h
+INSTALL	libavutil/tree.h
+INSTALL	libavutil/twofish.h
+INSTALL	libavutil/version.h
+INSTALL	libavutil/xtea.h
+INSTALL	libavutil/tea.h
+INSTALL	libavutil/tx.h
+INSTALL	libavutil/lzo.h
+INSTALL	libavutil/avconfig.h
+INSTALL	libavutil/ffversion.h
+INSTALL	libavutil/libavutil.pc
+</code></pre>
+<p>编译安装完成后，在 <code>/usr/local/ffmpeg</code> 下新建 <code>ffmpeg-config.cmake</code>, 文件内容如下：</p>
+<blockquote>
+<p><code>ffmpeg-config.cmake</code></p>
+</blockquote>
+<pre><code class="language-bash">set(ffmpeg_path &quot;$&#123;CMAKE_CURRENT_LIST_DIR&#125;&quot;)
+
+message(&quot;ffmpeg_path: $&#123;ffmpeg_path&#125;&quot;)
+
+set(FFMPEG_EXEC_DIR &quot;$&#123;ffmpeg_path&#125;/bin&quot;)
+set(FFMPEG_LIBDIR &quot;$&#123;ffmpeg_path&#125;/lib&quot;)
+set(FFMPEG_INCLUDE_DIRS &quot;$&#123;ffmpeg_path&#125;/include&quot;)
+
+# library names
+set(FFMPEG_LIBRARIES
+    $&#123;FFMPEG_LIBDIR&#125;/libavformat.so
+    $&#123;FFMPEG_LIBDIR&#125;/libavdevice.so
+    $&#123;FFMPEG_LIBDIR&#125;/libavcodec.so
+    $&#123;FFMPEG_LIBDIR&#125;/libavutil.so
+    $&#123;FFMPEG_LIBDIR&#125;/libswscale.so
+    $&#123;FFMPEG_LIBDIR&#125;/libswresample.so
+    $&#123;FFMPEG_LIBDIR&#125;/libavfilter.so
+)
+
+# found status
+set(FFMPEG_libavformat_FOUND TRUE)
+set(FFMPEG_libavdevice_FOUND TRUE)
+set(FFMPEG_libavcodec_FOUND TRUE)
+set(FFMPEG_libavutil_FOUND TRUE)
+set(FFMPEG_libswscale_FOUND TRUE)
+set(FFMPEG_libswresample_FOUND TRUE)
+set(FFMPEG_libavfilter_FOUND TRUE)
+
+# library versions, 注意这几个变量，一定要设置为全局CACHE变量
+set(FFMPEG_libavutil_VERSION 56.31.100 CACHE INTERNAL &quot;FFMPEG_libavutil_VERSION&quot;) # info
+set(FFMPEG_libavcodec_VERSION 58.54.100 CACHE INTERNAL &quot;FFMPEG_libavcodec_VERSION&quot;) # info
+set(FFMPEG_libavformat_VERSION 58.29.100 CACHE INTERNAL &quot;FFMPEG_libavformat_VERSION&quot;) # info
+set(FFMPEG_libavdevice_VERSION 58.8.100 CACHE INTERNAL &quot;FFMPEG_libavdevice_VERSION&quot;) # info
+set(FFMPEG_libavfilter_VERSION 7.57.100 CACHE INTERNAL &quot;FFMPEG_libavfilter_VERSION&quot;) # info
+set(FFMPEG_libswscale_VERSION 5.5.100 CACHE INTERNAL &quot;FFMPEG_libswscale_VERSION&quot;) # info
+set(FFMPEG_libswresample_VERSION 3.5.100 CACHE INTERNAL &quot;FFMPEG_libswresample_VERSION&quot;) # info
+
+set(FFMPEG_FOUND TRUE)
+set(FFMPEG_LIBS $&#123;FFMPEG_LIBRARIES&#125;)
+
+status(&quot;    #################################### FFMPEG:&quot;       FFMPEG_FOUND         THEN &quot;YES (find_package)&quot;                       ELSE &quot;NO (find_package)&quot;)
+status(&quot;      avcodec:&quot;      FFMPEG_libavcodec_VERSION    THEN &quot;YES ($&#123;FFMPEG_libavcodec_VERSION&#125;)&quot;    ELSE NO)
+status(&quot;      avformat:&quot;     FFMPEG_libavformat_VERSION   THEN &quot;YES ($&#123;FFMPEG_libavformat_VERSION&#125;)&quot;   ELSE NO)
+status(&quot;      avutil:&quot;       FFMPEG_libavutil_VERSION     THEN &quot;YES ($&#123;FFMPEG_libavutil_VERSION&#125;)&quot;     ELSE NO)
+status(&quot;      swscale:&quot;      FFMPEG_libswscale_VERSION    THEN &quot;YES ($&#123;FFMPEG_libswscale_VERSION&#125;)&quot;    ELSE NO)
+status(&quot;      avresample:&quot;   FFMPEG_libavresample_VERSION THEN &quot;YES ($&#123;FFMPEG_libavresample_VERSION&#125;)&quot; ELSE NO)
+
+</code></pre>
+<h2 id="卸载原装-opencv">卸载原装 opencv</h2>
+<p>以上还不能解决问题的话，删除所有 opencv 的安装，全部重装。</p>
+<p>安装顺序如下：</p>
+<ol>
+<li>依赖库 ( <code>sudo apt install xxx</code> )</li>
+<li><code>ffmpeg</code> 源码编译安装</li>
+<li>重新编译安装 <code>opencv</code></li>
+</ol>
+<h2 id="参考">参考</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2FpX2Zha2VyL2FydGljbGUvZGV0YWlscy8xMTczMDA3NjA=">debug-ubuntu下opencv无法读取视频且capture.isOpened()测试一直为false-可参考<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC80NzIxMTUzMTI=">🤓opencv+ffmpeg编译打包全解指南-可参考<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc3NDEzNjY=">【环境配置】Windows 11 的 WSL(Ubuntu2204) 安装OpenCV 4.5.4 (亲测有效)<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTI4NTIwL2FydGljbGUvZGV0YWlscy8xMjA0ODc0NTc=">linux下 opencv 和 ffmpeg安装<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDg2NjkyMS9hcnRpY2xlL2RldGFpbHMvMTI4MTEzOTA5">RK3588移植-opencv交叉编译aarch64<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vdGFuZ2p1bmp1bi9wLzE2NTI3MDIwLmh0bWw=">瑞芯微-交叉编译环境搭建-opencv环境搭建(基于RV1109-1126)-(基于ubuntu18.04)<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vUnVieWVuMjMzMy9wLzE3MzM3MTY0Lmh0bWw=">RK3588编译Opencv最新版<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2MzI0ODQ3L2FydGljbGUvZGV0YWlscy8xMjI3NjQ1NDU=">树莓派4B（aarch64，arm64）bullseye无法定位libjasper-dev<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/OpenCV/" rel="tag"># OpenCV</a>
+              <a href="/tags/RK3588/" rel="tag"># RK3588</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/01/01/Git/Git%2015%E5%88%86%E9%92%9F%E5%BF%AB%E9%80%9F%E6%8E%8C%E6%8F%A1/" rel="prev" title="Git 15分钟快速掌握">
+                  <i class="fa fa-angle-left"></i> Git 15分钟快速掌握
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/01/01/RK3588/yolov5%E8%AE%AD%E7%BB%83%E4%B8%8Erknn%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%87%BA%E5%B9%B6%E5%9C%A8RK3588%E9%83%A8%E7%BD%B2%EF%BC%88%E4%BA%B2%E6%B5%8B%E6%9C%89%E6%95%88%EF%BC%89/" rel="next" title="Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效）">
+                  Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效） <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">老周</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

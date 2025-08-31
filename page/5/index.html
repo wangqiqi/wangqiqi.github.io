@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"znza.top","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.23.2","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":{"enable":true},"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":5,"unescape":false,"preload":true,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="老周有AI">
+<meta property="og:url" content="https://znza.top/page/5/index.html">
+<meta property="og:site_name" content="老周有AI">
+<meta property="og:description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://znza.top/images/logo.svg">
+<meta property="article:author" content="老周">
+<meta property="article:tag" content="计算机视觉, 人工智能, Python, OpenCV, MediaPipe, 深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://znza.top/images/logo.svg">
+
+
+<link rel="canonical" href="https://znza.top/page/5/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/5/index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>老周有AI - 计算机视觉与人工智能技术分享</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="老周有AI" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">老周有AI</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">计算机视觉与人工智能技术分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">76</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">23</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">48</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="老周"
+      src="/images/person.jpg">
+  <p class="site-author-name" itemprop="name">老周</p>
+  <div class="site-description" itemprop="description">老周的个人技术博客，专注于计算机视觉、人工智能和创意编程</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/nanoPC/nanoPC-T4%20(%20RK%203399%20%E6%A0%B8%E5%BF%83%E6%9D%BF%EF%BC%89%E5%88%B7%E6%A1%8C%E9%9D%A2%E7%89%88%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/nanoPC/nanoPC-T4%20(%20RK%203399%20%E6%A0%B8%E5%BF%83%E6%9D%BF%EF%BC%89%E5%88%B7%E6%A1%8C%E9%9D%A2%E7%89%88%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">nanoPC T4 ( Rk 3399 核心板）刷桌面版系统</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:24:04" itemprop="dateModified" datetime="2025-08-31T21:24:04+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/nanoPC/" itemprop="url" rel="index"><span itemprop="name">nanoPC</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>仓库角落里发现了一个迷你小电脑 (nanoPC), 连上显示器和键鼠，进去不记得密码了，不得不重新刷一下系统。想装一个桌面系统，所以找了一圈，找到 <span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3po">nanoPC的官网<i class="fa fa-external-link-alt"></i></span>，</p>
+</blockquote>
+<h1>nanoPC-T4 刷桌面</h1>
+<h2 id="准备好相关工具">准备好相关工具</h2>
+<p><strong>软件</strong></p>
+<ol>
+<li>瑞芯微驱动助手，<strong>DriverAssitant_v4.5</strong></li>
+<li>系统固件，<strong>rk3399-usb-friendlydesktop-bionic-4.4-arm64-20220919</strong></li>
+</ol>
+<p><span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMWtWMVFJeWhKU1VkSVYzUlluemZObHc=">百度网盘链接<i class="fa fa-external-link-alt"></i></span> 提取码：8888</p>
+<p><strong>硬件</strong></p>
+<ol>
+<li>nanoPC-T4</li>
+<li>键鼠</li>
+<li>显示器及连接线</li>
+<li>type-c连接线</li>
+</ol>
+<h2 id="开始刷机">开始刷机</h2>
+<ol>
+<li>在 <code>Windows</code>上安装 USB 驱动助手；</li>
+</ol>
+
+
+<ol>
+<li><code>nanoPC</code> 上电，<code>USB</code> 连接宿主电脑（<code>Windows</code>）</li>
+<li>解压刷机文件 <code>rk3399-usb-friendlydesktop-bionic-4.4-arm64-20220919</code>, 找到文件 <code>RKDevTool</code>，双击打开，会显示没有找到设备，需要重启启动并 <code>reset nano</code>。</li>
+<li>按照下图所示，
+</li>
+</ol>
+<p>按住Recovery键再长按(1.5秒以上)Power键开机，并同时按住reset键，然后松开，如果 <code>RKDevTool</code>显示发现设备，那么可以在 <code>下载镜像</code> Tab 页面点击 <code>执行</code>。静等即可。</p>
+
+<ol start="4">
+<li>最后可以看到nanoPC重启后的桌面。</li>
+</ol>
+<pre><code> 普通用户：
+    用户名: pi
+    密码: pi
+ Root用户： 
+    用户名: root
+    密码: fa
+</code></pre>
+<h2 id="官方步骤">官方步骤</h2>
+
+
+<p><strong>我这里实验用的 Windows Type-C 线刷的方式。</strong></p>
+<h2 id="【参考】">【参考】</h2>
+<ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3po">https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T4/zh<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3poI0ZyaWVuZGx5RGVza3RvcC5FNy5CMy5CQi5FNy5CQi45Ri5FNy45QS44NC5FNC5CRC5CRi5FNy45NC5BOA==">https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T4/zh#FriendlyDesktop.E7.B3.BB.E7.BB.9F.E7.9A.84.E4.BD.BF.E7.94.A8<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poendhbmcvYXJ0aWNsZS9kZXRhaWxzLzEwNzc2MTE4MA==">https://blog.csdn.net/zhzwang/article/details/107761180<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzY2MjU4MzI5L2FydGljbGUvZGV0YWlscy8xMjY1MTIyMjA=">https://blog.csdn.net/qq_66258329/article/details/126512220<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82MTA3NGQxMjM4Nzg=">https://www.jianshu.com/p/61074d123878<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/nanoPC/nanoPC-T4%20upgrade%E6%8A%A5%E9%94%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/nanoPC/nanoPC-T4%20upgrade%E6%8A%A5%E9%94%99/" class="post-title-link" itemprop="url">Nanopc T4 Upgrade报错</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:28:15" itemprop="dateModified" datetime="2025-08-31T21:28:15+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/nanoPC/" itemprop="url" rel="index"><span itemprop="name">nanoPC</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="【问题】">【问题】</h2>
+<blockquote>
+<p>nanoPC-T4 在 <code># sudo apt update 和 sudo apt upgrade</code>升级或安装软件 <code>sudo apt install xxx</code>时遇到以下问题：<code>Failed to set up interface with /etc/hostapd/</code></p>
+</blockquote>
+<pre><code class="language-bash">Setting up hostapd (2:2.6-15ubuntu2.8) ...
+Job for hostapd.service failed because the control process exited with error code.
+See &quot;systemctl status hostapd.service&quot; and &quot;journalctl -xe&quot; for details.
+invoke-rc.d: initscript hostapd, action &quot;restart&quot; failed.
+● hostapd.service - Advanced IEEE 802.11 AP and IEEE 802.1X/WPA/WPA2/EAP Authenticator
+   Loaded: loaded (/lib/systemd/system/hostapd.service; disabled; vendor preset: enabled)
+   Active: failed (Result: exit-code) since Fri 2022-11-11 07:23:16 UTC; 22ms ago
+  Process: 12218 ExecStart=/usr/sbin/hostapd -P /run/hostapd.pid -B $DAEMON_OPTS $&#123;DAEMON_CONF&#125; (code=exited, status=1/FAILURE)
+
+Nov 11 07:23:16 NanoPC-T4 systemd[1]: Starting Advanced IEEE 802.11 AP and IEEE 802.1X/WPA/WPA2/EAP Authenticator...
+Nov 11 07:23:16 NanoPC-T4 hostapd[12218]: Configuration file: /etc/hostapd/hostapd.conf
+Nov 11 07:23:16 NanoPC-T4 hostapd[12218]: Could not open configuration file '/etc/hostapd/hostapd.conf' for reading.
+Nov 11 07:23:16 NanoPC-T4 hostapd[12218]: Failed to set up interface with /etc/hostapd/hostapd.conf
+Nov 11 07:23:16 NanoPC-T4 hostapd[12218]: Failed to initialize interface
+Nov 11 07:23:16 NanoPC-T4 systemd[1]: hostapd.service: Control process exited, code=exited status=1
+Nov 11 07:23:16 NanoPC-T4 systemd[1]: hostapd.service: Failed with result 'exit-code'.
+Nov 11 07:23:16 NanoPC-T4 systemd[1]: Failed to start Advanced IEEE 802.11 AP and IEEE 802.1X/WPA/WPA2/EAP Authenticator.
+dpkg: error processing package hostapd (--configure):
+ installed hostapd package post-installation script subprocess returned error exit status 1
+Errors were encountered while processing:
+ hostapd
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+</code></pre>
+<h2 id="【解决】">【解决】</h2>
+<h3 id="发现问题">发现问题</h3>
+<p><code>Could not open configuration file '/etc/hostapd/hostapd.conf' for reading.</code></p>
+<p>在目录下查看 <code>hostapd.conf</code>， 发现没有该文件，当然无法打开配置文件了。</p>
+<h3 id="如何重新找到该文件">如何重新找到该文件</h3>
+<p>在目录 <code>/usr/share/doc/hostapd</code> 下可以看到有一个 <code>README.Debian</code> 文件, 文件内容如下：</p>
+<pre><code class="language-bash">hostapd for Debian
+------------------
+
+This package provides two methods for managing hostapd process(es); an
+initscript and an ifupdown hook. Both methods require creation of a
+hostapd daemon configuration file (eg. /etc/hostapd/hostapd.conf) to
+function correctly.
+
+An example hostapd.conf may be used as a template but _must_ be edited
+to suit your local configuration. An example is located at:
+  /usr/share/doc/hostapd/examples/hostapd.conf.gz
+
+To use the example as a template:
+  # zcat /usr/share/doc/hostapd/examples/hostapd.conf.gz &gt; \
+  	/etc/hostapd/hostapd.conf
+  # $EDITOR /etc/hostapd/hostapd.conf
+
+To use the initscript method of starting a hostapd daemon see
+/etc/default/hostapd.
+
+To use the ifupdown method, the path to hostapd configuration file can
+be specified in a network interfaces configuration stanza in
+/etc/network/interfaces like so:
+
+iface eth1 inet static
+	hostapd /etc/hostapd/hostapd.conf
+	...
+
+The hostapd process will be started in the pre-up phase of ifup, and be
+terminated in the post-down phase of ifdown.
+
+ -- Kel Modderman &lt;kel@otaku42.de&gt;  Tue, 27 Oct 2009 12:03:01 +1000
+
+Please note:
+* If you want to use hostapd with a Prism2/2.5/3 card in WPA mode, you'll need
+  STA firmware version &gt;= 1.7.0.
+
+ -- Faidon Liambotis &lt;faidon@cube.gr&gt;, Mon, 10 Oct 2005 14:57:11 +0300
+
+</code></pre>
+<h3 id="done">done</h3>
+<pre><code>zcat /usr/share/doc/hostapd/examples/hostapd.conf.gz &gt; /etc/hostapd/hostapd.conf
+</code></pre>
+<p>或者下载 <span class="exturl" data-url="aHR0cHM6Ly9kb3dubG9hZC5jc2RuLm5ldC9kb3dubG9hZC96aG91amlud2FuZy84Njk1NTA1Nw==">地址<i class="fa fa-external-link-alt"></i></span></p>
+<pre><code class="language-bash">pi@NanoPC-T4:~$ sudo apt update
+Hit:1 http://ports.ubuntu.com bionic InRelease
+Hit:2 http://ports.ubuntu.com bionic-backports InRelease
+Hit:3 http://ports.ubuntu.com bionic-proposed InRelease
+Hit:4 http://ports.ubuntu.com bionic-security InRelease
+Hit:5 http://ports.ubuntu.com bionic-updates InRelease
+Reading package lists... Done                      
+Building dependency tree       
+Reading state information... Done
+4 packages can be upgraded. Run 'apt list --upgradable' to see them.
+pi@NanoPC-T4:~$ sudo apt upgrade
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Calculating upgrade... Done
+The following packages have been kept back:
+  u-boot-tools xserver-common xserver-xorg-core xserver-xorg-legacy
+0 upgraded, 0 newly installed, 0 to remove and 4 not upgraded.
+</code></pre>
+<p>看起来好像可以升级不报错了。不知道后面有没有后遗症。暂时不用<strong>科学上网</strong>了。</p>
+<h2 id="【其他】">【其他】</h2>
+<h3 id="ssh-登录-nanoPC-T4">ssh 登录 nanoPC-T4</h3>
+<pre><code class="language-bash">ssh pi@pi_addr  # 例如： pi@192.168.0.49
+</code></pre>
+<p>然后输入密码 <code>pi</code>。就可以远程访问和操作nanoPC-T4了</p>
+<pre><code class="language-bash">Warning: Permanently added '192.168.0.49' (ECDSA) to the list of known hosts.
+pi@192.168.0.49's password: 
+ _____     _                _ _       _____ _     _____ ____ 
+|  ___| __(_) ___ _ __   __| | |_   _| ____| |   | ____/ ___|
+| |_ | '__| |/ _ \ '_ \ / _` | | | | |  _| | |   |  _|| |  
+|  _|| |  | |  __/ | | | (_| | | |_| | |___| |___| |__| |___ 
+|_|  |_|  |_|\___|_| |_|\__,_|_|\__, |_____|_____|_____\____|
+                                |___/                      
+
+Welcome to Ubuntu 18.04.6 LTS 4.4.179
+System load:   0.00            	Up time:       9 min		Local users:   2          
+Memory usage:  10 % of 3845Mb 	IP:            192.168.0.49
+CPU temp:      42°C         
+Usage of /:    44% of 8.2G   
+
+ * Documentation: http://wiki.friendlyarm.com/Ubuntu
+ * Forum: http://www.friendlyarm.com/Forum/
+
+To run Qt5 demo, type &quot;qt5demo&quot; at the command prompt and then hit the enter key.
+To play a video demo, use command &quot;sudo gst-player.sh&quot;.
+Last login: Fri Nov 11 08:12:07 2022
+
+pi@NanoPC-T4:~$ ls
+demo.mp4  Desktop  Documents  Downloads  h264ify   Music  Pictures  Public  Templates  Videos
+</code></pre>
+<h3 id="远程拷贝和下载资料">远程拷贝和下载资料</h3>
+<pre><code class="language-bash">scp pi@192.168.0.49:/usr/share/doc/hostapd/README.Debian /home/john/Documents/
+</code></pre>
+<p>输入密码 <code>pi</code>。就可以下载资料了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/nanoPC/nanoPC-T4%20%E5%AE%89%E8%A3%85OpenCV/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/nanoPC/nanoPC-T4%20%E5%AE%89%E8%A3%85OpenCV/" class="post-title-link" itemprop="url">nanoPC T4 安装OpenCV</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:25:51" itemprop="dateModified" datetime="2025-08-31T21:25:51+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/nanoPC/" itemprop="url" rel="index"><span itemprop="name">nanoPC</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>nanoPC-T4 安装 OpenCV</h1>
+<blockquote>
+<p>Note: OpenCV has been pre-installed in <strong>FriendlyCore/FriendlyDesktop</strong> (Version after 201905) and does not require manual installation.</p>
+<p>Please download the latest FriendlyCore/FriendlyDesktop Image file from the following URL: <span class="exturl" data-url="aHR0cDovL2Rvd25sb2FkLmZyaWVuZGx5YXJtLmNvbQ==">http://download.friendlyarm.com<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p><strong>参考 nanoPC-T4 环境配置</strong><br>
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc3OTgwOTU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】基于RK3399核心板的nanoPC-T4 线刷桌面版系统<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4NDg4ODU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】nanoPC-T4 线刷ubuntu2004核心非桌面版<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4MDk0MTE/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】解决nanoPC-T4 upgrade报错<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4Njc0OTI/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】nanoPC-T4 挂载NVME硬盘<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="安装OpenCV">安装OpenCV</h2>
+<p>按照上述配置刷机系统已经预装了 <code>OpenCV</code>;</p>
+<h3 id="建立-Python3-的-OpenCV-开发环境">建立 Python3 的 OpenCV 开发环境</h3>
+<p><strong>注意：这里仅仅拷贝激活脚本，不做其他任何操作</strong></p>
+<pre><code class="language-bash">git clone https://github.com/friendlyarm/install-opencv-on-friendlycore
+cd install-opencv-on-friendlycore
+cp examples/py/cv-env.sh /usr/bin/
+</code></pre>
+<p><strong>测试</strong></p>
+<pre><code class="language-bash">pi@NanoPC-T4:/media/nvme/install-opencv-on-friendlycore$ cd examples/py/
+pi@NanoPC-T4:/media/nvme/install-opencv-on-friendlycore/examples/py$ . cv-env.sh 
+(cv) pi@NanoPC-T4:/media/nvme/install-opencv-on-friendlycore/examples/py$ python ver.py 
+4.2.0
+</code></pre>
+<p><strong>虚拟环境激活</strong>  <code>. cv-env.sh</code><br>
+<strong>虚拟环境退出</strong>  <code>deactivate</code></p>
+<h3 id="建立-C-的-OpenCV-开发环境">建立 C++ 的 OpenCV 开发环境</h3>
+<p><code>OpenCV</code> 在 <code>nanoPC-T4</code> 里已经预装了。</p>
+<p>命令查看下版本号，<code>/usr/local/bin/opencv_version</code></p>
+<pre><code class="language-bash">.
+├── CMakeLists.txt
+├── README.md
+├── sample.png
+└── showimage.cpp
+</code></pre>
+<pre><code class="language-cmake"># cmake needs this line 
+cmake_minimum_required(VERSION 2.8) 
+
+# Enable C++11 
+set(CMAKE_CXX_STANDARD 11) 
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE) 
+
+# Define project name 
+project(showimage) 
+
+# Find OpenCV, you may need to set OpenCV_DIR variable 
+# to the absolute path to the directory containing OpenCVConfig.cmake file 
+# via the command line or GUI 
+find_package(OpenCV REQUIRED COMPONENTS core highgui calib3d) 
+include_directories( $&#123;OpenCV_INCLUDE_DIRS&#125; ) 
+
+# Declare the executable target built from your sources 
+add_executable(showimage showimage.cpp) 
+
+# Link your application with OpenCV libraries 
+target_link_libraries(showimage $&#123;OpenCV_LIBS&#125;)
+</code></pre>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;opencv2/opencv.hpp&gt;
+#include &lt;opencv2/highgui.hpp&gt;
+#include &lt;cstdlib&gt;
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt; 
+
+using namespace std;
+using namespace cv;
+
+int main(int argc,char* argv[]) 
+&#123;
+	Mat image = imread(&quot;sample.png&quot;);
+	if (image.empty())
+	&#123;
+		cout&lt;&lt;&quot;no image&quot;&lt;&lt;endl;
+		return -1;
+	&#125;	
+	imshow(&quot;test&quot;, image);
+	waitKey(0);	
+	destroyAllWindows();
+    return 0;
+&#125;
+</code></pre>
+<pre><code class="language-bash">mkdir build 
+cp sample.png build/
+cd build
+cmake .. 
+make -j4
+./showimage
+</code></pre>
+<p>别急，执行完这里会黑屏的，那还是因为环境没有配好，和代码没有关系。</p>
+<p>继续执行以下命令：</p>
+<pre><code class="language-bash">su pi
+</code></pre>
+<p>输入密码： <code>pi</code></p>
+<pre><code class="language-bash">export DISPLAY=:0.0
+. setqt5env
+</code></pre>
+<p>再执行 <code>./showimage</code> 效果正常。</p>
+<h2 id="【参考】">【参考】</h2>
+<ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyaWVuZGx5YXJtL2luc3RhbGwtb3BlbmN2LW9uLWZyaWVuZGx5Y29yZQ==">install-opencv-on-friendlycore<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3poIy5FNi45Qi5CNC5FNi44RC5BMi5FNS5CQy44MC5FNi45Qy5CQUxPR08=">官网 Wiki<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/nanoPC/nanoPC-T4%20%E5%AE%89%E8%A3%85ncnn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/nanoPC/nanoPC-T4%20%E5%AE%89%E8%A3%85ncnn/" class="post-title-link" itemprop="url">Nanopc T4 安装Ncnn</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:24:59" itemprop="dateModified" datetime="2025-08-31T21:24:59+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/nanoPC/" itemprop="url" rel="index"><span itemprop="name">nanoPC</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>nanoPC-T4 安装 ncnn</h1>
+<p><strong>参考 nanoPC-T4 环境配置</strong><br>
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc3OTgwOTU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】基于RK3399核心板的nanoPC-T4 线刷桌面版系统<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4NDg4ODU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】nanoPC-T4 线刷ubuntu2004核心非桌面版<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4MDk0MTE/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】解决nanoPC-T4 upgrade报错<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc4Njc0OTI/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDI=">【边缘设备】nanoPC-T4 挂载NVME硬盘<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>ncnn 库是深度学习理库最好的，没有之一</strong></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1RlbmNlbnQvbmNubg==">ncnn官网<i class="fa fa-external-link-alt"></i></span></p>
+<ol>
+<li>下载代码仓库</li>
+</ol>
+<pre><code class="language-bash">git clone https://github.com/Tencent/ncnn.git
+</code></pre>
+<ol start="2">
+<li>编译安装</li>
+</ol>
+<pre><code class="language-bash">cd ncnn
+mkdir build &amp;&amp; cd build
+cmake -DNCNN_BUILD_TOOLS=OFF ..
+make -j4
+make install 
+</code></pre>
+<ol start="3">
+<li>使用</li>
+</ol>
+<p>在项目的 <code>CMakeLists.txt</code> 里加入</p>
+<pre><code># ncnn路径设置
+set(NCNN_DIR &quot;/media/nvme/ncnn/build/install&quot;)
+set(NCNN_INCLUDE_DIR &quot;$&#123;NCNN_DIR&#125;/include/ncnn&quot;)
+set(NCNN_LIB_DIR &quot;$&#123;NCNN_DIR&#125;/lib&quot;)
+include_directories(&quot;$&#123;NCNN_INCLUDE_DIR&#125;&quot;)
+link_directories(&quot;$&#123;NCNN_LIB_DIR&#125;&quot;)
+list(APPEND EXTRA_LIBS ncnn)
+</code></pre>
+<p>在对应的生成库或者生成应用程序里链接ncnn的库</p>
+<pre><code>target_link_libraries($&#123;CMAKE_PROJECT_NAME&#125; PRIVATE $&#123;EXTRA_LIBS&#125; -lpthread -lm)
+</code></pre>
+<p><code>$&#123;CMAKE_PROJECT_NAME&#125;</code> 替换成自己的库或者程序名称</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/nanoPC/nanoPC-T4%20%E6%8C%82%E8%BD%BDNVME%E7%A1%AC%E7%9B%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/nanoPC/nanoPC-T4%20%E6%8C%82%E8%BD%BDNVME%E7%A1%AC%E7%9B%98/" class="post-title-link" itemprop="url">nanoPC T4 挂载NVME硬盘</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:27:31" itemprop="dateModified" datetime="2025-08-31T21:27:31+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/nanoPC/" itemprop="url" rel="index"><span itemprop="name">nanoPC</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>步骤如下</h1>
+<h2 id="检测NVME硬盘">检测NVME硬盘</h2>
+<pre><code class="language-bash">cat /proc/partitions 
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code class="language-bash">major minor  #blocks  name
+
+   1        0       4096 ram0
+   1        1       4096 ram1
+   1        2       4096 ram2
+   1        3       4096 ram3
+   1        4       4096 ram4
+   1        5       4096 ram5
+   1        6       4096 ram6
+   1        7       4096 ram7
+ 259        0  488386584 nvme0n1
+ 179        0   15267840 mmcblk1
+ 179        1       4096 mmcblk1p1
+ 179        2       4096 mmcblk1p2
+ 179        3       4096 mmcblk1p3
+ 179        4      12288 mmcblk1p4
+ 179        5      32768 mmcblk1p5
+ 179        6      32768 mmcblk1p6
+ 179        7    6553600 mmcblk1p7
+ 179        8    8611840 mmcblk1p8
+ 179       96       4096 mmcblk1rpmb
+ 179       64       4096 mmcblk1boot1
+ 179       32       4096 mmcblk1boot0
+</code></pre>
+<p>如果有 <code>nvme0n1</code> 就说明有 <code>NVME SSD</code>硬盘。可以进行下一步。</p>
+<h2 id="分区">分区</h2>
+<p>只分一个区</p>
+<pre><code class="language-bash">(echo g; echo n; echo p; echo 1; echo &quot;&quot;; echo &quot;&quot;; echo w; echo q) | sudo fdisk /dev/nvme0n1
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code class="language-bash">Welcome to fdisk (util-linux 2.31.1).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+Device does not contain a recognized partition table.
+Created a new DOS disklabel with disk identifier 0x5b899dc5.
+
+Command (m for help): Created a new GPT disklabel (GUID: 41364481-DE8B-DA4B-AF5B-3966AF3946FB).
+
+Command (m for help): Partition number (1-128, default 1): Value out of range.
+Partition number (1-128, default 1): First sector (2048-976773134, default 2048): Last sector, +sectors or +size&#123;K,M,G,T,P&#125; (2048-976773134, default 976773134): 
+Created a new partition 1 of type 'Linux filesystem' and of size 465.8 GiB.
+
+Command (m for help): The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+</code></pre>
+<h2 id="格式化-EXT4">格式化 EXT4</h2>
+<pre><code class="language-bash">sudo mkfs.ext4 /dev/nvme0n1p1
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code class="language-bash">mke2fs 1.44.1 (24-Mar-2018)
+Discarding device blocks: done                          
+Creating filesystem with 122096385 4k blocks and 30531584 inodes
+Filesystem UUID: 6b369f2f-173b-4bbf-bbf9-4668e137cbef
+Superblock backups stored on blocks: 
+	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, 
+	4096000, 7962624, 11239424, 20480000, 23887872, 71663616, 78675968, 
+	102400000
+
+Allocating group tables: done                          
+Writing inode tables: done                          
+Creating journal (262144 blocks): 
+done
+Writing superblocks and filesystem accounting information:        
+done
+</code></pre>
+<h2 id="系统启动自动挂载">系统启动自动挂载</h2>
+<p><strong>1. 查看BlockID</strong></p>
+<pre><code class="language-bash">sudo blkid /dev/nvme0n1p1
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code class="language-bash">/dev/nvme0n1p1: UUID=&quot;6b369f2f-173b-4bbf-bbf9-4668e137cbef&quot; TYPE=&quot;ext4&quot; PARTUUID=&quot;9e55ee97-8c07-504e-beef-e7963967e9bf&quot;
+</code></pre>
+<p><strong>修改 <code>fstab</code></strong></p>
+<pre><code class="language-bash">sudo vi /etc/fstab
+
+UUID=6b369f2f-173b-4bbf-bbf9-4668e137cbef /media/nvme ext4 defaults 0 0
+</code></pre>
+<p><strong>建立目录和修改权限</strong></p>
+<pre><code class="language-bash">sudo mkdir -p /media/nvme
+sudo chmod 777 /media/nvme
+</code></pre>
+<p><strong>挂载</strong></p>
+<pre><code class="language-bash">sudo mount /media/nvme
+</code></pre>
+<p><strong>重启</strong></p>
+<pre><code class="language-bash">sudo reboot
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/nanoPC/nanoPC-T4%20%E7%BA%BF%E5%88%B7ubuntu2004%E6%A0%B8%E5%BF%83%E9%9D%9E%E6%A1%8C%E9%9D%A2%E7%89%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/nanoPC/nanoPC-T4%20%E7%BA%BF%E5%88%B7ubuntu2004%E6%A0%B8%E5%BF%83%E9%9D%9E%E6%A1%8C%E9%9D%A2%E7%89%88/" class="post-title-link" itemprop="url">nanoPC T4 线刷Ubuntu2004核心非桌面版</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:27:51" itemprop="dateModified" datetime="2025-08-31T21:27:51+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/nanoPC/" itemprop="url" rel="index"><span itemprop="name">nanoPC</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Windows下通过Type-C数据线进行烧写"><strong>Windows下通过Type-C数据线进行烧写</strong></h2>
+<p>访问<span class="exturl" data-url="aHR0cDovL2Rvd25sb2FkLmZyaWVuZGx5ZWxlYy5jb20vTmFub1BDLVQ0">此处的下载地址<i class="fa fa-external-link-alt"></i></span>下载Windows下使用Type-C数据线烧写所需的文件及工具:</p>
+
+<p>视频教程：<br>
+<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmlsaWJpbGkuY29tL3ZpZGVvL2F2MzgwNTI1NjIv">https://www.bilibili.com/video/av38052562/<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="准备">准备</h2>
+<p>参考 <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMjc3OTgwOTU/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDE=">【边缘设备】基于RK3399核心板的nanoPC-T4 线刷桌面版系统<i class="fa fa-external-link-alt"></i></span></p>
+<p>下载 驱动和 <code>rk3399-usb-friendlycore-lite-focal-5.15-arm64-20220919.zip</code></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMWtWMVFJeWhKU1VkSVYzUlluemZObHc=">百度网盘链接<i class="fa fa-external-link-alt"></i></span> 提取码：8888</p>
+<h2 id="安装">安装</h2>
+<p>解压 <code>rk3399-usb-friendlycore-lite-focal-5.15-arm64-20220919.zip</code> 打开其中的 <code>RKDevTool</code>；按住Recovery键再长按(1.5秒以上)Power键开机，并同时按住reset键，然后松开，如果 <code>RKDevTool</code>显示发现设备，那么可以在 <code>下载镜像</code> Tab 页面点击 <code>执行</code>。静等即可。</p>
+
+<p><strong>NOTE</strong></p>
+<p>由于设备之前安装了其他版本的固件，如果遇到不支持写<code>GPT</code>错误信息，可以在升级固件里，重新升级选择 <code>MiniLoaderAll</code> 并升级和擦除 <code>Flash</code>， 然后重新执行下载镜像。</p>
+<p>安装完成后，记得</p>
+<p>输入用户名: <code>pi</code> 和密码: <code>pi</code></p>
+<pre><code class="language-bash">sudo apt update
+sudo apt upgrade
+</code></pre>
+<h2 id="【参考】">【参考】</h2>
+<ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3po">https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T4/zh<i class="fa fa-external-link-alt"></i></span> 4.2.2 节</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/nanoPC/nanoPC-T4%20%E6%9B%B4%E6%8D%A2%E6%AC%A2%E8%BF%8E%E4%BF%A1%E6%81%AF%E5%92%8CLOGO--%E6%9A%82%E6%97%B6%E6%94%BE%E5%BC%83%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/01/nanoPC/nanoPC-T4%20%E6%9B%B4%E6%8D%A2%E6%AC%A2%E8%BF%8E%E4%BF%A1%E6%81%AF%E5%92%8CLOGO--%E6%9A%82%E6%97%B6%E6%94%BE%E5%BC%83%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8/" class="post-title-link" itemprop="url">nanoPC T4 更换欢迎信息和Logo  暂时放弃编译内核</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:26:48" itemprop="dateModified" datetime="2025-08-31T21:26:48+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/nanoPC/" itemprop="url" rel="index"><span itemprop="name">nanoPC</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="定制命令行的欢迎信息">定制命令行的欢迎信息</h2>
+<p>欢迎信息如下</p>
+<pre><code class="language-bash"> _____     _                _ _       _____ _     _____ ____ 
+|  ___| __(_) ___ _ __   __| | |_   _| ____| |   | ____/ ___|
+| |_ | '__| |/ _ \ '_ \ / _` | | | | |  _| | |   |  _|| |  
+|  _|| |  | |  __/ | | | (_| | | |_| | |___| |___| |__| |___ 
+|_|  |_|  |_|\___|_| |_|\__,_|_|\__, |_____|_____|_____\____|
+                                |___/                  
+</code></pre>
+<p><strong>如何修改显示的内容呢？</strong></p>
+<p>修改方式，找到 <code>/etc/update-motd.d/10-header</code>文件，修改其中的</p>
+<p><code>TERM=linux toilet -f standard -F metal $BOARD_VENDOR</code> 为</p>
+<p><code>TERM=linux toilet -f standard -F metal $COMPANY</code></p>
+<p><strong>修改时区</strong></p>
+<p>例如更改为Shanghai时区:</p>
+<pre><code>sudo rm /etc/localtime
+sudo ln -ls /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</code></pre>
+<h2 id="定制开机-LOGO">定制开机 LOGO</h2>
+<ol>
+<li>替换内核下面的两个文件，重新编译内核：<br>
+<strong>kernel/logo.bmp</strong><br>
+<strong>kernel/logo_kernel.bmp</strong></li>
+<li>或者使用脚本来操作，如下所示：</li>
+</ol>
+<p><strong>NOTE:</strong></p>
+<p><strong>下载仓库</strong></p>
+<pre><code class="language-bash">git clone https://github.com/friendlyarm/sd-fuse_rk3399
+cd sd-fuse_rk3399
+</code></pre>
+<p>将需要替换的 <code>logo</code> 放到 <code>sd-fuse_rk3399/files</code> 文件夹下，并命名为 <code>logo.jpg</code> 。</p>
+<p><strong>图片转换</strong></p>
+<pre><code class="language-bash">convert files/logo.png -type truecolor /tmp/logo.bmp
+convert files/logo.png -type truecolor /tmp/logo_kernel.bmp
+</code></pre>
+<blockquote>
+<p>新装的系统可能没有 <code>convert</code> 命令, 会报错，所以需要先安装软件包<br>
+<code>sudo  apt-get install imagemagick</code></p>
+</blockquote>
+<p><strong>打包与编译内核</strong></p>
+<pre><code class="language-bash">LOGO=/tmp/logo.bmp KERNEL_LOGO=/tmp/logo_kernel.bmp ./build-kernel.sh eflasher
+LOGO=/tmp/logo.bmp KERNEL_LOGO=/tmp/logo_kernel.bmp ./build-kernel.sh friendlydesktop-arm64
+</code></pre>
+<pre><code class="language-bash">./mk-emmc-image.sh friendlydesktop-arm64
+</code></pre>
+<p>这中间可能会退出，因为没有 <code>/opt/FriendlyARM/toolchain/6.4-aarch64</code> 目录和相关的交叉编译工具；终端会有如下提示。</p>
+<pre><code class="language-bash">root@NanoPC-T4:/media/nvme/sd-fuse_rk3399# LOGO=/tmp/logo.bmp KERNEL_LOGO=/tmp/logo_kernel.bmp ./build-kernel.sh eflasher
+please install aarch64-gcc-6.4 first, using these commands: 
+\tgit clone https://github.com/friendlyarm/prebuilts.git -b master --depth 1
+\tcd prebuilts/gcc-x64
+\tcat toolchain-6.4-aarch64.tar.gz* | sudo tar xz -C /
+</code></pre>
+<p>按照提示输入以上命令（<strong>NOTE: 还是会报错，不要执行以下命令</strong>）：</p>
+<p><s>git clone <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyaWVuZGx5YXJtL3ByZWJ1aWx0cy5naXQ=">https://github.com/friendlyarm/prebuilts.git<i class="fa fa-external-link-alt"></i></span> -b master --depth 1</s><br>
+<s>cd prebuilts/gcc-x64</s><br>
+<s>cat toolchain-4.9.3-armhf.tar.gz* | sudo tar xz -C /</s><br>
+<s>cat toolchain-6.4-aarch64.tar.gz* | sudo tar xz -C /</s></p>
+<p><em>报错信息</em></p>
+<pre><code>/opt/FriendlyARM/toolchain/6.4-aarch64/bin/aarch64-linux-gnu-gcc: 1: /opt/FriendlyARM/toolchain/6.4-aarch64/bin/aarch64-linux-gnu-gcc: ELF: not found /opt/FriendlyARM/toolchain/6.4-aarch64/bin/aarch64-linux-gnu-gcc: 2: /opt/FriendlyARM/toolchain/6.4-aarch64/bin/aarch64-linux-gnu-gcc: Syntax error: &quot;(&quot; unexpected scripts/kconfig/conf  --silentoldconfig Kconfig
+</code></pre>
+<p>查找了编译链版本，版本对不上，一般情况下该类问题都是因为环境有问题。那么有了最新的7.5版本的就不用6.4版本的了。需要修改 <code>build-kernel.sh</code> 里 <code>export PATH=/opt/FriendlyARM/toolchain/6.4-aarch64/bin:$PATH</code> （如果已经安装了，注释掉该段代码）</p>
+<p>如果还没有安装<code>6.4</code>版本的编译器，这一段代码也可以注释掉：</p>
+<pre><code class="language-bash">#if [ ! -d /opt/FriendlyARM/toolchain/6.4-aarch64 ]; then
+#	echo &quot;please install aarch64-gcc-6.4 first, using these commands: &quot;
+#	echo &quot;\tgit clone https://github.com/friendlyarm/prebuilts.git -b master --depth 1&quot;
+#	echo &quot;\tcd prebuilts/gcc-x64&quot;
+#	echo &quot;\tcat toolchain-6.4-aarch64.tar.gz* | sudo tar xz -C /&quot;
+#	exit 1
+#fi
+</code></pre>
+<blockquote>
+<p>报错： <code>./fusing.sh: line 210: ./tools/sd_update: cannot execute binary file: Exec format error</code></p>
+</blockquote>
+<p><code>./mk-sd-image.sh friendlydesktop-arm64</code></p>
+<blockquote>
+<p><strong>File not found: ./friendlydesktop-arm64/partmap.txt, please download the latest version of the image files from <span class="exturl" data-url="aHR0cDovL2RsLmZyaWVuZGx5YXJtLmNvbS9uYW5vcGN0NA==">http://dl.friendlyarm.com/nanopct4<i class="fa fa-external-link-alt"></i></span></strong></p>
+</blockquote>
+<blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kbC5mcmllbmRseWVsZWMuY29tL25hbm9wY3Q0">官网 百度网盘<i class="fa fa-external-link-alt"></i></span> yn6r<br>
+下载</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>安装完成后，执行 <code>./clean.sh</code> 命令，清理一下空间</li>
+</ul>
+</blockquote>
+<p>friendlydesktop-arm64-images.tgz</p>
+<h2 id="【参考】">【参考】</h2>
+<ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly93aWtpLmZyaWVuZGx5ZWxlYy5jb20vd2lraS9pbmRleC5waHAvTmFub1BDLVQ0L3poI0ZyaWVuZGx5Q29yZS5FNy45QS44NC5FNC5CRC5CRi5FNy45NC5BOA==">官网<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2024/12/30/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/12/30/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">Hexo博客搭建完整指南</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-12-30 00:00:00" itemprop="dateCreated datePublished" datetime="2024-12-30T00:00:00+08:00">2024-12-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:52:04" itemprop="dateModified" datetime="2025-08-31T21:52:04+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="为什么选择Hexo">为什么选择Hexo?</h2>
+<p>Hexo 是一个快速、简洁且高效的博客框架，具有以下优势：</p>
+<ul>
+<li><strong>极速生成</strong>：Node.js驱动，每秒可生成数十个页面</li>
+<li><strong>丰富插件</strong>：支持SEO、评论、统计等数百种插件</li>
+<li><strong>多平台部署</strong>：一键部署到GitHub Pages、Netlify等平台</li>
+<li><strong>主题生态</strong>：数百款精美主题，高度可定制</li>
+</ul>
+<h2 id="环境准备">环境准备</h2>
+<h3 id="系统要求">系统要求</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">环境</th>
+<th style="text-align:left">最低要求</th>
+<th style="text-align:left">推荐配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Node.js</td>
+<td style="text-align:left">v10.13.0</td>
+<td style="text-align:left">v16.0.0+</td>
+</tr>
+<tr>
+<td style="text-align:left">Git</td>
+<td style="text-align:left">v2.0.0</td>
+<td style="text-align:left">v2.30.0+</td>
+</tr>
+<tr>
+<td style="text-align:left">操作系统</td>
+<td style="text-align:left">Windows/macOS/Linux</td>
+<td style="text-align:left">任意现代系统</td>
+</tr>
+</tbody>
+</table>
+<h3 id="安装步骤">安装步骤</h3>
+<div class="note warning"><p>使用标签页功能需要先安装插件：<code>npm install hexo-tag-tabs --save</code></p>
+</div>
+<div class="tabs" id="install-guide"><ul class="nav-tabs"></ul><div class="tab-content"></div></div>
+<p>验证安装：</p>
+<pre><code class="language-bash">node -v  # 应显示v16+版本
+git --version  # 应显示v2.30+版本
+npm -v  # 应显示v7+版本
+</code></pre>
+<ol>
+<li>安装 Hexo 命令行工具</li>
+</ol>
+<pre><code class="language-bash">npm install -g hexo-cli
+</code></pre>
+<ol start="2">
+<li>初始化项目（在空目录中）</li>
+</ol>
+<pre><code class="language-bash"># 如果你是在全新环境中设置
+mkdir blog-folder
+cd blog-folder
+hexo init .
+npm install
+</code></pre>
+<ol start="3">
+<li>如果使用当前仓库</li>
+</ol>
+<pre><code class="language-bash"># 克隆仓库
+git clone https://github.com/wangqiqi/wangqiqi.github.io
+cd wangqiqi.github.io
+
+# 安装依赖 (确保你已经有 package.json 文件)
+npm install
+
+# 如果没有 package.json 文件，需要初始化一个新的 Hexo 项目并迁移内容
+# 1. 在别处创建一个新的 Hexo 项目
+mkdir temp_hexo
+cd temp_hexo
+hexo init .
+npm install
+
+# 2. 复制必要的配置文件到原项目
+# 将 package.json, package-lock.json, _config.yml, scaffolds/ 和 themes/ 等复制到原项目
+</code></pre>
+<h2 id="主题安装">主题安装</h2>
+<ol>
+<li>安装 NexT 主题</li>
+</ol>
+<pre><code class="language-bash"># 方法一：使用 git clone (可能会遇到网络问题)
+git clone https://github.com/theme-next/hexo-theme-next themes/next
+
+# 方法二：使用 npm 安装 (推荐)
+npm install hexo-theme-next --save
+
+# 方法三：如果使用 npm 安装但主题不生效，需要复制到 themes 目录
+xcopy /E /I /Y node_modules\hexo-theme-next themes\next
+</code></pre>
+<ol start="2">
+<li>启用主题（在 _config.yml 中修改）</li>
+</ol>
+<pre><code class="language-yaml">theme: next
+</code></pre>
+<ol start="3">
+<li>安装必要的插件</li>
+</ol>
+<pre><code class="language-bash">npm install hexo-generator-searchdb --save  # 搜索功能
+npm install hexo-generator-feed --save      # RSS 订阅
+npm install hexo-deployer-git --save        # Git 部署
+</code></pre>
+<h2 id="本地开发">本地开发</h2>
+<h3 id="启动本地服务器">启动本地服务器</h3>
+<pre><code class="language-bash">hexo server
+# 或简写为
+hexo s
+</code></pre>
+<p>启动后可通过 <code>http://localhost:4000</code> 访问本地预览。</p>
+<h3 id="排查本地预览问题">排查本地预览问题</h3>
+<p>如果出现 “No layout” 警告或者页面样式不正确：</p>
+<ol>
+<li>确认主题是否正确安装到 themes/next 目录</li>
+</ol>
+<pre><code class="language-bash">dir themes\next
+</code></pre>
+<ol start="2">
+<li>清除缓存并重新生成</li>
+</ol>
+<pre><code class="language-bash">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s
+</code></pre>
+<ol start="3">
+<li>检查 _config.yml 中主题设置是否正确</li>
+</ol>
+<pre><code class="language-yaml">theme: next  # 必须与 themes 目录下的主题文件夹名称一致
+</code></pre>
+<h3 id="创建新文章">创建新文章</h3>
+<pre><code class="language-bash"># 创建名为 &quot;article-title&quot; 的新文章
+hexo new post &quot;article-title&quot;
+</code></pre>
+<p>这将在 <code>source/_posts</code> 目录下创建一个名为 <code>article-title.md</code> 的新文件。</p>
+<h3 id="文章格式">文章格式</h3>
+<p>文章头部使用 YAML front-matter 配置文章属性：</p>
+<pre><code class="language-markdown">---
+title: 文章标题
+date: 2023-01-01 12:00:00
+categories:
+  - 分类名称
+tags:
+  - 标签1
+  - 标签2
+description: 文章描述
+---
+
+这里是文章内容...
+</code></pre>
+<h2 id="构建与部署">构建与部署</h2>
+<h3 id="配置部署">配置部署</h3>
+<p>编辑 <code>_config.yml</code>，配置部署信息：</p>
+<pre><code class="language-yaml">deploy:
+  type: git
+  repo: https://github.com/nxu-game/wangqiqi.github.io
+  branch: master
+</code></pre>
+<h3 id="生成静态文件">生成静态文件</h3>
+<pre><code class="language-bash">hexo generate
+# 或简写为
+hexo g
+</code></pre>
+<h3 id="部署到-GitHub-Pages">部署到 GitHub Pages</h3>
+<pre><code class="language-bash">hexo deploy
+# 或简写为
+hexo d
+</code></pre>
+<p>也可以生成并部署一步完成：</p>
+<pre><code class="language-bash">hexo generate --deploy
+# 或简写为
+hexo g -d
+</code></pre>
+<h3 id="部署问题排查">部署问题排查</h3>
+<p>如果遇到部署问题：</p>
+<ol>
+<li>确认 hexo-deployer-git 插件已安装</li>
+</ol>
+<pre><code class="language-bash">npm install hexo-deployer-git --save
+</code></pre>
+<ol start="2">
+<li>检查 GitHub 仓库配置是否正确</li>
+<li>检查 Git 用户凭证是否正确设置</li>
+</ol>
+<h2 id="主题定制">主题定制</h2>
+<p>当前使用的是 NexT 主题的 Gemini 风格，主题配置文件位于根目录的 <code>_config.yml</code> 和主题目录的 <code>_config.yml</code>（或使用根目录的 <code>_config.next.yml</code>）。</p>
+<h3 id="更换主题风格">更换主题风格</h3>
+<p>NexT 主题提供了几种不同的风格：</p>
+<ul>
+<li>Muse - 默认方案，黑白主调</li>
+<li>Mist - Muse 的紧凑版本</li>
+<li>Pisces - 双栏布局</li>
+<li>Gemini - Pisces 的增强版，现在使用的风格</li>
+</ul>
+<p>可在主题配置文件中修改：</p>
+<pre><code class="language-yaml"># Schemes
+scheme: Gemini
+</code></pre>
+<h3 id="推荐自定义部分">推荐自定义部分</h3>
+<ol>
+<li><strong>网站图标</strong>：替换 <code>source/images/</code> 目录下的图标文件</li>
+<li><strong>代码高亮风格</strong>：调整 <code>_config.yml</code> 中的 highlight 部分</li>
+</ol>
+<pre><code class="language-yaml">highlight:
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: true
+prismjs:
+  enable: false
+  preprocess: true
+  line_number: true
+  tab_replace: ''
+</code></pre>
+<ol start="3">
+<li><strong>添加自定义页面</strong>：</li>
+</ol>
+<pre><code class="language-bash">hexo new page &quot;about&quot;
+hexo new page &quot;categories&quot;
+hexo new page &quot;tags&quot;
+</code></pre>
+<ol start="4">
+<li><strong>集成第三方服务</strong>：如 Valine 评论系统、百度/谷歌统计等</li>
+</ol>
+<h2 id="写作风格建议">写作风格建议</h2>
+<ol>
+<li><strong>使用 Markdown</strong>：熟悉 <span class="exturl" data-url="aHR0cHM6Ly93d3cubWFya2Rvd25ndWlkZS5vcmcv">Markdown 语法<i class="fa fa-external-link-alt"></i></span>，高效编写文章</li>
+<li><strong>图文结合</strong>：适当添加图片、代码示例增加可读性</li>
+</ol>
+<pre><code class="language-markdown">![图片描述](/images/example.jpg)
+
+代码示例：
+```python
+def hello_world():
+    print(&quot;Hello, World!&quot;)
+</code></pre>
+<ol start="3">
+<li><strong>段落结构</strong>：注意段落划分，使用标题层级组织内容</li>
+<li><strong>代码展示</strong>：使用代码块标注语言类型以获得语法高亮</li>
+</ol>
+<h2 id="常见问题">常见问题</h2>
+<h3 id="主题配置无效">主题配置无效</h3>
+<p>确保你的主题配置文件正确：</p>
+<ul>
+<li>使用独立主题配置文件：将主题目录下的 <code>_config.yml</code> 复制到站点根目录，并重命名为 <code>_config.next.yml</code></li>
+<li>使用根目录和主题目录的配置文件配合</li>
+</ul>
+<h3 id="文章不显示">文章不显示</h3>
+<p>检查文章 front-matter 是否正确，特别是日期格式。</p>
+<h3 id="更新主题">更新主题</h3>
+<p>更新 NexT 主题：</p>
+<pre><code class="language-bash">cd themes/next
+git pull
+</code></pre>
+<h3 id="清除缓存">清除缓存</h3>
+<p>遇到异常情况，可尝试清除缓存：</p>
+<pre><code class="language-bash">hexo clean
+</code></pre>
+<h3 id="Windows-特有问题">Windows 特有问题</h3>
+<ol>
+<li>路径问题：Windows 使用反斜杠 <code>\</code>，但配置中应使用正斜杠 <code>/</code></li>
+<li>编码问题：确保所有文件使用 UTF-8 编码，避免中文显示乱码</li>
+<li>权限问题：某些操作可能需要管理员权限</li>
+</ol>
+<h3 id="图片资源管理">图片资源管理</h3>
+<p>开启文章资源文件夹功能后，可以为每篇文章创建同名资源文件夹：</p>
+<ol>
+<li>确保 <code>_config.yml</code> 中设置了 <code>post_asset_folder: true</code></li>
+<li>创建文章时会自动生成同名文件夹：<code>hexo new post &quot;my-post&quot;</code></li>
+<li>在文章中引用图片：<code>![描述](image.jpg)</code> 或使用 <code>&#123;% asset_img image.jpg 描述 %&#125;</code></li>
+</ol>
+<h2 id="参考资源">参考资源</h2>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2RvY3Mv">Hexo 文档<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZy9kb2NzLw==">NexT 主题文档<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cubWFya2Rvd25ndWlkZS5vcmcvYmFzaWMtc3ludGF4Lw==">Markdown 基本语法<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2RvY3MvZ2l0aHViLXBhZ2Vz">Hexo 部署到 GitHub Pages<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZy9kb2NzL3RoZW1lLXNldHRpbmdzLw==">NexT 主题配置<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="日常工作流程">日常工作流程</h2>
+<h3 id="目录结构说明">目录结构说明</h3>
+<p>博客项目的核心是 <code>source</code> 目录，它包含了所有需要维护的内容：</p>
+<pre><code>source/
+├── _posts/           # 博客文章
+│   ├── 文章1.md
+│   └── 文章2/        # 文章资源文件夹（如果有图片等资源）
+├── images/           # 全局图片资源
+│   ├── person.jpg    # 个人头像
+│   └── wechat.jpg    # 微信二维码等
+├── about/            # &quot;关于&quot;页面
+├── tags/            # 标签页面
+├── categories/      # 分类页面
+└── CNAME            # 域名配置
+</code></pre>
+<h3 id="写作和更新流程">写作和更新流程</h3>
+<ol>
+<li>
+<p><strong>写新文章</strong>：</p>
+<pre><code class="language-bash"># 1. 创建新文章
+hexo new post &quot;文章标题&quot;
+
+# 2. 编辑文章（在 source/_posts/文章标题.md）
+
+# 3. 如果文章包含图片等资源：
+# - 创建同名文件夹：source/_posts/文章标题/
+# - 将图片等资源放入该文件夹
+# - 在文章中使用相对路径引用：![图片说明](文章标题/图片.jpg)
+</code></pre>
+</li>
+<li>
+<p><strong>添加全局图片</strong>：</p>
+<ul>
+<li>将图片放入 <code>source/images/</code> 目录</li>
+<li>在文章中使用绝对路径引用：<code>![图片说明](/images/图片.jpg)</code></li>
+</ul>
+</li>
+<li>
+<p><strong>修改页面</strong>：</p>
+<ul>
+<li>关于页面：编辑 <code>source/about/index.md</code></li>
+<li>标签页面：编辑 <code>source/tags/index.md</code></li>
+<li>分类页面：编辑 <code>source/categories/index.md</code></li>
+</ul>
+</li>
+<li>
+<p><strong>本地预览</strong>：</p>
+<pre><code class="language-bash"># 清理缓存并重新生成
+hexo clean
+
+# 生成静态文件
+hexo g
+
+# 启动本地服务器
+hexo s
+</code></pre>
+<p>访问 <span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo0MDAw">http://localhost:4000<i class="fa fa-external-link-alt"></i></span> 预览效果</p>
+</li>
+<li>
+<p><strong>部署网站</strong>：</p>
+<pre><code class="language-bash"># 部署到 GitHub Pages
+hexo d
+
+# 或者一键生成并部署
+hexo g -d
+</code></pre>
+</li>
+</ol>
+<h3 id="维护建议">维护建议</h3>
+<ol>
+<li>
+<p><strong>定期备份</strong>：</p>
+<ul>
+<li>定期提交到 Git 仓库</li>
+<li>备份 <code>source</code> 目录最重要，它包含所有原始内容</li>
+</ul>
+</li>
+<li>
+<p><strong>图片管理</strong>：</p>
+<ul>
+<li>文章配图放在文章同名文件夹中</li>
+<li>全局图片（如头像）放在 <code>source/images/</code> 中</li>
+<li>压缩图片以优化加载速度</li>
+</ul>
+</li>
+<li>
+<p><strong>定期清理</strong>：</p>
+<ul>
+<li>可以安全删除的临时文件：
+<ul>
+<li><code>.deploy_git/</code>（部署缓存）</li>
+<li><code>public/</code>（生成的静态文件）</li>
+<li><code>db.json</code>（数据库缓存）</li>
+</ul>
+</li>
+<li>这些文件会在需要时自动重新生成</li>
+</ul>
+</li>
+<li>
+<p><strong>版本控制</strong>：</p>
+<ul>
+<li>主要关注 <code>source</code> 目录的变更</li>
+<li>可以忽略的文件已在 <code>.gitignore</code> 中配置</li>
+</ul>
+</li>
+</ol>
+<h3 id="常见问题解决">常见问题解决</h3>
+<ol>
+<li>
+<p><strong>部署失败</strong>：</p>
+<ul>
+<li>检查网络连接</li>
+<li>确认 GitHub 仓库设置正确</li>
+<li>验证 Git 凭证是否有效</li>
+</ul>
+</li>
+<li>
+<p><strong>图片显示问题</strong>：</p>
+<ul>
+<li>检查图片路径是否正确</li>
+<li>区分相对路径和绝对路径的使用场景</li>
+<li>确保图片已经提交到正确的目录</li>
+</ul>
+</li>
+<li>
+<p><strong>预览异常</strong>：</p>
+<ul>
+<li>使用 <code>hexo clean</code> 清理缓存</li>
+<li>重新生成静态文件</li>
+<li>检查主题配置是否正确</li>
+</ul>
+</li>
+</ol>
+<h2 id="高级配置技巧">高级配置技巧</h2>
+<h3 id="config-yml核心配置">_config.yml核心配置</h3>
+<pre><code class="language-yaml">site:
+  title: 我的技术博客
+  subtitle: '分享AI与计算机视觉技术'
+  description: '专注于AI、机器学习和计算机视觉领域的技术博客'
+  keywords: AI, 机器学习, 计算机视觉, 技术分享
+  author: 王七七
+  language: zh-CN
+  timezone: 'Asia/Shanghai'
+
+# URL配置
+url: https://znza.top
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+  lang: zh-CN
+
+# 分页设置
+per_page: 10
+pagination_dir: page
+
+# 主题配置
+theme: next
+</code></pre>
+<h3 id="Next主题个性化">Next主题个性化</h3>
+<div class="tabs" id="主题个性化"><ul class="nav-tabs"></ul><div class="tab-content"></div></div>
+<h2 id="内容创作指南">内容创作指南</h2>
+<h3 id="Markdown高级语法">Markdown高级语法</h3>
+<h4 id="数学公式">数学公式</h4>
+<p>使用Hexo渲染数学公式需安装插件：</p>
+<pre><code class="language-bash">npm install hexo-filter-mathjax --save
+</code></pre>
+<p>在文章中使用LaTeX语法：</p>
+<pre><code class="language-markdown">$$E=mc^2$$
+
+\(a^2 + b^2 = c^2\)
+</code></pre>
+<h4 id="流程图">流程图</h4>
+<pre><code class="language-markdown">```mermaid
+graph TD
+    A[开始] --&gt; B&#123;条件A&#125;
+    B --&gt;|是| C[结果A]
+    B --&gt;|否| D[结果B]
+    C --&gt; E[结束]
+    D --&gt; E
+</code></pre>
+<pre><code>
+### SEO优化策略
+
+1. **标题优化**
+   - 包含核心关键词
+   - 控制在50-60个字符
+   - 使用吸引人的表述
+
+2. **内容优化**
+   - 首段包含关键词
+   - 合理使用小标题（h2-h4）
+   - 关键词密度控制在2%-5%
+
+3. **Meta标签**
+   ```yaml
+   # 在文章Front-matter中添加
+   keywords: Hexo, SEO, 博客优化
+   description: 详细介绍Hexo博客的SEO优化方法
+</code></pre>
+<h2 id="部署与维护">部署与维护</h2>
+<h3 id="多环境部署方案">多环境部署方案</h3>
+<div class="tabs" id="多环境部署"><ul class="nav-tabs"></ul><div class="tab-content"></div></div>
+<h3 id="博客维护-checklist">博客维护 checklist</h3>
+<ul>
+<li>[ ] 定期备份 <code>_config.yml</code>和文章内容</li>
+<li>[ ] 使用 <code>hexo clean</code>清理缓存</li>
+<li>[ ] 更新Hexo和插件到最新版本</li>
+<li>[ ] 检查死链接和图片引用</li>
+<li>[ ] 优化大型图片和资源</li>
+</ul>
+<h2 id="常见问题解决-2">常见问题解决</h2>
+<h3 id="部署后样式丢失">部署后样式丢失</h3>
+<pre><code class="language-bash"># 检查站点URL配置
+hexo config url
+
+# 确保配置正确后重新部署
+hexo clean &amp;&amp; hexo deploy
+</code></pre>
+<h3 id="本地预览与线上差异">本地预览与线上差异</h3>
+<pre><code class="language-bash"># 生成静态文件并本地预览
+hexo generate &amp;&amp; hexo server -s
+</code></pre>
+<h3 id="插件冲突解决">插件冲突解决</h3>
+<pre><code class="language-bash"># 查看已安装插件
+npm list --depth=0
+
+# 卸载冲突插件
+npm uninstall hexo-plugin-name
+</code></pre>
+<h2 id="推荐资源">推荐资源</h2>
+<h3 id="优质插件">优质插件</h3>
+<ul>
+<li><strong>hexo-generator-searchdb</strong>: 站内搜索功能</li>
+<li><strong>hexo-filter-nofollow</strong>: 添加nofollow属性</li>
+<li><strong>hexo-autoprefixer</strong>: CSS自动前缀</li>
+<li><strong>hexo-related-popular-posts</strong>: 相关文章推荐</li>
+</ul>
+<h3 id="学习资源">学习资源</h3>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuL2RvY3Mv">Hexo官方文档<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9kb2NzLw==">Next主题文档<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3BsdWdpbnMv">Hexo插件大全<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">老周</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

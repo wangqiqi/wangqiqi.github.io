@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"znza.top","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.23.2","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":{"enable":true},"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":5,"unescape":false,"preload":true,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="安装 Docker安装Gitlab官方文档 Gitlab 分为了 gitlab-ee 和 gitlab-ce 两个版本，经过权衡比较，还是使用 gitlab-ee 版本，因为 gitlab-ee 版本包含了gitlab-ce版本的所有功能，其他功能以后想升级更容易； 1. 拉取镜像 sudo docker pull  gitlab&#x2F;gitlab-ee  2. 配置存放卷的路径 &#96;sudo mkdi">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Docker安装Gitlab">
+<meta property="og:url" content="https://znza.top/2025/01/01/%E8%BF%90%E7%BB%B4/Docker%E5%AE%89%E8%A3%85Gitlab/index.html">
+<meta property="og:site_name" content="老周有AI">
+<meta property="og:description" content="安装 Docker安装Gitlab官方文档 Gitlab 分为了 gitlab-ee 和 gitlab-ce 两个版本，经过权衡比较，还是使用 gitlab-ee 版本，因为 gitlab-ee 版本包含了gitlab-ce版本的所有功能，其他功能以后想升级更容易； 1. 拉取镜像 sudo docker pull  gitlab&#x2F;gitlab-ee  2. 配置存放卷的路径 &#96;sudo mkdi">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://znza.top/images/logo.svg">
+<meta property="article:published_time" content="2024-12-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-31T13:40:32.049Z">
+<meta property="article:author" content="老周">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Gitlab">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://znza.top/images/logo.svg">
+
+
+<link rel="canonical" href="https://znza.top/2025/01/01/%E8%BF%90%E7%BB%B4/Docker%E5%AE%89%E8%A3%85Gitlab/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://znza.top/2025/01/01/%E8%BF%90%E7%BB%B4/Docker%E5%AE%89%E8%A3%85Gitlab/","path":"2025/01/01/运维/Docker安装Gitlab/","title":"Docker安装Gitlab"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Docker安装Gitlab | 老周有AI</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="老周有AI" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">老周有AI</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">计算机视觉与人工智能技术分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">76</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">23</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">48</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-%E8%BF%9B%E5%85%A5gitlab%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">docker 进入gitlab修改密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%82%AE%E7%AE%B1%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">邮箱配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%80%90%E5%8F%82%E8%80%83%E3%80%91"><span class="nav-number">4.</span> <span class="nav-text">【参考】</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="老周"
+      src="/images/person.jpg">
+  <p class="site-author-name" itemprop="name">老周</p>
+  <div class="site-description" itemprop="description">老周的个人技术博客，专注于计算机视觉、人工智能和创意编程</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/%E8%BF%90%E7%BB%B4/Docker%E5%AE%89%E8%A3%85Gitlab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Docker安装Gitlab | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Docker安装Gitlab
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:40:32" itemprop="dateModified" datetime="2025-08-31T21:40:32+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="安装">安装</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGxhYi5jb20vZWUvaW5zdGFsbC9kb2NrZXIuaHRtbA==">Docker安装Gitlab官方文档<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>Gitlab</strong> 分为了 <em>gitlab-ee</em> 和 <em>gitlab-ce</em> 两个版本，经过权衡比较，还是使用 <em>gitlab-ee</em> 版本，因为 <em>gitlab-ee</em> 版本包含了<em>gitlab-ce</em>版本的所有功能，其他功能以后想升级更容易；</p>
+<p><strong>1. 拉取镜像</strong></p>
+<pre><code class="language-bash">sudo docker pull  gitlab/gitlab-ee
+</code></pre>
+<p><strong>2. 配置存放卷的路径</strong></p>
+<pre><code class="language-bash">`sudo mkdir -p /srv/docker/gitlab-ee/config /srv/docker/gitlab-ee/logs /srv/docker/gitlab-ee/data 
+</code></pre>
+<p><strong>3. 构建容器</strong><br>
+<em>多行代码</em></p>
+<pre><code class="language-bash">sudo docker run --detach \
+--publish 8443:443 \   
+--publish 10084:10084 \
+--publish 8222:22 \
+--name gitlab \
+--restart always \
+--volume /srv/docker/gitlab-ee/config:/etc/gitlab \
+--volume /srv/docker/gitlab-ee/logs:/var/log/gitlab \
+--volume /srv/docker/gitlab-ee/data:/var/opt/gitlab \
+gitlab/gitlab-ee:latest
+</code></pre>
+<p><em>单行代码</em></p>
+<pre><code class="language-bash">sudo docker run --detach --publish 8443:443 --publish 10084:10084 --publish 8222:22 --name gitlab --restart always --volume /srv/docker/gitlab-ee/config:/etc/gitlab --volume /srv/docker/gitlab-ee/logs:/var/log/gitlab --volume /srv/docker/gitlab-ee/data:/var/opt/gitlab gitlab/gitlab-ee:latest
+</code></pre>
+<p>***NOTE:***构建完成后需要修改<code>config</code>下面的<code>gitlab.rb</code>文件</p>
+<p><strong>4. 修改配置文件</strong><br>
+在<code>gitlab.rb</code>文件中新增</p>
+<pre><code class="language-bash">external_url 'http://192.168.0.86:10084'  # 换成自己的
+gitlab_rails['gitlab_shell_ssh_port'] = 8222 # 换成自己的
+</code></pre>
+<p><strong>修改完文件后，重新配置容器</strong></p>
+<pre><code class="language-bash">sudo docker exec -it gitlab gitlab-ctl reconfigure
+</code></pre>
+<p><strong>重启容器</strong></p>
+<pre><code class="language-bash">sudo docker restart gitlab
+</code></pre>
+<h2 id="docker-进入gitlab修改密码">docker 进入gitlab修改密码</h2>
+<p>一般情况下，不用修改密码，在<code>config</code>文件夹下有一个文件叫<code>initial_root_password</code>, 里面存放了最初始的密码，24小时内有效，请登录后及时修改到方便记忆的密码；</p>
+<ol>
+<li>进入gitlab容器内</li>
+</ol>
+<pre><code class="language-bash">docker exec -uroot -it gitlab /bin/bash
+</code></pre>
+<ol start="2">
+<li>一次执行下面的命令：</li>
+</ol>
+<pre><code class="language-bash">gitlab-rails console -e production
+user = User.where(id: 1).first
+user.password = ‘password’ # 换成自己的
+user.password_confirmation = ‘password’ # 换成自己的
+user.save!
+exit
+</code></pre>
+<h2 id="邮箱配置">邮箱配置</h2>
+<p>主要用于gitlab 日常使用中邮件通知服务</p>
+<p><strong>1.修改配置文件,建议使用企业邮箱</strong><br>
+修改文件 <code>gitlab.rb</code></p>
+<pre><code class="language-bash">gitlab_rails['smtp_enable'] = true
+gitlab_rails['smtp_address'] = &quot;smtp.qiye.aliyun.com&quot; # 换成自己的
+gitlab_rails['smtp_port'] = 465
+gitlab_rails['smtp_user_name'] = &quot;gitlab@example.com&quot; # 换成自己的域名
+gitlab_rails['smtp_password'] = &quot;gitlab_pw&quot; # 换成自己的密码
+gitlab_rails['smtp_domain'] = &quot;smtp.qiye.aliyun.com&quot;
+gitlab_rails['smtp_authentication'] = &quot;login&quot;
+gitlab_rails['smtp_enable_starttls_auto'] = true
+gitlab_rails['smtp_tls'] = true
+# gitlab_rails['smtp_pool'] = false
+gitlab_rails['gitlab_email_from'] = 'send_from'  # 换成自己的
+</code></pre>
+<p><strong>测试</strong><br>
+<em>开启 gitlab 的 bash 工具</em></p>
+<pre><code class="language-bash">$ docker exec -it gitlab bash
+</code></pre>
+<p><em>开启 gitlab-rails 工具</em></p>
+<pre><code class="language-bash">$ gitlab-rails console production
+</code></pre>
+<p><em>发送邮件进行测试</em></p>
+<pre><code class="language-bash">Notify.test_email('test@xxx.com', 'Message Subject', 'Message Body').deliver_now
+</code></pre>
+<p><strong>重新配置与重启</strong></p>
+<pre><code class="language-bash">sudo docker exec -it gitlab gitlab-ctl reconfigure
+sudo docker restart gitlab
+</code></pre>
+<h2 id="【参考】">【参考】</h2>
+<ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbGlqaW5jaGFuZy9wLzEyNjk1MzcyLmh0bWw=">https://www.cnblogs.com/lijinchang/p/12695372.html<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2N4eV9MRy9hcnRpY2xlL2RldGFpbHMvMTAyOTY3ODA0">https://blog.csdn.net/cxy_LG/article/details/102967804<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zNDIxMzY4MjY=">https://zhuanlan.zhihu.com/p/342136826<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21pbmcxOTk1MTIyNC9hcnRpY2xlL2RldGFpbHMvMTA1NDc5MDMz">https://blog.csdn.net/ming19951224/article/details/105479033<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9iYnMuY3Nkbi5uZXQvdG9waWNzLzM5NzEzMTE5MA==">https://bbs.csdn.net/topics/397131190<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Nhc2liaW5nZHUvYXJ0aWNsZS9kZXRhaWxzLzEyMDA3NjIyNg==">https://blog.csdn.net/sasibingdu/article/details/120076226<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BvbHl3Zy9hcnRpY2xlL2RldGFpbHMvMTEzOTM1MzE4">配置邮箱<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zMjg3OTUxMDI=">docker下gitlab安装与配置<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+              <a href="/tags/Gitlab/" rel="tag"># Gitlab</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/01/01/%E8%BF%90%E7%BB%B4/Docker%E6%93%8D%E4%BD%9C/" rel="prev" title="Docker操作">
+                  <i class="fa fa-angle-left"></i> Docker操作
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/01/01/%E8%BF%90%E7%BB%B4/Docker%E5%AE%89%E8%A3%85%20Redmine/" rel="next" title="Docker安装 Redmine">
+                  Docker安装 Redmine <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">老周</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

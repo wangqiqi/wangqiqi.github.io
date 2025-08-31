@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"znza.top","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.23.2","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":{"enable":true},"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":5,"unescape":false,"preload":true,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Windows 10 安装 PyTorch 开发环境，以及验证 YOLOv8  环境： OS： Windows 10 显卡： RTX 3090   安装 NVIDIA 驱动 根据显卡型号找到对应的驱动进行安装 GeForce® 驱动程序 验证 在终端中输入：  nvidia-smi 查看是否正确安装 PS F:\workspace\notebook&gt; nvidia-smi Tue Aug 1">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Windows10 安装 Pytorch">
+<meta property="og:url" content="https://znza.top/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/index.html">
+<meta property="og:site_name" content="老周有AI">
+<meta property="og:description" content="Windows 10 安装 PyTorch 开发环境，以及验证 YOLOv8  环境： OS： Windows 10 显卡： RTX 3090   安装 NVIDIA 驱动 根据显卡型号找到对应的驱动进行安装 GeForce® 驱动程序 验证 在终端中输入：  nvidia-smi 查看是否正确安装 PS F:\workspace\notebook&gt; nvidia-smi Tue Aug 1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://znza.top/images/logo.svg">
+<meta property="article:published_time" content="2025-01-01T08:55:20.000Z">
+<meta property="article:modified_time" content="2025-08-31T14:07:00.499Z">
+<meta property="article:author" content="老周">
+<meta property="article:tag" content="Pytorch">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="YOLOv8">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://znza.top/images/logo.svg">
+
+
+<link rel="canonical" href="https://znza.top/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://znza.top/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/","path":"2025/01/01/Windows/windows10 安装 pytorch/","title":"Windows10 安装 Pytorch"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Windows10 安装 Pytorch | 老周有AI</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="老周有AI" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">老周有AI</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">计算机视觉与人工智能技术分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">76</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">23</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">48</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Windows 10 安装 PyTorch 开发环境，以及验证 YOLOv8</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-NVIDIA-%E9%A9%B1%E5%8A%A8"><span class="nav-number">1.1.</span> <span class="nav-text">安装 NVIDIA 驱动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81"><span class="nav-number">1.1.1.</span> <span class="nav-text">验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Visual-Studio-2019-Community"><span class="nav-number">1.2.</span> <span class="nav-text">安装 Visual Studio 2019 Community</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81-2"><span class="nav-number">1.2.1.</span> <span class="nav-text">验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Git-CMake-Anaconda"><span class="nav-number">1.3.</span> <span class="nav-text">安装 Git, CMake, Anaconda</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81-3"><span class="nav-number">1.3.1.</span> <span class="nav-text">验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%B9%B6%E5%AE%89%E8%A3%85-OpenCV"><span class="nav-number">1.4.</span> <span class="nav-text">下载并安装 OpenCV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-CUDA-%E5%92%8C-CUDNN"><span class="nav-number">1.5.</span> <span class="nav-text">安装 CUDA 和 CUDNN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81-4"><span class="nav-number">1.5.1.</span> <span class="nav-text">验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-PyTorch"><span class="nav-number">1.6.</span> <span class="nav-text">安装 PyTorch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81-5"><span class="nav-number">1.6.1.</span> <span class="nav-text">验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ultralytics-YOLOv8"><span class="nav-number">1.7.</span> <span class="nav-text">ultralytics&#x2F;YOLOv8</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81-6"><span class="nav-number">1.7.1.</span> <span class="nav-text">验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%80%90%E5%8F%82%E8%80%83%E3%80%91"><span class="nav-number">1.8.</span> <span class="nav-text">【参考】</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="老周"
+      src="/images/person.jpg">
+  <p class="site-author-name" itemprop="name">老周</p>
+  <div class="site-description" itemprop="description">老周的个人技术博客，专注于计算机视觉、人工智能和创意编程</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Windows10 安装 Pytorch | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Windows10 安装 Pytorch
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 16:55:20" itemprop="dateCreated datePublished" datetime="2025-01-01T16:55:20+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 22:07:00" itemprop="dateModified" datetime="2025-08-31T22:07:00+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Windows/Pytorch/" itemprop="url" rel="index"><span itemprop="name">Pytorch</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Windows/Pytorch/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index"><span itemprop="name">运维</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>Windows 10 安装 PyTorch 开发环境，以及验证 YOLOv8</h1>
+<blockquote>
+<p>环境：<br>
+OS： Windows 10<br>
+显卡： RTX 3090</p>
+</blockquote>
+<img data-src="/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/image-2.png" class="" title="image-2.png">
+<h2 id="安装-NVIDIA-驱动">安装 NVIDIA 驱动</h2>
+<p>根据显卡型号找到对应的驱动进行安装</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubnZpZGlhLmNuL2dlZm9yY2UvZHJpdmVycy8=">GeForce® 驱动程序<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="验证">验证</h3>
+<p>在终端中输入：  <code>nvidia-smi</code> 查看是否正确安装</p>
+<pre><code class="language-bash">PS F:\workspace\notebook&gt; nvidia-smi
+Tue Aug 15 09:23:21 2023
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 528.24       Driver Version: 528.24       CUDA Version: 12.0     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name            TCC/WDDM | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  NVIDIA GeForce ... WDDM  | 00000000:01:00.0  On |                  N/A |
+| 30%   38C    P8    19W / 350W |    782MiB / 24576MiB |      4%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|    0   N/A  N/A      1620    C+G   C:\Windows\System32\dwm.exe     N/A      |
+|    0   N/A  N/A      1908    C+G   ...ge\Application\msedge.exe    N/A      |
+</code></pre>
+<h2 id="安装-Visual-Studio-2019-Community">安装 Visual Studio 2019 Community</h2>
+<p>安装 VS2019 [Visual Studio Community 2019](<span class="exturl" data-url="aHR0cHM6Ly9teS52aXN1YWxzdHVkaW8uY29tL0Rvd25sb2Fkcz9xPXZpc3VhbCUyMHN0dWRpbyUyMDIwMTkmd3QubWNfaWQ9b35tc2Z0fnZzY29tfm9sZGVyLWRvd25sb2E=">https://my.visualstudio.com/Downloads?q=visual studio 2019&amp;wt.mc_id=o~msft~vscom~older-downloa<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="验证-2">验证</h3>
+<img data-src="/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/image-4.png" class="" title="image-4.png">
+<h2 id="安装-Git-CMake-Anaconda">安装 Git, CMake, Anaconda</h2>
+<p>安装 <span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS9kb3dubG9hZC93aW4=">git<i class="fa fa-external-link-alt"></i></span>,</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly90b3J0b2lzZWdpdC5vcmcv">tortoisegit 可以看文件状态<i class="fa fa-external-link-alt"></i></span></p>
+<p>安装 <span class="exturl" data-url="aHR0cHM6Ly9jbWFrZS5vcmcvZG93bmxvYWQv">cmake<i class="fa fa-external-link-alt"></i></span>， 跨平台编译时使用;</p>
+<p>安装 <span class="exturl" data-url="aHR0cHM6Ly93d3cuYW5hY29uZGEuY29tL3Byb2R1Y3RzL2luZGl2aWR1YWw=">Anaconda<i class="fa fa-external-link-alt"></i></span>，集成了很多 <code>python</code> 开发环境</p>
+<h3 id="验证-3">验证</h3>
+<h2 id="下载并安装-OpenCV">下载并安装 OpenCV</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9vcGVuY3Yub3JnL3JlbGVhc2VzLw==">OpenCV 下载地址<i class="fa fa-external-link-alt"></i></span></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">VC版本号</th>
+<th style="text-align:left">VS对应版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">vc6</td>
+<td style="text-align:left">VC6.0</td>
+</tr>
+<tr>
+<td style="text-align:left">vc7</td>
+<td style="text-align:left">VS2002</td>
+</tr>
+<tr>
+<td style="text-align:left">vc7.1</td>
+<td style="text-align:left">VS2003</td>
+</tr>
+<tr>
+<td style="text-align:left">vc8</td>
+<td style="text-align:left">VS2005</td>
+</tr>
+<tr>
+<td style="text-align:left">vc9</td>
+<td style="text-align:left">VS2008</td>
+</tr>
+<tr>
+<td style="text-align:left">vc10</td>
+<td style="text-align:left">VS2010</td>
+</tr>
+<tr>
+<td style="text-align:left">vc11</td>
+<td style="text-align:left">VS2012</td>
+</tr>
+<tr>
+<td style="text-align:left">vc12</td>
+<td style="text-align:left">VS2013</td>
+</tr>
+<tr>
+<td style="text-align:left">vc13</td>
+<td style="text-align:left">VS2014</td>
+</tr>
+<tr>
+<td style="text-align:left">vc14</td>
+<td style="text-align:left">VS2015</td>
+</tr>
+<tr>
+<td style="text-align:left">vc15</td>
+<td style="text-align:left">VS2017</td>
+</tr>
+<tr>
+<td style="text-align:left">vc16</td>
+<td style="text-align:left">VS2019</td>
+</tr>
+</tbody>
+</table>
+<p>既然上面安装的是 VS 2019, 那么我们就安装  VC16 版本的 OpenCV， 省得自己编译了；</p>
+<p>解压安装后，将 <code>build</code> 目录下的 <code>x64\vc16\bin</code> 添加到环境变量中。</p>
+<h2 id="安装-CUDA-和-CUDNN">安装 CUDA 和 CUDNN</h2>
+<p>这里有些人可能不知道需要安装什么版本的 cuda。因为我这里的 GPU 是 N卡 3090 还是比较好的，所以可以安装比较高阶版本的软件，但是也不能太新，我这里直接参考 PyTorch 里最新版本的框架依赖哪个？</p>
+<img data-src="/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/image.png" class="" title="image.png">
+<p>好了，那就安装 CUDA 11.8 和对应的 CUDNN 8 ；</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubnZpZGlhLmNvbS9jdWRhLTExLTgtMC1kb3dubG9hZC1hcmNoaXZlP3RhcmdldF9vcz1XaW5kb3dzJnRhcmdldF9hcmNoPXg4Nl82NCZ0YXJnZXRfdmVyc2lvbj0xMCZ0YXJnZXRfdHlwZT1leGVfbG9jYWw=">cuda11.8-exe_local-3GB<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubnZpZGlhLmNvbS9yZHAvY3Vkbm4tYXJjaGl2ZQ==">cudnn 下载对应版本<i class="fa fa-external-link-alt"></i></span></p>
+<p><em>注意： cudnn 要注册账号</em></p>
+<p>解压后，将 cudnn 文件夹下的所有文件夹复制到 <code>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\</code> 目录下。</p>
+<h3 id="验证-4">验证</h3>
+<pre><code class="language-bash">(base) D:\&gt;nvcc --version
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2022 NVIDIA Corporation
+Built on Wed_Sep_21_10:41:10_Pacific_Daylight_Time_2022
+Cuda compilation tools, release 11.8, V11.8.89
+Build cuda_11.8.r11.8/compiler.31833905_0
+</code></pre>
+<p>进入到安装目录 <code>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\extras\demo_suite</code>, 运行 <code>.\deviceQuery.exe</code></p>
+<img data-src="/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/image-3.png" class="" title="image-3.png">
+<h2 id="安装-PyTorch">安装 PyTorch</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9weXRvcmNoLm9yZy8=">PyTorch<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>conda 安装</strong></p>
+<pre><code class="language-bash">conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+</code></pre>
+<p><strong>pip 安装</strong></p>
+<pre><code class="language-bash">pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+</code></pre>
+<h3 id="验证-5">验证</h3>
+<pre><code class="language-bash">(base) D:\&gt;python
+Python 3.11.4 | packaged by Anaconda, Inc. | (main, Jul  5 2023, 13:38:37) [MSC v.1916 64 bit (AMD64)] on win32
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import torch
+&gt;&gt;&gt; print(torch.__version__)
+2.0.1
+&gt;&gt;&gt; torch.cuda.is_available()
+True
+&gt;&gt;&gt;
+</code></pre>
+<h2 id="ultralytics-YOLOv8">ultralytics/YOLOv8</h2>
+<p><strong>创建虚拟环境</strong></p>
+<pre><code class="language-bash">conda create --name yolov8 --clone base
+</code></pre>
+<p><strong>激活虚拟环境</strong></p>
+<pre><code class="language-bash">conda activate yolov8
+</code></pre>
+<p><strong>安装</strong></p>
+<pre><code class="language-bash">pip install ultralytics
+</code></pre>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3VsdHJhbHl0aWNzL3VsdHJhbHl0aWNz">代码 https://github.com/ultralytics/ultralytics<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3VsdHJhbHl0aWNzL2Fzc2V0cy9yZWxlYXNlcw==">权重 https://github.com/ultralytics/assets/releases<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="验证-6">验证</h3>
+<pre><code class="language-bash">yolo predict model=yolov8n.pt imgsz=640 conf=0.25
+</code></pre>
+<pre><code class="language-bash">(yolov8) F:\workspace\yolov8&gt;yolo predict model=yolov8n.pt imgsz=640 conf=0.25
+WARNING  'source' is missing. Using default 'source=D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\assets'.
+Ultralytics YOLOv8.0.154  Python-3.11.4 torch-2.0.1 CUDA:0 (NVIDIA GeForce RTX 3090, 24576MiB)
+YOLOv8n summary (fused): 168 layers, 3151904 parameters, 0 gradients
+
+image 1/2 D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\assets\bus.jpg: 640x480 4 persons, 1 bus, 1 stop sign, 160.2ms
+image 2/2 D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\assets\zidane.jpg: 384x640 2 persons, 1 tie, 154.0ms
+Speed: 41.6ms preprocess, 157.1ms inference, 72.6ms postprocess per image at shape (1, 3, 384, 640)
+Results saved to runs\detect\predict
+</code></pre>
+<h2 id="【参考】">【参考】</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC85OTg4MDIwND9mcm9tX3ZvdGVyc19wYWdlPXRydWU=">Windows 安装 CUDA/cuDNN<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzMwMTMzMy9hcnRpY2xlL2RldGFpbHMvMTIxNTUwMjU3">验证pytorch是否为GPU版本<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC82MjcxMDgzMDE=">YOLOv8环境搭建（Windows11）<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl82MTk4ODg4NS9hcnRpY2xlL2RldGFpbHMvMTI5NDIxNTM4">YOLOv8 从环境搭建到推理训练<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnVsdHJhbHl0aWNzLmNvbS9xdWlja3N0YXJ0Lw==">Ultralytics YOLOv8 Docs-Quickstart<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC82MTU1MzA3ODU=">Anaconda 创建，复制，移植，删除环境<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Pytorch/" rel="tag"># Pytorch</a>
+              <a href="/tags/Windows/" rel="tag"># Windows</a>
+              <a href="/tags/YOLOv8/" rel="tag"># YOLOv8</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/01/01/OpenCV/Android-Studio-OpenCV-JNI/" rel="prev" title="Android Studio OpenCV JNI集成指南">
+                  <i class="fa fa-angle-left"></i> Android Studio OpenCV JNI集成指南
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/01/01/Windows/Windows10-YOLOv8%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99/" rel="next" title="Windows10 Yolov8运行报错">
+                  Windows10 Yolov8运行报错 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">老周</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

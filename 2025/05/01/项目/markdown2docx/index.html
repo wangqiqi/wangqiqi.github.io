@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"znza.top","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.23.2","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":{"enable":true},"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":5,"unescape":false,"preload":true,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="md2docx：让Markdown文档秒变精美Word文档的神器 Github代码仓库  你是否曾经为了将Markdown笔记转换成公司要求的Word格式而头疼？是否厌倦了复制粘贴后还要手动调整格式？md2docx来解救你了！  🚀 这是什么神器？ md2docx是一款强大的Markdown转Word文档工具，它能够将你喜爱的Markdown格式无缝转换为精美的DOCX文档，保留原有的格式和样式">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="md2docx：让Markdown文档秒变精美Word文档的神器">
+<meta property="og:url" content="https://znza.top/2025/05/01/%E9%A1%B9%E7%9B%AE/markdown2docx/index.html">
+<meta property="og:site_name" content="老周有AI">
+<meta property="og:description" content="md2docx：让Markdown文档秒变精美Word文档的神器 Github代码仓库  你是否曾经为了将Markdown笔记转换成公司要求的Word格式而头疼？是否厌倦了复制粘贴后还要手动调整格式？md2docx来解救你了！  🚀 这是什么神器？ md2docx是一款强大的Markdown转Word文档工具，它能够将你喜爱的Markdown格式无缝转换为精美的DOCX文档，保留原有的格式和样式">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://znza.top/images/logo.svg">
+<meta property="article:published_time" content="2025-04-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-31T13:53:56.027Z">
+<meta property="article:author" content="老周">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="文档处理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://znza.top/images/logo.svg">
+
+
+<link rel="canonical" href="https://znza.top/2025/05/01/%E9%A1%B9%E7%9B%AE/markdown2docx/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://znza.top/2025/05/01/%E9%A1%B9%E7%9B%AE/markdown2docx/","path":"2025/05/01/项目/markdown2docx/","title":"md2docx：让Markdown文档秒变精美Word文档的神器"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>md2docx：让Markdown文档秒变精美Word文档的神器 | 老周有AI</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="老周有AI" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">老周有AI</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">计算机视觉与人工智能技术分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">76</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">23</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">48</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">md2docx：让Markdown文档秒变精美Word文档的神器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9A%80-%E8%BF%99%E6%98%AF%E4%BB%80%E4%B9%88%E7%A5%9E%E5%99%A8%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">🚀 这是什么神器？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9C%A8-%E4%B8%BB%E8%A6%81%E7%89%B9%E6%80%A7"><span class="nav-number">1.2.</span> <span class="nav-text">✨ 主要特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%8D-%E5%AE%83%E8%83%BD%E8%BD%AC%E6%8D%A2%E5%93%AA%E4%BA%9B%E5%85%83%E7%B4%A0%EF%BC%9F"><span class="nav-number">1.3.</span> <span class="nav-text">🔍 它能转换哪些元素？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%96%87%E6%9C%AC%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 文本格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BB%93%E6%9E%84%E5%85%83%E7%B4%A0"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 结构元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AA%92%E4%BD%93%E5%92%8C%E9%93%BE%E6%8E%A5"><span class="nav-number">1.3.3.</span> <span class="nav-text">3. 媒体和链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%A1%A8%E6%A0%BC"><span class="nav-number">1.3.4.</span> <span class="nav-text">4. 表格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-HTML%E6%94%AF%E6%8C%81"><span class="nav-number">1.3.5.</span> <span class="nav-text">5. HTML支持</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9A%80-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8"><span class="nav-number">1.4.</span> <span class="nav-text">🚀 如何使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%92%A1-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.5.</span> <span class="nav-text">💡 使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%AE-%E6%9C%AA%E6%9D%A5%E8%AE%A1%E5%88%92"><span class="nav-number">1.6.</span> <span class="nav-text">🔮 未来计划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%99%8F-%E7%BB%93%E8%AF%AD"><span class="nav-number">1.7.</span> <span class="nav-text">🙏 结语</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="老周"
+      src="/images/person.jpg">
+  <p class="site-author-name" itemprop="name">老周</p>
+  <div class="site-description" itemprop="description">老周的个人技术博客，专注于计算机视觉、人工智能和创意编程</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/05/01/%E9%A1%B9%E7%9B%AE/markdown2docx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="md2docx：让Markdown文档秒变精美Word文档的神器 | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          md2docx：让Markdown文档秒变精美Word文档的神器
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-05-01T00:00:00+08:00">2025-05-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:53:56" itemprop="dateModified" datetime="2025-08-31T21:53:56+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%96%87%E6%A1%A3%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">文档处理</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>md2docx：让Markdown文档秒变精美Word文档的神器</h1>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhbmdxaXFpL21kMmRvY3g=">Github代码仓库<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>你是否曾经为了将Markdown笔记转换成公司要求的Word格式而头疼？是否厌倦了复制粘贴后还要手动调整格式？md2docx来解救你了！</p>
+</blockquote>
+<h2 id="🚀-这是什么神器？">🚀 这是什么神器？</h2>
+<p>md2docx是一款强大的Markdown转Word文档工具，它能够将你喜爱的Markdown格式无缝转换为精美的DOCX文档，保留原有的格式和样式，让你的文档在任何场合都能完美展示。</p>
+<p>作为一名程序员，我习惯用Markdown记录笔记、写文档，但公司和客户往往要求提供Word格式的文件。每次手动转换都是一场噩梦，于是我开发了这个工具，希望能帮助到和我有同样困扰的朋友们。</p>
+<h2 id="✨-主要特性">✨ 主要特性</h2>
+<ul>
+<li><strong>完整的Markdown语法支持</strong>：标题、列表、代码块、表格、引用、图片等全部支持</li>
+<li><strong>格式精准转换</strong>：精确还原Markdown的层级结构和样式</li>
+<li><strong>批量处理能力</strong>：一次性转换多个文件，效率翻倍</li>
+<li><strong>简单易用</strong>：命令行工具，一行代码搞定转换</li>
+<li><strong>本地处理</strong>：所有转换在本地完成，无需担心隐私泄露</li>
+</ul>
+<h2 id="🔍-它能转换哪些元素？">🔍 它能转换哪些元素？</h2>
+<p>md2docx几乎支持所有常用的Markdown语法元素：</p>
+<h3 id="1-文本格式化">1. 文本格式化</h3>
+<ul>
+<li>各级标题（H1-H6）</li>
+<li>粗体、斜体、删除线</li>
+<li>引用块（支持多层嵌套）</li>
+</ul>
+<h3 id="2-结构元素">2. 结构元素</h3>
+<ul>
+<li>有序列表和无序列表（支持多级嵌套）</li>
+<li>任务列表（TODO列表）</li>
+<li>分隔线</li>
+<li>代码块（带语法高亮）</li>
+</ul>
+<h3 id="3-媒体和链接">3. 媒体和链接</h3>
+<ul>
+<li>图片插入（本地和网络图片）</li>
+<li>超链接（内联链接和引用链接）</li>
+</ul>
+<h3 id="4-表格">4. 表格</h3>
+<ul>
+<li>基础表格</li>
+<li>对齐方式</li>
+<li>复杂表格样式</li>
+</ul>
+<h3 id="5-HTML支持">5. HTML支持</h3>
+<ul>
+<li>基础HTML标签转换</li>
+</ul>
+<h2 id="🚀-如何使用">🚀 如何使用</h2>
+<p>使用md2docx非常简单，只需一行命令：</p>
+<pre><code class="language-bash">python -m md2docx input.md output.docx
+</code></pre>
+<p>批量转换更是轻而易举：</p>
+<pre><code class="language-bash">python batch_convert_test.py --input-dir your_md_folder --output-dir your_docx_folder
+</code></pre>
+<h2 id="💡-使用场景">💡 使用场景</h2>
+<ul>
+<li><strong>技术文档转换</strong>：将GitHub上的README或技术文档转为公司内部可用的Word格式</li>
+<li><strong>博客文章导出</strong>：把你的Markdown博客文章导出为Word以便发布到其他平台</li>
+<li><strong>学术论文写作</strong>：用Markdown高效写作，然后转换为学校要求的Word格式提交</li>
+<li><strong>工作报告生成</strong>：使用Markdown编写工作报告，转换后直接提交给领导</li>
+</ul>
+<h2 id="🔮-未来计划">🔮 未来计划</h2>
+<p>我们正在开发更多激动人心的功能：</p>
+<ul>
+<li>图形用户界面，让非技术用户也能轻松使用</li>
+<li>自定义样式模板，让你的文档更具个性</li>
+<li>更多高级功能支持，如数学公式、流程图等</li>
+<li>双向转换，支持Word转回Markdown</li>
+</ul>
+<h2 id="🙏-结语">🙏 结语</h2>
+<p>md2docx诞生于实际需求，成长于社区反馈。如果你也是Markdown爱好者，却被Word格式所困扰，不妨试试这个工具。它或许不是最完美的，但一定是最实用的。</p>
+<p>欢迎在GitHub上给我们提出建议或贡献代码，让这个工具变得更好！</p>
+<hr>
+<blockquote>
+<p>工具不仅仅是为了解决问题，更是为了让工作变得更加愉悦。</p>
+<p>—— md2docx开发团队</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/%E6%96%87%E6%A1%A3%E5%A4%84%E7%90%86/" rel="tag"># 文档处理</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/01/01/Windows/Windows%E4%B8%8BWSL%E5%B0%86ubuntu%E6%8C%AA%E4%BD%8D%E7%BD%AE/" rel="prev" title="Windows下Wsl将Ubuntu挪位置 系统盘清理">
+                  <i class="fa fa-angle-left"></i> Windows下Wsl将Ubuntu挪位置 系统盘清理
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/08/02/%E9%A1%B9%E7%9B%AE/%E6%88%91%E7%9A%84github%E4%B8%BB%E9%A1%B5/" rel="next" title="我的GitHub项目展示，有好多有趣的项目哦，快来探索吧！">
+                  我的GitHub项目展示，有好多有趣的项目哦，快来探索吧！ <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">老周</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

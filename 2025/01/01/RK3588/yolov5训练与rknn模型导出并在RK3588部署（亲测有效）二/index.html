@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"znza.top","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.23.2","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":{"enable":true},"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":5,"unescape":false,"preload":true,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="一、rknn 模型的导出 请参考其他博客和仓库； CSDN 黄金旺铺 训练与导出仓库 github仓库 二、测试验证  git clone 仓库到本地  rk3588_yolov5_deploy git clone https:&#x2F;&#x2F;github.com&#x2F;wangqiqi&#x2F;rk3588_yolov5_deploy.git  NOTE: 此处说的本地就是开发板，需要将开发板联网，并配置相关git信息">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效）二">
+<meta property="og:url" content="https://znza.top/2025/01/01/RK3588/yolov5%E8%AE%AD%E7%BB%83%E4%B8%8Erknn%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%87%BA%E5%B9%B6%E5%9C%A8RK3588%E9%83%A8%E7%BD%B2%EF%BC%88%E4%BA%B2%E6%B5%8B%E6%9C%89%E6%95%88%EF%BC%89%E4%BA%8C/index.html">
+<meta property="og:site_name" content="老周有AI">
+<meta property="og:description" content="一、rknn 模型的导出 请参考其他博客和仓库； CSDN 黄金旺铺 训练与导出仓库 github仓库 二、测试验证  git clone 仓库到本地  rk3588_yolov5_deploy git clone https:&#x2F;&#x2F;github.com&#x2F;wangqiqi&#x2F;rk3588_yolov5_deploy.git  NOTE: 此处说的本地就是开发板，需要将开发板联网，并配置相关git信息">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://znza.top/images/logo.svg">
+<meta property="article:published_time" content="2025-01-01T08:45:54.000Z">
+<meta property="article:modified_time" content="2025-08-31T13:58:46.859Z">
+<meta property="article:author" content="老周">
+<meta property="article:tag" content="RK3588">
+<meta property="article:tag" content="YOLOv5">
+<meta property="article:tag" content="部署">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://znza.top/images/logo.svg">
+
+
+<link rel="canonical" href="https://znza.top/2025/01/01/RK3588/yolov5%E8%AE%AD%E7%BB%83%E4%B8%8Erknn%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%87%BA%E5%B9%B6%E5%9C%A8RK3588%E9%83%A8%E7%BD%B2%EF%BC%88%E4%BA%B2%E6%B5%8B%E6%9C%89%E6%95%88%EF%BC%89%E4%BA%8C/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://znza.top/2025/01/01/RK3588/yolov5%E8%AE%AD%E7%BB%83%E4%B8%8Erknn%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%87%BA%E5%B9%B6%E5%9C%A8RK3588%E9%83%A8%E7%BD%B2%EF%BC%88%E4%BA%B2%E6%B5%8B%E6%9C%89%E6%95%88%EF%BC%89%E4%BA%8C/","path":"2025/01/01/RK3588/yolov5训练与rknn模型导出并在RK3588部署（亲测有效）二/","title":"Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效）二"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效）二 | 老周有AI</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="老周有AI" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">老周有AI</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">计算机视觉与人工智能技术分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">76</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">23</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">48</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81rknn-%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AF%BC%E5%87%BA"><span class="nav-number">1.</span> <span class="nav-text">一、rknn 模型的导出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%B5%8B%E8%AF%95%E9%AA%8C%E8%AF%81"><span class="nav-number">2.</span> <span class="nav-text">二、测试验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81rknn-%E9%83%A8%E7%BD%B2%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E5%9E%8B%E5%92%8C%E9%A1%B9%E7%9B%AE"><span class="nav-number">3.</span> <span class="nav-text">三、rknn 部署自己的模型和项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%B8%85%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">四、清理</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="老周"
+      src="/images/person.jpg">
+  <p class="site-author-name" itemprop="name">老周</p>
+  <div class="site-description" itemprop="description">老周的个人技术博客，专注于计算机视觉、人工智能和创意编程</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/RK3588/yolov5%E8%AE%AD%E7%BB%83%E4%B8%8Erknn%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%87%BA%E5%B9%B6%E5%9C%A8RK3588%E9%83%A8%E7%BD%B2%EF%BC%88%E4%BA%B2%E6%B5%8B%E6%9C%89%E6%95%88%EF%BC%89%E4%BA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效）二 | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效）二
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 16:45:54" itemprop="dateCreated datePublished" datetime="2025-01-01T16:45:54+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 21:58:46" itemprop="dateModified" datetime="2025-08-31T21:58:46+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/RK3588/" itemprop="url" rel="index"><span itemprop="name">RK3588</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="一、rknn-模型的导出">一、rknn 模型的导出</h2>
+<p>请参考其他博客和仓库；</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMzA1MjQzMTA/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDE=">CSDN 黄金旺铺<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>训练与导出仓库</strong></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhbmdxaXFpL3lvbG92NS90cmVlL3Jrbm5fZGV2">github仓库<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="二、测试验证">二、测试验证</h2>
+<ol>
+<li><strong><code>git clone</code> 仓库到本地</strong></li>
+</ol>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhbmdxaXFpL3JrMzU4OF95b2xvdjVfZGVwbG95LmdpdA==">rk3588_yolov5_deploy<i class="fa fa-external-link-alt"></i></span></p>
+<pre><code class="language-bash">git clone https://github.com/wangqiqi/rk3588_yolov5_deploy.git
+</code></pre>
+<p><strong>NOTE: 此处说的本地就是开发板，需要将开发板联网，并配置相关git信息</strong></p>
+<ol start="2">
+<li><strong>编译安装</strong></li>
+</ol>
+<pre><code class="language-bash">bash build_rk3588_yolov5.sh
+</code></pre>
+<ol start="3">
+<li><strong>测试</strong></li>
+</ol>
+<pre><code class="language-bash">bash test_rk3588_yolov5.sh
+</code></pre>
+<h2 id="三、rknn-部署自己的模型和项目">三、<code>rknn</code> 部署自己的模型和项目</h2>
+<ol>
+<li>将导出的 <code>rknn</code> 模型，放到 <code>assets</code> 文件夹下；</li>
+<li>修改 <code>assets/labels_list.txt</code> 文件，将训练的目标类别名称分行存储；</li>
+<li>添加测试图片到 <code>assets</code> 文件夹下；</li>
+<li>根据项目需要，修改文件中相关信息</li>
+</ol>
+<p>文件 <code>yolov5/include/postprocess.h</code> 中 <code>line 7~11</code></p>
+<pre><code class="language-cpp">#define OBJ_NAME_MAX_SIZE 16  // 最长目标名称
+#define OBJ_NUMB_MAX_SIZE 64  // 最多目标个数
+#define OBJ_CLASS_NUM 1       // 目标类别数--需要根据项目进行修改
+#define NMS_THRESH 0.45       // NMS 阈值
+#define BOX_THRESH 0.25       // 目标置信度
+</code></pre>
+<ol start="5">
+<li>编译安装与测试</li>
+</ol>
+<pre><code class="language-bash">bash build_rk3588_yolov5.sh
+</code></pre>
+<blockquote>
+<p>修改脚本<code>test_rk3588_yolov5.sh</code> 中不同的模型和测试图片</p>
+</blockquote>
+<pre><code class="language-bash">set -e
+
+ROOT_PWD=$( cd &quot;$( dirname $0 )&quot; &amp;&amp; cd -P &quot;$( dirname &quot;$SOURCE&quot; )&quot; &amp;&amp; pwd )
+INSTALL_DIR=$&#123;ROOT_PWD&#125;/install
+
+cd $&#123;INSTALL_DIR&#125;
+./rk3588_yolov5 assets/drp.rknn assets/drp.png
+cd -
+</code></pre>
+<p>然后执行</p>
+<pre><code class="language-bash">bash test_rk3588_yolov5.sh
+</code></pre>
+<h2 id="四、清理">四、清理</h2>
+<pre><code class="language-bash">bash clean_all.sh
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/RK3588/" rel="tag"># RK3588</a>
+              <a href="/tags/YOLOv5/" rel="tag"># YOLOv5</a>
+              <a href="/tags/%E9%83%A8%E7%BD%B2/" rel="tag"># 部署</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/01/01/RK3588/yolov5%E8%AE%AD%E7%BB%83%E4%B8%8Erknn%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%87%BA%E5%B9%B6%E5%9C%A8RK3588%E9%83%A8%E7%BD%B2%EF%BC%88%E4%BA%B2%E6%B5%8B%E6%9C%89%E6%95%88%EF%BC%89/" rel="prev" title="Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效）">
+                  <i class="fa fa-angle-left"></i> Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/01/01/OpenCV/opencv%E4%B8%8D%E8%83%BDshow/" rel="next" title="Opencv不能Show">
+                  Opencv不能Show <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">老周</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

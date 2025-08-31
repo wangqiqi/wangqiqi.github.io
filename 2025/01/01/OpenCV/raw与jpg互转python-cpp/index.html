@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"znza.top","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.23.2","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":{"enable":true},"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":5,"unescape":false,"preload":true,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="在工作中常常需要将图像转化为raw数据或者yuv数据，这里将提供 cpp 版本和 python 版本的互转代码  代码链接见文档尾部。 cpp 版本 jpg2raw.cpp #include &lt;fstream&gt; #include &lt;iostream&gt; #include &lt;opencv2&#x2F;core.hpp&gt; #include &lt;opencv2&#x2F;highgu">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="python-cpp 版本的 raw 与 jpg 互转代码">
+<meta property="og:url" content="https://znza.top/2025/01/01/OpenCV/raw%E4%B8%8Ejpg%E4%BA%92%E8%BD%ACpython-cpp/index.html">
+<meta property="og:site_name" content="老周有AI">
+<meta property="og:description" content="在工作中常常需要将图像转化为raw数据或者yuv数据，这里将提供 cpp 版本和 python 版本的互转代码  代码链接见文档尾部。 cpp 版本 jpg2raw.cpp #include &lt;fstream&gt; #include &lt;iostream&gt; #include &lt;opencv2&#x2F;core.hpp&gt; #include &lt;opencv2&#x2F;highgu">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://znza.top/images/logo.svg">
+<meta property="article:published_time" content="2025-01-01T08:51:58.000Z">
+<meta property="article:modified_time" content="2025-08-31T14:11:33.910Z">
+<meta property="article:author" content="老周">
+<meta property="article:tag" content="OpenCV">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://znza.top/images/logo.svg">
+
+
+<link rel="canonical" href="https://znza.top/2025/01/01/OpenCV/raw%E4%B8%8Ejpg%E4%BA%92%E8%BD%ACpython-cpp/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://znza.top/2025/01/01/OpenCV/raw%E4%B8%8Ejpg%E4%BA%92%E8%BD%ACpython-cpp/","path":"2025/01/01/OpenCV/raw与jpg互转python-cpp/","title":"python-cpp 版本的 raw 与 jpg 互转代码"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>python-cpp 版本的 raw 与 jpg 互转代码 | 老周有AI</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="老周有AI" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">老周有AI</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">计算机视觉与人工智能技术分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">76</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">23</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">48</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#cpp-%E7%89%88%E6%9C%AC"><span class="nav-number">1.</span> <span class="nav-text">cpp 版本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jpg2raw-cpp"><span class="nav-number">1.1.</span> <span class="nav-text">jpg2raw.cpp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#raw2jpg"><span class="nav-number">1.2.</span> <span class="nav-text">raw2jpg</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMakeLists-txt"><span class="nav-number">1.3.</span> <span class="nav-text">CMakeLists.txt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E5%B0%86-raw-%E8%BD%AC%E6%8D%A2%E4%B8%BA-jpg-%E7%9A%84%E8%84%9A%E6%9C%AC"><span class="nav-number">1.4.</span> <span class="nav-text">批量将 raw 转换为 jpg 的脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E5%B0%86-jpg-%E8%BD%AC%E6%8D%A2%E4%B8%BA-raw-%E7%9A%84%E8%84%9A%E6%9C%AC"><span class="nav-number">1.5.</span> <span class="nav-text">批量将 jpg 转换为 raw 的脚本</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="老周"
+      src="/images/person.jpg">
+  <p class="site-author-name" itemprop="name">老周</p>
+  <div class="site-description" itemprop="description">老周的个人技术博客，专注于计算机视觉、人工智能和创意编程</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/01/01/OpenCV/raw%E4%B8%8Ejpg%E4%BA%92%E8%BD%ACpython-cpp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="python-cpp 版本的 raw 与 jpg 互转代码 | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          python-cpp 版本的 raw 与 jpg 互转代码
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-01 16:51:58" itemprop="dateCreated datePublished" datetime="2025-01-01T16:51:58+08:00">2025-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-31 22:11:33" itemprop="dateModified" datetime="2025-08-31T22:11:33+08:00">2025-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/raw2jpg/" itemprop="url" rel="index"><span itemprop="name">raw2jpg</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/raw2jpg/jpg2raw/" itemprop="url" rel="index"><span itemprop="name">jpg2raw</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>在工作中常常需要将图像转化为raw数据或者yuv数据，这里将提供 cpp 版本和 python 版本的互转代码</p>
+</blockquote>
+<p><strong>代码链接见文档尾部。</strong></p>
+<h2 id="cpp-版本">cpp 版本</h2>
+<h3 id="jpg2raw-cpp">jpg2raw.cpp</h3>
+<pre><code class="language-cpp">#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+#include &lt;opencv2/core.hpp&gt;
+#include &lt;opencv2/highgui.hpp&gt;
+
+// Windows 和 Linux 下通用的创建目录函数
+#ifdef _WIN32
+#include &lt;direct.h&gt; // For _mkdir on Windows
+#define MKDIR(dir) _mkdir(dir)
+#else
+#include &lt;sys/stat.h&gt; // For mkdir on POSIX systems
+#define MKDIR(dir) mkdir(dir, 0755)
+#endif
+
+bool create_directory(const std::string &amp;dir_path)
+&#123;
+#ifdef _WIN32
+    if (_mkdir(dir_path.c_str()) != 0)
+    &#123;
+        return false;
+    &#125;
+#else
+    if (MKDIR(dir_path.c_str()) != 0 &amp;&amp; errno != EEXIST)
+    &#123;
+        return false;
+    &#125;
+#endif
+    return true;
+&#125;
+
+int main(int argc, char **argv)
+&#123;
+    if (argc != 2)
+    &#123;
+        std::cerr &lt;&lt; &quot;Usage: ./image_to_raw input_image.jpg&quot; &lt;&lt; std::endl;
+        return -1;
+    &#125;
+
+    std::string input_image_path = argv[1];
+    std::string base_name = input_image_path.substr(input_image_path.find_last_of('/') + 1); // Unix风格路径分隔符
+#ifdef _WIN32
+    std::replace(base_name.begin(), base_name.end(), '\\', '/'); // 对于Windows下的反斜杠，统一转换为正斜杠
+#endif
+
+    std::cout &lt;&lt;&quot; ----------- input_image_path: &quot; &lt;&lt; input_image_path &lt;&lt; &quot; ------------------------&quot;&lt;&lt;std::endl;
+    std::cout &lt;&lt;&quot; ----------- basename: &quot; &lt;&lt; base_name &lt;&lt; &quot; ------------------------&quot;&lt;&lt;std::endl;
+
+    std::string raw_dir = &quot;raws/&quot;;
+    // std::string output_raw_path = raw_dir + base_name + &quot;.raw&quot;;
+
+    std::string file_name = input_image_path.substr(input_image_path.find_last_of(&quot;/\\&quot;) + 1);
+    std::string file_name_without_suffix = file_name.substr(0, file_name.find_last_of(&quot;.&quot;));
+    std::string file_name_with_suffix = file_name_without_suffix + &quot;.raw&quot;;
+    std::string output_raw_path = raw_dir + file_name_with_suffix;
+
+
+    // 创建 'raw' 子目录（如果不存在）
+    if (!create_directory(raw_dir))
+    &#123;
+        std::cerr &lt;&lt; &quot;Failed to create directory: &quot; &lt;&lt; raw_dir &lt;&lt; std::endl;
+        //return -1;
+    &#125;
+
+    cv::Mat img = cv::imread(input_image_path, 1);
+    if (img.empty())
+    &#123;
+        std::cerr &lt;&lt; &quot;Failed to load the image: &quot; &lt;&lt; input_image_path &lt;&lt; std::endl;
+        return -1;
+    &#125;
+
+    int im_width = img.cols;
+    int im_height = img.rows;
+    int im_depth = img.channels();
+
+    std::cout &lt;&lt; &quot;im_width: &quot; &lt;&lt; im_width &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;im_height: &quot; &lt;&lt; im_height &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;im_depth: &quot; &lt;&lt; im_depth &lt;&lt; std::endl;
+
+    // 写入 RAW 文件
+    std::ofstream raw_file(output_raw_path, std::ios::binary);
+    if (!raw_file.is_open())
+    &#123;
+        std::cerr &lt;&lt; &quot;Failed to open file for writing: &quot; &lt;&lt; output_raw_path &lt;&lt; std::endl;
+        return -1;
+    &#125;
+    raw_file.write(reinterpret_cast&lt;const char *&gt;(img.data), im_width * im_height * im_depth);
+    raw_file.close();
+
+    std::cout &lt;&lt; &quot;Converted &quot; &lt;&lt; input_image_path &lt;&lt; &quot; to &quot; &lt;&lt; output_raw_path &lt;&lt; std::endl;
+
+    return 0;
+&#125;
+</code></pre>
+<h3 id="raw2jpg">raw2jpg</h3>
+<pre><code class="language-cpp">#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+#include &lt;opencv2/core.hpp&gt;
+#include &lt;opencv2/highgui.hpp&gt;
+#include &lt;opencv2/imgproc.hpp&gt;
+#include &lt;unordered_map&gt;
+
+#ifdef _WIN32
+#include &lt;direct.h&gt; // For _mkdir on Windows
+#define MKDIR(dir) _mkdir(dir)
+#else
+#include &lt;sys/stat.h&gt; // For mkdir on POSIX systems
+#define MKDIR(dir) mkdir(dir, 0755)
+#endif
+
+struct ImageSize
+&#123;
+    int width;
+    int height;
+&#125;;
+
+const std::unordered_map&lt;int, ImageSize&gt; image_sizes = &#123;
+    &#123;921600, &#123;640, 480&#125;&#125;,
+    &#123;2764800, &#123;1280, 720&#125;&#125;,
+    &#123;5858640, &#123;1896, 1030&#125;&#125;,
+    &#123;6220800, &#123;1920, 1080&#125;&#125;,
+    &#123;11059200, &#123;2560, 1440&#125;&#125;,
+    &#123;12257280, &#123;2688, 1520&#125;&#125;,
+    &#123;15116544, &#123;2592, 1944&#125;&#125;,
+    &#123;3686400, &#123;1280, 960&#125;&#125;&#125;;
+
+// 跨平台创建目录函数（仅支持Linux和Windows）
+bool create_directory(const std::string &amp;path)
+&#123;
+#ifdef _WIN32
+    return (_mkdir(path.c_str()) == 0);
+#else
+    return (::mkdir(path.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) == 0);
+#endif
+&#125;
+
+int main(int argc, char **argv)
+&#123;
+    if (argc != 2)
+    &#123;
+        std::cerr &lt;&lt; &quot;Usage: ./raw_image_viewer raw_image.raw&quot; &lt;&lt; std::endl;
+        return -1;
+    &#125;
+
+    std::string raw_image_path = argv[1];
+    std::cout &lt;&lt; &quot;raw_image_path: &quot; &lt;&lt; raw_image_path &lt;&lt; std::endl;
+
+    // 获取文件大小
+    std::ifstream file(raw_image_path, std::ios::binary | std::ios::ate);
+    size_t file_size = file.tellg();
+    file.close();
+    std::cout &lt;&lt; &quot;size: &quot; &lt;&lt; file_size &lt;&lt; &quot; bytes&quot; &lt;&lt; std::endl;
+
+    // 查找对应的图像尺寸
+    auto it = image_sizes.find(file_size);
+    if (it == image_sizes.end())
+    &#123;
+        std::cout &lt;&lt; file_size &lt;&lt; &quot; is not supported!&quot; &lt;&lt; std::endl;
+        return -1;
+    &#125;
+    const ImageSize &amp;size = it-&gt;second;
+    int im_width = size.width;
+    int im_height = size.height;
+    int im_depth = 3; // 假设所有图像都是RGB三通道
+
+    std::cout &lt;&lt; &quot;im_width: &quot; &lt;&lt; im_width &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;im_height: &quot; &lt;&lt; im_height &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot;im_depth: &quot; &lt;&lt; im_depth &lt;&lt; std::endl;
+
+    cv::Mat raw_image(im_height, im_width, CV_8UC3);
+
+    // 读取 RAW 文件的内容
+    std::ifstream raw_file(raw_image_path, std::ios::binary);
+    raw_file.read(reinterpret_cast&lt;char *&gt;(raw_image.data), im_width * im_height * im_depth);
+    raw_file.close();
+
+    // 提取并创建 images 文件夹（跨平台）
+    std::string images_path = &quot;images/&quot;;
+    bool dir_created = create_directory(images_path);
+
+    std::string file_name = raw_image_path.substr(raw_image_path.find_last_of(&quot;/\\&quot;) + 1);
+    std::string file_name_without_suffix = file_name.substr(0, file_name.find_last_of(&quot;.&quot;));
+    std::string file_name_with_suffix = file_name_without_suffix + &quot;.jpg&quot;;
+    std::string output_path = images_path + file_name_with_suffix;
+
+    cv::imwrite(output_path, raw_image);
+
+    std::cout &lt;&lt; &quot; images_path: &quot; &lt;&lt; images_path &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot; file_name_with_suffix: &quot; &lt;&lt; file_name_with_suffix &lt;&lt; std::endl;
+    std::cout &lt;&lt; &quot; file save name: &quot; &lt;&lt; output_path &lt;&lt; std::endl;
+
+    if (!dir_created)
+    &#123;
+        std::cerr &lt;&lt; &quot;Failed to create 'images' directory.&quot; &lt;&lt; std::endl;
+    &#125;
+
+    // （可选）显示图像
+    // cv::imshow(&quot;raw_image&quot;, raw_image);
+    // cv::waitKey(5);
+    // cv::destroyAllWindows();
+
+    // （可选）删除原始 RAW 文件
+    // std::remove(raw_image_path.c_str());
+
+    return 0;
+&#125;
+</code></pre>
+<h3 id="CMakeLists-txt">CMakeLists.txt</h3>
+<pre><code class="language-cmake">cmake_minimum_required(VERSION 3.10)
+
+project(convertRAW2jpg CXX)
+
+# 设置安装目录
+set(CMAKE_INSTALL_PREFIX &quot;$&#123;PROJECT_BINARY_DIR&#125;/install&quot;)
+set(CMAKE_SKIP_INSTALL_RPATH FALSE)
+set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+set(CMAKE_INSTALL_RPATH &quot;$&#123;CMAKE_INSTALL_PREFIX&#125;/lib&quot;)
+
+# 要求编译器支持C++11
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+# Windows 特定选项和标志
+if(MSVC)
+    add_compile_options(/utf-8)
+    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+endif()
+
+
+# OpenCV 手动配置部分（保留 find_package 并注释）
+if(WIN32)
+    # find_package(OpenCV REQUIRED)  # 注释掉以使用自定义路径
+    set(OpenCV_DIR &quot;D:/opencv480vc16/build&quot; CACHE PATH &quot;Path to a custom OpenCV build on Windows&quot;)
+    set(OPENCV_INCLUDE_DIRS &quot;$&#123;OpenCV_DIR&#125;/include&quot;)
+    set(OPENCV_LIB_DIR     &quot;$&#123;OpenCV_DIR&#125;/x64/vc16/lib&quot;) # 根据实际编译器版本调整
+
+    include_directories($&#123;OPENCV_INCLUDE_DIRS&#125;)
+    link_directories($&#123;OPENCV_LIB_DIR&#125;)
+
+    list(APPEND EXTRA_LIBS opencv_world480.lib) # 根据实际OpenCV库名称调整
+elseif(NOT WIN32)
+    # Linux 下的手动 OpenCV 配置
+    # find_package(OpenCV REQUIRED)  # 注释掉以使用自定义路径
+    set(OpenCV_DIR &quot;~/install/opencv4.5.4&quot; CACHE PATH &quot;Path to a custom OpenCV build on Unix-like systems&quot;)
+    set(OPENCV_INCLUDE_DIRS &quot;$&#123;OpenCV_DIR&#125;/include/opencv4&quot;)
+    set(OPENCV_LIB_DIR     &quot;$&#123;OpenCV_DIR&#125;/lib&quot;)
+
+    include_directories($&#123;OPENCV_INCLUDE_DIRS&#125;)
+    link_directories($&#123;OPENCV_LIB_DIR&#125;)
+
+    list(APPEND EXTRA_LIBS opencv_world -fopenmp -lpthread -lm) # 根据实际OpenCV库名称和依赖调整
+endif()
+
+include_directories($&#123;OpenCV_INCLUDE_DIRS&#125;)
+
+# 添加源文件
+add_executable(raw2jpg src/raw2jpg.cpp)
+add_executable(jpg2raw src/jpg2raw.cpp)
+
+
+target_link_libraries(raw2jpg PRIVATE $&#123;EXTRA_LIBS&#125;)
+target_link_libraries(jpg2raw PRIVATE $&#123;EXTRA_LIBS&#125;)
+
+# 安装目标及辅助脚本
+set(TMP_TEST_DIR $&#123;PROJECT_SOURCE_DIR&#125;/temp_example)
+install(TARGETS raw2jpg
+        RUNTIME DESTINATION examples
+        RUNTIME DESTINATION $&#123;TMP_TEST_DIR&#125;)
+
+install(TARGETS jpg2raw
+        RUNTIME DESTINATION examples
+        RUNTIME DESTINATION $&#123;TMP_TEST_DIR&#125;)
+
+# 找到 assets 目录下所有的 raw 文件，并安装到临时目录
+FILE(GLOB RAWS assets/raws/*.raw)
+FILE(GLOB JPGS assets/jpgs/*.jpg)
+
+install(FILES $&#123;RAWS&#125; DESTINATION $&#123;TMP_TEST_DIR&#125;/test_raws)
+install(FILES $&#123;JPGS&#125; DESTINATION $&#123;TMP_TEST_DIR&#125;/test_jpgs)
+
+if (WIN32)
+    install(FILES $&#123;PROJECT_SOURCE_DIR&#125;/onekey_windows_batch2jpg.bat
+            DESTINATION examples
+            DESTINATION $&#123;TMP_TEST_DIR&#125;)
+    install(FILES $&#123;PROJECT_SOURCE_DIR&#125;/onekey_windows_batch2raw.bat
+            DESTINATION examples
+            DESTINATION $&#123;TMP_TEST_DIR&#125;)
+else()
+    install(FILES $&#123;PROJECT_SOURCE_DIR&#125;/onekey_ubuntu_batch2jpg.sh
+            DESTINATION examples
+            DESTINATION $&#123;TMP_TEST_DIR&#125;)
+    install(FILES $&#123;PROJECT_SOURCE_DIR&#125;/onekey_ubuntu_batch2raw.sh
+            DESTINATION examples
+            DESTINATION $&#123;TMP_TEST_DIR&#125;)
+endif(WIN32)
+</code></pre>
+<h3 id="批量将-raw-转换为-jpg-的脚本">批量将 raw 转换为 jpg 的脚本</h3>
+<h4 id="ubuntu">ubuntu</h4>
+<p><code>onekey_ubuntu_batch2jpg.sh</code></p>
+<pre><code class="language-bash">#!/bin/bash
+set -e
+
+if [ $# -eq 0 ]; then
+	im_path=`pwd`
+else
+	im_path=$1
+fi
+
+echo &quot;batch convert the raw image to jpg images in path: $im_path&quot;
+i=0
+for im in $(ls $im_path)
+do 
+	if [ &quot;$&#123;im##*.&#125;&quot; = &quot;raw&quot; ]; then
+		if [ -f $im_path/$im ];then
+			echo &quot;convert $file to jpg image...&quot;
+            ./raw2jpg $im_path/$im
+			let i+=1
+		fi
+	fi
+done 
+echo &quot;DONE: $i pictures been gennerated!&quot;**s**
+</code></pre>
+<h4 id="windows">windows</h4>
+<p><code>onekey_windows_batch2jpg.bat</code></p>
+<pre><code class="language-bash">@echo off
+
+@REM 如果没有输入路径, 就使用当前路径
+@if &quot;%~1&quot;==&quot;&quot; (
+    set &quot;im_path=%cd%&quot;
+) else (
+    set &quot;im_path=%~1&quot;
+)
+
+@REM 输出批处理将要转换文件的路径信息
+echo Batch converting RAW images to JPG in the current directory or specified path: %im_path%
+
+@REM 遍历指定目录及其子目录下的所有.raw文件
+for /R &quot;%im_path%&quot; %%i in (*.raw) do (
+    @REM 获取图片名称（不包括完整路径）
+    set &quot;img_file=%%~ni&quot;
+    @REM 输出正在处理的原始图像文件名
+    echo Processing image: %%i
+    @REM 调用 raw2jpg.exe 进行转换，由于程序内部已经设置了输出目录和文件名规则，所以这里仅传入原始文件路径即可
+    .\raw2jpg.exe &quot;%%i&quot;
+)
+
+@REM 暂停脚本执行，等待用户按键继续
+pause
+</code></pre>
+<h3 id="批量将-jpg-转换为-raw-的脚本">批量将 jpg 转换为 raw 的脚本</h3>
+<h4 id="ubuntu-2">ubuntu</h4>
+<p><code>onekey_ubuntu_batch2raw.sh</code></p>
+<pre><code class="language-bash">#!/bin/bash
+set -e
+
+if [ $# -eq 0 ]; then
+	im_path=`pwd`
+else
+	im_path=$1
+fi
+
+echo &quot;batch convert the jpg images to raw image in path: $im_path&quot;
+i=0
+for im in $(ls $im_path)
+do 
+	if [ &quot;$&#123;im##*.&#125;&quot; = &quot;jpg&quot; ]; then
+		if [ -f $im_path/$im ];then
+			echo &quot;convert $file to jpg image...&quot;
+            ./jpg2raw $im_path/$im
+			let i+=1
+		fi
+	fi
+done 
+echo &quot;DONE: $i pictures been gennerated!&quot;s
+</code></pre>
+<h4 id="windows-2">windows</h4>
+<p><code>onekey_windows_batch2raw.bat</code></p>
+<pre><code class="language-bash">@echo off
+
+@REM 如果没有输入路径, 就使用当前路径
+if &quot;%1&quot;==&quot;&quot; (
+    set &quot;im_path=%cd%&quot;
+) else (
+    set &quot;im_path=%~1&quot;
+)
+
+@REM 输出当前处理的路径
+echo Batch converting image files to raw images in path: %im_path%
+
+@REM 遍历指定目录及其子目录下的所有.jpg, .jpeg, .bmp, .png文件
+for /R &quot;%im_path%&quot; %%i in (*.jpg, *.jpeg, *.bmp, *.png) do (
+    @REM 获取图片名称（这里保留完整路径）
+    echo Processing image: %%i
+    .\jpg2raw.exe &quot;%%i&quot;
+)
+
+pause
+</code></pre>
+<p>所有代码见</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhbmdxaXFpL3JhdzJqcGcuZ2l0">raw2jpg-github<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/OpenCV/" rel="tag"># OpenCV</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/C/" rel="tag"># C++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/01/01/OpenCV/opencv%20xcb%E6%8A%A5%E9%94%99/" rel="prev" title="Opencv Xcb报错">
+                  <i class="fa fa-angle-left"></i> Opencv Xcb报错
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/01/01/OpenCV/Android-Studio-OpenCV-JNI/" rel="next" title="Android Studio OpenCV JNI集成指南">
+                  Android Studio OpenCV JNI集成指南 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">老周</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
