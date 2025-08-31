@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="450" height="450"
+     viewBox="0 0 450 450"
+     aria-labelledby="title"
+     role="img">
+  <title>Blue Block Pattern</title>
+  <desc>A geometric pattern of blue rectangles arranged in 3-4-2-4-3 layout.</desc>
+
+  <rect width="450" height="450" fill="6a6a6a" />
+  
+  <!-- Row 1 -->
+  <rect x="0" y="0" width="50" height="90" fill="#0366d6" />
+  <rect x="200" y="0" width="50" height="90" fill="#0366d6" />
+  <rect x="400" y="0" width="50" height="90" fill="#0366d6" />
+
+  <!-- Row 2 -->
+  <rect x="50" y="90" width="50" height="90" fill="#0366d6" />
+  <rect x="150" y="90" width="50" height="90" fill="#0366d6" />
+  <rect x="250" y="90" width="50" height="90" fill="#0366d6" />
+  <rect x="350" y="90" width="50" height="90" fill="#0366d6" />
+
+  <!-- Row 3 -->
+  <rect x="100" y="180" width="50" height="90" fill="#0366d6" />
+  <rect x="300" y="180" width="50" height="90" fill="#0366d6" />
+
+  <!-- Row 4 -->
+  <rect x="50" y="270" width="50" height="90" fill="#0366d6" />
+  <rect x="150" y="270" width="50" height="90" fill="#0366d6" />
+  <rect x="250" y="270" width="50" height="90" fill="#0366d6" />
+  <rect x="350" y="270" width="50" height="90" fill="#0366d6" />
+
+  <!-- Row 5 -->
+  <rect x="0" y="360" width="50" height="90" fill="#0366d6" />
+  <rect x="200" y="360" width="50" height="90" fill="#0366d6" />
+  <rect x="400" y="360" width="50" height="90" fill="#0366d6" />
+</svg>
+

@@ -2590,79 +2590,6 @@ status(&quot;      avresample:&quot;   FFMPEG_libavresample_VERSION THEN &quot;Y
       </tags>
   </entry>
   <entry>
-    <title>Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效）二</title>
-    <url>/2025/01/01/RK3588/yolov5%E8%AE%AD%E7%BB%83%E4%B8%8Erknn%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%87%BA%E5%B9%B6%E5%9C%A8RK3588%E9%83%A8%E7%BD%B2%EF%BC%88%E4%BA%B2%E6%B5%8B%E6%9C%89%E6%95%88%EF%BC%89%E4%BA%8C/</url>
-    <content><![CDATA[<h2 id="一、rknn-模型的导出">一、rknn 模型的导出</h2>
-<p>请参考其他博客和仓库；</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMzA1MjQzMTA/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDE=">CSDN 黄金旺铺<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>训练与导出仓库</strong></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhbmdxaXFpL3lvbG92NS90cmVlL3Jrbm5fZGV2">github仓库<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="二、测试验证">二、测试验证</h2>
-<ol>
-<li><strong><code>git clone</code> 仓库到本地</strong></li>
-</ol>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhbmdxaXFpL3JrMzU4OF95b2xvdjVfZGVwbG95LmdpdA==">rk3588_yolov5_deploy<i class="fa fa-external-link-alt"></i></span></p>
-<pre><code class="language-bash">git clone https://github.com/wangqiqi/rk3588_yolov5_deploy.git
-</code></pre>
-<p><strong>NOTE: 此处说的本地就是开发板，需要将开发板联网，并配置相关git信息</strong></p>
-<ol start="2">
-<li><strong>编译安装</strong></li>
-</ol>
-<pre><code class="language-bash">bash build_rk3588_yolov5.sh
-</code></pre>
-<ol start="3">
-<li><strong>测试</strong></li>
-</ol>
-<pre><code class="language-bash">bash test_rk3588_yolov5.sh
-</code></pre>
-<h2 id="三、rknn-部署自己的模型和项目">三、<code>rknn</code> 部署自己的模型和项目</h2>
-<ol>
-<li>将导出的 <code>rknn</code> 模型，放到 <code>assets</code> 文件夹下；</li>
-<li>修改 <code>assets/labels_list.txt</code> 文件，将训练的目标类别名称分行存储；</li>
-<li>添加测试图片到 <code>assets</code> 文件夹下；</li>
-<li>根据项目需要，修改文件中相关信息</li>
-</ol>
-<p>文件 <code>yolov5/include/postprocess.h</code> 中 <code>line 7~11</code></p>
-<pre><code class="language-cpp">#define OBJ_NAME_MAX_SIZE 16  // 最长目标名称
-#define OBJ_NUMB_MAX_SIZE 64  // 最多目标个数
-#define OBJ_CLASS_NUM 1       // 目标类别数--需要根据项目进行修改
-#define NMS_THRESH 0.45       // NMS 阈值
-#define BOX_THRESH 0.25       // 目标置信度
-</code></pre>
-<ol start="5">
-<li>编译安装与测试</li>
-</ol>
-<pre><code class="language-bash">bash build_rk3588_yolov5.sh
-</code></pre>
-<blockquote>
-<p>修改脚本<code>test_rk3588_yolov5.sh</code> 中不同的模型和测试图片</p>
-</blockquote>
-<pre><code class="language-bash">set -e
-
-ROOT_PWD=$( cd &quot;$( dirname $0 )&quot; &amp;&amp; cd -P &quot;$( dirname &quot;$SOURCE&quot; )&quot; &amp;&amp; pwd )
-INSTALL_DIR=$&#123;ROOT_PWD&#125;/install
-
-cd $&#123;INSTALL_DIR&#125;
-./rk3588_yolov5 assets/drp.rknn assets/drp.png
-cd -
-</code></pre>
-<p>然后执行</p>
-<pre><code class="language-bash">bash test_rk3588_yolov5.sh
-</code></pre>
-<h2 id="四、清理">四、清理</h2>
-<pre><code class="language-bash">bash clean_all.sh
-</code></pre>
-]]></content>
-      <categories>
-        <category>RK3588</category>
-      </categories>
-      <tags>
-        <tag>RK3588</tag>
-        <tag>YOLOv5</tag>
-        <tag>部署</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效）</title>
     <url>/2025/01/01/RK3588/yolov5%E8%AE%AD%E7%BB%83%E4%B8%8Erknn%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%87%BA%E5%B9%B6%E5%9C%A8RK3588%E9%83%A8%E7%BD%B2%EF%BC%88%E4%BA%B2%E6%B5%8B%E6%9C%89%E6%95%88%EF%BC%89/</url>
     <content><![CDATA[<blockquote>
@@ -3190,6 +3117,325 @@ box coordinate topleft: (108.76676034927368, 133.68206477165222), bottomright: (
       </tags>
   </entry>
   <entry>
+    <title>Yolov5训练与Rknn模型导出并在Rk3588部署（亲测有效）二</title>
+    <url>/2025/01/01/RK3588/yolov5%E8%AE%AD%E7%BB%83%E4%B8%8Erknn%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%87%BA%E5%B9%B6%E5%9C%A8RK3588%E9%83%A8%E7%BD%B2%EF%BC%88%E4%BA%B2%E6%B5%8B%E6%9C%89%E6%95%88%EF%BC%89%E4%BA%8C/</url>
+    <content><![CDATA[<h2 id="一、rknn-模型的导出">一、rknn 模型的导出</h2>
+<p>请参考其他博客和仓库；</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pob3VqaW53YW5nL2FydGljbGUvZGV0YWlscy8xMzA1MjQzMTA/c3BtPTEwMDEuMjAxNC4zMDAxLjU1MDE=">CSDN 黄金旺铺<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>训练与导出仓库</strong></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhbmdxaXFpL3lvbG92NS90cmVlL3Jrbm5fZGV2">github仓库<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="二、测试验证">二、测试验证</h2>
+<ol>
+<li><strong><code>git clone</code> 仓库到本地</strong></li>
+</ol>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhbmdxaXFpL3JrMzU4OF95b2xvdjVfZGVwbG95LmdpdA==">rk3588_yolov5_deploy<i class="fa fa-external-link-alt"></i></span></p>
+<pre><code class="language-bash">git clone https://github.com/wangqiqi/rk3588_yolov5_deploy.git
+</code></pre>
+<p><strong>NOTE: 此处说的本地就是开发板，需要将开发板联网，并配置相关git信息</strong></p>
+<ol start="2">
+<li><strong>编译安装</strong></li>
+</ol>
+<pre><code class="language-bash">bash build_rk3588_yolov5.sh
+</code></pre>
+<ol start="3">
+<li><strong>测试</strong></li>
+</ol>
+<pre><code class="language-bash">bash test_rk3588_yolov5.sh
+</code></pre>
+<h2 id="三、rknn-部署自己的模型和项目">三、<code>rknn</code> 部署自己的模型和项目</h2>
+<ol>
+<li>将导出的 <code>rknn</code> 模型，放到 <code>assets</code> 文件夹下；</li>
+<li>修改 <code>assets/labels_list.txt</code> 文件，将训练的目标类别名称分行存储；</li>
+<li>添加测试图片到 <code>assets</code> 文件夹下；</li>
+<li>根据项目需要，修改文件中相关信息</li>
+</ol>
+<p>文件 <code>yolov5/include/postprocess.h</code> 中 <code>line 7~11</code></p>
+<pre><code class="language-cpp">#define OBJ_NAME_MAX_SIZE 16  // 最长目标名称
+#define OBJ_NUMB_MAX_SIZE 64  // 最多目标个数
+#define OBJ_CLASS_NUM 1       // 目标类别数--需要根据项目进行修改
+#define NMS_THRESH 0.45       // NMS 阈值
+#define BOX_THRESH 0.25       // 目标置信度
+</code></pre>
+<ol start="5">
+<li>编译安装与测试</li>
+</ol>
+<pre><code class="language-bash">bash build_rk3588_yolov5.sh
+</code></pre>
+<blockquote>
+<p>修改脚本<code>test_rk3588_yolov5.sh</code> 中不同的模型和测试图片</p>
+</blockquote>
+<pre><code class="language-bash">set -e
+
+ROOT_PWD=$( cd &quot;$( dirname $0 )&quot; &amp;&amp; cd -P &quot;$( dirname &quot;$SOURCE&quot; )&quot; &amp;&amp; pwd )
+INSTALL_DIR=$&#123;ROOT_PWD&#125;/install
+
+cd $&#123;INSTALL_DIR&#125;
+./rk3588_yolov5 assets/drp.rknn assets/drp.png
+cd -
+</code></pre>
+<p>然后执行</p>
+<pre><code class="language-bash">bash test_rk3588_yolov5.sh
+</code></pre>
+<h2 id="四、清理">四、清理</h2>
+<pre><code class="language-bash">bash clean_all.sh
+</code></pre>
+]]></content>
+      <categories>
+        <category>RK3588</category>
+      </categories>
+      <tags>
+        <tag>RK3588</tag>
+        <tag>YOLOv5</tag>
+        <tag>部署</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows10 Yolov8运行报错</title>
+    <url>/2025/01/01/Windows/Windows10-YOLOv8%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<blockquote>
+<p>问题如下：<br>
+Windows10 运行 YOLOv8 出现如下错误：<br>
+Traceback (most recent call last):<br>
+File “<string>”, line 1, in <module><br>
+File “D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py”, line 116, in spawn_main<br>
+exitcode = _main(fd, parent_sentinel)<br>
+^^^^^^^^^^^^^^^^^^^^^^^^^<br>
+File “D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py”, line 125, in _main<br>
+prepare(preparation_data)<br>
+…</p>
+</blockquote>
+<pre><code class="language-bash">Traceback (most recent call last):
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py&quot;, line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py&quot;, line 131, in _main
+    prepare(preparation_data)
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py&quot;, line 242, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py&quot;, line 293, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;&lt;frozen runpy&gt;&quot;, line 291, in run_path
+  File &quot;&lt;frozen runpy&gt;&quot;, line 98, in _run_module_code
+  File &quot;&lt;frozen runpy&gt;&quot;, line 88, in _run_code
+  File &quot;F:\workspace\yolov8\train.py&quot;, line 8, in &lt;module&gt;
+    results = model.train(data=&quot;fsd.yaml&quot;, epochs=200, batch=16) 
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\engine\model.py&quot;, line 377, in train
+    self.trainer.train()
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\engine\trainer.py&quot;, line 192, in train
+    self._do_train(world_size)
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\engine\trainer.py&quot;, line 294, in _do_train
+    self._setup_train(world_size)
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\engine\trainer.py&quot;, line 259, in _setup_train
+    self.train_loader = self.get_dataloader(self.trainset, batch_size=batch_size, rank=RANK, mode='train')
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\models\yolo\detect\train.py&quot;, line 40, in get_dataloader
+    return build_dataloader(dataset, batch_size, workers, shuffle, rank)  # return dataloader
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\data\build.py&quot;, line 101, in build_dataloader
+    return InfiniteDataLoader(dataset=dataset,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\data\build.py&quot;, line 29, in __init__
+    self.iterator = super().__iter__()
+                    ^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\torch\utils\data\dataloader.py&quot;, line 441, in __iter__
+    return self._get_iterator()
+           ^^^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\torch\utils\data\dataloader.py&quot;, line 388, in _get_iterator
+    return _MultiProcessingDataLoaderIter(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\torch\utils\data\dataloader.py&quot;, line 1042, in __init__
+    w.start()
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\process.py&quot;, line 121, in start
+    self._popen = self._Popen(self)
+                  ^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\context.py&quot;, line 224, in _Popen
+    return _default_context.get_context().Process._Popen(process_obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\context.py&quot;, line 336, in _Popen
+    return Popen(process_obj)
+           ^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\popen_spawn_win32.py&quot;, line 45, in __init__
+    prep_data = spawn.get_preparation_data(process_obj._name)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py&quot;, line 160, in get_preparation_data
+    _check_not_importing_main()
+  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py&quot;, line 140, in _check_not_importing_main
+    raise RuntimeError('''
+RuntimeError:
+        An attempt has been made to start a new process before the
+        current process has finished its bootstrapping phase.
+
+        This probably means that you are not using fork to start your
+        child processes and you have forgotten to use the proper idiom
+        in the main module:
+
+            if __name__ == '__main__':
+                freeze_support()
+                ...
+
+        The &quot;freeze_support()&quot; line can be omitted if the program
+        is not going to be frozen to produce an executable.
+
+</code></pre>
+<p>修改</p>
+<p><code>D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\data</code> 路径下的  <code>build.py</code> 文件里的函数 <code>build_dataloader</code>， 将 <code>nw = min([os.cpu_count() // max(nd, 1), batch if batch &gt; 1 else 0, workers])  # number of workers</code>  直接修改为 <code>nw=0</code></p>
+<pre><code class="language-python">def build_dataloader(dataset, batch, workers, shuffle=True, rank=-1):
+    &quot;&quot;&quot;Return an InfiniteDataLoader or DataLoader for training or validation set.&quot;&quot;&quot;
+    batch = min(batch, len(dataset))
+    nd = torch.cuda.device_count()  # number of CUDA devices
+    # nw = min([os.cpu_count() // max(nd, 1), batch if batch &gt; 1 else 0, workers])  # number of workers
+    nw = 0 # update by jw 20230815
+    .....
+</code></pre>
+ <img data-src="/2025/01/01/Windows/Windows10-YOLOv8%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99/image.png" class="" title="image.png">
+<h2 id="【参考】">【参考】</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC81NTM0MDcwNjIjOn46dGV4dD1SdW50aW1lRXJyb3IlM0ElMjBBbiUyMGF0dGVtcHQlMjBoYXMlMjBiZWVuJTIwbWFkZSUyMHRvJTIwc3RhcnQsbWFpbiUyMG1vZHVsZSUzQSUyMGlmJTIwX19uYW1lX18lMjAlM0QlM0QlMjAlMjdfX21haW5fXyUyNyUzQSUyMGZyZWV6ZV9zdXBwb3J0JTIwJTI4JTI5">解决RuntimeError: An attempt has been made to start a new process before…办法<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vY2FybWVuLTAxOS9wLzE1MDc3NzQ5Lmh0bWw=">python进程 - 调试报错 you are not using fork to start your child processes<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Windows</category>
+        <category>Pytorch</category>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>Pytorch</tag>
+        <tag>Windows</tag>
+        <tag>YOLOv8</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows10终端和Vscode下能够直接使用Anaconda Prompt</title>
+    <url>/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/</url>
+    <content><![CDATA[<blockquote>
+<p>很多小伙伴在 <code>Windows</code> 下做深度学习开发的时候，遇到终端没有在 <code>Linux</code> 那么方便，那么我们现在就可以来设置一下；这样我们也可以在文件夹内部右键打开终端，也可以在 <code>VS Code</code> 里面新建一个虚拟环境的控制台；这里主要是针对 <code>Anaconda</code> 环境下的虚拟环境进行终端配置，这样就可以很方便的在终端打开虚拟环境，不用搜索和应用程序里打开  <code>Anaconda Prompt</code> ;</p>
+</blockquote>
+<ol>
+<li>打开应用商店，安装 <code>Windows Terminal</code> ;</li>
+</ol>
+<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image-2.png" class="" title="image-2.png">
+<ol>
+<li>在文件夹内部可以右键打开终端了；</li>
+</ol>
+<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image.png" class="" title="image.png">
+<ol>
+<li>在打开的终端里，我们也可以配置</li>
+</ol>
+<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image-3.png" class="" title="image-3.png">
+<blockquote>
+<p>可以在名称里设置成  <code>Anaconda Prompt</code><br>
+命令行里写上 <code>cmd.exe /k &quot;d:\anaconda3\Scripts\activate.bat&quot;  yolov8</code>, 其中 <code>&quot;d:\anaconda3\Scripts\activate.bat&quot;</code> 为 <code>activate</code> 批处理路径, <code>yolov8</code> 为虚拟环境的名称；<br>
+启动目录你可以设置为常用的项目目录；<br>
+最后保存；</p>
+</blockquote>
+<p>这样你可以打开终端的时候，就可以直接选择 <code>Anaconda Prompt</code> 了；</p>
+<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image-1.png" class="" title="image-1.png">
+<ol>
+<li>在 <code>vs code</code> 下 按住 <code>ctrl</code> + ` 召唤终端，</li>
+</ol>
+<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image-4.png" class="" title="image-4.png">
+<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image-6.png" class="" title="image-6.png">
+<pre><code class="language-bash">        &quot;Anaconda Prompt&quot;: &#123;
+            &quot;path&quot;: [
+                &quot;$&#123;env:windir&#125;\\Sysnative\\cmd.exe&quot;,
+                &quot;$&#123;env:windir&#125;\\System32\\cmd.exe&quot;
+            ],
+            &quot;args&quot;: [&quot;/k&quot;, &quot;d:\\anaconda3\\Scripts\\activate.bat&quot; , &quot;yolov8&quot;],
+            &quot;icon&quot;: &quot;terminal-cmd&quot;        
+        &#125;,
+</code></pre>
+<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image-7.png" class="" title="image-7.png">
+<p>好了，这样下次就可以直接在 <code>VS Code</code> 里打开 <code>Anaconda Prompt </code>终端了。</p>
+]]></content>
+      <categories>
+        <category>Windows</category>
+        <category>Pytorch</category>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>Pytorch</tag>
+        <tag>Windows</tag>
+        <tag>YOLOv8</tag>
+        <tag>Anaconda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows下Wsl将Ubuntu挪位置 系统盘清理</title>
+    <url>/2025/01/01/Windows/Windows%E4%B8%8BWSL%E5%B0%86ubuntu%E6%8C%AA%E4%BD%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h2 id="问题–垃圾太多，系统盘空间占用太大">问题–垃圾太多，系统盘空间占用太大</h2>
+<p>最近 C 盘空间暴涨，用工具 <a href="https://windirstat.net/"><code>WinDirStat</code>-强烈推荐的工具</a> 查看发现 <code>WSL</code> 子系统占用了<strong>6个多 G</strong> 的空间，遂想办法挪个位置；<br>
+【关键字】将 <code>Windows</code> 里的子系统挪到非系统盘 <code>D</code> 盘；</p>
+<img data-src="/2025/01/01/Windows/Windows%E4%B8%8BWSL%E5%B0%86ubuntu%E6%8C%AA%E4%BD%8D%E7%BD%AE/1690637651503.png" class="" title="1690637651503.png">
+<h2 id="解决">解决</h2>
+<ol>
+<li>打开 WSL 控制台</li>
+</ol>
+<pre><code class="language-bash">wsl -l -v # 查看当前子系统
+</code></pre>
+<pre><code class="language-bash">PS D:\&gt; wsl -l  -v
+  NAME            STATE           VERSION
+* Ubuntu-22.04    Stopped         2
+</code></pre>
+<ol start="2">
+<li>导出</li>
+</ol>
+<pre><code class="language-bash">wsl --export Ubuntu-22.04 d:\ubuntu2204.tar
+</code></pre>
+<pre><code class="language-bash">正在导出，这可能需要几分钟时间。
+操作成功完成。
+</code></pre>
+<ol start="3">
+<li>注销</li>
+</ol>
+<pre><code class="language-bash">PS D:\&gt; wsl --unregister Ubuntu-22.04
+正在注销。
+操作成功完成。
+</code></pre>
+<ol start="4">
+<li>重新导入</li>
+</ol>
+<pre><code class="language-bash">PS D:\&gt; wsl --import Ubuntu-22.04 d:\Ubuntu-22.04 d:\ubuntu2204.tar --version 2
+</code></pre>
+<pre><code class="language-bash">正在导入，这可能需要几分钟时间。
+操作成功完成。
+</code></pre>
+<h2 id="补充清理其他垃圾">补充清理其他垃圾</h2>
+<h3 id="清理-WPS-垃圾">清理 WPS 垃圾</h3>
+<p>路径为： <code>C:\Users\xxx\AppData\Roaming\kingsoft\wps\addons\pool\win-i386</code></p>
+<p>照按上面的路径一层层的打开文件夹，<code>win-i386</code> 文件夹里的内容都是无用的垃圾，可以统统清除掉，<code>alt+a</code> 全选，右击【删除】</p>
+<h3 id="temp-垃圾">temp 垃圾</h3>
+<p><code>win+R </code>键，在命令框中输入<code>%temp%</code>，打开的文件夹里的都是系统缓存文件，<code>alt+a</code>全选，右键删除即可。</p>
+<h2 id="更改-Android-AVD-的路径">更改 Android AVD 的路径</h2>
+<p><code>AVD</code> 的默认路径仍然在 <code>C</code> 盘，且是以 <code>GB</code> 为单位在增长。</p>
+<img data-src="/2025/01/01/Windows/Windows%E4%B8%8BWSL%E5%B0%86ubuntu%E6%8C%AA%E4%BD%8D%E7%BD%AE/1690639362353.png" class="" title="1690639362353.png">
+<ul>
+<li>新建一个环境变量</li>
+</ul>
+<img data-src="/2025/01/01/Windows/Windows%E4%B8%8BWSL%E5%B0%86ubuntu%E6%8C%AA%E4%BD%8D%E7%BD%AE/1690639413294.png" class="" title="1690639413294.png">
+<p>打开 <code>Android Studio</code>,  <code>D:\Android\Android_AVD</code> 路径下会多出来一个 <code>.android</code> 文件夹，将 C 盘下对应路径的 .android 文件夹拷贝过来覆盖；</p>
+<ul>
+<li>修改配置</li>
+</ul>
+<p>在对应的 <code>AVD</code> 下如: <code>D:\Android\Android_AVD\.android\avd\Pixel_4_API_30.avd</code></p>
+<p>找到配置文件 <code>hardware-qemu.ini</code> ， <code>ctrl + H</code> 找到对应的老路径修改为新放置的路径。</p>
+<img data-src="/2025/01/01/Windows/Windows%E4%B8%8BWSL%E5%B0%86ubuntu%E6%8C%AA%E4%BD%8D%E7%BD%AE/1690639588752.png" class="" title="1690639588752.png">
+<h2 id="工具推荐">工具推荐</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kaXNtLmNmLw==">Dism++，也许是最强的实用工具<i class="fa fa-external-link-alt"></i></span>, 一般一下子能干掉几个 <strong>G</strong> 的垃圾。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cudm9pZHRvb2xzLmNvbS96aC1jbi8=">Everything Windows下基于名称快速定位文件和文件夹<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="【参考】">【参考】</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zODAyNDcyOTE=">电脑C盘爆满，10秒快速清理C盘垃圾<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDU4OTE1L2FydGljbGUvZGV0YWlscy8xMTM5MTQ2OTE=">更改Android Studio中AVD的默认路径<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>技术文档</category>
+      </categories>
+      <tags>
+        <tag>技术指南</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Get_More_Security_Updates_Through_Ubuntu_Pro_With_&#39;Esm Apps&#39;_Enabled</title>
     <url>/2025/01/01/Ubuntu/Get_more_security_updates_through_Ubuntu_Pro_with_&#39;esm-apps&#39;_enabled/</url>
     <content><![CDATA[<blockquote>
@@ -3222,6 +3468,196 @@ sudo apt upgrade
       </categories>
       <tags>
         <tag>Esm Apps</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows10 安装 Pytorch</title>
+    <url>/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/</url>
+    <content><![CDATA[<h1>Windows 10 安装 PyTorch 开发环境，以及验证 YOLOv8</h1>
+<blockquote>
+<p>环境：<br>
+OS： Windows 10<br>
+显卡： RTX 3090</p>
+</blockquote>
+<img data-src="/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/image-2.png" class="" title="image-2.png">
+<h2 id="安装-NVIDIA-驱动">安装 NVIDIA 驱动</h2>
+<p>根据显卡型号找到对应的驱动进行安装</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubnZpZGlhLmNuL2dlZm9yY2UvZHJpdmVycy8=">GeForce® 驱动程序<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="验证">验证</h3>
+<p>在终端中输入：  <code>nvidia-smi</code> 查看是否正确安装</p>
+<pre><code class="language-bash">PS F:\workspace\notebook&gt; nvidia-smi
+Tue Aug 15 09:23:21 2023
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 528.24       Driver Version: 528.24       CUDA Version: 12.0     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name            TCC/WDDM | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  NVIDIA GeForce ... WDDM  | 00000000:01:00.0  On |                  N/A |
+| 30%   38C    P8    19W / 350W |    782MiB / 24576MiB |      4%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|    0   N/A  N/A      1620    C+G   C:\Windows\System32\dwm.exe     N/A      |
+|    0   N/A  N/A      1908    C+G   ...ge\Application\msedge.exe    N/A      |
+</code></pre>
+<h2 id="安装-Visual-Studio-2019-Community">安装 Visual Studio 2019 Community</h2>
+<p>安装 VS2019 [Visual Studio Community 2019](<span class="exturl" data-url="aHR0cHM6Ly9teS52aXN1YWxzdHVkaW8uY29tL0Rvd25sb2Fkcz9xPXZpc3VhbCUyMHN0dWRpbyUyMDIwMTkmd3QubWNfaWQ9b35tc2Z0fnZzY29tfm9sZGVyLWRvd25sb2E=">https://my.visualstudio.com/Downloads?q=visual studio 2019&amp;wt.mc_id=o~msft~vscom~older-downloa<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="验证-2">验证</h3>
+<img data-src="/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/image-4.png" class="" title="image-4.png">
+<h2 id="安装-Git-CMake-Anaconda">安装 Git, CMake, Anaconda</h2>
+<p>安装 <span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS9kb3dubG9hZC93aW4=">git<i class="fa fa-external-link-alt"></i></span>,</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly90b3J0b2lzZWdpdC5vcmcv">tortoisegit 可以看文件状态<i class="fa fa-external-link-alt"></i></span></p>
+<p>安装 <span class="exturl" data-url="aHR0cHM6Ly9jbWFrZS5vcmcvZG93bmxvYWQv">cmake<i class="fa fa-external-link-alt"></i></span>， 跨平台编译时使用;</p>
+<p>安装 <span class="exturl" data-url="aHR0cHM6Ly93d3cuYW5hY29uZGEuY29tL3Byb2R1Y3RzL2luZGl2aWR1YWw=">Anaconda<i class="fa fa-external-link-alt"></i></span>，集成了很多 <code>python</code> 开发环境</p>
+<h3 id="验证-3">验证</h3>
+<h2 id="下载并安装-OpenCV">下载并安装 OpenCV</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9vcGVuY3Yub3JnL3JlbGVhc2VzLw==">OpenCV 下载地址<i class="fa fa-external-link-alt"></i></span></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">VC版本号</th>
+<th style="text-align:left">VS对应版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">vc6</td>
+<td style="text-align:left">VC6.0</td>
+</tr>
+<tr>
+<td style="text-align:left">vc7</td>
+<td style="text-align:left">VS2002</td>
+</tr>
+<tr>
+<td style="text-align:left">vc7.1</td>
+<td style="text-align:left">VS2003</td>
+</tr>
+<tr>
+<td style="text-align:left">vc8</td>
+<td style="text-align:left">VS2005</td>
+</tr>
+<tr>
+<td style="text-align:left">vc9</td>
+<td style="text-align:left">VS2008</td>
+</tr>
+<tr>
+<td style="text-align:left">vc10</td>
+<td style="text-align:left">VS2010</td>
+</tr>
+<tr>
+<td style="text-align:left">vc11</td>
+<td style="text-align:left">VS2012</td>
+</tr>
+<tr>
+<td style="text-align:left">vc12</td>
+<td style="text-align:left">VS2013</td>
+</tr>
+<tr>
+<td style="text-align:left">vc13</td>
+<td style="text-align:left">VS2014</td>
+</tr>
+<tr>
+<td style="text-align:left">vc14</td>
+<td style="text-align:left">VS2015</td>
+</tr>
+<tr>
+<td style="text-align:left">vc15</td>
+<td style="text-align:left">VS2017</td>
+</tr>
+<tr>
+<td style="text-align:left">vc16</td>
+<td style="text-align:left">VS2019</td>
+</tr>
+</tbody>
+</table>
+<p>既然上面安装的是 VS 2019, 那么我们就安装  VC16 版本的 OpenCV， 省得自己编译了；</p>
+<p>解压安装后，将 <code>build</code> 目录下的 <code>x64\vc16\bin</code> 添加到环境变量中。</p>
+<h2 id="安装-CUDA-和-CUDNN">安装 CUDA 和 CUDNN</h2>
+<p>这里有些人可能不知道需要安装什么版本的 cuda。因为我这里的 GPU 是 N卡 3090 还是比较好的，所以可以安装比较高阶版本的软件，但是也不能太新，我这里直接参考 PyTorch 里最新版本的框架依赖哪个？</p>
+<img data-src="/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/image.png" class="" title="image.png">
+<p>好了，那就安装 CUDA 11.8 和对应的 CUDNN 8 ；</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubnZpZGlhLmNvbS9jdWRhLTExLTgtMC1kb3dubG9hZC1hcmNoaXZlP3RhcmdldF9vcz1XaW5kb3dzJnRhcmdldF9hcmNoPXg4Nl82NCZ0YXJnZXRfdmVyc2lvbj0xMCZ0YXJnZXRfdHlwZT1leGVfbG9jYWw=">cuda11.8-exe_local-3GB<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubnZpZGlhLmNvbS9yZHAvY3Vkbm4tYXJjaGl2ZQ==">cudnn 下载对应版本<i class="fa fa-external-link-alt"></i></span></p>
+<p><em>注意： cudnn 要注册账号</em></p>
+<p>解压后，将 cudnn 文件夹下的所有文件夹复制到 <code>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\</code> 目录下。</p>
+<h3 id="验证-4">验证</h3>
+<pre><code class="language-bash">(base) D:\&gt;nvcc --version
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2022 NVIDIA Corporation
+Built on Wed_Sep_21_10:41:10_Pacific_Daylight_Time_2022
+Cuda compilation tools, release 11.8, V11.8.89
+Build cuda_11.8.r11.8/compiler.31833905_0
+</code></pre>
+<p>进入到安装目录 <code>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\extras\demo_suite</code>, 运行 <code>.\deviceQuery.exe</code></p>
+<img data-src="/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/image-3.png" class="" title="image-3.png">
+<h2 id="安装-PyTorch">安装 PyTorch</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9weXRvcmNoLm9yZy8=">PyTorch<i class="fa fa-external-link-alt"></i></span></p>
+<p><strong>conda 安装</strong></p>
+<pre><code class="language-bash">conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+</code></pre>
+<p><strong>pip 安装</strong></p>
+<pre><code class="language-bash">pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+</code></pre>
+<h3 id="验证-5">验证</h3>
+<pre><code class="language-bash">(base) D:\&gt;python
+Python 3.11.4 | packaged by Anaconda, Inc. | (main, Jul  5 2023, 13:38:37) [MSC v.1916 64 bit (AMD64)] on win32
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import torch
+&gt;&gt;&gt; print(torch.__version__)
+2.0.1
+&gt;&gt;&gt; torch.cuda.is_available()
+True
+&gt;&gt;&gt;
+</code></pre>
+<h2 id="ultralytics-YOLOv8">ultralytics/YOLOv8</h2>
+<p><strong>创建虚拟环境</strong></p>
+<pre><code class="language-bash">conda create --name yolov8 --clone base
+</code></pre>
+<p><strong>激活虚拟环境</strong></p>
+<pre><code class="language-bash">conda activate yolov8
+</code></pre>
+<p><strong>安装</strong></p>
+<pre><code class="language-bash">pip install ultralytics
+</code></pre>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3VsdHJhbHl0aWNzL3VsdHJhbHl0aWNz">代码 https://github.com/ultralytics/ultralytics<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3VsdHJhbHl0aWNzL2Fzc2V0cy9yZWxlYXNlcw==">权重 https://github.com/ultralytics/assets/releases<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="验证-6">验证</h3>
+<pre><code class="language-bash">yolo predict model=yolov8n.pt imgsz=640 conf=0.25
+</code></pre>
+<pre><code class="language-bash">(yolov8) F:\workspace\yolov8&gt;yolo predict model=yolov8n.pt imgsz=640 conf=0.25
+WARNING  'source' is missing. Using default 'source=D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\assets'.
+Ultralytics YOLOv8.0.154  Python-3.11.4 torch-2.0.1 CUDA:0 (NVIDIA GeForce RTX 3090, 24576MiB)
+YOLOv8n summary (fused): 168 layers, 3151904 parameters, 0 gradients
+
+image 1/2 D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\assets\bus.jpg: 640x480 4 persons, 1 bus, 1 stop sign, 160.2ms
+image 2/2 D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\assets\zidane.jpg: 384x640 2 persons, 1 tie, 154.0ms
+Speed: 41.6ms preprocess, 157.1ms inference, 72.6ms postprocess per image at shape (1, 3, 384, 640)
+Results saved to runs\detect\predict
+</code></pre>
+<h2 id="【参考】">【参考】</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC85OTg4MDIwND9mcm9tX3ZvdGVyc19wYWdlPXRydWU=">Windows 安装 CUDA/cuDNN<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzMwMTMzMy9hcnRpY2xlL2RldGFpbHMvMTIxNTUwMjU3">验证pytorch是否为GPU版本<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC82MjcxMDgzMDE=">YOLOv8环境搭建（Windows11）<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl82MTk4ODg4NS9hcnRpY2xlL2RldGFpbHMvMTI5NDIxNTM4">YOLOv8 从环境搭建到推理训练<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnVsdHJhbHl0aWNzLmNvbS9xdWlja3N0YXJ0Lw==">Ultralytics YOLOv8 Docs-Quickstart<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC82MTU1MzA3ODU=">Anaconda 创建，复制，移植，删除环境<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Windows</category>
+        <category>Pytorch</category>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>Pytorch</tag>
+        <tag>Windows</tag>
+        <tag>YOLOv8</tag>
       </tags>
   </entry>
   <entry>
@@ -3767,442 +4203,6 @@ WantedBy=multi-user.target
       </categories>
       <tags>
         <tag>utools</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows10 Yolov8运行报错</title>
-    <url>/2025/01/01/Windows/Windows10-YOLOv8%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99/</url>
-    <content><![CDATA[<blockquote>
-<p>问题如下：<br>
-Windows10 运行 YOLOv8 出现如下错误：<br>
-Traceback (most recent call last):<br>
-File “<string>”, line 1, in <module><br>
-File “D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py”, line 116, in spawn_main<br>
-exitcode = _main(fd, parent_sentinel)<br>
-^^^^^^^^^^^^^^^^^^^^^^^^^<br>
-File “D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py”, line 125, in _main<br>
-prepare(preparation_data)<br>
-…</p>
-</blockquote>
-<pre><code class="language-bash">Traceback (most recent call last):
-  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;
-  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py&quot;, line 122, in spawn_main
-    exitcode = _main(fd, parent_sentinel)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py&quot;, line 131, in _main
-    prepare(preparation_data)
-  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py&quot;, line 242, in prepare
-    _fixup_main_from_path(data['init_main_from_path'])
-  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py&quot;, line 293, in _fixup_main_from_path
-    main_content = runpy.run_path(main_path,
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;&lt;frozen runpy&gt;&quot;, line 291, in run_path
-  File &quot;&lt;frozen runpy&gt;&quot;, line 98, in _run_module_code
-  File &quot;&lt;frozen runpy&gt;&quot;, line 88, in _run_code
-  File &quot;F:\workspace\yolov8\train.py&quot;, line 8, in &lt;module&gt;
-    results = model.train(data=&quot;fsd.yaml&quot;, epochs=200, batch=16) 
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\engine\model.py&quot;, line 377, in train
-    self.trainer.train()
-  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\engine\trainer.py&quot;, line 192, in train
-    self._do_train(world_size)
-  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\engine\trainer.py&quot;, line 294, in _do_train
-    self._setup_train(world_size)
-  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\engine\trainer.py&quot;, line 259, in _setup_train
-    self.train_loader = self.get_dataloader(self.trainset, batch_size=batch_size, rank=RANK, mode='train')
-                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\models\yolo\detect\train.py&quot;, line 40, in get_dataloader
-    return build_dataloader(dataset, batch_size, workers, shuffle, rank)  # return dataloader
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\data\build.py&quot;, line 101, in build_dataloader
-    return InfiniteDataLoader(dataset=dataset,
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\data\build.py&quot;, line 29, in __init__
-    self.iterator = super().__iter__()
-                    ^^^^^^^^^^^^^^^^^^
-  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\torch\utils\data\dataloader.py&quot;, line 441, in __iter__
-    return self._get_iterator()
-           ^^^^^^^^^^^^^^^^^^^^
-  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\torch\utils\data\dataloader.py&quot;, line 388, in _get_iterator
-    return _MultiProcessingDataLoaderIter(self)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;D:\anaconda3\envs\yolov8\Lib\site-packages\torch\utils\data\dataloader.py&quot;, line 1042, in __init__
-    w.start()
-  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\process.py&quot;, line 121, in start
-    self._popen = self._Popen(self)
-                  ^^^^^^^^^^^^^^^^^
-  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\context.py&quot;, line 224, in _Popen
-    return _default_context.get_context().Process._Popen(process_obj)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\context.py&quot;, line 336, in _Popen
-    return Popen(process_obj)
-           ^^^^^^^^^^^^^^^^^^
-  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\popen_spawn_win32.py&quot;, line 45, in __init__
-    prep_data = spawn.get_preparation_data(process_obj._name)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py&quot;, line 160, in get_preparation_data
-    _check_not_importing_main()
-  File &quot;D:\anaconda3\envs\yolov8\Lib\multiprocessing\spawn.py&quot;, line 140, in _check_not_importing_main
-    raise RuntimeError('''
-RuntimeError:
-        An attempt has been made to start a new process before the
-        current process has finished its bootstrapping phase.
-
-        This probably means that you are not using fork to start your
-        child processes and you have forgotten to use the proper idiom
-        in the main module:
-
-            if __name__ == '__main__':
-                freeze_support()
-                ...
-
-        The &quot;freeze_support()&quot; line can be omitted if the program
-        is not going to be frozen to produce an executable.
-
-</code></pre>
-<p>修改</p>
-<p><code>D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\data</code> 路径下的  <code>build.py</code> 文件里的函数 <code>build_dataloader</code>， 将 <code>nw = min([os.cpu_count() // max(nd, 1), batch if batch &gt; 1 else 0, workers])  # number of workers</code>  直接修改为 <code>nw=0</code></p>
-<pre><code class="language-python">def build_dataloader(dataset, batch, workers, shuffle=True, rank=-1):
-    &quot;&quot;&quot;Return an InfiniteDataLoader or DataLoader for training or validation set.&quot;&quot;&quot;
-    batch = min(batch, len(dataset))
-    nd = torch.cuda.device_count()  # number of CUDA devices
-    # nw = min([os.cpu_count() // max(nd, 1), batch if batch &gt; 1 else 0, workers])  # number of workers
-    nw = 0 # update by jw 20230815
-    .....
-</code></pre>
- <img data-src="/2025/01/01/Windows/Windows10-YOLOv8%E8%BF%90%E8%A1%8C%E6%8A%A5%E9%94%99/image.png" class="" title="image.png">
-<h2 id="【参考】">【参考】</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC81NTM0MDcwNjIjOn46dGV4dD1SdW50aW1lRXJyb3IlM0ElMjBBbiUyMGF0dGVtcHQlMjBoYXMlMjBiZWVuJTIwbWFkZSUyMHRvJTIwc3RhcnQsbWFpbiUyMG1vZHVsZSUzQSUyMGlmJTIwX19uYW1lX18lMjAlM0QlM0QlMjAlMjdfX21haW5fXyUyNyUzQSUyMGZyZWV6ZV9zdXBwb3J0JTIwJTI4JTI5">解决RuntimeError: An attempt has been made to start a new process before…办法<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vY2FybWVuLTAxOS9wLzE1MDc3NzQ5Lmh0bWw=">python进程 - 调试报错 you are not using fork to start your child processes<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Windows</category>
-        <category>Pytorch</category>
-        <category>运维</category>
-      </categories>
-      <tags>
-        <tag>Pytorch</tag>
-        <tag>Windows</tag>
-        <tag>YOLOv8</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows10终端和Vscode下能够直接使用Anaconda Prompt</title>
-    <url>/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/</url>
-    <content><![CDATA[<blockquote>
-<p>很多小伙伴在 <code>Windows</code> 下做深度学习开发的时候，遇到终端没有在 <code>Linux</code> 那么方便，那么我们现在就可以来设置一下；这样我们也可以在文件夹内部右键打开终端，也可以在 <code>VS Code</code> 里面新建一个虚拟环境的控制台；这里主要是针对 <code>Anaconda</code> 环境下的虚拟环境进行终端配置，这样就可以很方便的在终端打开虚拟环境，不用搜索和应用程序里打开  <code>Anaconda Prompt</code> ;</p>
-</blockquote>
-<ol>
-<li>打开应用商店，安装 <code>Windows Terminal</code> ;</li>
-</ol>
-<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image-2.png" class="" title="image-2.png">
-<ol>
-<li>在文件夹内部可以右键打开终端了；</li>
-</ol>
-<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image.png" class="" title="image.png">
-<ol>
-<li>在打开的终端里，我们也可以配置</li>
-</ol>
-<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image-3.png" class="" title="image-3.png">
-<blockquote>
-<p>可以在名称里设置成  <code>Anaconda Prompt</code><br>
-命令行里写上 <code>cmd.exe /k &quot;d:\anaconda3\Scripts\activate.bat&quot;  yolov8</code>, 其中 <code>&quot;d:\anaconda3\Scripts\activate.bat&quot;</code> 为 <code>activate</code> 批处理路径, <code>yolov8</code> 为虚拟环境的名称；<br>
-启动目录你可以设置为常用的项目目录；<br>
-最后保存；</p>
-</blockquote>
-<p>这样你可以打开终端的时候，就可以直接选择 <code>Anaconda Prompt</code> 了；</p>
-<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image-1.png" class="" title="image-1.png">
-<ol>
-<li>在 <code>vs code</code> 下 按住 <code>ctrl</code> + ` 召唤终端，</li>
-</ol>
-<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image-4.png" class="" title="image-4.png">
-<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image-6.png" class="" title="image-6.png">
-<pre><code class="language-bash">        &quot;Anaconda Prompt&quot;: &#123;
-            &quot;path&quot;: [
-                &quot;$&#123;env:windir&#125;\\Sysnative\\cmd.exe&quot;,
-                &quot;$&#123;env:windir&#125;\\System32\\cmd.exe&quot;
-            ],
-            &quot;args&quot;: [&quot;/k&quot;, &quot;d:\\anaconda3\\Scripts\\activate.bat&quot; , &quot;yolov8&quot;],
-            &quot;icon&quot;: &quot;terminal-cmd&quot;        
-        &#125;,
-</code></pre>
-<img data-src="/2025/01/01/Windows/Windows10%E7%BB%88%E7%AB%AF/image-7.png" class="" title="image-7.png">
-<p>好了，这样下次就可以直接在 <code>VS Code</code> 里打开 <code>Anaconda Prompt </code>终端了。</p>
-]]></content>
-      <categories>
-        <category>Windows</category>
-        <category>Pytorch</category>
-        <category>运维</category>
-      </categories>
-      <tags>
-        <tag>Pytorch</tag>
-        <tag>Windows</tag>
-        <tag>YOLOv8</tag>
-        <tag>Anaconda</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows下Wsl将Ubuntu挪位置 系统盘清理</title>
-    <url>/2025/01/01/Windows/Windows%E4%B8%8BWSL%E5%B0%86ubuntu%E6%8C%AA%E4%BD%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h2 id="问题–垃圾太多，系统盘空间占用太大">问题–垃圾太多，系统盘空间占用太大</h2>
-<p>最近 C 盘空间暴涨，用工具 <a href="https://windirstat.net/"><code>WinDirStat</code>-强烈推荐的工具</a> 查看发现 <code>WSL</code> 子系统占用了<strong>6个多 G</strong> 的空间，遂想办法挪个位置；<br>
-【关键字】将 <code>Windows</code> 里的子系统挪到非系统盘 <code>D</code> 盘；</p>
-<img data-src="/2025/01/01/Windows/Windows%E4%B8%8BWSL%E5%B0%86ubuntu%E6%8C%AA%E4%BD%8D%E7%BD%AE/1690637651503.png" class="" title="1690637651503.png">
-<h2 id="解决">解决</h2>
-<ol>
-<li>打开 WSL 控制台</li>
-</ol>
-<pre><code class="language-bash">wsl -l -v # 查看当前子系统
-</code></pre>
-<pre><code class="language-bash">PS D:\&gt; wsl -l  -v
-  NAME            STATE           VERSION
-* Ubuntu-22.04    Stopped         2
-</code></pre>
-<ol start="2">
-<li>导出</li>
-</ol>
-<pre><code class="language-bash">wsl --export Ubuntu-22.04 d:\ubuntu2204.tar
-</code></pre>
-<pre><code class="language-bash">正在导出，这可能需要几分钟时间。
-操作成功完成。
-</code></pre>
-<ol start="3">
-<li>注销</li>
-</ol>
-<pre><code class="language-bash">PS D:\&gt; wsl --unregister Ubuntu-22.04
-正在注销。
-操作成功完成。
-</code></pre>
-<ol start="4">
-<li>重新导入</li>
-</ol>
-<pre><code class="language-bash">PS D:\&gt; wsl --import Ubuntu-22.04 d:\Ubuntu-22.04 d:\ubuntu2204.tar --version 2
-</code></pre>
-<pre><code class="language-bash">正在导入，这可能需要几分钟时间。
-操作成功完成。
-</code></pre>
-<h2 id="补充清理其他垃圾">补充清理其他垃圾</h2>
-<h3 id="清理-WPS-垃圾">清理 WPS 垃圾</h3>
-<p>路径为： <code>C:\Users\xxx\AppData\Roaming\kingsoft\wps\addons\pool\win-i386</code></p>
-<p>照按上面的路径一层层的打开文件夹，<code>win-i386</code> 文件夹里的内容都是无用的垃圾，可以统统清除掉，<code>alt+a</code> 全选，右击【删除】</p>
-<h3 id="temp-垃圾">temp 垃圾</h3>
-<p><code>win+R </code>键，在命令框中输入<code>%temp%</code>，打开的文件夹里的都是系统缓存文件，<code>alt+a</code>全选，右键删除即可。</p>
-<h2 id="更改-Android-AVD-的路径">更改 Android AVD 的路径</h2>
-<p><code>AVD</code> 的默认路径仍然在 <code>C</code> 盘，且是以 <code>GB</code> 为单位在增长。</p>
-<img data-src="/2025/01/01/Windows/Windows%E4%B8%8BWSL%E5%B0%86ubuntu%E6%8C%AA%E4%BD%8D%E7%BD%AE/1690639362353.png" class="" title="1690639362353.png">
-<ul>
-<li>新建一个环境变量</li>
-</ul>
-<img data-src="/2025/01/01/Windows/Windows%E4%B8%8BWSL%E5%B0%86ubuntu%E6%8C%AA%E4%BD%8D%E7%BD%AE/1690639413294.png" class="" title="1690639413294.png">
-<p>打开 <code>Android Studio</code>,  <code>D:\Android\Android_AVD</code> 路径下会多出来一个 <code>.android</code> 文件夹，将 C 盘下对应路径的 .android 文件夹拷贝过来覆盖；</p>
-<ul>
-<li>修改配置</li>
-</ul>
-<p>在对应的 <code>AVD</code> 下如: <code>D:\Android\Android_AVD\.android\avd\Pixel_4_API_30.avd</code></p>
-<p>找到配置文件 <code>hardware-qemu.ini</code> ， <code>ctrl + H</code> 找到对应的老路径修改为新放置的路径。</p>
-<img data-src="/2025/01/01/Windows/Windows%E4%B8%8BWSL%E5%B0%86ubuntu%E6%8C%AA%E4%BD%8D%E7%BD%AE/1690639588752.png" class="" title="1690639588752.png">
-<h2 id="工具推荐">工具推荐</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kaXNtLmNmLw==">Dism++，也许是最强的实用工具<i class="fa fa-external-link-alt"></i></span>, 一般一下子能干掉几个 <strong>G</strong> 的垃圾。</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cudm9pZHRvb2xzLmNvbS96aC1jbi8=">Everything Windows下基于名称快速定位文件和文件夹<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="【参考】">【参考】</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zODAyNDcyOTE=">电脑C盘爆满，10秒快速清理C盘垃圾<i class="fa fa-external-link-alt"></i></span><br>
-<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1NDU4OTE1L2FydGljbGUvZGV0YWlscy8xMTM5MTQ2OTE=">更改Android Studio中AVD的默认路径<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>技术文档</category>
-      </categories>
-      <tags>
-        <tag>技术指南</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows10 安装 Pytorch</title>
-    <url>/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/</url>
-    <content><![CDATA[<h1>Windows 10 安装 PyTorch 开发环境，以及验证 YOLOv8</h1>
-<blockquote>
-<p>环境：<br>
-OS： Windows 10<br>
-显卡： RTX 3090</p>
-</blockquote>
-<img data-src="/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/image-2.png" class="" title="image-2.png">
-<h2 id="安装-NVIDIA-驱动">安装 NVIDIA 驱动</h2>
-<p>根据显卡型号找到对应的驱动进行安装</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubnZpZGlhLmNuL2dlZm9yY2UvZHJpdmVycy8=">GeForce® 驱动程序<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="验证">验证</h3>
-<p>在终端中输入：  <code>nvidia-smi</code> 查看是否正确安装</p>
-<pre><code class="language-bash">PS F:\workspace\notebook&gt; nvidia-smi
-Tue Aug 15 09:23:21 2023
-+-----------------------------------------------------------------------------+
-| NVIDIA-SMI 528.24       Driver Version: 528.24       CUDA Version: 12.0     |
-|-------------------------------+----------------------+----------------------+
-| GPU  Name            TCC/WDDM | Bus-Id        Disp.A | Volatile Uncorr. ECC |
-| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-|                               |                      |               MIG M. |
-|===============================+======================+======================|
-|   0  NVIDIA GeForce ... WDDM  | 00000000:01:00.0  On |                  N/A |
-| 30%   38C    P8    19W / 350W |    782MiB / 24576MiB |      4%      Default |
-|                               |                      |                  N/A |
-+-------------------------------+----------------------+----------------------+
-
-+-----------------------------------------------------------------------------+
-| Processes:                                                                  |
-|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
-|        ID   ID                                                   Usage      |
-|=============================================================================|
-|    0   N/A  N/A      1620    C+G   C:\Windows\System32\dwm.exe     N/A      |
-|    0   N/A  N/A      1908    C+G   ...ge\Application\msedge.exe    N/A      |
-</code></pre>
-<h2 id="安装-Visual-Studio-2019-Community">安装 Visual Studio 2019 Community</h2>
-<p>安装 VS2019 [Visual Studio Community 2019](<span class="exturl" data-url="aHR0cHM6Ly9teS52aXN1YWxzdHVkaW8uY29tL0Rvd25sb2Fkcz9xPXZpc3VhbCUyMHN0dWRpbyUyMDIwMTkmd3QubWNfaWQ9b35tc2Z0fnZzY29tfm9sZGVyLWRvd25sb2E=">https://my.visualstudio.com/Downloads?q=visual studio 2019&amp;wt.mc_id=o~msft~vscom~older-downloa<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="验证-2">验证</h3>
-<img data-src="/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/image-4.png" class="" title="image-4.png">
-<h2 id="安装-Git-CMake-Anaconda">安装 Git, CMake, Anaconda</h2>
-<p>安装 <span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS9kb3dubG9hZC93aW4=">git<i class="fa fa-external-link-alt"></i></span>,</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly90b3J0b2lzZWdpdC5vcmcv">tortoisegit 可以看文件状态<i class="fa fa-external-link-alt"></i></span></p>
-<p>安装 <span class="exturl" data-url="aHR0cHM6Ly9jbWFrZS5vcmcvZG93bmxvYWQv">cmake<i class="fa fa-external-link-alt"></i></span>， 跨平台编译时使用;</p>
-<p>安装 <span class="exturl" data-url="aHR0cHM6Ly93d3cuYW5hY29uZGEuY29tL3Byb2R1Y3RzL2luZGl2aWR1YWw=">Anaconda<i class="fa fa-external-link-alt"></i></span>，集成了很多 <code>python</code> 开发环境</p>
-<h3 id="验证-3">验证</h3>
-<h2 id="下载并安装-OpenCV">下载并安装 OpenCV</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9vcGVuY3Yub3JnL3JlbGVhc2VzLw==">OpenCV 下载地址<i class="fa fa-external-link-alt"></i></span></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">VC版本号</th>
-<th style="text-align:left">VS对应版本</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">vc6</td>
-<td style="text-align:left">VC6.0</td>
-</tr>
-<tr>
-<td style="text-align:left">vc7</td>
-<td style="text-align:left">VS2002</td>
-</tr>
-<tr>
-<td style="text-align:left">vc7.1</td>
-<td style="text-align:left">VS2003</td>
-</tr>
-<tr>
-<td style="text-align:left">vc8</td>
-<td style="text-align:left">VS2005</td>
-</tr>
-<tr>
-<td style="text-align:left">vc9</td>
-<td style="text-align:left">VS2008</td>
-</tr>
-<tr>
-<td style="text-align:left">vc10</td>
-<td style="text-align:left">VS2010</td>
-</tr>
-<tr>
-<td style="text-align:left">vc11</td>
-<td style="text-align:left">VS2012</td>
-</tr>
-<tr>
-<td style="text-align:left">vc12</td>
-<td style="text-align:left">VS2013</td>
-</tr>
-<tr>
-<td style="text-align:left">vc13</td>
-<td style="text-align:left">VS2014</td>
-</tr>
-<tr>
-<td style="text-align:left">vc14</td>
-<td style="text-align:left">VS2015</td>
-</tr>
-<tr>
-<td style="text-align:left">vc15</td>
-<td style="text-align:left">VS2017</td>
-</tr>
-<tr>
-<td style="text-align:left">vc16</td>
-<td style="text-align:left">VS2019</td>
-</tr>
-</tbody>
-</table>
-<p>既然上面安装的是 VS 2019, 那么我们就安装  VC16 版本的 OpenCV， 省得自己编译了；</p>
-<p>解压安装后，将 <code>build</code> 目录下的 <code>x64\vc16\bin</code> 添加到环境变量中。</p>
-<h2 id="安装-CUDA-和-CUDNN">安装 CUDA 和 CUDNN</h2>
-<p>这里有些人可能不知道需要安装什么版本的 cuda。因为我这里的 GPU 是 N卡 3090 还是比较好的，所以可以安装比较高阶版本的软件，但是也不能太新，我这里直接参考 PyTorch 里最新版本的框架依赖哪个？</p>
-<img data-src="/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/image.png" class="" title="image.png">
-<p>好了，那就安装 CUDA 11.8 和对应的 CUDNN 8 ；</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubnZpZGlhLmNvbS9jdWRhLTExLTgtMC1kb3dubG9hZC1hcmNoaXZlP3RhcmdldF9vcz1XaW5kb3dzJnRhcmdldF9hcmNoPXg4Nl82NCZ0YXJnZXRfdmVyc2lvbj0xMCZ0YXJnZXRfdHlwZT1leGVfbG9jYWw=">cuda11.8-exe_local-3GB<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubnZpZGlhLmNvbS9yZHAvY3Vkbm4tYXJjaGl2ZQ==">cudnn 下载对应版本<i class="fa fa-external-link-alt"></i></span></p>
-<p><em>注意： cudnn 要注册账号</em></p>
-<p>解压后，将 cudnn 文件夹下的所有文件夹复制到 <code>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\</code> 目录下。</p>
-<h3 id="验证-4">验证</h3>
-<pre><code class="language-bash">(base) D:\&gt;nvcc --version
-nvcc: NVIDIA (R) Cuda compiler driver
-Copyright (c) 2005-2022 NVIDIA Corporation
-Built on Wed_Sep_21_10:41:10_Pacific_Daylight_Time_2022
-Cuda compilation tools, release 11.8, V11.8.89
-Build cuda_11.8.r11.8/compiler.31833905_0
-</code></pre>
-<p>进入到安装目录 <code>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\extras\demo_suite</code>, 运行 <code>.\deviceQuery.exe</code></p>
-<img data-src="/2025/01/01/Windows/windows10%20%E5%AE%89%E8%A3%85%20pytorch/image-3.png" class="" title="image-3.png">
-<h2 id="安装-PyTorch">安装 PyTorch</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9weXRvcmNoLm9yZy8=">PyTorch<i class="fa fa-external-link-alt"></i></span></p>
-<p><strong>conda 安装</strong></p>
-<pre><code class="language-bash">conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
-</code></pre>
-<p><strong>pip 安装</strong></p>
-<pre><code class="language-bash">pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-</code></pre>
-<h3 id="验证-5">验证</h3>
-<pre><code class="language-bash">(base) D:\&gt;python
-Python 3.11.4 | packaged by Anaconda, Inc. | (main, Jul  5 2023, 13:38:37) [MSC v.1916 64 bit (AMD64)] on win32
-Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
-&gt;&gt;&gt; import torch
-&gt;&gt;&gt; print(torch.__version__)
-2.0.1
-&gt;&gt;&gt; torch.cuda.is_available()
-True
-&gt;&gt;&gt;
-</code></pre>
-<h2 id="ultralytics-YOLOv8">ultralytics/YOLOv8</h2>
-<p><strong>创建虚拟环境</strong></p>
-<pre><code class="language-bash">conda create --name yolov8 --clone base
-</code></pre>
-<p><strong>激活虚拟环境</strong></p>
-<pre><code class="language-bash">conda activate yolov8
-</code></pre>
-<p><strong>安装</strong></p>
-<pre><code class="language-bash">pip install ultralytics
-</code></pre>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3VsdHJhbHl0aWNzL3VsdHJhbHl0aWNz">代码 https://github.com/ultralytics/ultralytics<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3VsdHJhbHl0aWNzL2Fzc2V0cy9yZWxlYXNlcw==">权重 https://github.com/ultralytics/assets/releases<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="验证-6">验证</h3>
-<pre><code class="language-bash">yolo predict model=yolov8n.pt imgsz=640 conf=0.25
-</code></pre>
-<pre><code class="language-bash">(yolov8) F:\workspace\yolov8&gt;yolo predict model=yolov8n.pt imgsz=640 conf=0.25
-WARNING  'source' is missing. Using default 'source=D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\assets'.
-Ultralytics YOLOv8.0.154  Python-3.11.4 torch-2.0.1 CUDA:0 (NVIDIA GeForce RTX 3090, 24576MiB)
-YOLOv8n summary (fused): 168 layers, 3151904 parameters, 0 gradients
-
-image 1/2 D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\assets\bus.jpg: 640x480 4 persons, 1 bus, 1 stop sign, 160.2ms
-image 2/2 D:\anaconda3\envs\yolov8\Lib\site-packages\ultralytics\assets\zidane.jpg: 384x640 2 persons, 1 tie, 154.0ms
-Speed: 41.6ms preprocess, 157.1ms inference, 72.6ms postprocess per image at shape (1, 3, 384, 640)
-Results saved to runs\detect\predict
-</code></pre>
-<h2 id="【参考】">【参考】</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC85OTg4MDIwND9mcm9tX3ZvdGVyc19wYWdlPXRydWU=">Windows 安装 CUDA/cuDNN<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzMwMTMzMy9hcnRpY2xlL2RldGFpbHMvMTIxNTUwMjU3">验证pytorch是否为GPU版本<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC82MjcxMDgzMDE=">YOLOv8环境搭建（Windows11）<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl82MTk4ODg4NS9hcnRpY2xlL2RldGFpbHMvMTI5NDIxNTM4">YOLOv8 从环境搭建到推理训练<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnVsdHJhbHl0aWNzLmNvbS9xdWlja3N0YXJ0Lw==">Ultralytics YOLOv8 Docs-Quickstart<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC82MTU1MzA3ODU=">Anaconda 创建，复制，移植，删除环境<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Windows</category>
-        <category>Pytorch</category>
-        <category>运维</category>
-      </categories>
-      <tags>
-        <tag>Pytorch</tag>
-        <tag>Windows</tag>
-        <tag>YOLOv8</tag>
       </tags>
   </entry>
   <entry>
