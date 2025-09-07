@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"znza.top","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.23.2","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":{"enable":true},"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":5,"unescape":false,"preload":true,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="PID控制的故事：从水缸到自行车的控制之旅  水缸里的PID控制  小明接到了一个看似简单的任务：维护一个漏水的水缸，使其水面高度始终保持在指定位置。这个任务背后隐藏着自动控制理论的核心——PID控制。 起初，小明尝试每30分钟检查一次水位。然而，由于漏水速度不稳定，当他回来时水位往往已经严重偏低，需要频繁大量补水，效率极低。于是他缩短检查间隔到每3分钟一次，结果发现水位几乎没有变化，这种高频率的">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="PID的小故事">
+<meta property="og:url" content="https://znza.top/2025/09/07/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F/PID%E7%9A%84%E5%B0%8F%E6%95%85%E4%BA%8B/index.html">
+<meta property="og:site_name" content="老周有AI">
+<meta property="og:description" content="PID控制的故事：从水缸到自行车的控制之旅  水缸里的PID控制  小明接到了一个看似简单的任务：维护一个漏水的水缸，使其水面高度始终保持在指定位置。这个任务背后隐藏着自动控制理论的核心——PID控制。 起初，小明尝试每30分钟检查一次水位。然而，由于漏水速度不稳定，当他回来时水位往往已经严重偏低，需要频繁大量补水，效率极低。于是他缩短检查间隔到每3分钟一次，结果发现水位几乎没有变化，这种高频率的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://znza.top/images/logo.svg">
+<meta property="article:published_time" content="2025-09-07T03:49:00.000Z">
+<meta property="article:modified_time" content="2025-09-07T03:54:23.037Z">
+<meta property="article:author" content="老周">
+<meta property="article:tag" content="PID">
+<meta property="article:tag" content="控制理论">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://znza.top/images/logo.svg">
+
+
+<link rel="canonical" href="https://znza.top/2025/09/07/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F/PID%E7%9A%84%E5%B0%8F%E6%95%85%E4%BA%8B/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://znza.top/2025/09/07/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F/PID%E7%9A%84%E5%B0%8F%E6%95%85%E4%BA%8B/","path":"2025/09/07/控制系统/PID的小故事/","title":"PID的小故事"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>PID的小故事 | 老周有AI</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="老周有AI" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">老周有AI</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">计算机视觉与人工智能技术分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">78</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">24</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">49</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">PID控制的故事：从水缸到自行车的控制之旅</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B0%B4%E7%BC%B8%E9%87%8C%E7%9A%84PID%E6%8E%A7%E5%88%B6"><span class="nav-number">1.1.</span> <span class="nav-text">水缸里的PID控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84PID"><span class="nav-number">1.2.</span> <span class="nav-text">控制模型中的PID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E9%AA%91%E8%87%AA%E8%A1%8C%E8%BD%A6%E4%B8%8EPID%E6%8E%A7%E5%88%B6"><span class="nav-number">1.3.</span> <span class="nav-text">学习骑自行车与PID控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD%EF%BC%9APID%E6%8E%A7%E5%88%B6%E7%9A%84%E6%99%BA%E6%85%A7"><span class="nav-number">1.4.</span> <span class="nav-text">结语：PID控制的智慧</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="老周"
+      src="/images/person.jpg">
+  <p class="site-author-name" itemprop="name">老周</p>
+  <div class="site-description" itemprop="description">老周的个人技术博客，专注于计算机视觉、人工智能和创意编程</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">78</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://znza.top/2025/09/07/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F/PID%E7%9A%84%E5%B0%8F%E6%95%85%E4%BA%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="老周">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老周有AI">
+      <meta itemprop="description" content="老周的个人技术博客，专注于计算机视觉、人工智能和创意编程">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="PID的小故事 | 老周有AI">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PID的小故事
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-09-07 11:49:00 / 修改时间：11:54:23" itemprop="dateCreated datePublished" datetime="2025-09-07T11:49:00+08:00">2025-09-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">控制系统</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>PID控制的故事：从水缸到自行车的控制之旅</h1>
+<img data-src="/2025/09/07/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F/PID%E7%9A%84%E5%B0%8F%E6%95%85%E4%BA%8B/5874111657534111aee4f4da262e08e3_3.png" class="" title="PID控制1">
+<h2 id="水缸里的PID控制">水缸里的PID控制</h2>
+<img data-src="/2025/09/07/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F/PID%E7%9A%84%E5%B0%8F%E6%95%85%E4%BA%8B/9a37651031e04c28b1f27136158010d9_1.png" class="" title="PID控制2">
+<p>小明接到了一个看似简单的任务：维护一个漏水的水缸，使其水面高度始终保持在指定位置。这个任务背后隐藏着自动控制理论的核心——PID控制。</p>
+<p>起初，小明尝试每30分钟检查一次水位。然而，由于漏水速度不稳定，当他回来时水位往往已经严重偏低，需要频繁大量补水，效率极低。于是他缩短检查间隔到每3分钟一次，结果发现水位几乎没有变化，这种高频率的检查成了无谓的重复劳动。经过几次试验后，小明确定了每10分钟检查一次是最优方案。这个检查的时间间隔，就是控制系统中的<strong>采样周期</strong>。</p>
+<p>解决了检查频率问题后，小明开始优化加水方式。最初他用瓢加水，但距离远、效率低，常常需要来回奔波多次才能补足水量。后来他改用桶加水，虽然减少了跑动次数，但一桶水往往加得太多，导致水溢出，弄湿了鞋子。最终，他找到了最合适的工具——盆。用盆加水既能保证效率，又不会造成过度溢出。这个加水工具的大小，就相当于PID控制中的<strong>比例系数（P）</strong>。</p>
+<p>然而，即使使用盆加水，水位有时仍会高于目标位置，存在打湿鞋的风险。为了解决这个问题，小明在水缸上安装了一个漏斗，让水慢慢流入，避免了瞬间大量进水导致的超调。但他很快发现，这种方法虽然稳定，但加水速度太慢，有时赶不上漏水的速度。于是他尝试不同口径的漏斗，最终找到了既能快速补水又能平稳控制水位的理想尺寸。这个漏斗控制水流的速度，对应着PID中的<strong>积分时间（I）</strong>。</p>
+<p>就在小明以为任务完成时，要求突然提高：水位控制必须更加及时，一旦低于标准，必须迅速补水，且不能超出太多，否则将被扣工资。面对新挑战，小明灵机一动，在旁边准备了一盆备用水。一旦发现水位过低，他就直接倒入这盆水，确保快速响应。为了防止水加得过多，他在水缸上方开了一孔，连接一根管子将多余的水导回备用桶。这个排水孔的大小决定了多余水量排出的速度，这就是PID中的<strong>微分时间（D）</strong>。</p>
+<p>通过这个故事，我们看到PID控制的三个核心要素是如何协同工作的：比例控制提供基本响应，积分控制消除长期误差，微分控制预测并抑制超调。这三者的配合，使得系统既能快速响应，又能稳定运行。</p>
+<h2 id="控制模型中的PID">控制模型中的PID</h2>
+<p>让我们换一个更贴近日常生活的例子：用一个水壶往一个印有刻度的杯子中倒水，目标是恰好倒到半杯的位置并停止。</p>
+<p>在这个场景中，<strong>设定值</strong>是杯子上的半杯刻度线，<strong>实际值</strong>是当前杯中的水量，<strong>输出值</strong>则是倒水或舀水的动作，<strong>测量传感器</strong>是人的眼睛，而<strong>执行对象</strong>就是人自己。</p>
+<p>首先，如果我们只使用<strong>比例控制（P）</strong>，做法是：看到水量不足就倒一些水，看到水多过刻度就舀出一些。这种方法简单直接，但往往会出现问题——倒得不够或多出刻度，难以精确停在目标位置。这是因为比例控制只关注当前误差的大小，无法消除长期存在的微小偏差，这就是所谓的<strong>稳态误差</strong>。</p>
+<p>为了解决这个问题，我们引入<strong>积分控制（I）</strong>。现在，我们不仅看当前差多少，还记住过去所有误差的累积。如果一直差一点，积分项会越来越大，推动我们持续加水，直到误差完全消除。这就是<strong>PI控制</strong>，它能确保系统最终达到无误差的稳态。</p>
+<p>但PI控制可能响应较慢，或者在接近目标时出现振荡。这时，<strong>微分控制（D）</strong> 就派上用场了。微分项关注的是误差的变化率，也就是水位上升的速度。当水位快速接近目标时，即使还有一定差距，微分项也会提前减小倒水速度，防止冲过头。这就像开车接近红灯时，不仅要看离红灯还有多远（P），还要看车速有多快（D），提前刹车。</p>
+<p>因此，完整的<strong>PID控制</strong>结合了这三种策略：比例项提供即时响应，积分项消除残余误差，微分项预测未来趋势并抑制超调。这种组合使得控制系统既能快速准确地达到目标，又能平稳运行，避免剧烈震荡。</p>
+<h2 id="学习骑自行车与PID控制">学习骑自行车与PID控制</h2>
+<p>回想小时候学骑自行车的经历，那真是一段充满挫折的记忆。60年代，一辆“永久”或“飞鸽”牌的28寸大杠自行车，对一个普通家庭来说就像今天的私家车一样珍贵。借来同学父亲的自行车，没有教练，没有保护，只有不断的摔倒和伤痕累累的车身。为什么学习过程如此艰难？为什么其他功课都能拿95分以上，却在学车这件事上屡屡受挫？</p>
+<p>事后反思，我意识到自己的学习方法有问题。如果让我来教别人骑车，我该如何总结经验，用最简单有效的方法让人快速掌握？传统的教导往往是：“眼睛看前方，不要看前轮！腰不要扭，身子要坐正！”可对于一个紧张的新手来说，这些要求往往难以执行。</p>
+<p>经过反复思考，我总结出了一个十字口诀：“<strong>车身往哪倒，龙头往哪拐！</strong>” 这十个字看似简单，却蕴含了深刻的控制原理。当你感觉到车身向左倾斜时，立刻将龙头向左转，车身就会因为离心力的作用而回正；反之亦然。这个动作本质上就是一种<strong>反馈控制</strong>——根据系统的偏差（车身倾斜）采取纠正措施（转动龙头）。</p>
+<p>这与PID控制何其相似！车身倾斜的角度相当于<strong>误差</strong>，转动龙头的幅度相当于<strong>比例项</strong>，而转动的速度和时机则包含了<strong>微分项</strong>的预测作用。通过不断练习，大脑会自动调整这些“参数”，最终实现平稳骑行。</p>
+<p>这个经历告诉我们，无论学习什么，方法至关重要。一个好的老师，就像一个优秀的控制器，能够根据学生的状态动态调整教学策略。复杂的技能，往往可以通过找到一个简单的切入点而变得容易掌握。正如PID控制通过三个简单的数学运算就能驾驭复杂的动态系统，我们在学习和生活中，也应该善于从复杂现象中提炼出简单而有效的原则。</p>
+<h2 id="结语：PID控制的智慧">结语：PID控制的智慧</h2>
+<p>从水缸补水到倒水入杯，再到学习骑车，这些看似不相关的日常场景，都体现了PID控制的核心思想：<strong>通过反馈不断调整，以达到并维持期望的状态</strong>。</p>
+<p>PID控制之所以在工业领域应用如此广泛，正是因为它结构简单、鲁棒性强，即使在无法精确建模的复杂系统中也能表现出色。比例、积分、微分三个环节各司其职，协同工作：</p>
+<ul>
+<li><strong>P（比例）</strong>：放大当前误差，提供快速响应。</li>
+<li><strong>I（积分）</strong>：累积历史误差，消除稳态偏差。</li>
+<li><strong>D（微分）</strong>：预测未来趋势，抑制超调和振荡。</li>
+</ul>
+<p>在实际应用中，PID参数的整定往往依赖经验和现场调试。一个经典的口诀是：“参数整定找最佳，从小到大顺序查；先是比例后积分，最后再把微分加。” 这提醒我们，控制系统的优化是一个循序渐进的过程。</p>
+<p>无论是工程师调试一个温度控制器，还是普通人学习一项新技能，背后都蕴含着类似的控制逻辑。理解PID，不仅是掌握一种技术工具，更是学会一种系统思维——如何在动态变化的环境中，通过持续的反馈和调整，走向理想的彼岸。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/PID/" rel="tag"># PID</a>
+              <a href="/tags/%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA/" rel="tag"># 控制理论</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/08/26/%E8%BF%90%E7%BB%B4/onekeycopy-depends/" rel="prev" title="一键复制动态库依赖脚本">
+                  <i class="fa fa-angle-left"></i> 一键复制动态库依赖脚本
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">老周</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
