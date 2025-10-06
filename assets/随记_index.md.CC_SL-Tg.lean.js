@@ -1,0 +1,1 @@
+import{_ as a,c as t,o as i,ag as r}from"./chunks/framework.B-XtCDNB.js";const h=JSON.parse('{"title":"随记","description":"","frontmatter":{},"headers":[],"relativePath":"随记/index.md","filePath":"随记/index.md"}'),l={name:"随记/index.md"};function n(o,e,d,s,_,c){return i(),t("div",null,[...e[0]||(e[0]=[r("",7)])])}const m=a(l,[["render",n]]);export{h as __pageData,m as default};
