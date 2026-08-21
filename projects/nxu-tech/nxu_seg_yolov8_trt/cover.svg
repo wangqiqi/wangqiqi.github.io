@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="360" viewBox="0 0 560 360">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </linearGradient>
+  </defs>
+  <rect width="560" height="360" fill="url(#g)"/>
+  <text x="280" y="170" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="22" font-weight="600">nxu_seg_yolov8_trt</text>
+  <text x="280" y="205" text-anchor="middle" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="14">YOLOv8 · C++ SDK</text>
+</svg>
