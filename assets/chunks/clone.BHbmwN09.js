@@ -1,1 +1,0 @@
-import{S as e}from"./graphlib.DUs-Wrfw.js";var t=4;function n(n){return e(n,t)}export{n as t};
